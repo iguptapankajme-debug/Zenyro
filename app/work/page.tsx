@@ -2,6 +2,7 @@ import { PageHero } from "@/components/layout/page-hero";
 import { WorkShowcase } from "@/components/sections/work-showcase";
 import { concepts, projects } from "@/data/work";
 import { ProjectGrid } from "@/components/sections/project-grid";
+import { ProjectReel } from "@/components/sections/project-reel";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { Em } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/seo";
@@ -22,10 +23,11 @@ export default function WorkPage() {
         title={<>Work that moves <Em>business forward.</Em></>}
         intro="Live websites we've launched, followed by concept demonstrations of the growth systems we build."
       />
-      <section className="py-20 md:py-28" aria-labelledby="live-title">
+      <ProjectReel items={projects()} title={<>Launched <Em>and live.</Em></>} />
+      <section className="border-t border-line py-20 md:py-28" aria-labelledby="live-title">
         <div className="shell">
-          <p className="eyebrow mb-6">Live projects</p>
-          <h2 id="live-title" className="display-md mb-12 max-w-2xl">Launched and live.</h2>
+          <p className="eyebrow mb-6">All live projects</p>
+          <h2 id="live-title" className="display-md mb-12 max-w-2xl">Every project at a glance.</h2>
           <ProjectGrid items={projects()} headingLevel="h3" />
         </div>
       </section>

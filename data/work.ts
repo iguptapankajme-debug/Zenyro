@@ -11,6 +11,8 @@ export type WorkItem = {
   kind: "project" | "concept" | "case-study";
   /** Live site for "project" entries. */
   url?: string;
+  /** Optional real screenshot in /public (e.g. "/images/work/eauctionhunt.jpg", 16:9). Cover artwork is used until set. */
+  image?: string;
   title: string;
   /** One short value statement for the showcase. */
   summary: string;

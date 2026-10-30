@@ -2,9 +2,9 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { projects, work } from "@/data/work";
 import { IndustryArt } from "@/components/ui/industry-art";
-import { SectionHeading, Em } from "@/components/ui/section-heading";
+import { Em } from "@/components/ui/section-heading";
 import { cn } from "@/lib/cn";
-import { ProjectGrid } from "./project-grid";
+import { ProjectReel } from "./project-reel";
 
 export function WorkPanels({ items = work, headingLevel = "h3" }: { items?: typeof work; headingLevel?: "h2" | "h3" }) {
   const H = headingLevel;
@@ -60,21 +60,14 @@ export function WorkPanels({ items = work, headingLevel = "h3" }: { items?: type
 
 export function SelectedWork() {
   return (
-    <section className="py-28 md:py-40" aria-labelledby="work-title">
-      <div className="shell">
-        <SectionHeading
-          eyebrow="Selected work"
-          title={<span id="work-title">Work that moves <Em>business forward.</Em></span>}
-          lede="Live websites we've launched for businesses in travel, finance, auctions and business services."
-        />
-        <div className="mt-14 md:mt-20">
-          <ProjectGrid items={projects()} />
-        </div>
-        <Link href="/work" className="group mt-10 inline-flex items-center gap-2 text-[1rem] font-medium">
+    <div className="border-t border-line">
+      <ProjectReel items={projects()} title={<>Work that moves <Em>business forward.</Em></>} />
+      <div className="shell pb-24">
+        <Link href="/work" className="group inline-flex items-center gap-2 text-[1rem] font-medium">
           <span className="link-u">All work and concept demonstrations</span>
           <ArrowUpRight aria-hidden="true" className="size-4 text-ember" />
         </Link>
       </div>
-    </section>
+    </div>
   );
 }
