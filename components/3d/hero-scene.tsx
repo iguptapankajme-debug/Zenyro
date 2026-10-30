@@ -10,6 +10,7 @@ import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { heroState } from "./hero-state";
+import { SparkField } from "./spark-field";
 
 type Tier = "high" | "low";
 
@@ -302,6 +303,7 @@ export default function HeroScene({ tier, onReady }: { tier: Tier; onReady: () =
       >
         <StudioEnvironment />
         <Sculpture tier={tier} />
+        <SparkField tier={tier} />
         <Driver tier={tier} visible={visible} />
       </Canvas>
     </div>

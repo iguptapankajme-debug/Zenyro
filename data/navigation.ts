@@ -48,7 +48,6 @@ export const industryLinks: NavItem[] = industries.map((i) => ({
 export const primaryNav = [
   { label: "Services", href: "/services", groups: serviceGroups },
   { label: "Solutions", href: "/solutions", children: industryLinks },
-  { label: "Tools", href: "/tools" },
   { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },

@@ -1,8 +1,10 @@
 import { ManifestoText } from "@/components/animations/manifesto-text";
+import { ShaderCanvas } from "@/components/webgl/shader-canvas";
 
 export function Manifesto() {
   return (
-    <section className="relative overflow-hidden py-32 md:py-48" aria-label="The Zenyro manifesto">
+    <section className="relative isolate overflow-hidden py-32 md:py-48" aria-label="The Zenyro manifesto">
+      <ShaderCanvas shader="grid" className="-z-10 [mask-image:linear-gradient(to_right,transparent,black_35%,black)]" />
       <div className="shell">
         <p className="eyebrow mb-10">Manifesto</p>
         <ManifestoText

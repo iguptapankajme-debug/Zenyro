@@ -6,7 +6,7 @@ import { logout, setLeadStatus } from "../actions";
 
 export const dynamic = "force-dynamic";
 
-const sources = ["contact-form", "website-cost-calculator", "seo-audit", "website-brief-generator"];
+const sources = ["contact-form"];
 const pretty = (s: string) => s.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase());
 
 type Props = { searchParams: Promise<{ status?: string; source?: string }> };

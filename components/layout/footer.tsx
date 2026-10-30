@@ -5,9 +5,6 @@ import { site } from "@/lib/site";
 import { Mark } from "./wordmark";
 
 const company = [
-  { label: "Free tools", href: "/tools" },
-  { label: "Website cost calculator", href: "/tools/website-cost-calculator" },
-  { label: "SEO audit", href: "/tools/seo-audit" },
   { label: "About", href: "/about" },
   { label: "Work", href: "/work" },
   { label: "Insights", href: "/insights" },

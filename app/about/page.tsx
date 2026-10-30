@@ -69,6 +69,41 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="py-24 md:py-32" aria-labelledby="compare-title">
+        <div className="shell">
+          <p className="eyebrow mb-6">How we&apos;re different</p>
+          <h2 id="compare-title" className="display-md max-w-3xl">One accountable team instead of three vendors.</h2>
+          <div className="mt-12 overflow-x-auto rounded-3xl border border-line">
+            <table className="w-full min-w-[40rem] text-left text-[0.95rem]">
+              <caption className="sr-only">Typical setup compared with Zenyro</caption>
+              <thead className="bg-ink-2">
+                <tr>
+                  <th scope="col" className="px-6 py-4 font-normal text-muted">&nbsp;</th>
+                  <th scope="col" className="px-6 py-4 font-medium text-muted">Typical setup</th>
+                  <th scope="col" className="px-6 py-4 font-medium text-ember">Zenyro</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Who you work with", "A web agency, an ads agency and a software vendor", "One team covering website, acquisition and automation"],
+                  ["What gets measured", "Traffic, clicks and form fills", "Qualified leads and cost per customer"],
+                  ["Speed to lead", "Depends on who checks the inbox", "Instant replies and routing, with people in control"],
+                  ["Search", "Traditional SEO only", "SEO, answer engines and AI search together"],
+                  ["Ownership", "Accounts and code often held by vendors", "Everything on your accounts, documented"],
+                  ["Reporting", "Monthly decks", "Short weekly updates in plain language"],
+                ].map(([row, a, b]) => (
+                  <tr key={row} className="border-t border-line">
+                    <th scope="row" className="px-6 py-4 font-medium">{row}</th>
+                    <td className="px-6 py-4 text-muted">{a}</td>
+                    <td className="px-6 py-4">{b}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <Process variant="full" />
       <ContactCta />
     </>

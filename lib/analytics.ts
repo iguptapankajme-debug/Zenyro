@@ -1,14 +1,9 @@
 /**
  * Consent-aware product analytics. Events go to Plausible (cookie-free) only when it is installed,
  * the visitor has not opted out on the privacy page, and the browser does not send Do Not Track
- * or Global Privacy Control. Properties are limited to non-personal values such as tool names and
- * budget bands; never pass names, emails, phone numbers, URLs typed by visitors or free text.
+ * or Global Privacy Control. Properties are limited to non-personal values such as section names; never pass names, emails, phone numbers, URLs typed by visitors or free text.
  */
 export type AnalyticsEvent =
-  | "Tool Opened"
-  | "Tool Completed"
-  | "Proposal Requested"
-  | "Consultation Requested"
   | "Consultation Booking Opened"
   | "Contact Submitted";
 
