@@ -1,12 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import type { WorkItem } from "@/data/work";
 import { IndustryArt } from "@/components/ui/industry-art";
 import { cn } from "@/lib/cn";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { ShaderCanvas } from "@/components/webgl/shader-canvas";
+import { DistortImage } from "@/components/webgl/distort-image";
 
 /**
  * Cinematic project reel.
@@ -14,7 +15,7 @@ import { useMediaQuery } from "@/hooks/use-media-query";
  * the focused project comes forward, its browser frame types the live domain, the rest recede.
  * Phones and reduced motion: a native swipeable snap carousel. Every card links to the live site.
  */
-export function ProjectReel({ items, title }: { items: WorkItem[]; title: React.ReactNode }) {
+export function ProjectReel({ items, title, backdrop = false }: { items: WorkItem[]; title: React.ReactNode; /** Scroll-reactive WebGL light streaks behind the reel. */ backdrop?: boolean }) {
   const section = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const bar = useRef<HTMLSpanElement>(null);
@@ -70,7 +71,8 @@ export function ProjectReel({ items, title }: { items: WorkItem[]; title: React.
       className="relative"
       style={pinned ? { height: `${items.length * 70 + 40}vh` } : undefined}
     >
-      <div className={cn("overflow-hidden py-20 md:py-28", pinned && "sticky top-0 flex h-screen flex-col justify-center pb-6 pt-24")}>
+      <div className={cn("relative isolate overflow-hidden py-20 md:py-28", pinned && "sticky top-0 flex h-screen flex-col justify-center pb-6 pt-24")}>
+        {backdrop && <ShaderCanvas shader="streaks" className="-z-10 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]" />}
         <div className="shell flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="eyebrow mb-5">Selected work</p>
@@ -113,7 +115,7 @@ export function ProjectReel({ items, title }: { items: WorkItem[]; title: React.
                       </div>
                       <div className="relative aspect-[16/9] overflow-hidden bg-ink">
                         {w.image ? (
-                          <Image src={w.image} alt={`${w.title} website`} fill sizes="(min-width: 1024px) 58rem, 86vw" className="object-cover object-top transition-transform duration-[1.6s] ease-out-expo group-hover:scale-[1.04]" />
+                          <DistortImage src={w.image} alt={`${w.title} website`} sizes="(min-width: 1024px) 58rem, 86vw" className="absolute inset-0 transition-transform duration-[1.6s] ease-out-expo group-hover:scale-[1.04]" />
                         ) : (
                           <div className="absolute inset-0 transition-transform duration-[1.6s] ease-out-expo group-hover:scale-[1.06]">
                             <IndustryArt art={w.art} />
@@ -139,6 +141,9 @@ export function ProjectReel({ items, title }: { items: WorkItem[]; title: React.
                           </>
                         )}
                         <p className="text-[0.98rem] leading-relaxed text-muted">{w.summary}</p>
+                        <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="What we delivered">
+                          {w.services.map((sv) => <li key={sv} className="rounded-full border border-line-2 px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-muted">{sv}</li>)}
+                        </ul>
                       </div>
                       <span className="inline-flex items-center gap-2 rounded-full bg-paper px-4 py-2 text-[0.85rem] font-medium text-ink transition-colors group-hover:bg-ember group-hover:text-ember-ink">
                         Visit site <ArrowUpRight aria-hidden="true" className="size-4" />

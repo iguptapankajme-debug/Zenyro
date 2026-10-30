@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { WorkItem } from "@/data/work";
 import { IndustryArt } from "@/components/ui/industry-art";
+import { DistortImage } from "@/components/webgl/distort-image";
 
 /** Grid of live projects. Each card opens the live site in a new tab. */
 export function ProjectGrid({ items, headingLevel = "h3" }: { items: WorkItem[]; headingLevel?: "h2" | "h3" }) {
@@ -28,7 +28,7 @@ export function ProjectGrid({ items, headingLevel = "h3" }: { items: WorkItem[];
             <div className="relative aspect-[16/9] overflow-hidden border-b border-line bg-ink">
               <div className="absolute inset-0 transition-transform duration-[1.4s] ease-out-expo group-hover:scale-[1.07]">
                 {w.image ? (
-                  <Image src={w.image} alt={`${w.title} website`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-top" />
+                  <DistortImage src={w.image} alt={`${w.title} website`} sizes="(min-width: 768px) 50vw, 100vw" className="absolute inset-0" />
                 ) : (
                   <IndustryArt art={w.art} />
                 )}

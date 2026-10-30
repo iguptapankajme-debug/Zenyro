@@ -11,6 +11,7 @@ uniform float uTime;
 uniform vec2 uRes;
 uniform vec2 uMouse;
 uniform float uIntensity;
+uniform float uScroll;
 const vec3 EMBER = vec3(1.0, 0.42, 0.21);
 const vec3 STEEL = vec3(0.58, 0.60, 0.64);
 float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
@@ -82,5 +83,53 @@ void main(){
   gl_FragColor = vec4(col, clamp(a, 0.0, 0.8));
 }`;
 
-export const shaders = { ember, grid, contour } as const;
+/** Perspective grid racing toward a glowing horizon; speeds up with scroll, bends toward the pointer. */
+const warp = `${common}
+void main(){
+  vec2 uv = gl_FragCoord.xy / uRes;
+  vec2 p = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y;
+  float horizon = 0.08;
+  float y = p.y - horizon;
+  float glow = exp(-abs(y) * 9.0) * 0.55 + exp(-abs(y) * 2.5) * 0.12;
+  vec3 col = EMBER * glow;
+  float a = glow * 0.9;
+  if (y < 0.0) {
+    float z = 0.32 / -y;                                   // depth
+    float bend = (uMouse.x - 0.5) * 0.6 * z * 0.12;
+    float x = (p.x + bend) * z;
+    float travel = uTime * 0.9 + uScroll * 2.2;
+    vec2 g = vec2(x, z + travel);
+    vec2 cell = abs(fract(g) - 0.5);
+    float line = max(smoothstep(0.47, 0.5, cell.x), smoothstep(0.45, 0.5, cell.y));
+    float fade = smoothstep(14.0, 1.0, z) * smoothstep(0.0, 0.05, -y);
+    float pulse = smoothstep(0.92, 1.0, sin((z + travel) * 0.6 - uTime) * 0.5 + 0.5);
+    col += mix(STEEL * 0.55, EMBER, pulse * 0.8) * line * fade;
+    a = max(a, line * fade * (0.45 + pulse * 0.4));
+  }
+  float side = smoothstep(0.0, 0.25, uv.x) * smoothstep(1.0, 0.75, uv.x);
+  gl_FragColor = vec4(col, clamp(a * side * uIntensity, 0.0, 0.9));
+}`;
+
+/** Long diagonal light streaks that drift with time and sweep sideways with scroll. */
+const streaks = `${common}
+void main(){
+  vec2 p = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y;
+  float ang = -0.35;
+  mat2 rot = mat2(cos(ang), -sin(ang), sin(ang), cos(ang));
+  vec2 q = rot * p;
+  q.x += uScroll * 0.9 + uTime * 0.05;
+  float lane = floor(q.y * 9.0);
+  float h = hash(vec2(lane, 3.7));
+  float speed = 0.15 + h * 0.35;
+  float x = fract(q.x * (0.35 + h * 0.4) + uTime * speed + h * 7.0);
+  float streak = smoothstep(0.0, 0.55, x) * smoothstep(1.0, 0.6, x);
+  float thin = smoothstep(0.5, 0.0, abs(fract(q.y * 9.0) - 0.5) * (6.0 + h * 10.0));
+  float on = step(0.55, h);
+  float v = streak * thin * on;
+  vec3 col = mix(STEEL, EMBER, step(0.8, h));
+  float edge = smoothstep(1.2, 0.2, length(p * vec2(0.6, 1.0)));
+  gl_FragColor = vec4(col * v, clamp(v * 0.55 * edge * uIntensity, 0.0, 0.7));
+}`;
+
+export const shaders = { ember, grid, contour, warp, streaks } as const;
 export type ShaderName = keyof typeof shaders;

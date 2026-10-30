@@ -46,7 +46,7 @@ export const disciplines: Record<
     claim: "Customer acquisition, engineered.",
     summary:
       "Paid and organic acquisition run as one system: ads, search engines and AI discovery, tracked from the first click to the closed deal.",
-    items: ["Performance Marketing", "SEO: Rank where customers search", "AEO: Become the answer", "GEO: Get discovered in AI search", "Local SEO"],
+    items: ["Performance Marketing", "SEO: Rank where customers search", "AEO: Become the answer", "GEO: Get discovered in AI search", "Social Media Marketing"],
   },
   convert: {
     index: "03",
@@ -461,6 +461,55 @@ export const services: Service[] = [
       { q: "How do you measure AI search visibility?", a: "With a documented prompt set run on a fixed schedule, recording mentions, descriptions and cited sources, plus referral sessions from AI platforms in your analytics. We report these as observations, not as a single proprietary score." },
     ],
     related: ["seo", "aeo", "performance-marketing"],
+  },
+  {
+    slug: "social-media-marketing",
+    name: "Social Media Marketing",
+    discipline: "grow",
+    serviceType: "Social media marketing",
+    metaTitle: "Social Media Marketing That Brings Enquiries",
+    metaDescription:
+      "Social media marketing for Indian businesses: content strategy, short-form video, Instagram, Facebook, LinkedIn and YouTube, community management and paid social, measured against enquiries.",
+    headline: "Social media that starts conversations.",
+    intro:
+      "Most business accounts post regularly and hear nothing back. We plan content around the questions and decisions your buyers actually have, produce it consistently, and connect every profile to WhatsApp, your website and your CRM, so attention turns into enquiries you can measure.",
+    problems: [
+      "You post often, but nobody enquires because of it.",
+      "Content is made in a rush with no plan behind it.",
+      "Messages and comments go unanswered for hours.",
+      "Nobody can say what social media contributes to sales.",
+    ],
+    included: [
+      { title: "Content strategy", body: "Pillars built from real customer questions, objections and seasons, planned month by month." },
+      { title: "Short-form video", body: "Reels and shorts scripted for the first three seconds, filmed simply and edited for each platform." },
+      { title: "Platform management", body: "Instagram, Facebook, LinkedIn and YouTube profiles kept consistent, current and on-brand." },
+      { title: "Community and inbox", body: "Comments and DMs answered quickly, with enquiries routed to WhatsApp or your sales team." },
+      { title: "Paid social", body: "Boosts and campaigns behind the content that is already working, tracked to leads." },
+      { title: "Reporting", body: "Monthly results in plain language: reach, engagement and, most importantly, enquiries." },
+    ],
+    approach: [
+      { title: "Audit and plan", body: "Review current profiles, competitors and audience, then agree pillars and a 30-day calendar." },
+      { title: "Produce and publish", body: "Batch-create content, schedule it, and manage replies every day." },
+      { title: "Learn and scale", body: "Double down on formats that bring enquiries and put budget behind them." },
+    ],
+    deliverables: [
+      "Content strategy and monthly calendar",
+      "Designed posts and edited short-form videos",
+      "Community and inbox management",
+      "Profile optimisation across platforms",
+      "Monthly performance report",
+    ],
+    fitFor: [
+      "Consumer-facing businesses such as travel, hospitality, real estate and retail",
+      "Brands that want a steady presence without hiring an in-house team",
+      "Businesses already running ads that need better creative",
+    ],
+    faqs: [
+      { q: "Which platforms should my business be on?", a: "The ones your buyers use when deciding. For most Indian service businesses that means Instagram and WhatsApp, with LinkedIn for B2B and YouTube for anything that benefits from explanation. We recommend a focused set rather than every platform." },
+      { q: "Do you guarantee followers or viral posts?", a: "No. We focus on content that builds trust and brings enquiries. We never buy followers or engagement." },
+      { q: "Do we need to be on camera?", a: "It helps, because people trust faces, but it isn't required. We plan formats around what your team is comfortable with." },
+    ],
+    related: ["performance-marketing", "seo", "geo"],
   },
   {
     slug: "lead-generation",
