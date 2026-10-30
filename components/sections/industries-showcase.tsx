@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { industries } from "@/data/industries";
 import { IndustryArt } from "@/components/ui/industry-art";
+import { MorphStage } from "@/components/solutions/morph-stage";
 import { cn } from "@/lib/cn";
 
 /**
@@ -68,23 +69,14 @@ export function IndustriesShowcase() {
       <div className="hidden lg:col-span-6 lg:block">
         <div className="sticky top-28">
           <div className="relative aspect-[4/3.4] overflow-hidden rounded-[1.75rem] border border-line bg-ink" aria-hidden="true">
-            {industries.map((ind, i) => (
-              <div
-                key={ind.slug}
-                className={cn(
-                  "absolute inset-0 transition-[clip-path,opacity] duration-[900ms] ease-out-expo",
-                  i === active ? "opacity-100 [clip-path:inset(0_0_0_0_round_0)]" : "opacity-0 [clip-path:inset(12%_12%_12%_12%_round_24px)]",
-                )}
-              >
-                <div className={cn("ind-art absolute inset-0", i === active && "is-on")}>
-                  <IndustryArt art={ind.art} />
-                </div>
-              </div>
-            ))}
+            <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(var(--color-line)_1px,transparent_1px)] [background-size:22px_22px] opacity-60 [mask-image:radial-gradient(circle_at_center,black,transparent_75%)]" />
+            <div className="absolute inset-x-0 top-0 bottom-[30%]">
+              <MorphStage shape={current.slug} className="absolute inset-0" />
+            </div>
             <div key={current.slug} className="ind-sweep pointer-events-none absolute inset-0" />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/80 to-transparent p-8 pt-24">
               <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">{current.short}</p>
-              <p key={current.slug} className="mt-3 max-w-md animate-fade text-[1.9rem] font-semibold leading-[1.05] tracking-[-0.035em]">{current.headline}</p>
+              <p key={current.slug} className="blur-swap mt-3 max-w-md text-[1.9rem] font-semibold leading-[1.05] tracking-[-0.035em]">{current.headline}</p>
             </div>
           </div>
           <Link

@@ -6,7 +6,7 @@ import { Faq } from "@/components/sections/faq";
 import { LinkList } from "@/components/sections/link-grid";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { ButtonLink } from "@/components/ui/button";
-import { IndustryArt } from "@/components/ui/industry-art";
+import { MorphStage } from "@/components/solutions/morph-stage";
 import { JsonLd } from "@/components/ui/json-ld";
 import { getIndustry, industries } from "@/data/industries";
 import { getService } from "@/data/services";
@@ -44,8 +44,12 @@ export default async function IndustryPage({ params }: Props) {
 
       <section className="py-24 md:py-32">
         <div className="shell grid gap-12 lg:grid-cols-12">
-          <div className="overflow-hidden rounded-[1.75rem] border border-line lg:col-span-5">
-            <div className="aspect-[4/3]"><IndustryArt art={ind.art} /></div>
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-[#050608] lg:col-span-5">
+            <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(var(--color-line)_1px,transparent_1px)] [background-size:22px_22px] opacity-60 [mask-image:radial-gradient(circle_at_center,black,transparent_75%)]" />
+            <div className="relative aspect-square lg:aspect-[4/4.4]">
+              <MorphStage shape={ind.slug} className="absolute inset-0" />
+            </div>
+            <p className="absolute bottom-5 left-6 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">Move your cursor over the shape</p>
           </div>
           <div className="lg:col-span-7">
             <p className="eyebrow mb-6">The challenge</p>
