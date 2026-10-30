@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useId, useMemo, useState } from "react";
+import { useTween } from "@/hooks/use-tween";
 import { currencies, formatMoney, project, type CurrencyCode } from "@/lib/calculator";
 import { cn } from "@/lib/cn";
 
@@ -16,30 +17,6 @@ const fields: { key: FieldKey; label: string; hint: string; min: number; max: nu
 
 const defaults: Record<FieldKey, number> = { budget: 100000, costPerLead: 400, conversionRate: 8, customerValue: 50000, improvement: 25 };
 const num = (n: number, digits = 0) => n.toLocaleString("en-IN", { maximumFractionDigits: digits, minimumFractionDigits: 0 });
-
-/** Tweens a displayed number toward its target so results count rather than jump. */
-function useTween(target: number, ms = 550) {
-  const [value, setValue] = useState(target);
-  const from = useRef(target);
-  const shown = useRef(target);
-  useEffect(() => {
-    const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : ms;
-    from.current = shown.current;
-    const start = performance.now();
-    let raf = 0;
-    const tick = (t: number) => {
-      const k = duration ? Math.min((t - start) / duration, 1) : 1;
-      const eased = 1 - Math.pow(1 - k, 4);
-      const v = from.current + (target - from.current) * eased;
-      shown.current = v;
-      setValue(v);
-      if (k < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [target, ms]);
-  return value;
-}
 
 export function GrowthCalculator() {
   const id = useId();

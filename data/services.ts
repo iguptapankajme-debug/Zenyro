@@ -18,6 +18,8 @@ export type Service = {
   fitFor: string[];
   faqs: { q: string; a: string }[];
   related: string[];
+  /** Search services render an illustrative search interface and visibility demo on their page. */
+  search?: "seo" | "aeo" | "geo";
 };
 
 export const disciplines: Record<
@@ -43,8 +45,8 @@ export const disciplines: Record<
     title: "Grow",
     claim: "Customer acquisition, engineered.",
     summary:
-      "Paid and organic acquisition run as one system. Every rupee is tracked from the first click to the closed deal, so budget moves to what actually sells.",
-    items: ["Meta Advertising", "Google Ads", "Performance Marketing", "Local SEO", "Conversion Optimization"],
+      "Paid and organic acquisition run as one system: ads, search engines and AI discovery, tracked from the first click to the closed deal.",
+    items: ["Performance Marketing", "SEO: Rank where customers search", "AEO: Become the answer", "GEO: Get discovered in AI search", "Local SEO"],
   },
   convert: {
     index: "03",
@@ -109,7 +111,7 @@ export const services: Service[] = [
       { q: "Do you guarantee results?", a: "No honest agency can guarantee a cost per lead or a revenue figure, because markets, offers and sales follow-up all affect the outcome. We commit to transparent tracking, a clear test plan and weekly reporting so you can judge the work on real numbers." },
       { q: "Who owns the ad accounts?", a: "You do. We work inside your Meta Business Manager and Google Ads accounts with partner access, so all data and history stay with your business." },
     ],
-    related: ["lead-generation", "local-seo", "website-development"],
+    related: ["lead-generation", "seo", "website-development"],
   },
   {
     slug: "ai-automation",
@@ -208,6 +210,163 @@ export const services: Service[] = [
     related: ["lead-generation", "local-seo", "performance-marketing"],
   },
   {
+    slug: "seo",
+    name: "SEO",
+    discipline: "grow",
+    search: "seo",
+    serviceType: "Search engine optimisation",
+    metaTitle: "SEO Services That Drive Organic Growth",
+    metaDescription:
+      "Technical SEO, on-page and local SEO, programmatic SEO, content strategy, internal linking and digital PR, measured in Search Console and tied to enquiries.",
+    headline: "SEO Services That Drive Organic Growth",
+    intro:
+      "Rank where customers search. We fix what stops search engines from understanding your site, build pages that match real search intent, and earn the authority that moves rankings, then measure it all against enquiries, not just traffic.",
+    problems: [
+      "Competitors with weaker offers outrank you for the searches that matter.",
+      "Traffic grows but enquiries don't.",
+      "Pages exist but Google doesn't index them, or indexes the wrong ones.",
+      "Nobody can explain what last year's SEO spend produced.",
+    ],
+    included: [
+      { title: "Technical SEO", body: "Crawling, indexing, canonicals, redirects, sitemaps, structured data and JavaScript rendering audited and fixed, so every important page can be found and understood." },
+      { title: "On-page SEO", body: "Titles, headings, copy and media aligned to what searchers actually want, page by page, without keyword stuffing." },
+      { title: "Local SEO", body: "Google Business Profile, location pages and reviews workflows for businesses that serve a city or region." },
+      { title: "Programmatic SEO", body: "Templated pages built from real data, such as projects, locations or product ranges, each with genuinely useful, differentiated content." },
+      { title: "Content strategy", body: "A topic map built from search demand and sales conversations, prioritised by business value, then written by people who know the subject." },
+      { title: "Internal linking", body: "Site architecture and links that pass authority to the pages that sell and help visitors find the next step." },
+      { title: "Digital PR", body: "Original data, expert commentary and partnerships that earn relevant links and mentions. No paid link schemes." },
+      { title: "Search Console analysis", body: "Queries, pages, indexing and click-through data reviewed monthly to find quick wins and declining pages." },
+      { title: "Core Web Vitals", body: "Loading, responsiveness and layout stability improved on real devices, because speed affects both rankings and conversions." },
+    ],
+    approach: [
+      { title: "Audit", body: "Technical crawl, Search Console and analytics review, competitor gap analysis and a prioritised fix list." },
+      { title: "Foundations", body: "Technical fixes, site architecture, internal links and the highest-value page improvements first." },
+      { title: "Growth", body: "Monthly content, digital PR and optimisation cycles, reported against clicks, enquiries and revenue." },
+    ],
+    deliverables: [
+      "Technical SEO audit with prioritised fixes",
+      "Keyword and topic map tied to business value",
+      "Optimised pages and new content each month",
+      "Monthly Search Console and enquiry reporting",
+    ],
+    fitFor: [
+      "Businesses whose customers research on Google before buying",
+      "Sites with traffic that does not convert, or no traffic at all",
+      "Brands planning new locations, products or projects",
+    ],
+    faqs: [
+      { q: "How long does SEO take to show results?", a: "Technical fixes can improve indexing within weeks. Meaningful ranking and traffic growth in competitive markets usually takes three to six months of consistent work. We report progress monthly so you can see leading indicators before rankings move." },
+      { q: "Can you guarantee first-page rankings?", a: "No. Search engines decide rankings, and anyone guaranteeing positions is either targeting searches nobody makes or taking risks with your site. We commit to a clear plan, quality work and transparent reporting." },
+      { q: "Do you build links?", a: "We earn links through digital PR, original data and partnerships. We do not buy links or use private blog networks, which can lead to penalties." },
+    ],
+    related: ["aeo", "geo", "local-seo"],
+  },
+  {
+    slug: "aeo",
+    name: "AEO",
+    discipline: "grow",
+    search: "aeo",
+    serviceType: "Answer engine optimisation",
+    metaTitle: "Answer Engine Optimization (AEO) Services",
+    metaDescription:
+      "Answer engine optimisation: question-based content strategy, clear factual answers, entity clarity and structured data where relevant, so your business can become the answer.",
+    headline: "Answer Engine Optimization Services",
+    intro:
+      "Become the answer. More searches now end with a direct answer, a featured snippet or a voice reply. AEO makes your expertise easy to find, understand and quote: clear questions, clear answers, and well-structured information about your business.",
+    problems: [
+      "Customers ask detailed questions, and your site answers none of them clearly.",
+      "Competitors appear in answer boxes and “People also ask” results instead of you.",
+      "Important facts about your business are scattered, outdated or contradictory.",
+      "Your best expertise is locked in sales calls rather than published.",
+    ],
+    included: [
+      { title: "Answer-focused content architecture", body: "Pages organised around the questions buyers ask at each stage, with the answer first and the detail after." },
+      { title: "Search intent analysis", body: "We separate quick-answer questions from research and buying queries, and design the right page for each." },
+      { title: "Question-based content strategy", body: "Questions gathered from search data, sales calls, support tickets and reviews, then prioritised by value." },
+      { title: "Clear, factual explanations", body: "Concise, accurate answers written or reviewed by subject experts, with dates, figures and sources where they matter." },
+      { title: "Structured data where relevant", body: "Schema markup that accurately describes visible content, such as organisation, services, articles and FAQs, never markup for content that isn't on the page." },
+      { title: "Entity clarity", body: "Consistent business name, services, locations and expertise across your site, profiles and directories, so systems can recognise who you are." },
+      { title: "Content quality improvement", body: "Existing pages rewritten for clarity: shorter answers, better structure, fewer vague claims." },
+      { title: "Answer visibility monitoring", body: "A tracked set of priority questions, checked on a schedule to record where your pages appear as answers and where competitors do." },
+    ],
+    approach: [
+      { title: "Question research", body: "Build the question set from search data and real customer conversations." },
+      { title: "Answer design", body: "Restructure key pages and create new answer content with subject-matter experts." },
+      { title: "Monitor and refine", body: "Track priority questions monthly and improve the answers that are not yet chosen." },
+    ],
+    deliverables: [
+      "Prioritised question map by buying stage",
+      "Answer-first page templates",
+      "New and rewritten answer content",
+      "Structured data review and implementation",
+      "Monthly answer visibility log for tracked questions",
+    ],
+    fitFor: [
+      "Expertise-led businesses: clinics, consultants, educators, designers",
+      "Brands that answer the same customer questions every day",
+      "Companies already investing in SEO who want more from existing content",
+    ],
+    faqs: [
+      { q: "How is AEO different from SEO?", a: "AEO is part of good SEO with a sharper focus: making specific answers easy to find, trust and quote. It shares the same foundations, including crawlable pages, quality content and authority, which is why we usually run them together." },
+      { q: "Does adding FAQ schema guarantee answer boxes?", a: "No. Structured data helps systems understand content but does not guarantee any placement, and search engines limit how some rich results appear. We use markup only where it accurately describes visible content." },
+      { q: "How do you measure AEO?", a: "We track a defined set of priority questions over time, recording whether and where your pages appear, alongside Search Console clicks and enquiries from the related pages." },
+    ],
+    related: ["seo", "geo", "website-development"],
+  },
+  {
+    slug: "geo",
+    name: "GEO",
+    discipline: "grow",
+    search: "geo",
+    serviceType: "Generative engine optimisation",
+    metaTitle: "Generative Engine Optimization (GEO) Services",
+    metaDescription:
+      "Generative engine optimisation: AI search visibility audits, brand entity consistency, expert content, source citation analysis and monitoring across generative search experiences.",
+    headline: "Generative Engine Optimization Services",
+    intro:
+      "Get discovered in AI search. People increasingly ask AI assistants and AI-powered search for recommendations. GEO improves how accurately and how often your brand is represented there, by strengthening the signals these systems draw on: clear facts, credible sources, expert content and a consistent presence across the web.",
+    problems: [
+      "AI assistants describe your business inaccurately, or not at all.",
+      "Competitors are mentioned when buyers ask for recommendations in your category.",
+      "You don't know which sources AI search relies on for your industry.",
+      "Nobody is measuring AI search, so it's invisible in your reporting.",
+    ],
+    included: [
+      { title: "AI search visibility audits", body: "A documented sample of buyer prompts run across major generative search experiences, recording whether your brand appears, how it is described and which sources are cited." },
+      { title: "Generative search discovery research", body: "The questions and comparisons buyers actually make, mapped to the content and sources that shape the responses." },
+      { title: "Brand entity consistency", body: "Name, services, locations, leadership and facts aligned across your site, profiles, directories and knowledge sources." },
+      { title: "Expert-led content development", body: "Original, specific content from your team's real expertise: data, explanations and comparisons that are worth citing." },
+      { title: "Source citation analysis", body: "Which publications, directories and pages are cited in your category, and where your brand is missing from them." },
+      { title: "Digital authority development", body: "Earned coverage, reviews and mentions on the sources that matter in your market." },
+      { title: "Generative search monitoring", body: "The same prompt set re-run on a schedule with a documented method, so changes are tracked over time rather than guessed." },
+      { title: "Competitor visibility comparisons", body: "How often, and how, competitors appear for the same prompts, and what sources support them." },
+      { title: "Technical crawlability", body: "Making sure important pages can be crawled and read: server rendering, clean HTML, sensible robots rules and fast pages." },
+    ],
+    approach: [
+      { title: "Baseline", body: "Audit a defined prompt set and record current visibility, accuracy and cited sources." },
+      { title: "Strengthen signals", body: "Fix entity inconsistencies, publish expert content and pursue coverage on the sources that are cited." },
+      { title: "Monitor", body: "Re-run the prompt set monthly with the same method and report what changed." },
+    ],
+    deliverables: [
+      "AI search visibility audit with documented method",
+      "Source and citation map for your category",
+      "Entity consistency fixes across key profiles",
+      "Expert content and digital PR plan",
+      "Monthly monitoring report against the baseline",
+    ],
+    fitFor: [
+      "Brands whose buyers ask AI assistants for recommendations",
+      "Businesses with strong expertise but little online authority",
+      "Teams that already invest in SEO and want AI search measured too",
+    ],
+    faqs: [
+      { q: "Can you guarantee my brand will appear in AI answers?", a: "No. Generative systems decide what to include, their responses vary between sessions and users, and they change often. What we can do is strengthen the signals they rely on and measure the results consistently." },
+      { q: "Do I need an llms.txt file or special markup for AI search?", a: "There is no single file or markup that guarantees visibility in AI search. Clear, crawlable, accurate content, consistent business information and genuine authority matter far more. We may recommend such files where they are low-cost and sensible, but never as a guarantee." },
+      { q: "How do you measure AI search visibility?", a: "With a documented prompt set run on a fixed schedule, recording mentions, descriptions and cited sources, plus referral sessions from AI platforms in your analytics. We report these as observations, not as a single proprietary score." },
+    ],
+    related: ["seo", "aeo", "performance-marketing"],
+  },
+  {
     slug: "lead-generation",
     name: "Lead Generation",
     discipline: "grow",
@@ -301,7 +460,7 @@ export const services: Service[] = [
       { q: "Can you remove negative reviews?", a: "We cannot remove genuine reviews, and nobody should promise to. We help you respond well, and we build a steady flow of reviews from satisfied customers so your rating reflects your real service." },
       { q: "Do you create fake location pages?", a: "No. We only create pages for areas you genuinely serve, with content specific to that area. Thin duplicate city pages can harm rankings." },
     ],
-    related: ["website-development", "performance-marketing", "lead-generation"],
+    related: ["seo", "aeo", "website-development"],
   },
   {
     slug: "crm-automation",

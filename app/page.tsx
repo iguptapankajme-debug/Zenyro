@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { Manifesto } from "@/components/sections/manifesto";
 import { Disciplines } from "@/components/sections/disciplines";
+import { SearchEverywhere } from "@/components/sections/search-everywhere";
 import { GrowthEngine } from "@/components/sections/growth-engine";
 import { IndustriesShowcase } from "@/components/sections/industries-showcase";
 import { SelectedWork } from "@/components/sections/selected-work";
@@ -25,6 +26,7 @@ export default function Home() {
       <Hero />
       <Manifesto />
       <Disciplines />
+      <SearchEverywhere />
       <GrowthEngine />
 
       <section className="py-28 md:py-36" aria-labelledby="industries-title">

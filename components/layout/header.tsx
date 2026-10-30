@@ -4,13 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
-import { primaryNav } from "@/data/navigation";
+import { primaryNav, serviceGroups, type NavGroup } from "@/data/navigation";
 import { cn } from "@/lib/cn";
 import { Wordmark } from "./wordmark";
 
 type Child = { label: string; href: string; description?: string };
 
-function Dropdown({ label, href, items, active }: { label: string; href: string; items: readonly Child[]; active: boolean }) {
+function Dropdown({ label, href, items = [], groups, active }: { label: string; href: string; items?: readonly Child[]; groups?: readonly NavGroup[]; active: boolean }) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const wrap = useRef<HTMLLIElement>(null);
@@ -79,10 +79,35 @@ function Dropdown({ label, href, items, active }: { label: string; href: string;
       <div
         id={id}
         hidden={!open}
-        className="absolute left-1/2 top-full w-[34rem] -translate-x-1/2 pt-3"
+        className={cn("absolute left-1/2 top-full -translate-x-1/2 pt-3", groups ? "w-[46rem]" : "w-[34rem]")}
       >
         <div className="animate-fade overflow-hidden rounded-2xl border border-line bg-ink-2/95 p-2 shadow-2xl shadow-black/60 backdrop-blur-xl">
-          <ul className="grid grid-cols-2 gap-1">
+          {groups && (
+            <div className="grid grid-cols-3 gap-1">
+              {groups.map((g, gi) => (
+                <div key={g.title} className="p-2">
+                  <p className="flex items-center gap-2 px-2 pb-2 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted">
+                    <span className="text-ember">0{gi + 1}</span> {g.title}
+                  </p>
+                  <ul className="grid">
+                    {g.items.map((item) => (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          onClick={() => setOpen(false)}
+                          className="group/item flex items-center justify-between rounded-lg px-2 py-2 text-[0.9rem] text-paper transition-colors hover:bg-ink-3 focus-visible:bg-ink-3"
+                        >
+                          {item.label}
+                          <ArrowUpRight aria-hidden="true" className="size-3.5 text-ember opacity-0 transition-opacity group-hover/item:opacity-100" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
+          <ul className={cn("grid grid-cols-2 gap-1", !items.length && "hidden")}>
             {items.map((item) => (
               <li key={item.href}>
                 <Link
@@ -177,7 +202,9 @@ export function Header() {
           <nav aria-label="Main" className="hidden lg:block">
             <ul className="flex items-center gap-1">
               {primaryNav.map((item) =>
-                "children" in item ? (
+                "groups" in item ? (
+                  <Dropdown key={item.href} label={item.label} href={item.href} groups={item.groups} active={isActive(item.href) || pathname === "/search-growth"} />
+                ) : "children" in item ? (
                   <Dropdown key={item.href} label={item.label} href={item.href} items={item.children} active={isActive(item.href) || (item.href === "/solutions" && pathname.startsWith("/industries"))} />
                 ) : (
                   <li key={item.href}>
@@ -245,15 +272,17 @@ export function Header() {
               </li>
             ))}
           </ul>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
-            <div>
-              <p className="eyebrow mb-3">Services</p>
-              <ul className="grid gap-2">
-                {primaryNav[0].children.map((c) => (
-                  <li key={c.href}><Link href={c.href} className="text-[0.95rem] text-muted hover:text-paper">{c.label}</Link></li>
-                ))}
-              </ul>
-            </div>
+          <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
+            {serviceGroups.map((g) => (
+              <div key={g.title}>
+                <p className="eyebrow mb-3">{g.title}</p>
+                <ul className="grid gap-2">
+                  {g.items.map((c) => (
+                    <li key={c.href}><Link href={c.href} className="text-[0.95rem] text-muted hover:text-paper">{c.label}</Link></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
             <div>
               <p className="eyebrow mb-3">Industries</p>
               <ul className="grid gap-2">
