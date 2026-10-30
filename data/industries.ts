@@ -1,0 +1,212 @@
+export type IndustryArt = "skyline" | "arches" | "pulse" | "planes" | "lattice" | "courses";
+
+export type Industry = {
+  slug: string;
+  name: string;
+  short: string;
+  art: IndustryArt;
+  metaTitle: string;
+  metaDescription: string;
+  headline: string;
+  intro: string;
+  challenges: string[];
+  solutions: { title: string; body: string }[];
+  /** A sketch of the system Zenyro would typically build for this sector. */
+  system: string[];
+  channels: string[];
+  faqs: { q: string; a: string }[];
+  services: string[];
+};
+
+export const industries: Industry[] = [
+  {
+    slug: "real-estate",
+    name: "Real Estate",
+    short: "Developers, channel partners and brokerages",
+    art: "skyline",
+    metaTitle: "Real Estate Lead Generation & Automation Agency",
+    metaDescription:
+      "Real estate lead generation for developers and brokers: project launch campaigns, site-visit booking, WhatsApp follow-up and AI lead qualification.",
+    headline: "From enquiry to site visit, faster.",
+    intro:
+      "Property buyers enquire with several projects at once and remember the one that called back first. We help developers and brokers reply instantly, qualify by budget and timeline, and fill the site-visit calendar with serious buyers.",
+    challenges: [
+      "Portal leads are shared with competitors and go cold within hours.",
+      "Sales teams waste site visits on buyers outside budget.",
+      "Launch campaigns spike, then the pipeline goes quiet.",
+      "No clear view of which channel produces bookings, not just enquiries.",
+    ],
+    solutions: [
+      { title: "Project launch funnels", body: "Dedicated landing pages per project with floor plans, price bands and location highlights, paired with Meta and Google campaigns." },
+      { title: "Instant WhatsApp qualification", body: "Every enquiry gets a reply within a minute, with questions on budget, configuration, timeline and financing." },
+      { title: "Site-visit booking", body: "Qualified buyers pick a slot directly; reminders reduce no-shows." },
+      { title: "Nurture for long cycles", body: "Construction updates, offers and possession news keep warm buyers engaged for months." },
+    ],
+    system: ["Meta and Google ads per project", "Project landing page", "WhatsApp AI qualification", "CRM with sales assignment", "Site-visit calendar and reminders"],
+    channels: ["Meta Ads", "Google Search", "WhatsApp", "Property portals", "CRM"],
+    faqs: [
+      { q: "Can you work with leads from property portals?", a: "Yes. Portal leads can be pulled into the same qualification and follow-up flow, so they get the same instant response as your own campaign leads." },
+      { q: "Do you follow RERA advertising rules?", a: "Campaigns and pages display RERA registration details where required, and we avoid claims that are not supported by the approved project documents." },
+    ],
+    services: ["performance-marketing", "ai-automation", "crm-automation"],
+  },
+  {
+    slug: "hospitality",
+    name: "Luxury Hotels & Hospitality",
+    short: "Boutique hotels, resorts, venues and fine dining",
+    art: "arches",
+    metaTitle: "Hotel Marketing Agency: Direct Bookings & Event Enquiries",
+    metaDescription:
+      "Marketing and automation for hotels, resorts and venues: grow direct bookings, capture wedding and event enquiries and answer guests instantly on WhatsApp.",
+    headline: "More direct bookings. Fewer missed enquiries.",
+    intro:
+      "Online travel agencies take a large commission on every room, and event enquiries often arrive at night when the sales office is closed. We help hotels and venues grow direct revenue and respond to every guest within minutes.",
+    challenges: [
+      "Heavy dependence on OTA bookings and their commissions.",
+      "Wedding and corporate event enquiries handled slowly by email.",
+      "Guests asking the same questions on Instagram and WhatsApp.",
+      "A website that looks less premium than the property itself.",
+    ],
+    solutions: [
+      { title: "Direct booking website", body: "A fast, image-led site with a clear booking path and offers that give guests a reason to book direct." },
+      { title: "Event enquiry engine", body: "Dedicated pages for weddings and corporate events, with an assistant that captures date, guest count and budget, then books a call with the events team." },
+      { title: "Guest messaging assistant", body: "Answers questions on rooms, amenities, policies and directions across WhatsApp and Instagram, any time of day." },
+      { title: "Remarketing", body: "Campaigns that bring back visitors who checked dates but did not book." },
+    ],
+    system: ["Direct booking website", "Meta and Google remarketing", "Event enquiry assistant", "Sales office CRM", "Guest messaging on WhatsApp"],
+    channels: ["Google Hotel Ads", "Meta Ads", "Instagram", "WhatsApp", "Booking engine"],
+    faqs: [
+      { q: "Do you replace our booking engine?", a: "No. We integrate with your existing booking engine and channel manager, and improve the website and campaigns that send guests to it." },
+      { q: "Can the assistant handle multiple languages?", a: "Yes. Guest assistants can reply in English, Hindi and other major languages, and hand over to staff for special requests." },
+    ],
+    services: ["website-development", "performance-marketing", "ai-automation"],
+  },
+  {
+    slug: "healthcare",
+    name: "Healthcare & Clinics",
+    short: "Clinics, diagnostic centres, dental and aesthetics",
+    art: "pulse",
+    metaTitle: "Healthcare Marketing & Patient Appointment Automation",
+    metaDescription:
+      "Ethical healthcare marketing for clinics: local SEO, appointment booking automation, WhatsApp reminders and patient enquiry handling that protects privacy.",
+    headline: "Full appointment books, handled with care.",
+    intro:
+      "Patients choose clinics they can find easily, trust quickly and book without friction. We help clinics appear in local search, answer enquiries promptly and reduce no-shows, while keeping marketing ethical and patient data protected.",
+    challenges: [
+      "Front-desk staff overwhelmed by calls and WhatsApp messages.",
+      "Missed calls after hours become lost appointments.",
+      "No-shows leave expensive gaps in the doctor's schedule.",
+      "Strict rules on what healthcare advertising can claim.",
+    ],
+    solutions: [
+      { title: "Local search presence", body: "Optimised Google Business Profiles for each location and doctor, with accurate services, timings and reviews." },
+      { title: "Appointment assistant", body: "Books, reschedules and confirms appointments over WhatsApp and phone, and routes clinical questions to staff." },
+      { title: "Reminders and recalls", body: "Automated reminders before visits and recall messages for follow-up care." },
+      { title: "Compliant campaigns", body: "Ads and pages that inform without making prohibited claims or showing misleading before-and-after content." },
+    ],
+    system: ["Google Business Profiles", "Treatment pages", "WhatsApp booking assistant", "Clinic management integration", "Reminder and recall flows"],
+    channels: ["Google Maps", "Google Search", "WhatsApp", "Meta Ads", "Clinic software"],
+    faqs: [
+      { q: "Does the AI give medical advice?", a: "No. Assistants handle bookings, timings, directions and general information approved by the clinic. Anything clinical is passed to qualified staff." },
+      { q: "How is patient data protected?", a: "We collect only what is needed for booking, store it in your own systems, restrict access, and follow India's Digital Personal Data Protection Act requirements." },
+    ],
+    services: ["local-seo", "ai-automation", "website-development"],
+  },
+  {
+    slug: "interior-design",
+    name: "Interior Design & Premium Retail",
+    short: "Interior studios, furniture, lighting and luxury showrooms",
+    art: "planes",
+    metaTitle: "Interior Design Lead Generation & Showroom Marketing",
+    metaDescription:
+      "Lead generation for interior designers and premium showrooms: portfolio-led websites, high-intent ad campaigns and consultation booking with budget qualification.",
+    headline: "Attract clients who value design.",
+    intro:
+      "Premium design businesses lose time on enquiries that were never a fit. We build portfolio-led websites and campaigns that attract the right homeowners and businesses, then qualify scope and budget before the first meeting.",
+    challenges: [
+      "Many enquiries are price shoppers outside your budget range.",
+      "The portfolio is on Instagram, not organised to sell.",
+      "Showroom footfall is hard to link to marketing spend.",
+      "Long decision cycles with several family members involved.",
+    ],
+    solutions: [
+      { title: "Portfolio website", body: "Projects presented as stories with scope, timeline and style, organised so visitors can find work like theirs." },
+      { title: "Budget-qualified enquiries", body: "Forms and assistants ask property type, area, scope and budget band before booking a consultation." },
+      { title: "Showroom visit tracking", body: "Offers and booking links that connect store visits back to the campaign that produced them." },
+      { title: "Nurture content", body: "Material guides, project walkthroughs and design ideas sent over time to keep your studio in mind." },
+    ],
+    system: ["Portfolio website", "Meta and Pinterest campaigns", "Qualification assistant", "Consultation booking", "CRM nurture"],
+    channels: ["Instagram", "Meta Ads", "Google Search", "Pinterest", "WhatsApp"],
+    faqs: [
+      { q: "Can you work with the photos we already have?", a: "Yes. We curate and present existing project photography and advise where a professional shoot would make the biggest difference." },
+      { q: "How do you filter out low-budget enquiries?", a: "We state starting budgets or typical project ranges clearly and ask for scope and budget before booking. This usually reduces enquiry volume slightly but improves meeting quality." },
+    ],
+    services: ["website-development", "lead-generation", "performance-marketing"],
+  },
+  {
+    slug: "education",
+    name: "Education & Professional Services",
+    short: "Institutes, coaching, consultancies and firms",
+    art: "lattice",
+    metaTitle: "Education & Professional Services Marketing Agency",
+    metaDescription:
+      "Admissions and client acquisition for institutes, coaching centres, consultancies and professional firms: counselling-call booking, nurture sequences and lead scoring.",
+    headline: "Turn interest into enrolments and engagements.",
+    intro:
+      "Students and clients research for weeks before deciding. We make sure every enquiry receives a fast, helpful reply, a counselling or consultation slot, and useful follow-ups until they are ready to commit.",
+    challenges: [
+      "Admission seasons create enquiry spikes the team cannot handle.",
+      "Counsellors call leads who are not eligible or not serious.",
+      "Webinars and events produce sign-ups but few conversions.",
+      "Professional firms rely only on referrals.",
+    ],
+    solutions: [
+      { title: "Course and service pages", body: "Clear pages for each program or service with eligibility, outcomes, fees and next steps." },
+      { title: "Eligibility screening", body: "Assistants check eligibility, interests and timeline, then book a counselling or consultation call." },
+      { title: "Webinar and event funnels", body: "Registration, reminders, replay delivery and follow-up handled automatically." },
+      { title: "Lead scoring", body: "Counsellors see the most promising enquiries first, based on fit and engagement." },
+    ],
+    system: ["Program landing pages", "Google and Meta campaigns", "Eligibility assistant", "Counselling call booking", "Nurture sequences"],
+    channels: ["Google Search", "Meta Ads", "YouTube", "WhatsApp", "Email"],
+    faqs: [
+      { q: "Can you handle seasonal admission peaks?", a: "Yes. Automated replies and screening scale instantly, so peak volume does not depend on hiring temporary staff." },
+      { q: "Do you make placement or result claims in ads?", a: "Only if you can substantiate them with documented data. We avoid unverifiable claims, which also protects you from platform and regulatory issues." },
+    ],
+    services: ["lead-generation", "ai-automation", "crm-automation"],
+  },
+  {
+    slug: "home-improvement",
+    name: "Home Improvement & Building Materials",
+    short: "Tiles, sanitaryware, modular kitchens, solar and contractors",
+    art: "courses",
+    metaTitle: "Lead Generation for Building Materials & Home Improvement",
+    metaDescription:
+      "Lead generation for building materials brands, dealers and contractors: local campaigns, dealer lead routing, quote automation and showroom visit booking.",
+    headline: "Win the project before the tender.",
+    intro:
+      "Home improvement buyers compare quotes from several suppliers in a short window. We help manufacturers, dealers and contractors capture these projects early, route leads to the right dealer or team, and send quotes faster than competitors.",
+    challenges: [
+      "Leads arrive without project size or location detail.",
+      "Manufacturers struggle to pass leads to dealers and track the outcome.",
+      "Quotes take days because information is incomplete.",
+      "Architects and contractors are hard to reach with ads.",
+    ],
+    solutions: [
+      { title: "Local demand campaigns", body: "Search and Meta campaigns targeted by city and project type, pointing to product-specific pages." },
+      { title: "Dealer lead routing", body: "Leads assigned automatically to the nearest dealer, with follow-up tracking and reminders." },
+      { title: "Quote automation", body: "Assistants collect measurements, photos and preferences so your team can send accurate quotes quickly." },
+      { title: "Trade programs", body: "Dedicated pages and nurture for architects, builders and contractors." },
+    ],
+    system: ["City and product campaigns", "Product landing pages", "Quote request assistant", "Dealer routing in CRM", "Outcome tracking"],
+    channels: ["Google Search", "Meta Ads", "Google Maps", "WhatsApp", "Dealer CRM"],
+    faqs: [
+      { q: "Can leads be shared with our dealer network?", a: "Yes. We route leads by location and product to dealers, notify them instantly and track whether they followed up." },
+      { q: "Do you work with B2B trade buyers too?", a: "Yes. We build separate journeys for homeowners and for trade buyers such as architects and contractors, because their needs and timelines differ." },
+    ],
+    services: ["lead-generation", "crm-automation", "local-seo"],
+  },
+];
+
+export function getIndustry(slug: string) {
+  return industries.find((i) => i.slug === slug);
+}
