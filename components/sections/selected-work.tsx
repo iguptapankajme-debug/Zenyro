@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { work } from "@/data/work";
+import { projects, work } from "@/data/work";
 import { IndustryArt } from "@/components/ui/industry-art";
 import { SectionHeading, Em } from "@/components/ui/section-heading";
 import { cn } from "@/lib/cn";
-import { WorkShowcase } from "./work-showcase";
+import { ProjectGrid } from "./project-grid";
 
 export function WorkPanels({ items = work, headingLevel = "h3" }: { items?: typeof work; headingLevel?: "h2" | "h3" }) {
   const H = headingLevel;
@@ -65,13 +65,13 @@ export function SelectedWork() {
         <SectionHeading
           eyebrow="Selected work"
           title={<span id="work-title">Work that moves <Em>business forward.</Em></span>}
-          lede="Concept demonstrations of the systems we build. Verified client case studies will appear here as projects launch."
+          lede="Live websites we've launched for businesses in travel, finance, auctions and business services."
         />
         <div className="mt-14 md:mt-20">
-          <WorkShowcase items={work} />
+          <ProjectGrid items={projects()} />
         </div>
         <Link href="/work" className="group mt-10 inline-flex items-center gap-2 text-[1rem] font-medium">
-          <span className="link-u">All work</span>
+          <span className="link-u">All work and concept demonstrations</span>
           <ArrowUpRight aria-hidden="true" className="size-4 text-ember" />
         </Link>
       </div>

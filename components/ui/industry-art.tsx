@@ -66,6 +66,67 @@ export function IndustryArt({ art, className }: { art: ArtKey; className?: strin
           {[[110, 186], [218, 114], [362, 42]].map(([x, y]) => <circle key={x} cx={x} cy={y} r="5" fill={ember} />)}
         </g>
       )}
+      {art === "auction" && (
+        <g fill="none">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <g key={i}>
+              <rect x={60 + i * 60} y={220 - i * 30} width="44" height={40 + i * 30} stroke={i === 4 ? ember : stroke} strokeWidth={i === 4 ? 1.5 : 1} />
+              <text x={82 + i * 60} y={210 - i * 30} textAnchor="middle" fontSize="11" fill={i === 4 ? ember : "var(--color-muted)"} fontFamily="var(--font-mono)">{`+${(i + 1) * 5}%`}</text>
+            </g>
+          ))}
+          <path d="M300 64 l40 -26 l12 18 l-40 26 z" stroke={ember} strokeWidth="1.5" />
+          <path d="M318 76 l-46 42" stroke={ember} strokeWidth="2" strokeLinecap="round" />
+          <line x1="40" x2="370" y1="260" y2="260" stroke={stroke} />
+        </g>
+      )}
+      {art === "ridge" && (
+        <g fill="none">
+          <path d="M0 230 L70 150 L120 190 L190 90 L250 170 L300 120 L400 210" stroke={stroke} />
+          <path d="M0 260 L90 190 L150 225 L230 140 L300 200 L400 160" stroke={stroke} opacity=".6" />
+          <path d="M190 90 L172 112 L208 112 Z" fill="rgba(247,247,245,.12)" stroke={stroke} />
+          <path d="M20 290 C 120 250, 160 300, 240 255 S 360 230, 400 250" stroke={ember} strokeWidth="1.8" strokeDasharray="6 8" />
+          <circle cx="240" cy="255" r="5" fill={ember} />
+        </g>
+      )}
+      {art === "switchback" && (
+        <g fill="none">
+          <path d="M60 280 L200 280 Q 240 280 240 250 Q 240 220 200 220 L130 220 Q 90 220 90 190 Q 90 160 130 160 L250 160 Q 290 160 290 130 Q 290 100 250 100 L170 100 Q 140 100 140 75 Q 140 50 170 50 L320 50" stroke={stroke} strokeWidth="10" strokeLinecap="round" />
+          <path d="M60 280 L200 280 Q 240 280 240 250 Q 240 220 200 220 L130 220 Q 90 220 90 190 Q 90 160 130 160 L250 160 Q 290 160 290 130 Q 290 100 250 100 L170 100 Q 140 100 140 75 Q 140 50 170 50 L320 50" stroke={ember} strokeWidth="1.5" strokeDasharray="4 10" />
+          <circle cx="320" cy="50" r="7" fill={ember} />
+        </g>
+      )}
+      {art === "ledger" && (
+        <g fill="none">
+          <rect x="70" y="40" width="260" height="220" rx="6" stroke={stroke} />
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <g key={i}>
+              <line x1="90" x2="250" y1={80 + i * 30} y2={80 + i * 30} stroke={stroke} opacity=".7" />
+              <line x1="270" x2="310" y1={80 + i * 30} y2={80 + i * 30} stroke={i === 3 ? ember : stroke} strokeWidth={i === 3 ? 2 : 1} />
+            </g>
+          ))}
+          <path d="M90 250 L150 215 L200 228 L310 160" stroke={ember} strokeWidth="1.6" />
+        </g>
+      )}
+      {art === "network" && (
+        <g>
+          {[[80, 80], [200, 60], [320, 90], [120, 170], [250, 160], [340, 220], [70, 240], [190, 250]].map(([x, y], i, arr) => (
+            <g key={i}>
+              {arr.slice(i + 1, i + 3).map(([x2, y2], k) => <line key={k} x1={x} y1={y} x2={x2} y2={y2} stroke={stroke} />)}
+              <rect x={x! - 14} y={y! - 10} width="28" height="20" rx="4" fill="var(--color-ink)" stroke={i === 4 ? ember : stroke} strokeWidth={i === 4 ? 1.5 : 1} />
+            </g>
+          ))}
+        </g>
+      )}
+      {art === "flight" && (
+        <g fill="none">
+          <circle cx="200" cy="170" r="110" stroke={stroke} />
+          <ellipse cx="200" cy="170" rx="50" ry="110" stroke={stroke} opacity=".6" />
+          <line x1="90" x2="310" y1="170" y2="170" stroke={stroke} opacity=".6" />
+          <path d="M80 250 Q 200 30 330 110" stroke={ember} strokeWidth="1.6" strokeDasharray="6 7" />
+          <circle cx="80" cy="250" r="5" fill={ember} />
+          <path d="M330 110 l-14 -2 l6 10 z" fill={ember} />
+        </g>
+      )}
       {art === "courses" && (
         <g fill="none">
           {Array.from({ length: 8 }).map((_, row) =>
