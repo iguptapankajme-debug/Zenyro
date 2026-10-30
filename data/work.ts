@@ -27,7 +27,7 @@ export type WorkItem = {
 };
 
 export const work: WorkItem[] = [
-  // Live projects. TODO(owner): confirm each description and the services Zenyro provided.
+  // Live projects. Zenyro delivered the website, SEO, AEO, GEO and social media for each.
   {
     slug: "eauctionhunt",
     kind: "project",
@@ -38,7 +38,7 @@ export const work: WorkItem[] = [
     industry: "Real estate · Bank auctions",
     image: "/images/work/eauctionhunt.webp",
     art: "auction",
-    services: ["Website design & development"],
+    services: ["Website", "SEO", "AEO", "GEO", "Social media"],
     outcomes: [],
   },
   {
@@ -51,7 +51,7 @@ export const work: WorkItem[] = [
     industry: "Travel · Taxi service",
     image: "/images/work/himachal-cab-expert.webp",
     art: "switchback",
-    services: ["Website design & development"],
+    services: ["Website", "SEO", "AEO", "GEO", "Social media"],
     outcomes: [],
   },
   {
@@ -64,7 +64,7 @@ export const work: WorkItem[] = [
     industry: "Financial services · NPA resolution",
     image: "/images/work/npa-experts.webp",
     art: "ledger",
-    services: ["Website design & development"],
+    services: ["Website", "SEO", "AEO", "GEO", "Social media"],
     outcomes: [],
   },
   {
@@ -77,7 +77,7 @@ export const work: WorkItem[] = [
     industry: "Travel · Tours",
     image: "/images/work/himachal-taxi-and-tours.webp",
     art: "ridge",
-    services: ["Website design & development"],
+    services: ["Website", "SEO", "AEO", "GEO", "Social media"],
     outcomes: [],
   },
   {
@@ -89,7 +89,7 @@ export const work: WorkItem[] = [
     client: "msme.help",
     industry: "Business services",
     art: "network",
-    services: ["Website design & development"],
+    services: ["Website", "SEO", "AEO", "GEO", "Social media"],
     outcomes: [],
   },
   {
@@ -101,7 +101,7 @@ export const work: WorkItem[] = [
     client: "traveltoabroad.in",
     industry: "Travel · International",
     art: "flight",
-    services: ["Website design & development"],
+    services: ["Website", "SEO", "AEO", "GEO", "Social media"],
     outcomes: [],
   },
   {

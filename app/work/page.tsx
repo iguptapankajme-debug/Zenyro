@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Work: Websites and Growth Systems by Zenyro",
   description:
-    "Live websites built by Zenyro for travel, financial services, auctions and MSME businesses, plus concept demonstrations of the growth systems we build.",
+    "Websites built by Zenyro and grown with SEO, AEO, GEO and social media for travel, financial services, auctions and MSME businesses.",
   path: "/work",
 });
 
@@ -21,7 +21,7 @@ export default function WorkPage() {
         crumbs={[{ name: "Work", path: "/work" }]}
         eyebrow="Work"
         title={<>Work that moves <Em>business forward.</Em></>}
-        intro="Live websites we've launched, followed by concept demonstrations of the growth systems we build."
+        intro="Websites we've built and grow with SEO, AEO, GEO and social media, followed by concept demonstrations of the systems we build."
       />
       <ProjectReel items={projects()} title={<>Launched <Em>and live.</Em></>} />
       <section className="border-t border-line py-20 md:py-28" aria-labelledby="live-title">

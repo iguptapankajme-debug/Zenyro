@@ -139,6 +139,9 @@ export function ProjectReel({ items, title }: { items: WorkItem[]; title: React.
                           </>
                         )}
                         <p className="text-[0.98rem] leading-relaxed text-muted">{w.summary}</p>
+                        <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="What we delivered">
+                          {w.services.map((sv) => <li key={sv} className="rounded-full border border-line-2 px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-muted">{sv}</li>)}
+                        </ul>
                       </div>
                       <span className="inline-flex items-center gap-2 rounded-full bg-paper px-4 py-2 text-[0.85rem] font-medium text-ink transition-colors group-hover:bg-ember group-hover:text-ember-ink">
                         Visit site <ArrowUpRight aria-hidden="true" className="size-4" />

@@ -22,6 +22,7 @@ export const serviceGroups: NavGroup[] = [
       { label: "SEO", href: "/services/seo" },
       { label: "AEO", href: "/services/aeo" },
       { label: "GEO", href: "/services/geo" },
+      { label: "Social Media", href: "/services/social-media-marketing" },
       { label: "Local SEO", href: "/services/local-seo" },
       { label: "Lead Generation", href: "/services/lead-generation" },
     ],
