@@ -23,11 +23,14 @@ export function buildMetadata({ title, description, path, absoluteTitle, type = 
       description,
       siteName: site.name,
       locale: site.locale,
+      // Page-level openGraph replaces the inherited one, so the shared image is restated here.
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${site.name}: ${site.tagline}` }],
     },
     twitter: {
       card: "summary_large_image",
       title: absoluteTitle ? title : `${title} | ${site.name}`,
       description,
+      images: ["/twitter-image"],
     },
   };
 }
@@ -89,5 +92,19 @@ export function faqSchema(faqs: { q: string; a: string }[]) {
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
+  };
+}
+
+export function webApplicationSchema(input: { name: string; description: string; path: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: input.name,
+    description: input.description,
+    url: absoluteUrl(input.path),
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Any (web browser)",
+    isAccessibleForFree: true,
+    provider: { "@id": `${site.url}/#organization` },
   };
 }

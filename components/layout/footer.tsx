@@ -5,6 +5,9 @@ import { site } from "@/lib/site";
 import { Mark } from "./wordmark";
 
 const company = [
+  { label: "Free tools", href: "/tools" },
+  { label: "Website cost calculator", href: "/tools/website-cost-calculator" },
+  { label: "SEO audit", href: "/tools/seo-audit" },
   { label: "About", href: "/about" },
   { label: "Work", href: "/work" },
   { label: "Insights", href: "/insights" },
@@ -12,6 +15,8 @@ const company = [
 ];
 
 const agency = [
+  { label: "Hotel website development", href: "/hotel-website-development" },
+  { label: "Real estate website development", href: "/real-estate-website-development" },
   { label: "Search growth: SEO, AEO & GEO", href: "/search-growth" },
   { label: "Lead generation agency", href: "/lead-generation-agency" },
   { label: "AI automation agency", href: "/ai-automation-agency" },

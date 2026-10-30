@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { SearchInterface } from "@/components/search/search-interface";
 import { VisibilityDemo } from "@/components/search/visibility-demo";
 import { slugify } from "@/lib/slugify";
+import { RelevantTools } from "@/components/tools/relevant-tools";
 import { disciplines, getService, services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { buildMetadata, serviceSchema } from "@/lib/seo";
@@ -143,6 +144,7 @@ export default async function ServicePage({ params }: Props) {
         </div>
       </section>
 
+      {s.tools && <RelevantTools keys={s.tools} />}
       <Faq faqs={s.faqs} />
       <LinkList
         eyebrow="Works well with"

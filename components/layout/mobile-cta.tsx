@@ -22,7 +22,7 @@ export function MobileCta() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (pathname === "/contact") return null;
+  if (pathname === "/contact" || pathname.startsWith("/admin")) return null;
   return (
     <div
       aria-hidden={!shown}

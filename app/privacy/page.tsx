@@ -1,6 +1,7 @@
 import { PageHero } from "@/components/layout/page-hero";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { AnalyticsOptOut } from "@/components/analytics/analytics-opt-out";
 
 export const metadata = buildMetadata({
   title: "Privacy Notice",
@@ -30,8 +31,13 @@ export default function PrivacyPage() {
             <p>Enquiries are stored with trusted service providers we use to run our business, such as our database, email and CRM providers, under appropriate security controls. Access is limited to people who need it to respond to you.</p>
             <h2>How long we keep it</h2>
             <p>We keep enquiry information for as long as needed to respond and maintain our business records, and delete it when it is no longer required.</p>
+            <h2>Free tools</h2>
+            <p>The website cost calculator and brief generator work in your browser and on our server without storing your answers. The SEO audit fetches the public page you enter once to produce a report, which is not saved. If you request a proposal or consultation, the tool results you choose to send are stored with your enquiry. When an AI service is configured, brief generator answers are sent to our AI provider (Anthropic) to draft the brief.</p>
             <h2>Analytics</h2>
-            <p>If analytics are enabled, we use a privacy-friendly service that does not use cookies or collect personal information.</p>
+            <p>If analytics are enabled, we use a privacy-friendly service that does not use cookies. We record events such as a tool being opened or completed, with non-personal details like the tool name. We never send names, emails, phone numbers or what you type into forms to analytics. We respect Do Not Track and Global Privacy Control, and you can opt out below.</p>
+            <AnalyticsOptOut />
+            <h2>Enquiry source</h2>
+            <p>When you send an enquiry we store the campaign parameters of the link that brought you here (such as utm_source), the referring website&apos;s domain and the first page you visited, so we know which channels are useful.</p>
             <h2>Your rights</h2>
             <p>You can ask us to access, correct or delete your personal information, or withdraw your consent, by emailing {site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : "us"}.</p>
           </div>

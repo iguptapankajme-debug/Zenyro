@@ -1,3 +1,5 @@
+import type { ToolKey } from "@/lib/tool-lead-schema";
+
 export type LandingPage = {
   slug: string;
   metaTitle: string;
@@ -9,9 +11,113 @@ export type LandingPage = {
   checklist: { heading: string; items: string[] };
   faqs: { q: string; a: string }[];
   services: string[];
+  tools?: ToolKey[];
+  /** Closely related industry page, linked from the landing page. */
+  industry?: string;
 };
 
 export const landingPages: LandingPage[] = [
+  {
+    slug: "hotel-website-development",
+    metaTitle: "Hotel Website Development: Websites Built for Direct Bookings",
+    metaDescription:
+      "Hotel and resort website development focused on direct bookings: fast image-led pages, booking engine integration, event enquiry flows and SEO for rooms, venues and destinations.",
+    eyebrow: "Hotel website development",
+    headline: "Hotel websites built to win the direct booking.",
+    intro:
+      "Your website is the only booking channel without a commission. We design and build hotel and resort websites that feel as good as the property, load fast on a guest's phone, and make booking direct the obvious choice.",
+    sections: [
+      {
+        heading: "What a hotel website has to do",
+        body: [
+          "Guests arrive from search, maps, social media and travel sites, usually on a phone, often comparing several properties. Within seconds they need to see the rooms, the location, the price and a way to book that they trust.",
+          "We design around that moment: image-led room pages, transparent rates from your booking engine, clear policies and a booking button that never disappears.",
+        ],
+      },
+      {
+        heading: "Built around your booking engine",
+        body: [
+          "We integrate the booking engine and channel manager you already use, rather than replacing them, and track every step from room page to completed booking so you can see which pages and campaigns drive revenue.",
+          "Weddings, conferences and private events get their own pages and an enquiry flow that captures date, guest count and budget before your sales team calls back.",
+        ],
+      },
+      {
+        heading: "Fast, even with beautiful photography",
+        body: [
+          "Hotel websites are heavy with imagery. We serve modern image formats at the right size for each device, lazy-load galleries and keep the first screen light, so pages stay fast on mobile data.",
+        ],
+      },
+    ],
+    checklist: {
+      heading: "A hotel website checklist",
+      items: [
+        "Book-direct button visible on every page",
+        "Room pages with real photos, size, beds and amenities",
+        "Booking engine tracked in analytics end to end",
+        "Separate pages for weddings and events with an enquiry form",
+        "Accurate address, map and directions",
+        "Fast loading on a mid-range phone over 4G",
+      ],
+    },
+    faqs: [
+      { q: "Do you replace our booking engine?", a: "No. We integrate with your existing booking engine and channel manager, and improve the website experience around them." },
+      { q: "Can the website show live room rates?", a: "Usually yes, through your booking engine's widgets or API. What is possible depends on the provider; we confirm it during discovery." },
+      { q: "How long does a hotel website take?", a: "Typically eight to twelve weeks for a full property website, depending on the number of rooms, venues, languages and integrations." },
+    ],
+    services: ["website-development", "seo", "performance-marketing"],
+    tools: ["website-cost-calculator", "website-brief-generator"],
+    industry: "hospitality",
+  },
+  {
+    slug: "real-estate-website-development",
+    metaTitle: "Real Estate Website Development for Developers & Brokers",
+    metaDescription:
+      "Real estate website development for developers and brokerages: project pages with floor plans and RERA details, lead capture with WhatsApp, CRM integration and fast mobile performance.",
+    eyebrow: "Real estate website development",
+    headline: "Real estate websites that turn browsing into site visits.",
+    intro:
+      "Property buyers research for months and compare many projects. We build developer and brokerage websites that present each project clearly, answer buyers' questions, and capture serious enquiries straight into your sales pipeline.",
+    sections: [
+      {
+        heading: "A page that sells each project",
+        body: [
+          "Every project gets a page with configurations, price bands, floor plans, amenities, construction status, location advantages and RERA registration details where required. Structured project data means new launches can be added quickly and consistently.",
+          "Buyers can enquire, download a brochure, start a WhatsApp conversation or book a site visit from any project page, and each enquiry records which project and configuration they were viewing.",
+        ],
+      },
+      {
+        heading: "Connected to sales, not just marketing",
+        body: [
+          "Enquiries flow into your CRM with source and campaign attribution, so you can see which channels produce site visits and bookings, not just form fills. Portal leads can be brought into the same pipeline.",
+        ],
+      },
+      {
+        heading: "Search visibility for projects and localities",
+        body: [
+          "Buyers search for projects, builders and localities. We build project and locality pages around genuine information buyers need, with technical SEO in place from launch.",
+        ],
+      },
+    ],
+    checklist: {
+      heading: "What every project page should include",
+      items: [
+        "Configurations and price bands, kept up to date",
+        "Floor plans and a downloadable brochure",
+        "RERA registration details where applicable",
+        "Location map and nearby landmarks",
+        "Construction status and possession timeline",
+        "WhatsApp, call and site-visit booking options",
+      ],
+    },
+    faqs: [
+      { q: "Can we update project prices and availability ourselves?", a: "Yes. Projects are managed in a CMS so your team can update prices, inventory status and media without a developer." },
+      { q: "Do you integrate with real estate CRMs?", a: "Yes. We connect to common CRMs and lead management tools so every enquiry is assigned and tracked." },
+      { q: "Will each project page rank on Google?", a: "Rankings can't be guaranteed, but project pages built with unique, useful information and solid technical SEO give each project the best chance to be found." },
+    ],
+    services: ["website-development", "lead-generation", "crm-automation"],
+    tools: ["website-cost-calculator", "website-brief-generator"],
+    industry: "real-estate",
+  },
   {
     slug: "lead-generation-agency",
     metaTitle: "Lead Generation Agency in Chandigarh, Mohali & Across India",

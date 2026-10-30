@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/footer";
 import { MobileCta } from "@/components/layout/mobile-cta";
 import { Cursor } from "@/components/animations/cursor";
 import { RevealObserver } from "@/components/animations/reveal-observer";
+import { AttributionCapture } from "@/components/analytics/attribution-capture";
 import { JsonLd } from "@/components/ui/json-ld";
 import { organizationSchema } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <MobileCta />
         <Cursor />
         <RevealObserver />
+        <AttributionCapture />
         <JsonLd data={organizationSchema()} />
         {plausible && <Script defer data-domain={plausible} src="https://plausible.io/js/script.js" strategy="afterInteractive" />}
       </body>
