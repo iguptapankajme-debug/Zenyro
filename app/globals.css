@@ -208,4 +208,82 @@ body {
 .calc-range::-moz-range-progress { height: 2px; background: var(--color-ember); }
 .calc-range::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; margin-top: -8px; border-radius: 50%; background: var(--color-paper); border: 4px solid var(--color-ember); }
 .calc-range::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--color-paper); border: 4px solid var(--color-ember); }
-input[type="number"]::-webkit-inner-spin-button { opacity: .4; }
+
+/* Hero: lines light up with the sculpture state on md+ screens. */
+.hero .hero-line { transition: color .6s var(--ease-out-expo); }
+.hero .verb { transition: color .6s var(--ease-out-expo); }
+.hero [data-line="2"] .verb { color: var(--color-ember); }
+@media (min-width: 768px) {
+  .hero .hero-line { color: #63666e; }
+  .hero[data-stage="0"] [data-line="0"],
+  .hero[data-stage="1"] [data-line="1"],
+  .hero[data-stage="2"] [data-line="2"] { color: var(--color-paper); }
+  .hero [data-line="2"] .verb { color: inherit; }
+  .hero[data-stage="0"] [data-line="0"] .verb,
+  .hero[data-stage="1"] [data-line="1"] .verb,
+  .hero[data-stage="2"] [data-line="2"] .verb { color: var(--color-ember); }
+}
+
+/* Discipline system: Build assembles from layers, Grow draws its pathways. */
+.bv-frame { transform: rotateX(14deg) rotateY(-16deg) rotateZ(2deg); transition: transform 1.2s var(--ease-out-expo); }
+[data-active="true"] .bv-frame { transform: rotateX(8deg) rotateY(-10deg); }
+.bv-layer {
+  opacity: 0;
+  transform: translate3d(var(--x), var(--y), var(--z)) rotate(var(--r)) scale(.92);
+  transition: opacity .5s var(--ease-out-expo) calc(var(--d) * 0.4), transform 1.1s var(--ease-out-expo) calc(var(--d) * 0.4);
+}
+[data-active="true"] .bv-layer {
+  opacity: 1;
+  transform: translate3d(0, 0, calc(var(--z) * 0.18)) rotate(0) scale(1);
+  transition-delay: var(--d);
+}
+.grow-path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.2s var(--ease-out-expo); }
+[data-active="true"] .grow-path { stroke-dashoffset: 0; }
+@keyframes progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Growth engine entrance: the backbone draws, then the nodes appear in sequence. */
+.engine-draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease-out-expo); }
+.engine[data-revealed="true"] .engine-draw { stroke-dashoffset: 0; }
+.js .engine .engine-node { opacity: 0; transition: opacity .6s var(--ease-out-expo); }
+.js .engine[data-revealed="true"] .engine-node { opacity: 1; }
+
+/* Industry selector: slow drift on the active composition, a light sweep on change. */
+.ind-art { transform: scale(1.04); transition: transform 1.4s var(--ease-out-expo); }
+.ind-art.is-on { animation: drift 14s ease-in-out infinite alternate; }
+@keyframes drift { from { transform: scale(1.04) translate3d(0, 0, 0); } to { transform: scale(1.12) translate3d(-2%, -1.5%, 0); } }
+.ind-sweep { background: linear-gradient(100deg, transparent 30%, rgba(255,107,53,.16) 50%, transparent 70%); animation: sweep 1.1s var(--ease-out-expo) both; }
+@keyframes sweep { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+/* Masked entrance for image-led panels */
+.js [data-reveal="mask"] { opacity: 1; transform: none; clip-path: inset(14% 6% 0 6% round 28px); transition: clip-path 1.3s var(--ease-out-expo); }
+.js [data-reveal="mask"].is-in { clip-path: inset(0 0 0 0 round 0); }
+/* Portfolio cursor label */
+.work-cursor { transform: translate3d(calc(var(--cx, 50%) - 3rem), calc(var(--cy, 50%) - 3rem), 0) scale(0); transition: transform .45s var(--ease-out-expo); }
+@media (hover: hover) and (pointer: fine) {
+  .work-panel:hover .work-cursor { transform: translate3d(calc(var(--cx, 50%) - 3rem), calc(var(--cy, 50%) - 3rem), 0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) { .js [data-reveal="mask"] { clip-path: none; } }
+
+/* Ops console micro-interactions */
+.bubble { animation: bubble .55s var(--ease-out-expo) both; transform-origin: bottom left; }
+.self-end.bubble { transform-origin: bottom right; }
+@keyframes bubble { from { opacity: 0; transform: translateY(10px) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes typing { 0%, 60%, 100% { transform: translateY(0); opacity: .4; } 30% { transform: translateY(-4px); opacity: 1; } }
+.toast { animation: toast .7s var(--ease-out-expo) both; }
+@keyframes toast { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+
+/* Process timeline: stages light as the line reaches them */
+.js .process-step h3 { color: #63666e; transition: color .8s var(--ease-out-expo); }
+.js .process-step.is-lit h3 { color: var(--color-paper); }
+.process-dot { transition: background-color .5s, border-color .5s, box-shadow .5s; }
+.process-step.is-lit .process-dot { border-color: var(--color-ember); box-shadow: 0 0 0 6px rgba(255,107,53,.12); }
+@media (pointer: coarse) {
+  .calc-range { height: 32px; }
+  .calc-range::-webkit-slider-thumb { width: 26px; height: 26px; margin-top: -12px; }
+  .calc-range::-moz-range-thumb { width: 18px; height: 18px; }
+}
+
+/* Contact orbit */
+.contact-spin { transform-origin: 200px 200px; transform-box: view-box; animation: spin 28s linear infinite; }
+input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }

@@ -32,7 +32,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Industry solutions"
             title={<span id="industries-title">Built for businesses <Em>ready to scale.</Em></span>}
-            lede="High-value purchases share a pattern: considered buyers, long conversations and a sales team that needs good leads. We design for that pattern in six sectors."
+            lede="Growth systems for six sectors where every customer is worth a real conversation."
           />
           <IndustriesShowcase />
         </div>
@@ -40,12 +40,12 @@ export default function Home() {
 
       <SelectedWork />
 
-      <section className="border-y border-line bg-ink-2/50 py-28 md:py-36" aria-labelledby="capabilities-title">
+      <section className="border-y border-line bg-ink-2/50 py-28 md:py-40" aria-labelledby="capabilities-title">
         <div className="shell">
           <SectionHeading
             eyebrow="AI capabilities"
             title={<span id="capabilities-title">Intelligence built into <Em>every interaction.</Em></span>}
-            lede="See what happens to a single enquiry inside a Zenyro system. Pick a scenario and play it through."
+            lede="Watch one enquiry move through a Zenyro system. Pick a scenario and press Play."
           />
           <CapabilitiesDemo />
         </div>
@@ -58,7 +58,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Growth calculator"
             title={<span id="calculator-title">What could better conversions mean for <Em>your business?</Em></span>}
-            lede="Enter your own numbers. Small improvements in how leads are handled often matter more than a bigger ad budget."
+            lede="Enter your numbers. Better lead handling often beats a bigger ad budget."
           />
           <GrowthCalculator />
         </div>

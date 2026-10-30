@@ -1,38 +1,50 @@
 /**
- * Static drawing of the hero sculpture. Rendered on the server so the hero is complete before any
- * JavaScript loads, and kept as the final visual when WebGL is unavailable or the device is low-powered.
+ * Static drawing of the hero sculpture in its BUILD state: an interlocking tower of brushed
+ * beams with the orange core glowing inside. Server-rendered, so the hero is complete before any
+ * JavaScript loads; it remains the visual on phones and devices without WebGL.
  */
+const C = 0.866;
+const iso = (x: number, y: number, z: number): [number, number] => [200 + (x - z) * C * 92, 230 + (x + z) * 0.5 * 92 - y * 92];
+const pts = (p: [number, number][]) => p.map(([a, b]) => `${a.toFixed(1)},${b.toFixed(1)}`).join(" ");
+
+function Beam({ x, y, z, w, d }: { x: number; y: number; z: number; w: number; d: number }) {
+  const h = 0.16;
+  const top = [iso(x, y + h, z), iso(x + w, y + h, z), iso(x + w, y + h, z + d), iso(x, y + h, z + d)];
+  const left = [iso(x, y + h, z + d), iso(x + w, y + h, z + d), iso(x + w, y, z + d), iso(x, y, z + d)];
+  const right = [iso(x + w, y + h, z), iso(x + w, y + h, z + d), iso(x + w, y, z + d), iso(x + w, y, z)];
+  return (
+    <g>
+      <polygon points={pts(top)} fill="url(#fb-top)" stroke="#4a4e57" strokeWidth=".6" />
+      <polygon points={pts(left)} fill="#1b1d22" stroke="#2c2f36" strokeWidth=".6" />
+      <polygon points={pts(right)} fill="#121418" stroke="#2c2f36" strokeWidth=".6" />
+    </g>
+  );
+}
+
 export function SculptureFallback() {
+  const beams: { x: number; y: number; z: number; w: number; d: number }[] = [];
+  for (let f = 0; f < 9; f++) {
+    for (let s = 0; s < 3; s++) {
+      const y = (f - 4) * 0.19;
+      beams.push(f % 2 === 0 ? { x: -0.63, y, z: -0.57 + s * 0.4, w: 1.26, d: 0.34 } : { x: -0.57 + s * 0.4, y, z: -0.63, w: 0.34, d: 1.26 });
+    }
+  }
   return (
     <svg viewBox="0 0 400 400" className="h-full w-full" aria-hidden="true">
       <defs>
-        <linearGradient id="sf-chrome" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#6b6f78" />
-          <stop offset=".45" stopColor="#1d2026" />
-          <stop offset=".7" stopColor="#8a8e96" />
-          <stop offset="1" stopColor="#1a1c21" />
+        <linearGradient id="fb-top" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#3c4048" />
+          <stop offset=".5" stopColor="#6c7079" />
+          <stop offset="1" stopColor="#2f3238" />
         </linearGradient>
-        <radialGradient id="sf-core" cx=".4" cy=".35" r=".7">
-          <stop offset="0" stopColor="#3a3d44" />
-          <stop offset="1" stopColor="#0d0e11" />
-        </radialGradient>
-        <radialGradient id="sf-glow" cx=".5" cy=".5" r=".5">
-          <stop offset="0" stopColor="#ff6b35" stopOpacity=".28" />
+        <radialGradient id="fb-glow" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stopColor="#ff6b35" stopOpacity=".35" />
           <stop offset="1" stopColor="#ff6b35" stopOpacity="0" />
         </radialGradient>
       </defs>
-      <circle cx="200" cy="200" r="150" fill="url(#sf-glow)" />
-      <g className="origin-center animate-[spin_120s_linear_infinite] [transform-box:view-box]">
-      <ellipse cx="200" cy="200" rx="168" ry="60" transform="rotate(-24 200 200)" fill="none" stroke="url(#sf-chrome)" strokeWidth="3" />
-      <ellipse cx="200" cy="200" rx="58" ry="140" transform="rotate(18 200 200)" fill="none" stroke="url(#sf-chrome)" strokeWidth="4" />
-      <ellipse cx="200" cy="200" rx="112" ry="40" transform="rotate(32 200 200)" fill="none" stroke="url(#sf-chrome)" strokeWidth="5" />
-      <circle cx="348" cy="150" r="6" fill="#ff6b35" />
-      </g>
-      <polygon points="200,148 245,174 245,226 200,252 155,226 155,174" fill="url(#sf-core)" stroke="#2a2d33" />
-      <polygon points="200,148 245,174 200,200 155,174" fill="#24272e" opacity=".8" />
-      <ellipse cx="200" cy="200" rx="80" ry="14" transform="rotate(-10 200 200)" fill="none" stroke="#ff6b35" strokeWidth="1.2" />
-      <circle cx="262" cy="77" r="4" fill="#8a8e96" />
-      <circle cx="113" cy="250" r="4" fill="#8a8e96" />
+      <circle cx="200" cy="215" r="170" fill="url(#fb-glow)" />
+      {beams.map((b, i) => <Beam key={i} {...b} />)}
+      <ellipse cx="200" cy="215" rx="150" ry="52" fill="none" stroke="#ff6b35" strokeOpacity=".5" strokeWidth="1" transform="rotate(-12 200 215)" />
     </svg>
   );
 }
