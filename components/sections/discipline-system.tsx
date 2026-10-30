@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, RotateCcw } from "lucide-react";
 import type { Discipline } from "@/data/services";
 import { Tilt } from "@/components/animations/tilt";
 import { BuildVisual, ConvertVisual, GrowVisual } from "./discipline-visuals";
@@ -14,6 +14,8 @@ const AUTO_MS = 6500;
 
 export function DisciplineSystem({ items }: { items: Item[] }) {
   const [active, setActive] = useState(0);
+  // Replay: the layers fly apart for a moment, then the interface assembles itself again.
+  const [replaying, setReplaying] = useState(false);
   const [auto, setAuto] = useState(true);
   const root = useRef<HTMLDivElement>(null);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -103,7 +105,7 @@ export function DisciplineSystem({ items }: { items: Item[] }) {
           {items.map((it, i) => (
             <div
               key={it.key}
-              data-active={active === i}
+              data-active={active === i && !replaying}
               aria-hidden={active !== i}
               className={cn(
                 "disc-stage absolute inset-0 p-6 transition-[opacity,transform,filter] duration-700 ease-out-expo sm:p-10",
@@ -118,6 +120,20 @@ export function DisciplineSystem({ items }: { items: Item[] }) {
           <p className="absolute bottom-5 left-6 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">
             {current.index} / {current.title}
           </p>
+          {current.key === "build" && (
+            <button
+              type="button"
+              onClick={() => {
+                setAuto(false);
+                setReplaying(true);
+                window.setTimeout(() => setReplaying(false), 650);
+              }}
+              className="absolute bottom-3 right-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-line-2 bg-ink/80 px-4 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted backdrop-blur transition-colors hover:border-ember hover:text-paper"
+            >
+              <RotateCcw aria-hidden="true" className={cn("size-3.5 transition-transform duration-700", replaying && "-rotate-[360deg]")} />
+              Replay build
+            </button>
+          )}
         </Tilt>
       </div>
     </div>

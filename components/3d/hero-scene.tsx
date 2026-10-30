@@ -9,17 +9,22 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 import { heroState } from "./hero-state";
 import { SparkField } from "./spark-field";
 
 type Tier = "high" | "low";
 
 /*
-  The kinetic sculpture: 27 brushed-metal beams drawn as one instanced mesh.
+  The kinetic sculpture: 27 brushed-titanium beams drawn as one instanced mesh, around a
+  liquid-chrome core whose surface flows with noise.
   Each beam has a target pose in three layouts and is interpolated between them:
     BUILD   – an interlocking tower, three beams per floor, floors rotated 90°.
     GROW    – the tower opens into a lattice on a sphere, beams linked to their neighbours.
-    CONVERT – the beams converge into a tilted ring around a luminous orange core.
+    CONVERT – the beams converge into a tilted ring around a calm, polished core with one orbiting
+              node: the Zenyro mark.
+  On load the beams fly in from an exploded layout and an orange light sweeps through them;
+  the sweep runs again on every stage change.
   Scroll sets the target state (0–2); the scene eases toward it every frame.
 */
 
@@ -49,7 +54,7 @@ function buildLayouts() {
     const y = 1 - (i / (N - 1)) * 2;
     const r = Math.sqrt(1 - y * y);
     const theta = i * Math.PI * (3 - Math.sqrt(5));
-    const pos = new THREE.Vector3(Math.cos(theta) * r, y, Math.sin(theta) * r).multiplyScalar(1.85);
+    const pos = new THREE.Vector3(Math.cos(theta) * r, y, Math.sin(theta) * r).multiplyScalar(1.7);
     const normal = pos.clone().normalize();
     const tangent = new THREE.Vector3(0, 1, 0).cross(normal).normalize();
     if (tangent.lengthSq() < 0.01) tangent.set(1, 0, 0);
@@ -95,52 +100,180 @@ function brushedTexture() {
 }
 
 const smooth = (t: number) => t * t * (3 - 2 * t);
+const clamp01 = (x: number) => Math.min(Math.max(x, 0), 1);
+
+/* ---------- Shader patches ---------- */
+
+// Ashima 3D simplex noise (MIT), used to move the liquid-metal surface.
+const SNOISE = /* glsl */ `
+vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}
+vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}
+float snoise(vec3 v){
+  const vec2 C=vec2(1.0/6.0,1.0/3.0); const vec4 D=vec4(0.0,0.5,1.0,2.0);
+  vec3 i=floor(v+dot(v,C.yyy)); vec3 x0=v-i+dot(i,C.xxx);
+  vec3 g=step(x0.yzx,x0.xyz); vec3 l=1.0-g; vec3 i1=min(g.xyz,l.zxy); vec3 i2=max(g.xyz,l.zxy);
+  vec3 x1=x0-i1+C.xxx; vec3 x2=x0-i2+C.yyy; vec3 x3=x0-D.yyy;
+  i=mod289(i);
+  vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));
+  float n_=0.142857142857; vec3 ns=n_*D.wyz-D.xzx;
+  vec4 j=p-49.0*floor(p*ns.z*ns.z); vec4 x_=floor(j*ns.z); vec4 y_=floor(j-7.0*x_);
+  vec4 x=x_*ns.x+ns.yyyy; vec4 y=y_*ns.x+ns.yyyy; vec4 h=1.0-abs(x)-abs(y);
+  vec4 b0=vec4(x.xy,y.xy); vec4 b1=vec4(x.zw,y.zw);
+  vec4 s0=floor(b0)*2.0+1.0; vec4 s1=floor(b1)*2.0+1.0; vec4 sh=-step(h,vec4(0.0));
+  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy; vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
+  vec3 p0=vec3(a0.xy,h.x); vec3 p1=vec3(a0.zw,h.y); vec3 p2=vec3(a1.xy,h.z); vec3 p3=vec3(a1.zw,h.w);
+  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
+  p0*=norm.x; p1*=norm.y; p2*=norm.z; p3*=norm.w;
+  vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0); m=m*m;
+  return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));
+}`;
+
+/** Titanium beams with an orange light band that can travel through the structure (local y). */
+function patchBeams(mat: THREE.MeshPhysicalMaterial, u: { uSweep: { value: number }; uSweepAmt: { value: number } }) {
+  mat.onBeforeCompile = (sh) => {
+    Object.assign(sh.uniforms, u);
+    sh.vertexShader = sh.vertexShader
+      .replace("void main() {", "varying float vLY;\nvoid main() {")
+      .replace(
+        "#include <begin_vertex>",
+        `#include <begin_vertex>
+        #ifdef USE_INSTANCING
+          vLY = (instanceMatrix * vec4(transformed, 1.0)).y;
+        #else
+          vLY = transformed.y;
+        #endif`,
+      );
+    sh.fragmentShader = sh.fragmentShader
+      .replace("void main() {", "varying float vLY;\nuniform float uSweep;\nuniform float uSweepAmt;\nvoid main() {")
+      .replace(
+        "#include <emissivemap_fragment>",
+        `#include <emissivemap_fragment>
+        totalEmissiveRadiance += vec3(1.0, 0.36, 0.14) * uSweepAmt * exp(-pow((vLY - uSweep) * 4.0, 2.0));`,
+      );
+  };
+  mat.customProgramCacheKey = () => "zenyro-beam";
+}
+
+/** Liquid chrome: the sphere's surface flows with layered noise; normals are rebuilt from neighbours. */
+function patchLiquid(mat: THREE.MeshPhysicalMaterial, u: { uTime: { value: number }; uAmp: { value: number }; uRim: { value: number } }) {
+  mat.onBeforeCompile = (sh) => {
+    Object.assign(sh.uniforms, u);
+    sh.vertexShader = sh.vertexShader
+      .replace(
+        "void main() {",
+        `uniform float uTime;
+        uniform float uAmp;
+        ${SNOISE}
+        vec3 zLiquid(vec3 p) {
+          vec3 q = p * 1.7;
+          float n = snoise(q + vec3(0.0, uTime * 0.32, uTime * 0.18)) + 0.45 * snoise(q * 2.2 - vec3(uTime * 0.27));
+          return p + normalize(p) * n * uAmp;
+        }
+        void main() {`,
+      )
+      .replace(
+        "#include <beginnormal_vertex>",
+        `vec3 zP = zLiquid(position);
+        vec3 zN0 = normalize(position);
+        vec3 zT = normalize(abs(zN0.y) > 0.98 ? cross(zN0, vec3(1.0, 0.0, 0.0)) : cross(zN0, vec3(0.0, 1.0, 0.0)));
+        vec3 zB = cross(zN0, zT);
+        float zE = 0.012;
+        vec3 objectNormal = normalize(cross(zLiquid(position + zT * zE) - zP, zLiquid(position + zB * zE) - zP));
+        if (dot(objectNormal, zN0) < 0.0) objectNormal = -objectNormal;
+        #ifdef USE_TANGENT
+          vec3 objectTangent = vec3(tangent.xyz);
+        #endif`,
+      )
+      .replace("#include <begin_vertex>", "vec3 transformed = zP;");
+    sh.fragmentShader = sh.fragmentShader
+      .replace("void main() {", "uniform float uRim;\nvoid main() {")
+      .replace(
+        "#include <emissivemap_fragment>",
+        `#include <emissivemap_fragment>
+        float zF = pow(1.0 - clamp(dot(normal, normalize(vViewPosition)), 0.0, 1.0), 3.0);
+        totalEmissiveRadiance += vec3(1.0, 0.42, 0.21) * zF * uRim;`,
+      );
+  };
+  mat.customProgramCacheKey = () => "zenyro-liquid";
+}
+
+/** Network links with pulses of orange energy travelling along each connection. */
+const linkVert = /* glsl */ `
+attribute float aT;
+attribute float aOff;
+varying float vT;
+varying float vOff;
+void main() { vT = aT; vOff = aOff; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+const linkFrag = /* glsl */ `
+uniform float uTime;
+uniform float uOpacity;
+varying float vT;
+varying float vOff;
+void main() {
+  float p = fract(uTime * 0.42 + vOff);
+  float g = exp(-pow((vT - p) * 8.0, 2.0));
+  vec3 col = mix(vec3(1.0, 0.42, 0.21) * 0.6, vec3(1.0, 0.8, 0.62), g);
+  gl_FragColor = vec4(col, uOpacity * (0.18 + 1.4 * g));
+}`;
 
 function Sculpture({ tier }: { tier: Tier }) {
   const { layouts, pairs } = useMemo(buildLayouts, []);
   const mesh = useRef<THREE.InstancedMesh>(null);
   const links = useRef<THREE.LineSegments>(null);
   const core = useRef<THREE.Mesh>(null);
+  const node = useRef<THREE.Mesh>(null);
   const halo = useRef<THREE.Mesh>(null);
   const light = useRef<THREE.PointLight>(null);
   const group = useRef<THREE.Group>(null);
-  const state = useRef({ value: 0, intro: 0 });
+  const state = useRef({ value: 0, intro: 0, sweep: 1, stage: 0, swept: false });
   const pointer = useRef({ x: 0, y: 0 });
 
-  const { beamGeo, beamMat, linkGeo, linkMat, coreGeo, coreMat, haloGeo, haloMat, rough } = useMemo(() => {
+  const res = useMemo(() => {
     const rough = brushedTexture();
+    const beamU = { uSweep: { value: -3 }, uSweepAmt: { value: 0 } };
+    const liquidU = { uTime: { value: 0 }, uAmp: { value: 0.16 }, uRim: { value: 0.4 } };
+    const beamMat = new THREE.MeshPhysicalMaterial({
+      color: "#3b3f47",
+      metalness: 1,
+      roughness: 0.3,
+      roughnessMap: rough,
+      anisotropy: tier === "high" ? 0.75 : 0,
+      clearcoat: 0.6,
+      clearcoatRoughness: 0.18,
+    });
+    patchBeams(beamMat, beamU);
+    const coreMat = new THREE.MeshPhysicalMaterial({ color: "#9a9ea6", metalness: 1, roughness: 0.06, clearcoat: 1, clearcoatRoughness: 0.05 });
+    patchLiquid(coreMat, liquidU);
+    const seg = tier === "high" ? 128 : 72;
+    const linkGeo = new THREE.BufferGeometry();
+    linkGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(pairs.length * 6), 3));
+    linkGeo.setAttribute("aT", new THREE.BufferAttribute(Float32Array.from(pairs.flatMap(() => [0, 1])), 1));
+    linkGeo.setAttribute("aOff", new THREE.BufferAttribute(Float32Array.from(pairs.flatMap((_, k) => { const o = (k * 0.618) % 1; return [o, o]; })), 1));
+    const linkU = { uTime: { value: 0 }, uOpacity: { value: 0 } };
     return {
-      rough,
-      beamGeo: new THREE.BoxGeometry(BEAM.x, BEAM.y, BEAM.z, 1, 1, 1),
-      beamMat: new THREE.MeshPhysicalMaterial({
-        color: "#4a4e56",
-        metalness: 1,
-        roughness: 0.38,
-        roughnessMap: rough,
-        anisotropy: tier === "high" ? 0.7 : 0,
-        clearcoat: 0.25,
-        clearcoatRoughness: 0.4,
-      }),
-      linkGeo: (() => {
-        const g = new THREE.BufferGeometry();
-        g.setAttribute("position", new THREE.BufferAttribute(new Float32Array(pairs.length * 6), 3));
-        return g;
-      })(),
-      linkMat: new THREE.LineBasicMaterial({ color: "#ff6b35", transparent: true, opacity: 0 }),
-      coreGeo: new THREE.IcosahedronGeometry(0.42, tier === "high" ? 2 : 1),
-      coreMat: new THREE.MeshStandardMaterial({ color: "#ff6b35", emissive: "#ff6b35", emissiveIntensity: 0, metalness: 0.2, roughness: 0.35, flatShading: true }),
-      haloGeo: new THREE.RingGeometry(0.62, 0.64, 96),
-      haloMat: new THREE.MeshBasicMaterial({ color: "#ff6b35", transparent: true, opacity: 0, side: THREE.DoubleSide, toneMapped: false }),
+      rough, beamU, liquidU, linkU,
+      beamGeo: new RoundedBoxGeometry(BEAM.x, BEAM.y, BEAM.z, 3, 0.05),
+      beamMat,
+      linkGeo,
+      linkMat: new THREE.ShaderMaterial({ vertexShader: linkVert, fragmentShader: linkFrag, uniforms: linkU, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }),
+      coreGeo: new THREE.SphereGeometry(0.5, seg, seg),
+      coreMat,
+      nodeGeo: new THREE.SphereGeometry(0.06, 24, 24),
+      nodeMat: new THREE.MeshBasicMaterial({ color: "#ff6b35", toneMapped: false }),
+      haloGeo: new THREE.TorusGeometry(1.46, 0.004, 6, 160),
+      haloMat: new THREE.MeshBasicMaterial({ color: "#f7f7f5", transparent: true, opacity: 0, toneMapped: false }),
     };
-  }, [pairs.length, tier]);
+  }, [pairs, tier]);
 
   useEffect(
     () => () => {
-      [beamGeo, linkGeo, coreGeo, haloGeo].forEach((g) => g.dispose());
-      [beamMat, linkMat, coreMat, haloMat].forEach((m) => m.dispose());
-      rough.dispose();
+      [res.beamGeo, res.linkGeo, res.coreGeo, res.nodeGeo, res.haloGeo].forEach((g) => g.dispose());
+      [res.beamMat, res.linkMat, res.coreMat, res.nodeMat, res.haloMat].forEach((m) => m.dispose());
+      res.rough.dispose();
     },
-    [beamGeo, beamMat, linkGeo, linkMat, coreGeo, coreMat, haloGeo, haloMat, rough],
+    [res],
   );
 
   useEffect(() => {
@@ -152,17 +285,40 @@ function Sculpture({ tier }: { tier: Tier }) {
     return () => window.removeEventListener("pointermove", onMove);
   }, []);
 
-  const tmp = useMemo(() => ({ m: new THREE.Matrix4(), p: new THREE.Vector3(), q: new THREE.Quaternion(), s: new THREE.Vector3(), a: new THREE.Vector3(), b: new THREE.Vector3() }), []);
+  // Exploded starting poses for the intro: each beam begins scattered and turned, then assembles.
+  const scatter = useMemo(() => {
+    const e = new THREE.Euler();
+    return Array.from({ length: N }, (_, i) => {
+      const y = 1 - (i / (N - 1)) * 2;
+      const r = Math.sqrt(1 - y * y);
+      const th = i * 2.399963;
+      return {
+        p: new THREE.Vector3(Math.cos(th) * r, y * 0.8, Math.sin(th) * r).multiplyScalar(2.5),
+        q: new THREE.Quaternion().setFromEuler(e.set(i * 1.3, i * 0.7, i * 2.1)),
+      };
+    });
+  }, []);
+
+  const tmp = useMemo(() => ({ m: new THREE.Matrix4(), p: new THREE.Vector3(), q: new THREE.Quaternion(), s: new THREE.Vector3(), a: new THREE.Vector3() }), []);
   const positions = useMemo(() => Array.from({ length: N }, () => new THREE.Vector3()), []);
   const beamValues = useRef(new Float32Array(N));
+  const ringEuler = useMemo(() => new THREE.Euler(1.05, 0.2, 0.15), []);
 
   useFrame((frame, delta) => {
     const dt = Math.min(delta, 0.05);
     const st = state.current;
-    st.intro = Math.min(st.intro + dt / 1.8, 1);
+    st.intro = Math.min(st.intro + dt / 2.4, 1);
     st.value += (heroState.target - st.value) * (1 - Math.exp(-dt * 3.2));
     const t = frame.clock.elapsedTime;
     const v = st.value;
+
+    // Light sweep: once the beams have assembled, and again whenever the stage changes.
+    const stage = Math.round(heroState.target);
+    if (!st.swept && st.intro > 0.72) { st.swept = true; st.sweep = 0; }
+    if (stage !== st.stage) { st.stage = stage; if (st.swept) st.sweep = 0; }
+    st.sweep = Math.min(st.sweep + dt / 1.5, 1);
+    res.beamU.uSweep.value = -2.4 + st.sweep * 4.8;
+    res.beamU.uSweepAmt.value = Math.sin(st.sweep * Math.PI) * 2.4;
 
     for (let i = 0; i < N; i++) {
       // Each beam eases at its own rate, so a transition ripples through the structure.
@@ -170,21 +326,24 @@ function Sculpture({ tier }: { tier: Tier }) {
       bv[i] = bv[i]! + (heroState.target - bv[i]!) * (1 - Math.exp(-dt * (1.8 + (i % 9) * 0.32)));
       const local = Math.min(Math.max(bv[i]!, 0), 2);
       const seg = Math.min(Math.floor(local), 1);
-      const k = smooth(Math.min(Math.max(local - seg, 0), 1));
+      const k = smooth(clamp01(local - seg));
       const A = layouts[seg]![i]!;
       const B = layouts[seg + 1]![i]!;
       tmp.p.lerpVectors(A.p, B.p, k);
       tmp.q.slerpQuaternions(A.q, B.q, k);
       tmp.s.lerpVectors(A.s, B.s, k);
 
-      // Intro: beams slide in from above, floor by floor.
-      const introK = smooth(Math.min(Math.max(st.intro * 1.6 - (i / N) * 0.6, 0), 1));
-      tmp.p.y += (1 - introK) * (2.4 + (i % 3) * 0.3);
-      tmp.s.multiplyScalar(0.001 + introK * 0.999);
+      // Intro: components fly in from an exploded layout and lock into formation, floor by floor.
+      const ik = 1 - Math.pow(1 - clamp01(st.intro * 1.5 - (i / N) * 0.5), 3);
+      if (ik < 1) {
+        tmp.p.lerpVectors(scatter[i]!.p, tmp.p, ik);
+        tmp.q.slerpQuaternions(scatter[i]!.q, tmp.q, ik);
+        tmp.s.multiplyScalar(0.2 + ik * 0.8);
+      }
 
-      // Gentle procedural motion, strongest in the GROW state.
-      const growW = 1 - Math.abs(v - 1);
-      tmp.p.addScaledVector(tmp.a.copy(A.p).normalize(), Math.sin(t * 0.9 + i) * 0.04 * Math.max(growW, 0));
+      // Gentle breathing, strongest while the network is open.
+      const growW = Math.max(0, 1 - Math.abs(v - 1));
+      tmp.p.addScaledVector(tmp.a.copy(A.p).normalize(), Math.sin(t * 0.9 + i) * 0.04 * growW);
 
       positions[i]!.copy(tmp.p);
       tmp.m.compose(tmp.p, tmp.q, tmp.s);
@@ -192,7 +351,7 @@ function Sculpture({ tier }: { tier: Tier }) {
     }
     mesh.current!.instanceMatrix.needsUpdate = true;
 
-    // Links glow only while the system is expanded.
+    // Network links carry pulses while the system is expanded.
     const growW = Math.max(0, 1 - Math.abs(v - 1) * 1.4);
     const pos = links.current!.geometry.attributes.position as THREE.BufferAttribute;
     pairs.forEach(([a, b], k) => {
@@ -200,40 +359,48 @@ function Sculpture({ tier }: { tier: Tier }) {
       pos.setXYZ(k * 2 + 1, positions[b]!.x, positions[b]!.y, positions[b]!.z);
     });
     pos.needsUpdate = true;
-    linkMat.opacity = growW * 0.55;
+    res.linkU.uOpacity.value = growW * 0.9;
+    res.linkU.uTime.value = t;
 
-    // The core ignites as the structure converges.
-    const convertW = smooth(Math.min(Math.max(v - 1, 0), 1));
-    const pulse = 1 + Math.sin(t * 2) * 0.04 * convertW;
-    core.current!.scale.setScalar((0.15 + convertW * 0.85) * pulse);
-    core.current!.rotation.set(t * 0.2, t * 0.3, 0);
-    coreMat.emissiveIntensity = 0.3 + convertW * 0.9;
-    haloMat.opacity = convertW * 0.6;
-    halo.current!.scale.setScalar(1 + convertW * 0.6 + Math.sin(t * 1.5) * 0.03);
-    light.current!.intensity = 1.5 + convertW * 7;
-
-    // Pointer parallax and slow presentation turn.
-    const g = group.current!;
-    // Frame each state: the compact tower is shown larger, the open lattice at full size.
+    // Liquid core: hidden in the tower, a molten heart in the network, a calm polished sphere at Convert.
     const buildW = Math.max(0, 1 - v);
+    const convertW = smooth(clamp01(v - 1));
+    const coreIntro = smooth(clamp01((st.intro - 0.45) / 0.55));
+    res.liquidU.uTime.value = t;
+    res.liquidU.uAmp.value = 0.05 + growW * 0.17 + buildW * 0.08 - convertW * 0.03;
+    res.liquidU.uRim.value = 0.25 + growW * 0.55 + convertW * 0.35;
+    core.current!.scale.setScalar(coreIntro * (0.55 + growW * 0.75 + convertW * 0.85));
+    core.current!.rotation.y = t * 0.15;
+
+    // At Convert the ring gains its orbiting node: the Zenyro mark, in metal.
+    const ang = t * 0.9;
+    node.current!.position.set(Math.cos(ang) * 1.46, Math.sin(ang) * 1.46, 0).applyEuler(ringEuler);
+    node.current!.scale.setScalar(convertW);
+    res.haloMat.opacity = convertW * 0.28;
+    light.current!.intensity = 1.2 + growW * 2.5 + convertW * 5 + Math.sin(st.sweep * Math.PI) * 4;
+
+    // Pointer parallax with damping, never more than a few degrees, settling back to rest.
+    const g = group.current!;
     g.scale.setScalar(1 + buildW * 0.42 + convertW * 0.22);
-    g.rotation.y += (pointer.current.x * 0.35 + t * 0.05 - g.rotation.y) * 0.05;
-    g.rotation.x += (pointer.current.y * 0.18 + 0.12 - g.rotation.x) * 0.05;
-    frame.camera.position.x += (pointer.current.x * 0.35 - frame.camera.position.x) * 0.04;
-    frame.camera.position.y += (-pointer.current.y * 0.25 - frame.camera.position.y) * 0.04;
+    g.rotation.y += (pointer.current.x * 0.3 + t * 0.05 - g.rotation.y) * 0.05;
+    g.rotation.x += (pointer.current.y * 0.15 + 0.12 - g.rotation.x) * 0.05;
+    frame.camera.position.x += (pointer.current.x * 0.3 - frame.camera.position.x) * 0.04;
+    frame.camera.position.y += (-pointer.current.y * 0.22 - frame.camera.position.y) * 0.04;
     frame.camera.lookAt(0, 0, 0);
   });
 
   return (
     <>
-      <directionalLight position={[4, 5, 6]} intensity={1.1} />
-      <directionalLight position={[-5, -2, -3]} intensity={0.35} color="#9aa3b5" />
+      <directionalLight position={[4, 5, 6]} intensity={1.2} />
+      <directionalLight position={[-5, -2, -3]} intensity={0.4} color="#9aa3b5" />
+      <directionalLight position={[0, -4, 2]} intensity={0.6} color="#ff6b35" />
       <pointLight ref={light} position={[0, 0, 0]} color="#ff6b35" intensity={2} distance={6} decay={2} />
       <group ref={group}>
-        <instancedMesh ref={mesh} args={[beamGeo, beamMat, N]} frustumCulled={false} />
-        <lineSegments ref={links} geometry={linkGeo} material={linkMat} frustumCulled={false} />
-        <mesh ref={core} geometry={coreGeo} material={coreMat} />
-        <mesh ref={halo} geometry={haloGeo} material={haloMat} rotation={[1.05, 0.2, 0.15]} />
+        <instancedMesh ref={mesh} args={[res.beamGeo, res.beamMat, N]} frustumCulled={false} />
+        <lineSegments ref={links} geometry={res.linkGeo} material={res.linkMat} frustumCulled={false} />
+        <mesh ref={core} geometry={res.coreGeo} material={res.coreMat} scale={0} />
+        <mesh ref={halo} geometry={res.haloGeo} material={res.haloMat} rotation={[1.05, 0.2, 0.15]} />
+        <mesh ref={node} geometry={res.nodeGeo} material={res.nodeMat} scale={0} />
       </group>
     </>
   );
