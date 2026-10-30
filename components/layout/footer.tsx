@@ -12,6 +12,7 @@ const company = [
 ];
 
 const agency = [
+  { label: "Search growth: SEO, AEO & GEO", href: "/search-growth" },
   { label: "Lead generation agency", href: "/lead-generation-agency" },
   { label: "AI automation agency", href: "/ai-automation-agency" },
   { label: "AI marketing agency", href: "/ai-marketing-agency" },

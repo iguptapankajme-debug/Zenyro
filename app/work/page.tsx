@@ -1,5 +1,6 @@
 import { PageHero } from "@/components/layout/page-hero";
-import { WorkPanels } from "@/components/sections/selected-work";
+import { WorkShowcase } from "@/components/sections/work-showcase";
+import { work } from "@/data/work";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { Em } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/seo";
@@ -26,7 +27,7 @@ export default function WorkPage() {
             <span className="font-medium text-paper">About these examples.</span> Each one is a concept created by Zenyro to illustrate our
             work. None of them describe a real client, and they contain no performance figures.
           </p>
-          <WorkPanels headingLevel="h2" />
+          <WorkShowcase items={work} headingLevel="h2" />
         </div>
       </section>
       <ContactCta />

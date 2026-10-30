@@ -69,7 +69,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Process />
+      <Process variant="full" />
       <ContactCta />
     </>
   );

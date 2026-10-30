@@ -16,6 +16,8 @@ export type Industry = {
   channels: string[];
   faqs: { q: string; a: string }[];
   services: string[];
+  /** Search growth (SEO, AEO, GEO) specific to this sector. */
+  search: { title: string; body: string; points: string[] };
 };
 
 export const industries: Industry[] = [
@@ -49,6 +51,11 @@ export const industries: Industry[] = [
       { q: "Do you follow RERA advertising rules?", a: "Campaigns and pages display RERA registration details where required, and we avoid claims that are not supported by the approved project documents." },
     ],
     services: ["performance-marketing", "ai-automation", "crm-automation"],
+    search: {
+      title: "Real Estate SEO & AI Search Visibility",
+      body: "Buyers research locations, builders and price bands for months before they enquire. We make each project, locality and configuration easy to find in search, clearly answered, and accurately described when buyers ask AI assistants for options.",
+      points: ["Project and locality pages built on real data, with RERA details where required", "Answers to buyer questions on possession, loans and amenities", "Consistent developer and project facts across portals and profiles"],
+    },
   },
   {
     slug: "hospitality",
@@ -80,6 +87,11 @@ export const industries: Industry[] = [
       { q: "Can the assistant handle multiple languages?", a: "Yes. Guest assistants can reply in English, Hindi and other major languages, and hand over to staff for special requests." },
     ],
     services: ["website-development", "performance-marketing", "ai-automation"],
+    search: {
+      title: "Hotel SEO & Direct Booking Growth",
+      body: "Guests compare on search, maps and AI travel answers before they book. We strengthen your own website and listings so more of that research ends in a direct booking or event enquiry.",
+      points: ["Room, venue and destination pages that rank for real stay and event searches", "Accurate, consistent property facts across maps, OTAs and travel sources", "Wedding and event content that answers planners’ questions directly"],
+    },
   },
   {
     slug: "healthcare",
@@ -111,6 +123,11 @@ export const industries: Industry[] = [
       { q: "How is patient data protected?", a: "We collect only what is needed for booking, store it in your own systems, restrict access, and follow India's Digital Personal Data Protection Act requirements." },
     ],
     services: ["local-seo", "ai-automation", "website-development"],
+    search: {
+      title: "Healthcare Search Visibility",
+      body: "Patients search symptoms, treatments and nearby clinics. We help clinics appear for the right local searches with accurate, responsibly written information reviewed by qualified clinicians.",
+      points: ["Clinician-reviewed treatment and condition pages", "Doctor and location profiles kept consistent across maps and directories", "Clear answers to common patient questions on cost, preparation and recovery"],
+    },
   },
   {
     slug: "interior-design",
@@ -142,6 +159,11 @@ export const industries: Industry[] = [
       { q: "How do you filter out low-budget enquiries?", a: "We state starting budgets or typical project ranges clearly and ask for scope and budget before booking. This usually reduces enquiry volume slightly but improves meeting quality." },
     ],
     services: ["website-development", "lead-generation", "performance-marketing"],
+    search: {
+      title: "Interior Design & Premium Retail Search Growth",
+      body: "Homeowners search for ideas, costs and studios long before they visit. We turn your portfolio, materials and expertise into pages and answers that bring the right clients to your studio or showroom.",
+      points: ["Project and style pages built from your real portfolio", "Cost, timeline and material explainers that answer buying questions", "Showroom and brand information kept consistent for local and AI search"],
+    },
   },
   {
     slug: "education",
@@ -173,6 +195,11 @@ export const industries: Industry[] = [
       { q: "Do you make placement or result claims in ads?", a: "Only if you can substantiate them with documented data. We avoid unverifiable claims, which also protects you from platform and regulatory issues." },
     ],
     services: ["lead-generation", "ai-automation", "crm-automation"],
+    search: {
+      title: "Education Search Visibility",
+      body: "Students and parents compare programs, eligibility and outcomes across search and AI assistants. We make your programs clear, comparable and correctly described wherever they research.",
+      points: ["Program pages with eligibility, fees and outcomes stated plainly", "Answers to admission and career questions written with your faculty", "Consistent institution facts across directories and education portals"],
+    },
   },
   {
     slug: "home-improvement",
@@ -204,6 +231,11 @@ export const industries: Industry[] = [
       { q: "Do you work with B2B trade buyers too?", a: "Yes. We build separate journeys for homeowners and for trade buyers such as architects and contractors, because their needs and timelines differ." },
     ],
     services: ["lead-generation", "crm-automation", "local-seo"],
+    search: {
+      title: "Home Improvement & Building Materials SEO",
+      body: "Homeowners and contractors search product types, specifications and local dealers. We connect product information, dealer locations and buying guides so searches turn into quote requests.",
+      points: ["Product and specification pages structured for comparison searches", "Dealer and showroom location pages with genuine local detail", "Buying guides that answer installation and maintenance questions"],
+    },
   },
 ];
 

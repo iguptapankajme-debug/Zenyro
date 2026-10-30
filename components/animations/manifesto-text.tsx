@@ -1,35 +1,36 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { loadGsap, prefersReducedMotion } from "@/lib/motion";
+
+type Line = { words: string[]; emphasis?: string[] };
 
 /**
- * Scroll-scrubbed reading reveal: words move from grey to white (or orange) as the paragraph passes
- * through the viewport. GSAP is loaded on demand so it never weighs on first paint.
- * Without JS, or with reduced motion, the text is fully readable in white.
+ * Scroll-linked kinetic statement: each word moves from dark grey to white (or orange for the
+ * emphasised words) as the section passes through the viewport. Without JavaScript or with
+ * reduced motion, the statement is simply shown in its final colours.
  */
-export function ManifestoText({ text, emphasis }: { text: string; emphasis: string[] }) {
-  const ref = useRef<HTMLParagraphElement>(null);
-  const words = text.split(" ");
+export function ManifestoText({ lines }: { lines: Line[] }) {
+  const ref = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (prefersReducedMotion()) return;
     let ctx: { revert: () => void } | undefined;
     let cancelled = false;
-    (async () => {
-      const [{ gsap }, { ScrollTrigger }] = await Promise.all([import("gsap"), import("gsap/ScrollTrigger")]);
+    loadGsap().then(({ gsap }) => {
       if (cancelled || !ref.current) return;
-      gsap.registerPlugin(ScrollTrigger);
       ctx = gsap.context(() => {
-        const els = ref.current!.querySelectorAll<HTMLElement>("[data-w]");
-        // Words start in a grey that still meets contrast for large text, then warm to their final colour.
-        gsap.from(els, {
-          color: "#6b6e76",
+        const words = ref.current!.querySelectorAll<HTMLElement>("[data-w]");
+        // The starting grey still meets 3:1 contrast for large text.
+        gsap.from(words, {
+          color: "#5c5f67",
+          yPercent: 18,
           ease: "none",
-          stagger: 0.08,
-          scrollTrigger: { trigger: ref.current, start: "top 82%", end: "bottom 45%", scrub: 0.4 },
+          stagger: 0.12,
+          scrollTrigger: { trigger: ref.current, start: "top 85%", end: "bottom 40%", scrub: 0.4 },
         });
       }, ref);
-    })();
+    });
     return () => {
       cancelled = true;
       ctx?.revert();
@@ -37,12 +38,17 @@ export function ManifestoText({ text, emphasis }: { text: string; emphasis: stri
   }, []);
 
   return (
-    <p ref={ref} className="text-[clamp(1.8rem,4.1vw,3.6rem)] font-medium leading-[1.08] tracking-[-0.035em] text-balance">
-      {words.map((w, i) => (
-        <span key={i} data-w className={emphasis.includes(w) ? "text-ember" : "text-paper"}>
-          {w}{i < words.length - 1 ? " " : ""}
+    <h2 ref={ref} className="text-[clamp(3rem,10.5vw,11rem)] font-semibold uppercase leading-[0.86] tracking-[-0.055em]">
+      {lines.map((line, li) => (
+        <span key={li} className="block">
+          {line.words.map((w, i) => (
+            <span key={i} className="inline-block overflow-hidden align-bottom">
+              <span data-w className={`inline-block ${line.emphasis?.includes(w) ? "text-ember" : "text-paper"}`}>{w}</span>
+              {i < line.words.length - 1 && <span>&nbsp;</span>}
+            </span>
+          ))}
         </span>
       ))}
-    </p>
+    </h2>
   );
 }

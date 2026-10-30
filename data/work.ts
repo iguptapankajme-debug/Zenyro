@@ -9,6 +9,8 @@ export type WorkItem = {
   slug: string;
   kind: "concept" | "case-study";
   title: string;
+  /** One short value statement for the showcase. */
+  summary: string;
   client: string;
   industry: string;
   art: IndustryArt;
@@ -24,6 +26,7 @@ export const work: WorkItem[] = [
     slug: "residential-launch-engine",
     kind: "concept",
     title: "Residential launch engine",
+    summary: "Turning a tower launch into a steady calendar of qualified site visits.",
     client: "Concept for a premium residential developer",
     industry: "Real Estate",
     art: "skyline",
@@ -38,6 +41,7 @@ export const work: WorkItem[] = [
     slug: "boutique-hotel-direct",
     kind: "concept",
     title: "Direct booking and events system",
+    summary: "More direct bookings, and no wedding enquiry left waiting overnight.",
     client: "Concept for a boutique hill-station resort",
     industry: "Hospitality",
     art: "arches",
@@ -52,6 +56,7 @@ export const work: WorkItem[] = [
     slug: "clinic-appointment-flow",
     kind: "concept",
     title: "Appointment and recall automation",
+    summary: "An appointment book that fills itself, day and night.",
     client: "Concept for a multi-location dental clinic",
     industry: "Healthcare",
     art: "pulse",
@@ -63,3 +68,7 @@ export const work: WorkItem[] = [
     outcomes: [],
   },
 ];
+
+export function getWork(slug: string) {
+  return work.find((w) => w.slug === slug);
+}

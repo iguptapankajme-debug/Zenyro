@@ -11,6 +11,7 @@ export function ProcessLine({ children, className }: { children: ReactNode; clas
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       fill.current!.style.transform = "scaleY(1)";
+      wrap.current!.querySelectorAll(".process-step").forEach((el) => el.classList.add("is-lit"));
       return;
     }
     let raf = 0;
@@ -19,6 +20,10 @@ export function ProcessLine({ children, className }: { children: ReactNode; clas
       const vh = window.innerHeight;
       const p = Math.min(Math.max((vh * 0.6 - r.top) / r.height, 0), 1);
       fill.current!.style.transform = `scaleY(${p})`;
+      // Light each stage as the line reaches it.
+      wrap.current!.querySelectorAll<HTMLElement>(".process-step").forEach((el) => {
+        el.classList.toggle("is-lit", el.getBoundingClientRect().top < vh * 0.6);
+      });
     };
     const onScroll = () => {
       cancelAnimationFrame(raf);

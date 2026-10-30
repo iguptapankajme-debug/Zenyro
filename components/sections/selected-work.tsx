@@ -4,6 +4,7 @@ import { work } from "@/data/work";
 import { IndustryArt } from "@/components/ui/industry-art";
 import { SectionHeading, Em } from "@/components/ui/section-heading";
 import { cn } from "@/lib/cn";
+import { WorkShowcase } from "./work-showcase";
 
 export function WorkPanels({ items = work, headingLevel = "h3" }: { items?: typeof work; headingLevel?: "h2" | "h3" }) {
   const H = headingLevel;
@@ -59,18 +60,18 @@ export function WorkPanels({ items = work, headingLevel = "h3" }: { items?: type
 
 export function SelectedWork() {
   return (
-    <section className="py-28 md:py-36" aria-labelledby="work-title">
+    <section className="py-28 md:py-40" aria-labelledby="work-title">
       <div className="shell">
         <SectionHeading
           eyebrow="Selected work"
           title={<span id="work-title">Work that moves <Em>business forward.</Em></span>}
-          lede="We are a new studio, so we show you how we think rather than borrowed logos. These concept demonstrations show the systems we build; verified client case studies will be published here as they launch."
+          lede="Concept demonstrations of the systems we build. Verified client case studies will appear here as projects launch."
         />
-        <div className="mt-16 md:mt-24">
-          <WorkPanels items={work.slice(0, 2)} />
+        <div className="mt-14 md:mt-20">
+          <WorkShowcase items={work} />
         </div>
         <Link href="/work" className="group mt-10 inline-flex items-center gap-2 text-[1rem] font-medium">
-          <span className="link-u">See all concept demonstrations</span>
+          <span className="link-u">All work</span>
           <ArrowUpRight aria-hidden="true" className="size-4 text-ember" />
         </Link>
       </div>

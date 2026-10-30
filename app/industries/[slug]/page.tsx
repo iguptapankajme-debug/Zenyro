@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/page-hero";
 import { Faq } from "@/components/sections/faq";
@@ -85,6 +86,28 @@ export default async function IndustryPage({ params }: Props) {
             </ol>
             <p className="mt-8 text-[0.9rem] text-muted">
               Channels we usually connect: {ind.channels.join(", ")}.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="search-growth" className="scroll-mt-24 py-24 md:py-32" aria-labelledby="industry-search">
+        <div className="shell grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="eyebrow mb-6">Search growth · SEO, AEO &amp; GEO</p>
+            <h2 id="industry-search" className="display-md">{ind.search.title}</h2>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="lede">{ind.search.body}</p>
+            <ul className="mt-8 border-t border-line">
+              {ind.search.points.map((pt) => (
+                <li key={pt} className="flex gap-4 border-b border-line py-4"><span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-ember" />{pt}</li>
+              ))}
+            </ul>
+            <p className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[0.92rem]">
+              <Link href="/services/seo" className="link-u">SEO services</Link>
+              <Link href="/services/aeo" className="link-u">Answer engine optimization</Link>
+              <Link href="/services/geo" className="link-u">Generative engine optimization</Link>
             </p>
           </div>
         </div>

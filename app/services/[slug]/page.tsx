@@ -6,12 +6,21 @@ import { LinkList } from "@/components/sections/link-grid";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
+import { SearchInterface } from "@/components/search/search-interface";
+import { VisibilityDemo } from "@/components/search/visibility-demo";
+import { slugify } from "@/lib/slugify";
 import { disciplines, getService, services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { buildMetadata, serviceSchema } from "@/lib/seo";
 import { consultationHref } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
+
+const searchCopy = {
+  seo: { eyebrow: "Organic search", title: "Earn the listing buyers click.", body: "A clear, fast, well-linked page that matches intent is still the foundation of being found." },
+  aeo: { eyebrow: "Answer experiences", title: "Be the answer, with your name on it.", body: "When the result is a direct answer, clear and well-sourced explanations are what get chosen." },
+  geo: { eyebrow: "Generative search", title: "Be part of the AI conversation.", body: "Generative answers draw on sources they can read and trust. We help your brand be one of them." },
+} as const;
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -41,6 +50,25 @@ export default async function ServicePage({ params }: Props) {
         aside={<div className="mt-8"><ButtonLink href={consultationHref}>Discuss your project</ButtonLink></div>}
       />
 
+      {s.search && (
+        <section className="border-b border-line py-20 md:py-28" aria-labelledby="search-demo">
+          <div className="shell grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-5">
+              <p className="eyebrow mb-6">{searchCopy[s.search].eyebrow}</p>
+              <h2 id="search-demo" className="display-md">{searchCopy[s.search].title}</h2>
+              <p className="lede mt-5">{searchCopy[s.search].body}</p>
+            </div>
+            <div className="min-w-0 lg:col-span-7">
+              <SearchInterface initial={s.search} />
+            </div>
+          </div>
+          <div className="shell mt-16">
+            <p className="eyebrow mb-6">How we report it</p>
+            <VisibilityDemo initial={s.search === "seo" ? 0 : s.search === "aeo" ? 1 : 2} />
+          </div>
+        </section>
+      )}
+
       <section className="py-24 md:py-32" aria-labelledby="problems">
         <div className="shell grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
@@ -65,7 +93,7 @@ export default async function ServicePage({ params }: Props) {
           </div>
           <dl className="lg:col-span-8">
             {s.included.map((it) => (
-              <div key={it.title} className="grid gap-2 border-b border-line py-7 first:border-t md:grid-cols-8 md:gap-8" data-reveal>
+              <div key={it.title} id={slugify(it.title)} className="grid scroll-mt-28 gap-2 border-b border-line py-7 first:border-t md:grid-cols-8 md:gap-8" data-reveal>
                 <dt className="text-[1.2rem] font-medium tracking-[-0.015em] md:col-span-3">{it.title}</dt>
                 <dd className="leading-relaxed text-muted md:col-span-5">{it.body}</dd>
               </div>
