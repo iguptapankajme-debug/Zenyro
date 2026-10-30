@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { WorkPanels } from "@/components/sections/selected-work";
 import { ContactCta } from "@/components/sections/contact-cta";
+import { SystemFlow } from "@/components/sections/system-flow";
 import { getWork, work } from "@/data/work";
 import { buildMetadata } from "@/lib/seo";
 
@@ -37,6 +38,15 @@ export default async function WorkItemPage({ params }: Props) {
         title={w.title}
         intro={w.summary}
       />
+      {w.flow && (
+        <section aria-labelledby="flow-title" className="pt-20 md:pt-28">
+          <div className="shell mb-10">
+            <p className="eyebrow mb-6">How the system works</p>
+            <h2 id="flow-title" className="display-md max-w-3xl">From first touch to booked, stage by stage.</h2>
+          </div>
+          <SystemFlow item={w} index={work.filter((x) => x.kind === w.kind).indexOf(w)} total={work.filter((x) => x.kind === w.kind).length} headingLevel="h3" link={false} />
+        </section>
+      )}
       <section className="py-20 md:py-28">
         <div className="shell">
           {w.kind === "concept" && (

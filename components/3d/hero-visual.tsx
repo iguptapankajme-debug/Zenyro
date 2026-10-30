@@ -15,7 +15,13 @@ function detectTier(): Tier {
   if (nav.connection?.saveData) return "none";
   try {
     const c = document.createElement("canvas");
-    if (!(c.getContext("webgl2") || c.getContext("webgl"))) return "none";
+    const gl = (c.getContext("webgl2") || c.getContext("webgl")) as WebGLRenderingContext | null;
+    if (!gl) return "none";
+    // Software rendering (no GPU acceleration) would make every frame block the page.
+    const info = gl.getExtension("WEBGL_debug_renderer_info");
+    const renderer = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : "";
+    gl.getExtension("WEBGL_lose_context")?.loseContext();
+    if (/swiftshader|llvmpipe|software|basic render/i.test(renderer)) return "none";
   } catch {
     return "none";
   }

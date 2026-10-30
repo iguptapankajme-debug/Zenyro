@@ -16,7 +16,7 @@ import { shaders, type ShaderName } from "./shaders";
  */
 const VERT = `attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }`;
 
-function canAnimate() {
+export function canAnimate() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
   if (window.matchMedia("(max-width: 767px)").matches) return false;
   const nav = navigator as Navigator & { connection?: { saveData?: boolean }; deviceMemory?: number };
