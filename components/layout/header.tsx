@@ -15,6 +15,8 @@ function Dropdown({ label, href, items, active }: { label: string; href: string;
   const id = useId();
   const wrap = useRef<HTMLLIElement>(null);
   const closeTimer = useRef<number | undefined>(undefined);
+  // When a mouse hover has just opened the menu, the following click should keep it open.
+  const openedByHover = useRef(false);
 
   useEffect(() => {
     if (!open) return;
@@ -42,10 +44,12 @@ function Dropdown({ label, href, items, active }: { label: string; href: string;
       onPointerEnter={(e) => {
         if (e.pointerType !== "mouse") return;
         window.clearTimeout(closeTimer.current);
+        if (!open) openedByHover.current = true;
         setOpen(true);
       }}
       onPointerLeave={(e) => {
         if (e.pointerType !== "mouse") return;
+        openedByHover.current = false;
         closeTimer.current = window.setTimeout(() => setOpen(false), 140);
       }}
       onBlur={(e) => {
@@ -56,7 +60,14 @@ function Dropdown({ label, href, items, active }: { label: string; href: string;
         type="button"
         aria-expanded={open}
         aria-controls={id}
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => {
+          if (openedByHover.current) {
+            openedByHover.current = false;
+            setOpen(true);
+          } else {
+            setOpen((v) => !v);
+          }
+        }}
         className={cn(
           "group flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[0.88rem] transition-colors",
           active || open ? "text-paper" : "text-muted hover:text-paper",
