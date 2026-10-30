@@ -1,5 +1,3 @@
-import type { ToolKey } from "@/lib/tool-lead-schema";
-
 export type LandingPage = {
   slug: string;
   metaTitle: string;
@@ -11,7 +9,6 @@ export type LandingPage = {
   checklist: { heading: string; items: string[] };
   faqs: { q: string; a: string }[];
   services: string[];
-  tools?: ToolKey[];
   /** Closely related industry page, linked from the landing page. */
   industry?: string;
 };
@@ -65,7 +62,6 @@ export const landingPages: LandingPage[] = [
       { q: "How long does a hotel website take?", a: "Typically eight to twelve weeks for a full property website, depending on the number of rooms, venues, languages and integrations." },
     ],
     services: ["website-development", "seo", "performance-marketing"],
-    tools: ["website-cost-calculator", "website-brief-generator"],
     industry: "hospitality",
   },
   {
@@ -115,7 +111,6 @@ export const landingPages: LandingPage[] = [
       { q: "Will each project page rank on Google?", a: "Rankings can't be guaranteed, but project pages built with unique, useful information and solid technical SEO give each project the best chance to be found." },
     ],
     services: ["website-development", "lead-generation", "crm-automation"],
-    tools: ["website-cost-calculator", "website-brief-generator"],
     industry: "real-estate",
   },
   {

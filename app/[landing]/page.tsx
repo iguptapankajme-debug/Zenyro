@@ -10,7 +10,6 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { getLanding, landingPages } from "@/data/landing";
 import { getService } from "@/data/services";
 import { getIndustry } from "@/data/industries";
-import { RelevantTools } from "@/components/tools/relevant-tools";
 import Link from "next/link";
 import { buildMetadata, serviceSchema } from "@/lib/seo";
 import { consultationHref } from "@/lib/site";
@@ -68,8 +67,7 @@ export default async function LandingPage({ params }: Props) {
         </div>
       </section>
 
-      {p.tools && <RelevantTools keys={p.tools} />}
-      {!p.tools && <GrowthEngine />}
+      <GrowthEngine />
       {p.industry && getIndustry(p.industry) && (
         <section className="border-t border-line py-16">
           <div className="shell flex flex-wrap items-center justify-between gap-4">

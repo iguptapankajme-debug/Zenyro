@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Breadcrumbs } from "./breadcrumbs";
+import { ShaderCanvas } from "@/components/webgl/shader-canvas";
 
 type Props = {
   crumbs: { name: string; path: string }[];
@@ -12,7 +13,8 @@ type Props = {
 /** Opening block for inner pages: breadcrumb trail, oversized H1 and an offset introduction. */
 export function PageHero({ crumbs, eyebrow, title, intro, aside }: Props) {
   return (
-    <section className="relative overflow-hidden border-b border-line pb-16 pt-32 md:pb-24 md:pt-44">
+    <section className="relative isolate overflow-hidden border-b border-line pb-16 pt-32 md:pb-24 md:pt-44">
+      <ShaderCanvas shader="contour" className="-z-10 [mask-image:linear-gradient(to_left,black,transparent_75%)]" />
       <div aria-hidden="true" className="absolute right-[-15%] top-[-30%] -z-10 size-[55vw] max-w-[48rem] rounded-full bg-[radial-gradient(circle,rgba(255,107,53,.10),transparent_62%)]" />
       <div className="shell">
         <Breadcrumbs items={crumbs} />

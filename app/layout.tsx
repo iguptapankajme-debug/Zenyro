@@ -8,6 +8,7 @@ import { MobileCta } from "@/components/layout/mobile-cta";
 import { Cursor } from "@/components/animations/cursor";
 import { RevealObserver } from "@/components/animations/reveal-observer";
 import { AttributionCapture } from "@/components/analytics/attribution-capture";
+import { OffscreenPauser } from "@/components/animations/offscreen-pauser";
 import { JsonLd } from "@/components/ui/json-ld";
 import { organizationSchema } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <div className="scroll-progress" aria-hidden="true" />
         <Header />
         <main id="main">{children}</main>
         <Footer />
@@ -55,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Cursor />
         <RevealObserver />
         <AttributionCapture />
+        <OffscreenPauser />
         <JsonLd data={organizationSchema()} />
         {plausible && <Script defer data-domain={plausible} src="https://plausible.io/js/script.js" strategy="afterInteractive" />}
       </body>

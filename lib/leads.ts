@@ -1,7 +1,7 @@
 import "server-only";
 import type { Attribution } from "./attribution-schema";
 
-export type LeadSource = "contact-form" | "website-cost-calculator" | "seo-audit" | "website-brief-generator";
+export type LeadSource = "contact-form";
 export type LeadIntent = "enquiry" | "proposal" | "consultation";
 
 /** One normalised record for every enquiry, whichever form or tool it came from. */
@@ -17,7 +17,7 @@ export type LeadRecord = {
   source: LeadSource;
   intent: LeadIntent;
   services?: string[];
-  /** Tool output the visitor chose to send with the request (estimate, audit summary, brief). */
+  /** Optional structured context sent with the enquiry. */
   details?: Record<string, unknown>;
   attribution?: Attribution;
 };
@@ -29,9 +29,6 @@ const escape = (s: string) =>
 
 const sourceLabel: Record<LeadSource, string> = {
   "contact-form": "Contact form",
-  "website-cost-calculator": "Website cost calculator",
-  "seo-audit": "SEO audit",
-  "website-brief-generator": "Website brief generator",
 };
 
 async function storeInSupabase(lead: LeadRecord, meta: Meta) {
@@ -87,7 +84,7 @@ async function notifyByEmail(lead: LeadRecord, meta: Meta) {
     ["Page", meta.page],
   ];
   const details = lead.details && Object.keys(lead.details).length
-    ? `<h3 style="font-family:sans-serif">Tool output</h3><pre style="white-space:pre-wrap;font-size:12px">${escape(JSON.stringify(lead.details, null, 2))}</pre>`
+    ? `<h3 style="font-family:sans-serif">Additional details</h3><pre style="white-space:pre-wrap;font-size:12px">${escape(JSON.stringify(lead.details, null, 2))}</pre>`
     : "";
   const html = `<h2 style="font-family:sans-serif">New Zenyro enquiry</h2><table style="font-family:sans-serif;border-collapse:collapse">${rows
     .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#666;vertical-align:top">${k}</td><td style="padding:6px 0;white-space:pre-wrap">${escape(v)}</td></tr>`)

@@ -1,5 +1,3 @@
-import type { ToolKey } from "@/lib/tool-lead-schema";
-
 export type Discipline = "build" | "grow" | "convert";
 
 export type Service = {
@@ -22,8 +20,6 @@ export type Service = {
   related: string[];
   /** Search services render an illustrative search interface and visibility demo on their page. */
   search?: "seo" | "aeo" | "geo";
-  /** Free tools relevant to this service's visitors. */
-  tools?: ToolKey[];
 };
 
 export const disciplines: Record<
@@ -115,7 +111,6 @@ export const services: Service[] = [
       { q: "Do you guarantee results?", a: "No honest agency can guarantee a cost per lead or a revenue figure, because markets, offers and sales follow-up all affect the outcome. We commit to transparent tracking, a clear test plan and weekly reporting so you can judge the work on real numbers." },
       { q: "Who owns the ad accounts?", a: "You do. We work inside your Meta Business Manager and Google Ads accounts with partner access, so all data and history stay with your business." },
     ],
-    tools: ["seo-audit"],
     related: ["lead-generation", "seo", "website-development"],
   },
   {
@@ -164,7 +159,6 @@ export const services: Service[] = [
       { q: "Which WhatsApp setup do you use?", a: "We use the official WhatsApp Business Platform through Meta or an approved provider, which keeps your number compliant and avoids the bans that unofficial tools risk." },
       { q: "What happens if the AI gives a wrong answer?", a: "Assistants only answer from approved information, hand over when unsure, and log every conversation. Sensitive actions such as discounts or cancellations always need a person to approve." },
     ],
-    tools: ["website-brief-generator"],
     related: ["crm-automation", "lead-generation", "website-development"],
   },
   {
@@ -213,7 +207,6 @@ export const services: Service[] = [
       { q: "Do you use WordPress?", a: "We usually build in Next.js because it gives us more control over speed and design. If your team relies on WordPress, we can build a headless setup so editors keep a familiar interface." },
       { q: "Will my existing Google rankings be affected?", a: "We map every existing URL, set permanent redirects and keep valuable content, so search rankings are protected during the move." },
     ],
-    tools: ["website-cost-calculator", "website-brief-generator"],
     related: ["lead-generation", "local-seo", "performance-marketing"],
   },
   {
@@ -264,7 +257,6 @@ export const services: Service[] = [
       { q: "Do I own the code?", a: "Yes. The code lives in your own repository and hosting account, documented so any competent developer can continue the work." },
     ],
     related: ["website-development", "website-redesign", "seo"],
-    tools: ["website-cost-calculator", "website-brief-generator"],
   },
   {
     slug: "website-redesign",
@@ -312,7 +304,6 @@ export const services: Service[] = [
       { q: "How long does a redesign take?", a: "Most business websites take six to twelve weeks, depending on page count, content changes and integrations. The website cost calculator gives a first estimate." },
     ],
     related: ["website-development", "nextjs-development", "seo"],
-    tools: ["seo-audit", "website-cost-calculator"],
   },
   {
     slug: "seo",
@@ -364,7 +355,6 @@ export const services: Service[] = [
       { q: "Can you guarantee first-page rankings?", a: "No. Search engines decide rankings, and anyone guaranteeing positions is either targeting searches nobody makes or taking risks with your site. We commit to a clear plan, quality work and transparent reporting." },
       { q: "Do you build links?", a: "We earn links through digital PR, original data and partnerships. We do not buy links or use private blog networks, which can lead to penalties." },
     ],
-    tools: ["seo-audit"],
     related: ["aeo", "geo", "local-seo"],
   },
   {
@@ -417,7 +407,6 @@ export const services: Service[] = [
       { q: "Does adding FAQ schema guarantee answer boxes?", a: "No. Structured data helps systems understand content but does not guarantee any placement, and search engines limit how some rich results appear. We use markup only where it accurately describes visible content." },
       { q: "How do you measure AEO?", a: "We track a defined set of priority questions over time, recording whether and where your pages appear, alongside Search Console clicks and enquiries from the related pages." },
     ],
-    tools: ["seo-audit"],
     related: ["seo", "geo", "website-development"],
   },
   {
@@ -471,7 +460,6 @@ export const services: Service[] = [
       { q: "Do I need an llms.txt file or special markup for AI search?", a: "There is no single file or markup that guarantees visibility in AI search. Clear, crawlable, accurate content, consistent business information and genuine authority matter far more. We may recommend such files where they are low-cost and sensible, but never as a guarantee." },
       { q: "How do you measure AI search visibility?", a: "With a documented prompt set run on a fixed schedule, recording mentions, descriptions and cited sources, plus referral sessions from AI platforms in your analytics. We report these as observations, not as a single proprietary score." },
     ],
-    tools: ["seo-audit"],
     related: ["seo", "aeo", "performance-marketing"],
   },
   {
@@ -568,7 +556,6 @@ export const services: Service[] = [
       { q: "Can you remove negative reviews?", a: "We cannot remove genuine reviews, and nobody should promise to. We help you respond well, and we build a steady flow of reviews from satisfied customers so your rating reflects your real service." },
       { q: "Do you create fake location pages?", a: "No. We only create pages for areas you genuinely serve, with content specific to that area. Thin duplicate city pages can harm rankings." },
     ],
-    tools: ["seo-audit"],
     related: ["seo", "aeo", "website-development"],
   },
   {

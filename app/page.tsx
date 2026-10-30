@@ -9,6 +9,9 @@ import { CapabilitiesDemo } from "@/components/sections/capabilities-demo";
 import { Process } from "@/components/sections/process";
 import { GrowthCalculator } from "@/components/calculator/growth-calculator";
 import { ContactCta } from "@/components/sections/contact-cta";
+import { CapabilityMarquee } from "@/components/sections/capability-marquee";
+import { Engagements } from "@/components/sections/engagements";
+import { Faq } from "@/components/sections/faq";
 import { SectionHeading, Em } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/seo";
 
@@ -19,6 +22,15 @@ export const metadata = buildMetadata({
   path: "/",
   absoluteTitle: true,
 });
+
+const homeFaqs = [
+  { q: "What does Zenyro do?", a: "We build websites, run performance marketing and search growth (SEO, AEO and GEO), and automate sales follow-up with AI, all as one system measured on new customers rather than clicks." },
+  { q: "Who do you work with?", a: "Mostly businesses where each customer is valuable and buyers research before deciding: real estate, hospitality, healthcare, interior design and premium retail, education and professional services, and home improvement." },
+  { q: "Where are you based?", a: "In the Chandigarh Tricity, India. We work with clients across India and abroad, in person or over video calls." },
+  { q: "How quickly can we start?", a: "A first conversation can usually happen within a few days. Launch Sprints and Automation Builds typically go live in three to eight weeks, depending on scope and how quickly content is ready." },
+  { q: "Do you guarantee results?", a: "No honest agency can guarantee rankings, AI mentions or revenue. We commit to a clear plan, transparent tracking and weekly reporting, so you can judge the work on real numbers." },
+  { q: "Who owns the website, ad accounts and data?", a: "You do. Everything is set up on your own accounts, documented, and keeps working if you ever stop working with us." },
+];
 
 export default function Home() {
   return (
@@ -40,6 +52,8 @@ export default function Home() {
         </div>
       </section>
 
+      <CapabilityMarquee />
+
       <SelectedWork />
 
       <section className="border-y border-line bg-ink-2/50 py-28 md:py-40" aria-labelledby="capabilities-title">
@@ -55,6 +69,8 @@ export default function Home() {
 
       <Process />
 
+      <Engagements />
+
       <section className="border-t border-line py-28 md:py-36" aria-labelledby="calculator-title">
         <div className="shell">
           <SectionHeading
@@ -65,6 +81,8 @@ export default function Home() {
           <GrowthCalculator />
         </div>
       </section>
+
+      <Faq faqs={homeFaqs} title="Before you get in touch." />
 
       <ContactCta />
     </>

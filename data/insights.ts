@@ -11,6 +11,88 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "seo-aeo-geo-explained",
+    title: "SEO, AEO and GEO: what changes when search starts answering",
+    description:
+      "Search results now include direct answers and AI-generated summaries. What each discipline means, what stays the same, and where a business should start.",
+    category: "Search growth",
+    published: "2026-10-20",
+    readingMinutes: 7,
+    body: [
+      { type: "p", text: "For twenty years, being found online meant ranking in a list of ten blue links. That list still matters, but more searches now end with a direct answer, a featured snippet or an AI-generated summary that cites a handful of sources. Three overlapping disciplines have emerged to describe the work involved." },
+      { type: "h2", text: "SEO: being eligible and competitive" },
+      { type: "p", text: "Search engine optimisation remains the foundation. Pages must be crawlable, fast and clearly about something. They need to answer the search better than competitors, and the site needs enough authority for search engines to trust it. Without this, nothing else works." },
+      { type: "h2", text: "AEO: being the answer" },
+      { type: "p", text: "Answer engine optimisation focuses on questions. When someone asks how long an interior project takes or what a dental implant involves, the result is often a short, direct answer. AEO structures content so that answer is easy to find and quote: the question as a heading, a clear answer first, and the detail after." },
+      { type: "h2", text: "GEO: being represented in AI search" },
+      { type: "p", text: "Generative engine optimisation is about how AI assistants and AI-powered search describe and cite your brand. These systems draw on many sources, so the work is broader: consistent business facts across the web, genuine expert content, coverage on sources your industry trusts, and pages that can be read without heavy JavaScript." },
+      { type: "h2", text: "What does not change" },
+      { type: "ul", items: [
+        "There is no special file or markup that guarantees inclusion in AI answers.",
+        "Accurate, specific, useful content beats volume.",
+        "Credibility comes from real expertise and real mentions, not tricks.",
+        "Measurement still matters: Search Console for search, and a documented set of questions and prompts checked over time for answers and AI.",
+      ] },
+      { type: "h2", text: "Where to start" },
+      { type: "p", text: "Fix the technical foundations first, then rewrite your most valuable pages answer-first, then make sure your business details are consistent everywhere they appear. That order improves all three at once." },
+    ],
+  },
+  {
+    slug: "redesign-without-losing-rankings",
+    title: "How to redesign a website without losing Google rankings",
+    description:
+      "Most ranking drops after a redesign are avoidable. A practical checklist for content, URLs, redirects and the weeks after launch.",
+    category: "Websites",
+    published: "2026-10-13",
+    readingMinutes: 6,
+    body: [
+      { type: "p", text: "A redesign is one of the riskiest moments for organic traffic. Pages disappear, URLs change, content is trimmed, and internal links break, all at once. Search engines then have to work out what happened. With a plan, most of that risk can be removed." },
+      { type: "h2", text: "Before design starts" },
+      { type: "ul", items: [
+        "Export every URL that receives organic traffic or has links pointing to it, from Search Console and analytics.",
+        "Note which pages bring in enquiries, not just visits.",
+        "Record current titles, headings and structured data for important pages.",
+      ] },
+      { type: "h2", text: "During the build" },
+      { type: "p", text: "Keep valuable content. Shorter is not always better: a page that ranks because it answers a question thoroughly will lose ground if the answer is cut. Map every old URL to its closest new equivalent, and only remove a page when nothing on the new site serves the same purpose." },
+      { type: "h2", text: "At launch" },
+      { type: "ul", items: [
+        "Use permanent (301) redirects from every old URL to its new equivalent, without chains.",
+        "Update internal links to point directly at new URLs.",
+        "Submit the new XML sitemap in Search Console.",
+        "Check that staging rules such as noindex or password protection are removed.",
+      ] },
+      { type: "h2", text: "In the weeks after" },
+      { type: "p", text: "Watch Search Console for 404 errors, coverage changes and drops on key queries. Some fluctuation is normal for a few weeks; a sustained drop on specific pages usually points to a missing redirect or missing content that can be fixed quickly." },
+    ],
+  },
+  {
+    slug: "whatsapp-lead-qualification-real-estate",
+    title: "Qualifying real estate leads on WhatsApp without losing the personal touch",
+    description:
+      "Property buyers enquire with many projects at once. How developers and brokers can reply instantly, qualify properly and still feel human.",
+    category: "Sales automation",
+    published: "2026-09-29",
+    readingMinutes: 6,
+    body: [
+      { type: "p", text: "A buyer interested in a new project rarely enquires with only one developer. They send the same message to several, often late in the evening, and give their attention to whoever replies first with something useful. For sales teams, the challenge is replying fast without sending generic messages that buyers ignore." },
+      { type: "h2", text: "The first reply" },
+      { type: "p", text: "A good first reply confirms the project the buyer asked about, answers their question if they asked one, and asks one or two qualifying questions, usually configuration and budget. It should take seconds, not hours." },
+      { type: "h2", text: "Questions that actually qualify" },
+      { type: "ul", items: [
+        "Which configuration are you considering?",
+        "What budget range are you working with?",
+        "When are you hoping to move or invest?",
+        "Will you need a home loan, and is it pre-approved?",
+      ] },
+      { type: "p", text: "Ask them conversationally, one at a time, and stop when you have enough to decide the next step. Buyers who share budget and timeline are far more likely to visit." },
+      { type: "h2", text: "Hand-off to a person" },
+      { type: "p", text: "Automation should end in a human conversation for qualified buyers: a site-visit slot or a call with an advisor who already has the conversation summary. Buyers should always be able to ask for a person, and the assistant should say clearly when it is a virtual assistant." },
+      { type: "h2", text: "Staying compliant" },
+      { type: "p", text: "Use the official WhatsApp Business Platform, send promotional messages only to people who opted in, and make sure project details and RERA information shared in chat match the approved documents." },
+    ],
+  },
+  {
     slug: "speed-to-lead",
     title: "Speed to lead: why the first reply decides most sales",
     description:

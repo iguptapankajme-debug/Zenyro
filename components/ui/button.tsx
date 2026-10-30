@@ -12,7 +12,7 @@ type Props = {
 };
 
 const styles = {
-  primary: "bg-ember text-ember-ink hover:bg-ember-2",
+  primary: "btn-sweep bg-ember text-ember-ink hover:bg-ember-2",
   ghost: "border border-line-2 text-paper hover:border-paper",
   light: "bg-paper text-ink hover:bg-white",
 };

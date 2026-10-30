@@ -1,12 +1,14 @@
 import { ButtonLink } from "@/components/ui/button";
 import { LeadForm } from "@/components/forms/lead-form";
+import { ShaderCanvas } from "@/components/webgl/shader-canvas";
 import { consultationHref, site } from "@/lib/site";
 
 /** Two-column consultation block: editorial statement with a quiet animated orbit, and the form. */
 export function ContactCta({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   const H = headingLevel;
   return (
-    <section id="contact" className="relative overflow-hidden border-t border-line py-28 md:py-40" aria-labelledby="cta-title">
+    <section id="contact" className="relative isolate overflow-hidden border-t border-line py-28 md:py-40" aria-labelledby="cta-title">
+      <ShaderCanvas shader="ember" intensity={0.9} className="-z-20 bg-[radial-gradient(ellipse_at_20%_30%,rgba(255,107,53,.10),transparent_60%)]" />
       <div className="shell grid gap-14 lg:grid-cols-12 lg:gap-16">
         <div className="relative lg:col-span-5">
           <svg aria-hidden="true" viewBox="0 0 400 400" className="contact-orbit pointer-events-none absolute -left-24 -top-24 -z-10 w-[34rem] max-w-none opacity-70">

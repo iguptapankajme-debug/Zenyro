@@ -308,3 +308,48 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 .phase-bar { transform-origin: left; animation: tp-grow 1s var(--ease-out-expo) both; }
 /* Headings that receive focus programmatically (step changes, results) don't need a visible ring. */
 [tabindex="-1"]:focus, [tabindex="-1"]:focus-visible { outline: none; }
+
+/* ---- Motion system additions ---- */
+
+/* Masked heading rise */
+.js [data-reveal="rise"] { opacity: 1; transform: none; }
+.js [data-reveal="rise"] > * { transform: translate3d(0, 108%, 0) skewY(4deg); transform-origin: left top; transition: transform 1.15s var(--ease-out-expo); }
+.js [data-reveal="rise"].is-in > * { transform: none; }
+
+/* Reading progress, driven by the scroll position itself (no JavaScript); hidden where unsupported */
+.scroll-progress { display: none; }
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block; position: fixed; inset: 0 0 auto; height: 2px; z-index: 60; pointer-events: none;
+    background: var(--color-ember); transform-origin: left; transform: scaleX(0);
+    animation: progress linear both; animation-timeline: scroll(root);
+  }
+}
+
+/* Primary button light sweep */
+.btn-sweep { overflow: hidden; isolation: isolate; }
+.btn-sweep::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%);
+  transform: translateX(-120%); transition: transform .9s var(--ease-out-expo);
+}
+.btn-sweep:hover::after, .btn-sweep:focus-visible::after { transform: translateX(120%); }
+
+/* Capability marquee */
+.marquee-track { display: flex; width: max-content; animation: marquee var(--marquee-speed, 38s) linear infinite; animation-direction: var(--marquee-dir, normal); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal="rise"] > * { transform: none; }
+  .scroll-progress { display: none; }
+  .marquee-track { animation: none; }
+}
+.engage-card { transition: transform .7s var(--ease-out-expo), border-color .4s; }
+.engage-card:hover, .engage-card:focus-within { transform: translateY(-6px); border-color: var(--color-ember); }
+.engage-glow { opacity: 0; transform: scale(.6); transition: opacity .7s var(--ease-out-expo), transform 1s var(--ease-out-expo); }
+.engage-card:hover .engage-glow, .engage-card:focus-within .engage-glow { opacity: 1; transform: none; }
+.js .engage-card[data-reveal].is-in:hover { transform: translateY(-6px); }
+/* Off-screen sections hold their animations (see OffscreenPauser). */
+[data-paused] *, [data-paused] *::before, [data-paused] *::after { animation-play-state: paused !important; }
+.marquee-track { will-change: transform; }
