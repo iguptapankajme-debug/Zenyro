@@ -353,3 +353,11 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 /* Off-screen sections hold their animations (see OffscreenPauser). */
 [data-paused] *, [data-paused] *::before, [data-paused] *::after { animation-play-state: paused !important; }
 .marquee-track { will-change: transform; }
+
+/* Content swap inside morphing containers: a short blur in, no overlap with the outgoing text. */
+.blur-swap { animation: blur-swap .55s var(--ease-out-expo) both; }
+@keyframes blur-swap { from { opacity: 0; filter: blur(8px); transform: translateY(6px); } to { opacity: 1; filter: blur(0); transform: none; } }
+
+/* Project reel: the live domain types into the address bar when a project takes focus. */
+.reel-type { animation: reel-type .9s steps(24) both; }
+@keyframes reel-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }

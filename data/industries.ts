@@ -1,4 +1,4 @@
-export type IndustryArt = "skyline" | "arches" | "pulse" | "planes" | "lattice" | "courses";
+export type IndustryArt = "skyline" | "arches" | "pulse" | "planes" | "lattice" | "courses" | "auction" | "ridge" | "switchback" | "ledger" | "network" | "flight";
 
 export type Industry = {
   slug: string;

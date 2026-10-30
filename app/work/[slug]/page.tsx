@@ -12,7 +12,7 @@ type Props = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
 export function generateStaticParams() {
-  return work.map((w) => ({ slug: w.slug }));
+  return work.filter((w) => w.kind !== "project").map((w) => ({ slug: w.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function WorkItemPage({ params }: Props) {
   const w = getWork((await params).slug);
-  if (!w) notFound();
-  const others = work.filter((x) => x.slug !== w.slug);
+  if (!w || w.kind === "project") notFound();
+  const others = work.filter((x) => x.slug !== w.slug && x.kind !== "project");
   return (
     <>
       <PageHero
