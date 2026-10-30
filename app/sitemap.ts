@@ -6,6 +6,7 @@ import { industries } from "@/data/industries";
 import { landingPages } from "@/data/landing";
 import { articles } from "@/data/insights";
 import { work } from "@/data/work";
+import { tools } from "@/data/tools";
 import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -16,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...["/services", "/search-growth", "/solutions", "/work", "/about", "/insights", "/contact"].map((p) => page(p, 0.8)),
     ...services.map((s) => page(`/services/${s.slug}`, 0.8)),
     ...industries.map((i) => page(`/industries/${i.slug}`, 0.8)),
+    page("/tools", 0.8),
+    ...tools.map((t) => page(`/tools/${t.slug}`, 0.8)),
     ...work.map((w) => page(`/work/${w.slug}`, 0.5)),
     ...landingPages.map((l) => page(`/${l.slug}`, 0.7)),
     ...articles.map((a) => page(`/insights/${a.slug}`, 0.6, new Date(a.published))),

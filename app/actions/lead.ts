@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { leadSchema, type LeadField, type LeadFormState } from "@/lib/lead-schema";
 import { rateLimit } from "@/lib/rate-limit";
 import { deliverLead } from "@/lib/leads";
+import { readAttribution } from "@/lib/attribution-schema";
 
 const MIN_FILL_MS = 2500;
 
@@ -16,10 +17,10 @@ export async function submitLead(_prev: LeadFormState, formData: FormData): Prom
   // Spam traps: a hidden field humans never fill, and a minimum time on the form.
   const honeypot = String(formData.get("company_url") ?? "");
   const startedAt = Number(formData.get("started_at") ?? 0);
-  if (honeypot || (startedAt && Date.now() - startedAt < MIN_FILL_MS)) {
-    // Respond as if successful so bots get no signal.
-    return { status: "success", message: "Thank you. We will be in touch within one business day." };
-  }
+  // Spam traps respond as if successful so bots get no signal. The timing check runs after validation,
+  // so a person who submits an incomplete form quickly still sees what to fix.
+  const fakeSuccess: LeadFormState = { status: "success", message: "Thank you. We will be in touch within one business day." };
+  if (honeypot) return fakeSuccess;
 
   const h = await headers();
   const ip = (h.get("x-forwarded-for") ?? "").split(",")[0]?.trim() || h.get("x-real-ip") || "unknown";
@@ -38,8 +39,15 @@ export async function submitLead(_prev: LeadFormState, formData: FormData): Prom
     return { status: "error", message: "Please check the highlighted fields.", errors, values, at: Date.now() };
   }
 
+  if (startedAt && Date.now() - startedAt < MIN_FILL_MS) return fakeSuccess;
+
   const page = String(formData.get("page") ?? "").slice(0, 200);
-  const result = await deliverLead(parsed.data, { ip, userAgent: h.get("user-agent") ?? "", page });
+  const { consent: _consent, challenge, ...rest } = parsed.data;
+  void _consent;
+  const result = await deliverLead(
+    { ...rest, message: challenge, source: "contact-form", intent: "enquiry", attribution: readAttribution(formData) },
+    { userAgent: h.get("user-agent") ?? "", page },
+  );
   if (!result.ok) {
     return {
       status: "error",

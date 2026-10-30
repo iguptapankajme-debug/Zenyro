@@ -7,6 +7,8 @@ import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { submitLead } from "@/app/actions/lead";
 import { budgetOptions, industryOptions, type LeadFormState } from "@/lib/lead-schema";
 import { cn } from "@/lib/cn";
+import { AttributionFields } from "@/components/analytics/attribution-fields";
+import { track } from "@/lib/analytics";
 
 const initial: LeadFormState = { status: "idle" };
 
@@ -38,6 +40,7 @@ export function LeadForm() {
 
   useEffect(() => {
     if (state.status !== "idle") statusRef.current?.focus();
+    if (state.status === "success") track("Contact Submitted");
   }, [state]);
 
   if (state.status === "success") {
@@ -109,6 +112,7 @@ export function LeadForm() {
       </div>
       <input type="hidden" name="started_at" value={startedAt} />
       <input type="hidden" name="page" value={pathname} />
+      <AttributionFields />
 
       <div className="mt-6 grid gap-2">
         <label className="flex items-start gap-3 text-[0.85rem] leading-relaxed text-muted">

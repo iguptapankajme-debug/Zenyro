@@ -1,3 +1,5 @@
+import type { ToolKey } from "@/lib/tool-lead-schema";
+
 export type Discipline = "build" | "grow" | "convert";
 
 export type Service = {
@@ -20,6 +22,8 @@ export type Service = {
   related: string[];
   /** Search services render an illustrative search interface and visibility demo on their page. */
   search?: "seo" | "aeo" | "geo";
+  /** Free tools relevant to this service's visitors. */
+  tools?: ToolKey[];
 };
 
 export const disciplines: Record<
@@ -111,6 +115,7 @@ export const services: Service[] = [
       { q: "Do you guarantee results?", a: "No honest agency can guarantee a cost per lead or a revenue figure, because markets, offers and sales follow-up all affect the outcome. We commit to transparent tracking, a clear test plan and weekly reporting so you can judge the work on real numbers." },
       { q: "Who owns the ad accounts?", a: "You do. We work inside your Meta Business Manager and Google Ads accounts with partner access, so all data and history stay with your business." },
     ],
+    tools: ["seo-audit"],
     related: ["lead-generation", "seo", "website-development"],
   },
   {
@@ -159,6 +164,7 @@ export const services: Service[] = [
       { q: "Which WhatsApp setup do you use?", a: "We use the official WhatsApp Business Platform through Meta or an approved provider, which keeps your number compliant and avoids the bans that unofficial tools risk." },
       { q: "What happens if the AI gives a wrong answer?", a: "Assistants only answer from approved information, hand over when unsure, and log every conversation. Sensitive actions such as discounts or cancellations always need a person to approve." },
     ],
+    tools: ["website-brief-generator"],
     related: ["crm-automation", "lead-generation", "website-development"],
   },
   {
@@ -207,7 +213,106 @@ export const services: Service[] = [
       { q: "Do you use WordPress?", a: "We usually build in Next.js because it gives us more control over speed and design. If your team relies on WordPress, we can build a headless setup so editors keep a familiar interface." },
       { q: "Will my existing Google rankings be affected?", a: "We map every existing URL, set permanent redirects and keep valuable content, so search rankings are protected during the move." },
     ],
+    tools: ["website-cost-calculator", "website-brief-generator"],
     related: ["lead-generation", "local-seo", "performance-marketing"],
+  },
+  {
+    slug: "nextjs-development",
+    name: "Next.js Development",
+    discipline: "build",
+    serviceType: "Next.js development",
+    metaTitle: "Next.js Development Agency for Fast, SEO-Ready Websites",
+    metaDescription:
+      "Next.js development for marketing sites, landing pages and web apps: server rendering, strong Core Web Vitals, headless CMS and integrations, built by a team that also runs your growth.",
+    headline: "Next.js Development Agency",
+    intro:
+      "Next.js lets a website be both fast and genuinely custom: pages rendered on the server for search engines, minimal JavaScript for visitors on mid-range phones, and room for real application features when you need them. We build Next.js sites and apps that are designed to convert and engineered to stay fast.",
+    problems: [
+      "Your current site is slow on mobile and scores poorly in Core Web Vitals.",
+      "A page builder or theme limits the design and adds weight to every page.",
+      "Marketing needs landing pages faster than developers can ship them.",
+      "You need logins, dashboards or integrations that a brochure CMS can't handle.",
+    ],
+    included: [
+      { title: "Architecture and rendering strategy", body: "Static, server-rendered and client components chosen page by page, so content is indexable and interactivity is only shipped where it earns its weight." },
+      { title: "Headless CMS integration", body: "Sanity, Contentful, WordPress or another headless CMS so your team edits content without touching code." },
+      { title: "Performance engineering", body: "Optimised images and fonts, code splitting, caching and Core Web Vitals monitoring, tested on real mid-range Android devices." },
+      { title: "Technical SEO built in", body: "Metadata, canonical URLs, sitemaps, structured data and redirects handled in code from day one." },
+      { title: "Integrations and APIs", body: "CRMs, booking tools, payment gateways, analytics and AI services connected through secure server-side routes." },
+      { title: "Deployment and hosting", body: "Vercel or your preferred cloud, with preview deployments for every change and rollback in one click." },
+    ],
+    approach: [
+      { title: "Plan", body: "Map content, data and integrations; choose rendering and CMS approach per page type." },
+      { title: "Build", body: "Component library, page templates and integrations, reviewed on preview links every week." },
+      { title: "Launch and measure", body: "Redirects, performance and SEO checks, then Core Web Vitals monitoring after go-live." },
+    ],
+    deliverables: [
+      "Next.js codebase in your repository",
+      "Reusable component library",
+      "CMS setup with editor training",
+      "Performance and SEO launch report",
+      "Documentation for future developers",
+    ],
+    fitFor: [
+      "Businesses moving off slow themes or page builders",
+      "Marketing teams running frequent campaigns and landing pages",
+      "Products that combine a marketing site with app features",
+    ],
+    faqs: [
+      { q: "Is Next.js good for SEO?", a: "Yes, when it is used well. Server-rendered or static pages deliver complete HTML to search engines, and good Core Web Vitals help user experience. Poorly built Next.js sites that render everything in the browser can still struggle, which is why rendering strategy matters." },
+      { q: "Can my team edit content without a developer?", a: "Yes. We connect a headless CMS so editors can update pages, articles and media with previews before publishing." },
+      { q: "Do I own the code?", a: "Yes. The code lives in your own repository and hosting account, documented so any competent developer can continue the work." },
+    ],
+    related: ["website-development", "website-redesign", "seo"],
+    tools: ["website-cost-calculator", "website-brief-generator"],
+  },
+  {
+    slug: "website-redesign",
+    name: "Website Redesign",
+    discipline: "build",
+    serviceType: "Website redesign",
+    metaTitle: "Website Redesign Services Without Losing Your Rankings",
+    metaDescription:
+      "Website redesign that improves conversions and speed while protecting search rankings: content and URL mapping, redirects, performance and launch monitoring.",
+    headline: "Redesign without starting from zero.",
+    intro:
+      "A redesign should keep what already works (rankings, valuable content, enquiry paths) and fix what doesn't. We start from your analytics and search data, map every important URL, and redesign around the pages and journeys that bring in customers.",
+    problems: [
+      "The site looks dated next to competitors.",
+      "Traffic exists, but too few visitors enquire.",
+      "Previous redesigns lost search rankings or broke links.",
+      "Nobody knows which pages actually matter.",
+    ],
+    included: [
+      { title: "Audit before design", body: "Analytics, Search Console, heatmaps and a technical SEO crawl show which pages earn traffic and enquiries, and where visitors drop off." },
+      { title: "Content and URL mapping", body: "Every valuable page is kept, merged or improved, with a one-to-one redirect map so links and rankings carry over." },
+      { title: "Conversion-focused redesign", body: "Clearer offers, stronger proof and shorter enquiry paths, designed for mobile first." },
+      { title: "Performance upgrade", body: "A lighter, faster build so the new site loads quickly on real phones." },
+      { title: "Launch monitoring", body: "Search Console, rankings, 404s and enquiries tracked closely for the weeks after launch, with fixes applied quickly." },
+    ],
+    approach: [
+      { title: "Diagnose", body: "Data review, crawl and stakeholder interviews; agree success metrics." },
+      { title: "Redesign and rebuild", body: "New design and build, with content migrated and improved page by page." },
+      { title: "Migrate safely", body: "Redirects, metadata and tracking verified on staging before switching over." },
+    ],
+    deliverables: [
+      "Pre-redesign audit and page inventory",
+      "Redirect map for every changed URL",
+      "Redesigned, faster website",
+      "Post-launch monitoring report",
+    ],
+    fitFor: [
+      "Established sites with existing traffic and rankings",
+      "Businesses whose website no longer matches their positioning",
+      "Teams planning a rebrand or platform change",
+    ],
+    faqs: [
+      { q: "Will a redesign hurt my Google rankings?", a: "It can if URLs, content or internal links change without a plan. We map every important URL, preserve valuable content and set permanent redirects, then monitor Search Console closely after launch to catch issues early." },
+      { q: "Can you redesign without changing platform?", a: "Yes. Sometimes the right answer is a redesign on your current CMS. We recommend a platform change only when the current one limits speed, design or editing." },
+      { q: "How long does a redesign take?", a: "Most business websites take six to twelve weeks, depending on page count, content changes and integrations. The website cost calculator gives a first estimate." },
+    ],
+    related: ["website-development", "nextjs-development", "seo"],
+    tools: ["seo-audit", "website-cost-calculator"],
   },
   {
     slug: "seo",
@@ -259,6 +364,7 @@ export const services: Service[] = [
       { q: "Can you guarantee first-page rankings?", a: "No. Search engines decide rankings, and anyone guaranteeing positions is either targeting searches nobody makes or taking risks with your site. We commit to a clear plan, quality work and transparent reporting." },
       { q: "Do you build links?", a: "We earn links through digital PR, original data and partnerships. We do not buy links or use private blog networks, which can lead to penalties." },
     ],
+    tools: ["seo-audit"],
     related: ["aeo", "geo", "local-seo"],
   },
   {
@@ -311,6 +417,7 @@ export const services: Service[] = [
       { q: "Does adding FAQ schema guarantee answer boxes?", a: "No. Structured data helps systems understand content but does not guarantee any placement, and search engines limit how some rich results appear. We use markup only where it accurately describes visible content." },
       { q: "How do you measure AEO?", a: "We track a defined set of priority questions over time, recording whether and where your pages appear, alongside Search Console clicks and enquiries from the related pages." },
     ],
+    tools: ["seo-audit"],
     related: ["seo", "geo", "website-development"],
   },
   {
@@ -364,6 +471,7 @@ export const services: Service[] = [
       { q: "Do I need an llms.txt file or special markup for AI search?", a: "There is no single file or markup that guarantees visibility in AI search. Clear, crawlable, accurate content, consistent business information and genuine authority matter far more. We may recommend such files where they are low-cost and sensible, but never as a guarantee." },
       { q: "How do you measure AI search visibility?", a: "With a documented prompt set run on a fixed schedule, recording mentions, descriptions and cited sources, plus referral sessions from AI platforms in your analytics. We report these as observations, not as a single proprietary score." },
     ],
+    tools: ["seo-audit"],
     related: ["seo", "aeo", "performance-marketing"],
   },
   {
@@ -460,6 +568,7 @@ export const services: Service[] = [
       { q: "Can you remove negative reviews?", a: "We cannot remove genuine reviews, and nobody should promise to. We help you respond well, and we build a steady flow of reviews from satisfied customers so your rating reflects your real service." },
       { q: "Do you create fake location pages?", a: "No. We only create pages for areas you genuinely serve, with content specific to that area. Thin duplicate city pages can harm rankings." },
     ],
+    tools: ["seo-audit"],
     related: ["seo", "aeo", "website-development"],
   },
   {

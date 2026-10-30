@@ -9,6 +9,8 @@ export const serviceGroups: NavGroup[] = [
     title: "Build",
     items: [
       { label: "Website Development", href: "/services/website-development" },
+      { label: "Next.js Development", href: "/services/nextjs-development" },
+      { label: "Website Redesign", href: "/services/website-redesign" },
       { label: "Landing Pages", href: "/services/website-development#conversion-paths" },
       { label: "AI Applications", href: "/services/ai-automation#workflow-automation" },
     ],
@@ -46,6 +48,7 @@ export const industryLinks: NavItem[] = industries.map((i) => ({
 export const primaryNav = [
   { label: "Services", href: "/services", groups: serviceGroups },
   { label: "Solutions", href: "/solutions", children: industryLinks },
+  { label: "Tools", href: "/tools" },
   { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },

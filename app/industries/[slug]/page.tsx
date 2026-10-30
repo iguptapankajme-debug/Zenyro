@@ -108,6 +108,8 @@ export default async function IndustryPage({ params }: Props) {
               <Link href="/services/seo" className="link-u">SEO services</Link>
               <Link href="/services/aeo" className="link-u">Answer engine optimization</Link>
               <Link href="/services/geo" className="link-u">Generative engine optimization</Link>
+              {ind.slug === "hospitality" && <Link href="/hotel-website-development" className="link-u">Hotel website development</Link>}
+              {ind.slug === "real-estate" && <Link href="/real-estate-website-development" className="link-u">Real estate website development</Link>}
             </p>
           </div>
         </div>

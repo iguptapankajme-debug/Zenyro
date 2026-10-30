@@ -9,6 +9,9 @@ import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
 import { getLanding, landingPages } from "@/data/landing";
 import { getService } from "@/data/services";
+import { getIndustry } from "@/data/industries";
+import { RelevantTools } from "@/components/tools/relevant-tools";
+import Link from "next/link";
 import { buildMetadata, serviceSchema } from "@/lib/seo";
 import { consultationHref } from "@/lib/site";
 
@@ -65,7 +68,16 @@ export default async function LandingPage({ params }: Props) {
         </div>
       </section>
 
-      <GrowthEngine />
+      {p.tools && <RelevantTools keys={p.tools} />}
+      {!p.tools && <GrowthEngine />}
+      {p.industry && getIndustry(p.industry) && (
+        <section className="border-t border-line py-16">
+          <div className="shell flex flex-wrap items-center justify-between gap-4">
+            <p className="text-[1.2rem] font-medium">Need more than a website? See the full growth system for {getIndustry(p.industry)!.name.toLowerCase()}.</p>
+            <Link href={`/industries/${p.industry}`} className="link-u text-ember">Explore {getIndustry(p.industry)!.name}</Link>
+          </div>
+        </section>
+      )}
       <Faq faqs={p.faqs} />
       <LinkList eyebrow="Related services" items={svc.map((s) => ({ title: s.name, body: s.headline, href: `/services/${s.slug}`, meta: "Service" }))} />
       <ContactCta />
