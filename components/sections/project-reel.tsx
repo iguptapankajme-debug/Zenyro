@@ -119,15 +119,27 @@ export function ProjectReel({ items, title }: { items: WorkItem[]; title: React.
                             <IndustryArt art={w.art} />
                           </div>
                         )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
-                        <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8">
-                          <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ember">{String(i + 1).padStart(2, "0")} · {w.industry}</p>
-                          <h3 className="mt-3 text-[clamp(2rem,4.8vw,4.8rem)] font-semibold uppercase leading-[0.88] tracking-[-0.05em]">{w.title}</h3>
-                        </div>
+                        {!w.image && (
+                          <>
+                            <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
+                            <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8">
+                              <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ember">{String(i + 1).padStart(2, "0")} · {w.industry}</p>
+                              <h3 className="mt-3 text-[clamp(2rem,4.8vw,4.8rem)] font-semibold uppercase leading-[0.88] tracking-[-0.05em]">{w.title}</h3>
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="mt-5 flex flex-wrap items-start justify-between gap-4 px-1">
-                      <p className="max-w-md text-[1rem] leading-relaxed text-muted">{w.summary}</p>
+                      <div className="max-w-xl">
+                        {w.image && (
+                          <>
+                            <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ember">{String(i + 1).padStart(2, "0")} · {w.industry}</p>
+                            <h3 className="mb-2 mt-2 text-[clamp(1.6rem,2.6vw,2.4rem)] font-semibold uppercase leading-[0.92] tracking-[-0.045em]">{w.title}</h3>
+                          </>
+                        )}
+                        <p className="text-[0.98rem] leading-relaxed text-muted">{w.summary}</p>
+                      </div>
                       <span className="inline-flex items-center gap-2 rounded-full bg-paper px-4 py-2 text-[0.85rem] font-medium text-ink transition-colors group-hover:bg-ember group-hover:text-ember-ink">
                         Visit site <ArrowUpRight aria-hidden="true" className="size-4" />
                       </span>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { WorkItem } from "@/data/work";
 import { IndustryArt } from "@/components/ui/industry-art";
@@ -26,7 +27,11 @@ export function ProjectGrid({ items, headingLevel = "h3" }: { items: WorkItem[];
           >
             <div className="relative aspect-[16/9] overflow-hidden border-b border-line bg-ink">
               <div className="absolute inset-0 transition-transform duration-[1.4s] ease-out-expo group-hover:scale-[1.07]">
-                <IndustryArt art={w.art} />
+                {w.image ? (
+                  <Image src={w.image} alt={`${w.title} website`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-top" />
+                ) : (
+                  <IndustryArt art={w.art} />
+                )}
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
               <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-paper px-3 py-1.5 font-mono text-[0.6rem] font-medium uppercase tracking-[0.14em] text-ink">
