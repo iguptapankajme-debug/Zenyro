@@ -1,4 +1,5 @@
 import "server-only";
+import { supabaseEnv } from "./supabase-env";
 import type { Attribution } from "./attribution-schema";
 
 export type LeadSource = "contact-form";
@@ -32,10 +33,10 @@ const sourceLabel: Record<LeadSource, string> = {
 };
 
 async function storeInSupabase(lead: LeadRecord, meta: Meta) {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) return false;
-  const res = await fetch(`${url.replace(/\/$/, "")}/rest/v1/leads`, {
+  const env = supabaseEnv();
+  if (!env) return false;
+  const { url, key } = env;
+  const res = await fetch(`${url}/rest/v1/leads`, {
     method: "POST",
     headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", Prefer: "return=minimal" },
     body: JSON.stringify({

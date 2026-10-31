@@ -32,7 +32,7 @@ export default function PrivacyPage() {
             <h2>How long we keep it</h2>
             <p>We keep enquiry information for as long as needed to respond and maintain our business records, and delete it when it is no longer required.</p>
             <h2>Analytics</h2>
-            <p>If analytics are enabled, we use a privacy-friendly service that does not use cookies. We record events such as an enquiry being sent, without personal details. We never send names, emails, phone numbers or what you type into forms to analytics. We respect Do Not Track and Global Privacy Control, and you can opt out below.</p>
+            <p>We use Vercel Web Analytics, a privacy-friendly service that does not use cookies, to count page visits. We record events such as an enquiry being sent, without personal details. We never send names, emails, phone numbers or what you type into forms to analytics. We respect Do Not Track and Global Privacy Control, and you can opt out below.</p>
             <AnalyticsOptOut />
             <h2>Enquiry source</h2>
             <p>When you send an enquiry we store the campaign parameters of the link that brought you here (such as utm_source), the referring website&apos;s domain and the first page you visited, so we know which channels are useful.</p>

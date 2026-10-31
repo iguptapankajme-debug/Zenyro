@@ -9,6 +9,7 @@ import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { Cursor } from "@/components/animations/cursor";
 import { RevealObserver } from "@/components/animations/reveal-observer";
 import { AttributionCapture } from "@/components/analytics/attribution-capture";
+import { VercelAnalytics } from "@/components/analytics/vercel-analytics";
 import { OffscreenPauser } from "@/components/animations/offscreen-pauser";
 import { JsonLd } from "@/components/ui/json-ld";
 import { organizationSchema } from "@/lib/seo";
@@ -22,7 +23,11 @@ export const metadata: Metadata = {
   applicationName: site.name,
   openGraph: { siteName: site.name, locale: site.locale, type: "website" },
   twitter: { card: "summary_large_image" },
-  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } : undefined,
+  // Search Console (Google) and Webmaster Tools (Bing) ownership verification.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || "LO-3lcPfdzZWvmS9EHJ14dUyU1OyUDSdpMvlrCICDzU",
+    other: { "msvalidate.01": "4B516F915138B7D2F88BBF2373C98131" },
+  },
   formatDetection: { telephone: false },
 };
 
@@ -59,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Cursor />
         <RevealObserver />
         <AttributionCapture />
+        <VercelAnalytics />
         <OffscreenPauser />
         <JsonLd data={organizationSchema()} />
         {plausible && <Script defer data-domain={plausible} src="https://plausible.io/js/script.js" strategy="afterInteractive" />}
