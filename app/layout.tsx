@@ -9,6 +9,7 @@ import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { Cursor } from "@/components/animations/cursor";
 import { RevealObserver } from "@/components/animations/reveal-observer";
 import { AttributionCapture } from "@/components/analytics/attribution-capture";
+import { VercelAnalytics } from "@/components/analytics/vercel-analytics";
 import { OffscreenPauser } from "@/components/animations/offscreen-pauser";
 import { JsonLd } from "@/components/ui/json-ld";
 import { organizationSchema } from "@/lib/seo";
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Cursor />
         <RevealObserver />
         <AttributionCapture />
+        <VercelAnalytics />
         <OffscreenPauser />
         <JsonLd data={organizationSchema()} />
         {plausible && <Script defer data-domain={plausible} src="https://plausible.io/js/script.js" strategy="afterInteractive" />}
