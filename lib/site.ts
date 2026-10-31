@@ -17,11 +17,15 @@ export const site = {
   region: "Chandigarh Tricity, India",
   areaServed: ["India", "United Arab Emirates", "United Kingdom", "United States"],
   social: {
+    instagram: "https://www.instagram.com/zenyro.in",
+    facebook: "https://www.facebook.com/people/Zenyro/61595171497737/",
+    youtube: "https://www.youtube.com/@zenyroin",
     linkedin: "",
-    instagram: "",
     x: "",
-  } as Record<"linkedin" | "instagram" | "x", string>,
+  } as Record<SocialNetwork, string>,
 };
+
+export type SocialNetwork = "instagram" | "facebook" | "youtube" | "linkedin" | "x";
 
 export const consultationHref = site.bookingUrl || "/contact#lead-form";
 
