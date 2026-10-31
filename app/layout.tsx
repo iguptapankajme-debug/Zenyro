@@ -23,7 +23,11 @@ export const metadata: Metadata = {
   applicationName: site.name,
   openGraph: { siteName: site.name, locale: site.locale, type: "website" },
   twitter: { card: "summary_large_image" },
-  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } : undefined,
+  // Search Console (Google) and Webmaster Tools (Bing) ownership verification.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || "LO-3lcPfdzZWvmS9EHJ14dUyU1OyUDSdpMvlrCICDzU",
+    other: { "msvalidate.01": "4B516F915138B7D2F88BBF2373C98131" },
+  },
   formatDetection: { telephone: false },
 };
 
