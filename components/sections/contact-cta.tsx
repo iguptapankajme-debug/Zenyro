@@ -1,5 +1,6 @@
 import { ButtonLink } from "@/components/ui/button";
 import { LeadForm } from "@/components/forms/lead-form";
+import { SocialLinks } from "@/components/ui/social-links";
 import { ShaderCanvas } from "@/components/webgl/shader-canvas";
 import { consultationHref, site } from "@/lib/site";
 
@@ -45,6 +46,10 @@ export function ContactCta({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2"
             <div>
               <dt className="eyebrow mb-2">Based in</dt>
               <dd className="text-muted">{site.region}. Working across India and abroad.</dd>
+            </div>
+            <div>
+              <dt className="eyebrow mb-3">Follow</dt>
+              <dd><SocialLinks /></dd>
             </div>
           </dl>
         </div>

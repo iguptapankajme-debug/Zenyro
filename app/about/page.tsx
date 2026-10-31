@@ -1,6 +1,8 @@
 import { PageHero } from "@/components/layout/page-hero";
 import { Process } from "@/components/sections/process";
 import { ContactCta } from "@/components/sections/contact-cta";
+import { Team } from "@/components/sections/team";
+import { Testimonials } from "@/components/sections/testimonials";
 import { Em } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -48,7 +50,8 @@ export default function AboutPage() {
             </p>
             <p>
               We are deliberately focused on businesses where each customer is valuable and the buying decision is considered: real estate,
-              hospitality, healthcare, interior design and premium retail, education and professional services, and home improvement.
+              hospitality, travel and tour operators, healthcare, financial and advisory services, interior design and premium retail,
+              education, and home improvement.
             </p>
           </div>
         </div>
@@ -68,6 +71,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <Team />
 
       <section className="py-24 md:py-32" aria-labelledby="compare-title">
         <div className="shell">
@@ -104,6 +109,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <Testimonials />
       <Process variant="full" />
       <ContactCta />
     </>

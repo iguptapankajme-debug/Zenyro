@@ -141,6 +141,11 @@ export function ProjectReel({ items, title, backdrop = false }: { items: WorkIte
                           </>
                         )}
                         <p className="text-[0.98rem] leading-relaxed text-muted">{w.summary}</p>
+                        {w.results?.length ? (
+                          <p className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[0.85rem]">
+                            {w.results.map((r) => <span key={r.label}><span className="font-semibold text-ember">{r.value}</span> <span className="text-muted">{r.label}</span></span>)}
+                          </p>
+                        ) : null}
                         <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="What we delivered">
                           {w.services.map((sv) => <li key={sv} className="rounded-full border border-line-2 px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-muted">{sv}</li>)}
                         </ul>

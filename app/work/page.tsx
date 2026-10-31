@@ -4,6 +4,7 @@ import { concepts, projects } from "@/data/work";
 import { ProjectGrid } from "@/components/sections/project-grid";
 import { ProjectReel } from "@/components/sections/project-reel";
 import { ContactCta } from "@/components/sections/contact-cta";
+import { Testimonials } from "@/components/sections/testimonials";
 import { Em } from "@/components/ui/section-heading";
 import { ShaderCanvas } from "@/components/webgl/shader-canvas";
 import { buildMetadata } from "@/lib/seo";
@@ -54,6 +55,7 @@ export default function WorkPage() {
           <SystemFlow key={w.slug} item={w} index={i} total={all.length} headingLevel="h3" />
         ))}
       </section>
+      <Testimonials />
       <ContactCta />
     </>
   );

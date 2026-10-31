@@ -9,6 +9,7 @@ import { CapabilitiesDemo } from "@/components/sections/capabilities-demo";
 import { Process } from "@/components/sections/process";
 import { GrowthCalculator } from "@/components/calculator/growth-calculator";
 import { ContactCta } from "@/components/sections/contact-cta";
+import { Testimonials } from "@/components/sections/testimonials";
 import { CapabilityMarquee } from "@/components/sections/capability-marquee";
 import { Engagements } from "@/components/sections/engagements";
 import { Faq } from "@/components/sections/faq";
@@ -25,7 +26,7 @@ export const metadata = buildMetadata({
 
 const homeFaqs = [
   { q: "What does Zenyro do?", a: "We build websites, run performance marketing and search growth (SEO, AEO and GEO), and automate sales follow-up with AI, all as one system measured on new customers rather than clicks." },
-  { q: "Who do you work with?", a: "Mostly businesses where each customer is valuable and buyers research before deciding: real estate, hospitality, healthcare, interior design and premium retail, education and professional services, and home improvement." },
+  { q: "Who do you work with?", a: "Mostly businesses where each customer is valuable and buyers research before deciding: real estate, hospitality, travel and tour operators, healthcare, financial and advisory services, interior design and premium retail, education, and home improvement." },
   { q: "Where are you based?", a: "In the Chandigarh Tricity, India. We work with clients across India and abroad, in person or over video calls." },
   { q: "How quickly can we start?", a: "A first conversation can usually happen within a few days. Launch Sprints and Automation Builds typically go live in three to eight weeks, depending on scope and how quickly content is ready." },
   { q: "Do you guarantee results?", a: "No honest agency can guarantee rankings, AI mentions or revenue. We commit to a clear plan, transparent tracking and weekly reporting, so you can judge the work on real numbers." },
@@ -46,7 +47,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Industry solutions"
             title={<span id="industries-title">Built for businesses <Em>ready to scale.</Em></span>}
-            lede="Growth systems for six sectors where every customer is worth a real conversation."
+            lede="Growth systems for eight sectors where every customer is worth a real conversation."
           />
           <IndustriesShowcase />
         </div>
@@ -55,6 +56,7 @@ export default function Home() {
       <CapabilityMarquee />
 
       <SelectedWork />
+      <Testimonials />
 
       <section className="border-y border-line bg-ink-2/50 py-28 md:py-40" aria-labelledby="capabilities-title">
         <div className="shell">

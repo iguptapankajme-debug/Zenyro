@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MobileCta } from "@/components/layout/mobile-cta";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { Cursor } from "@/components/animations/cursor";
 import { RevealObserver } from "@/components/animations/reveal-observer";
 import { AttributionCapture } from "@/components/analytics/attribution-capture";
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <MobileCta />
+        <WhatsAppButton />
         <Cursor />
         <RevealObserver />
         <AttributionCapture />

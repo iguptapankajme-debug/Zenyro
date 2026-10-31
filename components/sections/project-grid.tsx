@@ -46,6 +46,17 @@ export function ProjectGrid({ items, headingLevel = "h3" }: { items: WorkItem[];
               <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ember">{w.industry}</p>
               <H className="mt-3 text-[clamp(1.7rem,3vw,2.5rem)] font-semibold uppercase leading-[0.92] tracking-[-0.045em]">{w.title}</H>
               <p className="mt-3 text-[0.98rem] leading-relaxed text-muted">{w.summary}</p>
+              {w.results?.length ? (
+                <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-line pt-5 sm:grid-cols-3">
+                  {w.results.map((r) => (
+                    <div key={r.label}>
+                      <dt className="sr-only">{r.label}</dt>
+                      <dd className="text-[1.8rem] font-semibold leading-none tracking-[-0.04em] text-ember">{r.value}</dd>
+                      <dd className="mt-1.5 text-[0.78rem] leading-snug text-muted">{r.label}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : null}
               <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-6">
                 <ul className="flex flex-wrap gap-2">{w.services.map((s) => <li key={s} className="rounded-full border border-line-2 px-3 py-1 text-[0.75rem] text-muted">{s}</li>)}</ul>
                 <span className="inline-flex items-center gap-1.5 text-[0.9rem] font-medium">

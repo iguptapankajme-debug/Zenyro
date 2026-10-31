@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { SocialLinks } from "@/components/ui/social-links";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
+import { locations } from "@/data/locations";
 import { site } from "@/lib/site";
 import { Mark } from "./wordmark";
 
@@ -9,6 +11,7 @@ const company = [
   { label: "Work", href: "/work" },
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
+  { label: "Free audit", href: "/free-audit" },
 ];
 
 const agency = [
@@ -37,7 +40,6 @@ function Column({ title, links }: { title: string; links: { label: string; href:
 }
 
 export function Footer() {
-  const socials = (Object.entries(site.social) as [string, string][]).filter(([, v]) => v);
   return (
     <footer className="relative overflow-hidden border-t border-line pb-[calc(env(safe-area-inset-bottom)+6rem)] pt-20 lg:pb-10">
       <div className="shell">
@@ -56,11 +58,15 @@ export function Footer() {
             {site.phone && (
               <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="link-u mt-2 block text-[1.05rem]">{site.phone}</a>
             )}
+            <SocialLinks className="mt-6" />
           </div>
           <div className="grid gap-10 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-4">
             <Column title="Services" links={services.map((s) => ({ label: s.name, href: `/services/${s.slug}` }))} />
             <Column title="Industries" links={industries.map((i) => ({ label: i.name, href: `/industries/${i.slug}` }))} />
-            <Column title="Company" links={company} />
+            <div className="grid content-start gap-10">
+              <Column title="Company" links={company} />
+              <Column title="Locations" links={[...locations.slice(0, 5).map((l) => ({ label: l.city, href: `/locations/${l.slug}` })), { label: "All locations", href: "/locations" }]} />
+            </div>
             <Column title="Agency" links={agency} />
           </div>
         </div>
@@ -75,11 +81,9 @@ export function Footer() {
         <div className="mt-10 flex flex-col gap-4 border-t border-line pt-6 text-[0.8rem] text-muted md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Zenyro. All rights reserved.</p>
           <div className="flex flex-wrap gap-6">
-            {socials.map(([k, v]) => (
-              <a key={k} href={v} target="_blank" rel="noopener noreferrer" className="link-u capitalize hover:text-paper">{k}</a>
-            ))}
             <Link href="/privacy" className="link-u hover:text-paper">Privacy</Link>
             <Link href="/sitemap.xml" className="link-u hover:text-paper">Sitemap</Link>
+            <Link href="/ai-info" className="link-u hover:text-paper">For AI assistants</Link>
           </div>
         </div>
       </div>
