@@ -7,6 +7,8 @@ export const industryOptions = [
   "Interior Design & Premium Retail",
   "Education & Professional Services",
   "Home Improvement & Building Materials",
+  "Travel, Taxi & Tours",
+  "Financial & Advisory Services",
   "Other",
 ] as const;
 

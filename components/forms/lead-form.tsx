@@ -2,15 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useActionState, useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, Loader2 } from "lucide-react";
-import { submitLead } from "@/app/actions/lead";
-import { budgetOptions, industryOptions, type LeadFormState } from "@/lib/lead-schema";
+import { useRef, useState } from "react";
+import { ArrowRight, Check, Mail } from "lucide-react";
+import { budgetOptions, industryOptions, leadSchema, type LeadField } from "@/lib/lead-schema";
+import { site } from "@/lib/site";
 import { cn } from "@/lib/cn";
-import { AttributionFields } from "@/components/analytics/attribution-fields";
 import { track } from "@/lib/analytics";
-
-const initial: LeadFormState = { status: "idle" };
 
 const inputCls =
   "w-full rounded-xl border bg-ink px-4 py-3.5 text-[1rem] text-paper placeholder:text-dim transition-colors focus:border-ember focus:outline-none aria-[invalid=true]:border-red-400/80";
@@ -30,69 +27,111 @@ function Field({
   );
 }
 
+/**
+ * Enquiry form. Nothing is sent to a server: after the details are checked, the visitor's own
+ * email app opens with a message to Zenyro already written, ready to send.
+ */
 export function LeadForm() {
-  const [state, action, pending] = useActionState(submitLead, initial);
   const pathname = usePathname();
-  const [startedAt] = useState(() => Date.now());
+  const [errors, setErrors] = useState<Partial<Record<LeadField, string>>>({});
+  const [mailto, setMailto] = useState<string | null>(null);
   const statusRef = useRef<HTMLDivElement>(null);
-  const e = state.errors ?? {};
-  const v = state.values ?? {};
+  const to = site.email;
 
-  useEffect(() => {
-    if (state.status !== "idle") statusRef.current?.focus();
-    if (state.status === "success") track("Contact Submitted");
-  }, [state]);
+  const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+    const data = Object.fromEntries(new FormData(ev.currentTarget)) as Record<string, string>;
+    const parsed = leadSchema.safeParse({ ...data, consent: data.consent ?? "" });
+    if (!parsed.success) {
+      const next: Partial<Record<LeadField, string>> = {};
+      for (const issue of parsed.error.issues) {
+        const k = issue.path[0] as LeadField;
+        if (!next[k]) next[k] = issue.message;
+      }
+      setErrors(next);
+      ev.currentTarget.querySelector<HTMLElement>("[aria-invalid=true]")?.focus();
+      return;
+    }
+    setErrors({});
+    const l = parsed.data;
+    const subject = `New enquiry: ${l.business} (${l.name})`;
+    const body = [
+      `Name: ${l.name}`,
+      `Business: ${l.business}`,
+      `Email: ${l.email}`,
+      l.phone ? `Phone: ${l.phone}` : null,
+      l.website ? `Website: ${l.website}` : null,
+      `Industry: ${l.industry}`,
+      `Monthly marketing budget: ${l.budget}`,
+      "",
+      "Primary growth challenge:",
+      l.challenge,
+      "",
+      `Sent from: ${site.url}${pathname}`,
+    ]
+      .filter((x) => x !== null)
+      .join("\n");
+    const href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setMailto(href);
+    track("Contact Submitted");
+    window.location.href = href;
+    requestAnimationFrame(() => statusRef.current?.focus());
+  };
 
-  if (state.status === "success") {
+  if (mailto) {
     return (
-      <div ref={statusRef} tabIndex={-1} className="rounded-[1.75rem] border border-line bg-ink-2 p-8 sm:p-12" role="status">
+      <div ref={statusRef} tabIndex={-1} className="rounded-[1.75rem] border border-line bg-ink-2 p-8 outline-none sm:p-12" role="status">
         <span className="flex size-12 items-center justify-center rounded-full bg-ember text-ember-ink"><Check aria-hidden="true" className="size-6" /></span>
-        <h3 className="mt-6 text-[2rem] font-semibold tracking-[-0.03em]">Enquiry received.</h3>
-        <p className="mt-3 max-w-md text-muted">{state.message}</p>
-        <p className="mt-6 text-[0.9rem] text-muted">While you wait, you can <Link href="/insights" className="link-u text-paper">read our latest insights</Link>.</p>
+        <h3 className="mt-6 text-[2rem] font-semibold tracking-[-0.03em]">Your email is ready.</h3>
+        <p className="mt-3 max-w-md text-muted">
+          Your email app should have opened with your enquiry already written. Press <strong className="text-paper">Send</strong> and we&apos;ll reply within one business day.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a href={mailto} className="inline-flex h-12 items-center gap-2 rounded-full bg-ember px-6 font-medium text-ember-ink hover:bg-ember-2">
+            <Mail aria-hidden="true" className="size-4" /> Open the email again
+          </a>
+          <button type="button" onClick={() => setMailto(null)} className="inline-flex h-12 items-center rounded-full border border-line-2 px-6 hover:border-ember">
+            Edit details
+          </button>
+        </div>
+        <p className="mt-6 text-[0.9rem] text-muted">
+          Nothing opened? Email us directly at{" "}
+          <a href={`mailto:${to}`} className="link-u text-paper">{to}</a>.
+        </p>
       </div>
     );
   }
 
-  const aria = (k: keyof typeof e) => ({ "aria-invalid": !!e[k] || undefined, "aria-describedby": e[k] ? `lf-${k}-error` : undefined });
+  const aria = (k: LeadField) => ({ "aria-invalid": !!errors[k] || undefined, "aria-describedby": errors[k] ? `lf-${k}-error` : undefined });
+  const e = errors;
 
   return (
-    <form key={state.at ?? 0} action={action} noValidate className="rounded-[1.75rem] border border-line bg-ink-2 p-6 sm:p-10" aria-describedby="lf-status">
-      <div
-        ref={statusRef}
-        tabIndex={-1}
-        id="lf-status"
-        aria-live="polite"
-        className={cn("mb-6 rounded-xl border px-4 py-3 text-[0.9rem] outline-none", state.status === "error" ? "border-red-400/50 bg-red-500/10 text-red-200" : "hidden")}
-      >
-        {state.message}
-      </div>
-
+    <form onSubmit={onSubmit} noValidate className="rounded-[1.75rem] border border-line bg-ink-2 p-6 sm:p-10">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id="lf-name" label="Name" error={e.name}>
-          <input id="lf-name" name="name" autoComplete="name" required defaultValue={v.name} className={cn(inputCls, "border-line-2")} {...aria("name")} />
+          <input id="lf-name" name="name" autoComplete="name" required className={cn(inputCls, "border-line-2")} {...aria("name")} />
         </Field>
         <Field id="lf-business" label="Business name" error={e.business}>
-          <input id="lf-business" name="business" autoComplete="organization" required defaultValue={v.business} className={cn(inputCls, "border-line-2")} {...aria("business")} />
+          <input id="lf-business" name="business" autoComplete="organization" required className={cn(inputCls, "border-line-2")} {...aria("business")} />
         </Field>
         <Field id="lf-email" label="Email" error={e.email}>
-          <input id="lf-email" name="email" type="email" autoComplete="email" required defaultValue={v.email} className={cn(inputCls, "border-line-2")} {...aria("email")} />
+          <input id="lf-email" name="email" type="email" autoComplete="email" required className={cn(inputCls, "border-line-2")} {...aria("email")} />
         </Field>
         <Field id="lf-phone" label="Phone" optional error={e.phone}>
-          <input id="lf-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" defaultValue={v.phone} placeholder="+91" className={cn(inputCls, "border-line-2")} {...aria("phone")} />
+          <input id="lf-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="+91" className={cn(inputCls, "border-line-2")} {...aria("phone")} />
         </Field>
         <Field id="lf-website" label="Website" optional error={e.website}>
-          <input id="lf-website" name="website" type="text" inputMode="url" autoComplete="url" defaultValue={v.website} placeholder="yourbusiness.com" className={cn(inputCls, "border-line-2")} {...aria("website")} />
+          <input id="lf-website" name="website" type="text" inputMode="url" autoComplete="url" placeholder="yourbusiness.com" className={cn(inputCls, "border-line-2")} {...aria("website")} />
         </Field>
         <Field id="lf-industry" label="Industry" error={e.industry}>
-          <select id="lf-industry" name="industry" required defaultValue={v.industry ?? ""} className={cn(inputCls, "border-line-2")} {...aria("industry")}>
+          <select id="lf-industry" name="industry" required defaultValue="" className={cn(inputCls, "border-line-2")} {...aria("industry")}>
             <option value="" disabled>Select your industry</option>
             {industryOptions.map((o) => <option key={o}>{o}</option>)}
           </select>
         </Field>
         <div className="sm:col-span-2">
           <Field id="lf-budget" label="Monthly marketing budget" error={e.budget}>
-            <select id="lf-budget" name="budget" required defaultValue={v.budget ?? ""} className={cn(inputCls, "border-line-2")} {...aria("budget")}>
+            <select id="lf-budget" name="budget" required defaultValue="" className={cn(inputCls, "border-line-2")} {...aria("budget")}>
               <option value="" disabled>Select a range</option>
               {budgetOptions.map((o) => <option key={o}>{o}</option>)}
             </select>
@@ -100,25 +139,16 @@ export function LeadForm() {
         </div>
         <div className="sm:col-span-2">
           <Field id="lf-challenge" label="Primary growth challenge" error={e.challenge}>
-            <textarea id="lf-challenge" name="challenge" rows={4} required defaultValue={v.challenge} placeholder="For example: we get enquiries from ads but most never pick up the phone." className={cn(inputCls, "resize-y border-line-2")} {...aria("challenge")} />
+            <textarea id="lf-challenge" name="challenge" rows={4} required placeholder="For example: we get enquiries from ads but most never pick up the phone." className={cn(inputCls, "resize-y border-line-2")} {...aria("challenge")} />
           </Field>
         </div>
       </div>
-
-      {/* Spam protection: hidden from people, tempting to bots */}
-      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-        <label htmlFor="lf-company-url">Leave this field empty</label>
-        <input id="lf-company-url" name="company_url" tabIndex={-1} autoComplete="off" />
-      </div>
-      <input type="hidden" name="started_at" value={startedAt} />
-      <input type="hidden" name="page" value={pathname} />
-      <AttributionFields />
 
       <div className="mt-6 grid gap-2">
         <label className="flex items-start gap-3 text-[0.85rem] leading-relaxed text-muted">
           <input type="checkbox" name="consent" required className="mt-1 size-4 shrink-0 accent-[var(--color-ember)]" {...aria("consent")} />
           <span>
-            I agree that Zenyro may contact me about this enquiry and store my details as described in the{" "}
+            I agree that Zenyro may contact me about this enquiry, as described in the{" "}
             <Link href="/privacy" className="link-u text-paper">privacy notice</Link>.
           </span>
         </label>
@@ -127,14 +157,15 @@ export function LeadForm() {
 
       <button
         type="submit"
-        disabled={pending}
         data-magnetic
-        className="group mt-8 inline-flex h-14 w-full items-center justify-center gap-3 rounded-full bg-ember px-8 font-medium text-ember-ink transition-colors hover:bg-ember-2 disabled:opacity-70 sm:w-auto"
+        className="group mt-8 inline-flex h-14 w-full items-center justify-center gap-3 rounded-full bg-ember px-8 font-medium text-ember-ink transition-colors hover:bg-ember-2 sm:w-auto"
       >
-        {pending ? <Loader2 aria-hidden="true" className="size-4 animate-spin" /> : null}
-        {pending ? "Sending…" : "Tell Us About Your Project"}
-        {!pending && <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-1" />}
+        Send Enquiry by Email
+        <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-1" />
       </button>
+      <p className="mt-4 text-[0.82rem] text-dim">
+        This opens your email app with your enquiry written to <span className="text-muted">{to}</span>. Just press Send.
+      </p>
     </form>
   );
 }

@@ -10,7 +10,7 @@ export const site = {
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://zenyro.in").replace(/\/$/, ""),
   locale: "en_IN",
   // Contact details. Empty values are hidden; the WhatsApp button appears once a number is set.
-  email: "hello@zenyro.in",
+  email: "zenyro.in@gmail.com",
   phone: "",
   whatsapp: "", // international format without "+", e.g. 919876543210
   bookingUrl: "", // e.g. a Cal.com or Calendly link. Falls back to the contact form.
