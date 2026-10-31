@@ -12,7 +12,7 @@ import { AttributionCapture } from "@/components/analytics/attribution-capture";
 import { VercelAnalytics } from "@/components/analytics/vercel-analytics";
 import { OffscreenPauser } from "@/components/animations/offscreen-pauser";
 import { JsonLd } from "@/components/ui/json-ld";
-import { organizationSchema } from "@/lib/seo";
+import { organizationSchema, ogImage } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   title: { default: `${site.name}: AI Growth Agency | ${site.tagline}`, template: `%s | ${site.name}` },
   description: site.description,
   applicationName: site.name,
-  openGraph: { siteName: site.name, locale: site.locale, type: "website" },
-  twitter: { card: "summary_large_image" },
+  openGraph: { siteName: site.name, locale: site.locale, type: "website", images: [ogImage] },
+  twitter: { card: "summary_large_image", images: [ogImage.url] },
   // Search Console (Google) and Webmaster Tools (Bing) ownership verification.
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || "LO-3lcPfdzZWvmS9EHJ14dUyU1OyUDSdpMvlrCICDzU",

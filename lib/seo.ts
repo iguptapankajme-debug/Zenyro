@@ -10,6 +10,9 @@ type MetaInput = {
   type?: "website" | "article";
 };
 
+/** Shared social sharing image (1200×630), in /public/og. */
+export const ogImage = { url: "/og/zenyro-og.png", width: 1200, height: 630, alt: `${site.name}: Build. Grow. Convert. AI growth agency in Chandigarh, India` };
+
 export function buildMetadata({ title, description, path, absoluteTitle, type = "website" }: MetaInput): Metadata {
   const url = `${site.url}${path === "/" ? "" : path}`;
   return {
@@ -24,13 +27,13 @@ export function buildMetadata({ title, description, path, absoluteTitle, type = 
       siteName: site.name,
       locale: site.locale,
       // Page-level openGraph replaces the inherited one, so the shared image is restated here.
-      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${site.name}: ${site.tagline}` }],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: absoluteTitle ? title : `${title} | ${site.name}`,
       description,
-      images: ["/twitter-image"],
+      images: [ogImage.url],
     },
   };
 }
