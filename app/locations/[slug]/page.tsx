@@ -9,6 +9,8 @@ import { ContactCta } from "@/components/sections/contact-cta";
 import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
 import { getLocation, locations } from "@/data/locations";
+import { localServices } from "@/data/local-services";
+import { getService } from "@/data/services";
 import { getIndustry } from "@/data/industries";
 import { work } from "@/data/work";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
@@ -39,6 +41,7 @@ export default async function LocationPage({ params }: Props) {
   const sectors = l.sectors.map(getIndustry).filter((x) => !!x);
   const projects = work.filter((w) => l.work?.includes(w.slug));
   const path = `/locations/${l.slug}`;
+  const local = localServices.filter((x) => x.city === l.slug);
 
   return (
     <>
@@ -84,6 +87,27 @@ export default async function LocationPage({ params }: Props) {
           </ul>
         </div>
       </section>
+
+      {local.length > 0 && (
+        <nav aria-label={`Services in ${l.city}`} className="py-16">
+          <div className="shell">
+            <p className="eyebrow mb-6">Services in {l.city}</p>
+            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+              {local.map((x) => {
+                const svc = getService(x.service);
+                return svc ? (
+                  <li key={x.service}>
+                    <Link href={`/locations/${l.slug}/${x.service}`} className="group flex h-full items-center justify-between gap-3 rounded-2xl border border-line px-5 py-4 transition-colors hover:border-ember/60">
+                      <span className="font-medium">{svc.name} in {l.city}</span>
+                      <ArrowUpRight aria-hidden="true" className="size-4 shrink-0 text-ember" />
+                    </Link>
+                  </li>
+                ) : null;
+              })}
+            </ul>
+          </div>
+        </nav>
+      )}
 
       <section className="py-20 md:py-28" aria-labelledby="searches-title">
         <div className="shell grid gap-12 lg:grid-cols-12">

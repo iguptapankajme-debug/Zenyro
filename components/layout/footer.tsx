@@ -65,7 +65,7 @@ export function Footer() {
             <Column title="Industries" links={industries.map((i) => ({ label: i.name, href: `/industries/${i.slug}` }))} />
             <div className="grid content-start gap-10">
               <Column title="Company" links={company} />
-              <Column title="Locations" links={locations.map((l) => ({ label: l.city, href: `/locations/${l.slug}` }))} />
+              <Column title="Locations" links={[...locations.slice(0, 5).map((l) => ({ label: l.city, href: `/locations/${l.slug}` })), { label: "All locations", href: "/locations" }]} />
             </div>
             <Column title="Agency" links={agency} />
           </div>
