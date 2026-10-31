@@ -18,8 +18,9 @@ export function SearchEverywhere() {
             <li><Link href="/services/aeo" className="link-u"><span className="font-mono text-ember">AEO</span>: become the answer</Link></li>
             <li><Link href="/services/geo" className="link-u"><span className="font-mono text-ember">GEO</span>: get discovered in AI search</Link></li>
           </ul>
-          <div className="mt-9">
-            <ButtonLink href="/search-growth" size="lg">Explore Search Growth</ButtonLink>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <ButtonLink href="/free-audit" size="lg">Get a Free AI Search Audit</ButtonLink>
+            <ButtonLink href="/search-growth" variant="ghost" icon="up-right" size="lg">Explore Search Growth</ButtonLink>
           </div>
         </div>
         <div className="min-w-0 lg:col-span-7">

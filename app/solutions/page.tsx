@@ -19,7 +19,7 @@ export default function SolutionsPage() {
         crumbs={[{ name: "Solutions", path: "/solutions" }]}
         eyebrow="Industry solutions"
         title={<>Built for businesses <Em>ready to scale.</Em></>}
-        intro="Every sector buys differently. These are the growth systems we design for six industries where a single customer is worth a real conversation."
+        intro="Every sector buys differently. These are the growth systems we design for eight industries where a single customer is worth a real conversation."
       />
       <section className="py-12 md:py-20" aria-label="Industries">
         <div className="shell">

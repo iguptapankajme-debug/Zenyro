@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { ButtonLink } from "@/components/ui/button";
 import { PageHero } from "@/components/layout/page-hero";
 import { Faq } from "@/components/sections/faq";
 import { ContactCta } from "@/components/sections/contact-cta";
@@ -36,6 +37,7 @@ export default function SearchGrowthPage() {
         eyebrow="SEO · AEO · GEO"
         title={<>Search is <Em>evolving.</Em></>}
         intro="Be discovered across search engines and AI-powered experiences. One organic growth programme, built on the same foundations: clear, crawlable, credible information."
+        aside={<div className="mt-7"><ButtonLink href="/free-audit">Get a Free AI Search Audit</ButtonLink></div>}
       />
 
       <section className="py-20 md:py-28" aria-label="How search is changing">

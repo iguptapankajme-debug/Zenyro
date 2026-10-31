@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SocialLinks } from "@/components/ui/social-links";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
+import { locations } from "@/data/locations";
 import { site } from "@/lib/site";
 import { Mark } from "./wordmark";
 
@@ -10,6 +11,7 @@ const company = [
   { label: "Work", href: "/work" },
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
+  { label: "Free audit", href: "/free-audit" },
 ];
 
 const agency = [
@@ -61,7 +63,10 @@ export function Footer() {
           <div className="grid gap-10 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-4">
             <Column title="Services" links={services.map((s) => ({ label: s.name, href: `/services/${s.slug}` }))} />
             <Column title="Industries" links={industries.map((i) => ({ label: i.name, href: `/industries/${i.slug}` }))} />
-            <Column title="Company" links={company} />
+            <div className="grid content-start gap-10">
+              <Column title="Company" links={company} />
+              <Column title="Locations" links={locations.map((l) => ({ label: l.city, href: `/locations/${l.slug}` }))} />
+            </div>
             <Column title="Agency" links={agency} />
           </div>
         </div>
@@ -78,6 +83,7 @@ export function Footer() {
           <div className="flex flex-wrap gap-6">
             <Link href="/privacy" className="link-u hover:text-paper">Privacy</Link>
             <Link href="/sitemap.xml" className="link-u hover:text-paper">Sitemap</Link>
+            <Link href="/ai-info" className="link-u hover:text-paper">For AI assistants</Link>
           </div>
         </div>
       </div>

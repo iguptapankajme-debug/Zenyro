@@ -237,6 +237,78 @@ export const industries: Industry[] = [
       points: ["Product and specification pages structured for comparison searches", "Dealer and showroom location pages with genuine local detail", "Buying guides that answer installation and maintenance questions"],
     },
   },
+  {
+    slug: "travel-tourism",
+    name: "Travel, Taxi & Tour Operators",
+    short: "Taxi services, tour operators, homestays and travel planners",
+    art: "switchback",
+    metaTitle: "Travel & Taxi Marketing Agency: Bookings from Search & WhatsApp",
+    metaDescription:
+      "Marketing for taxi services, tour operators and travel planners: route pages that rank, instant WhatsApp quotes, Google Maps visibility and AI search answers.",
+    headline: "Booked before they call the next operator.",
+    intro:
+      "Travellers search a route, open three operators and book whoever quotes first and sounds reliable. We build travel businesses a fast site with route and package pages, instant quotes on WhatsApp, and the reviews and map presence that win the comparison.",
+    challenges: [
+      "Bookings depend on aggregators and travel portals that take a cut and own the customer.",
+      "Quote requests arrive at night or on the road, and are answered hours later.",
+      "Seasonal demand: snow, holidays and wedding seasons spike, then the phone goes quiet.",
+      "Few route, destination and package pages, so searches for specific trips go to competitors.",
+    ],
+    solutions: [
+      { title: "Route and package pages", body: "A page for every popular route and package, with distance, travel time, vehicle options and what is included, written to answer the questions travellers actually search." },
+      { title: "Instant quote on WhatsApp", body: "Pickup, drop, date and vehicle captured in a short form or chat, with a quote sent straight away and the booking confirmed by your team." },
+      { title: "Maps and reviews", body: "A complete Google Business Profile, photos of real vehicles and drivers, and a simple way for happy travellers to leave a review after the trip." },
+      { title: "Season-ready campaigns", body: "Search and social campaigns timed to snow, holiday and wedding seasons, switched off when demand is already full." },
+    ],
+    system: ["Route and package pages", "Google Business Profile and reviews", "Instant quote form and WhatsApp", "Booking confirmation and reminders", "Post-trip review request"],
+    channels: ["Google Search", "Google Maps", "WhatsApp", "Instagram", "YouTube"],
+    faqs: [
+      { q: "Can you help us get fewer bookings through aggregators?", a: "Yes. We grow the share of bookings that come directly through your own site, Google profile and WhatsApp, so you keep the margin and the customer relationship. Aggregators can still fill gaps." },
+      { q: "We already have a website. Do we need a new one?", a: "Not always. We start by checking speed, route coverage and the quote flow. Often adding route pages and an instant quote is enough to make a difference." },
+    ],
+    services: ["local-seo", "website-development", "ai-automation"],
+    search: {
+      title: "Travel SEO & AI Search Visibility",
+      body: "Travellers ask Google and AI assistants things like \"taxi from Chandigarh to Manali\" or \"best 4-day Himachal itinerary\". We make your routes, packages and prices clear enough to be found, quoted and recommended.",
+      points: ["Route pages with distance, time, vehicles and inclusions", "Destination guides that answer seasonal and road-condition questions", "Consistent business details across Google, directories and social profiles"],
+    },
+  },
+  {
+    slug: "financial-services",
+    name: "Financial & Advisory Services",
+    short: "Loan and debt advisors, auction platforms, CA and consulting firms",
+    art: "ledger",
+    metaTitle: "Marketing for Financial & Advisory Firms: Trusted Leads",
+    metaDescription:
+      "Lead generation for financial and advisory firms: credible websites, SEO and AI search for high-intent questions, confidential enquiry handling and qualification.",
+    headline: "Trusted enough to call. Clear enough to choose.",
+    intro:
+      "People looking for financial help are anxious, careful and comparing options. They need clear answers and confidence before they share their details. We build advisory firms a credible presence, answer the questions they search, and handle every enquiry quickly and discreetly.",
+    challenges: [
+      "Prospects research for weeks and rarely enquire on a first visit.",
+      "Generic pages that don't explain processes, timelines or fees in plain language.",
+      "Enquiries that are urgent for the client but sit in an inbox.",
+      "Advertising rules and sensitivity limit what can be promised or shown.",
+    ],
+    solutions: [
+      { title: "Answer-first content", body: "Clear explainers on processes, eligibility, documents and timelines, written for the questions prospects ask Google and AI assistants." },
+      { title: "Confidential enquiry flow", body: "A short, reassuring form or WhatsApp chat that captures the essentials and books a consultation, with the details kept private." },
+      { title: "Credibility everywhere", body: "Team credentials, process, fees approach and real, permitted client feedback presented consistently across the site and profiles." },
+      { title: "Searchable tools and listings", body: "For platforms such as auction or listing sites: fast, filterable pages that search engines can crawl and users can share." },
+    ],
+    system: ["Credible website with process and FAQs", "SEO and AI search content", "Confidential enquiry form and WhatsApp", "Qualification and consultation booking", "Nurture for long decisions"],
+    channels: ["Google Search", "AI assistants", "WhatsApp", "LinkedIn", "Email"],
+    faqs: [
+      { q: "Can you market financial services responsibly?", a: "Yes. We avoid guarantees and claims that cannot be supported, include required disclosures, and keep testimonials to what clients have agreed to share." },
+      { q: "Our clients value privacy. How do you handle enquiries?", a: "Forms collect only what is needed, data goes to your own accounts, and automated replies never repeat sensitive details back in public channels." },
+    ],
+    services: ["seo", "geo", "lead-generation"],
+    search: {
+      title: "Financial Services SEO & AI Search Visibility",
+      body: "Prospects ask detailed questions before they trust anyone with their situation. We make your expertise show up as the clear, credible answer in search results and AI assistants.",
+      points: ["Explainers for high-intent questions, reviewed for accuracy", "Author and firm credentials marked up clearly", "Consistent firm details across directories, profiles and the website"],
+    },
+  },
 ];
 
 export function getIndustry(slug: string) {

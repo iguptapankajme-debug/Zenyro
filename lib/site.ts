@@ -7,10 +7,10 @@ export const site = {
   tagline: "Build. Grow. Convert.",
   description:
     "Zenyro is an AI growth agency. We build conversion-focused websites, run performance marketing, and automate sales with AI so businesses acquire more customers.",
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.zenyro.com").replace(/\/$/, ""),
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://zenyro.in").replace(/\/$/, ""),
   locale: "en_IN",
-  // TODO: replace with Zenyro's real contact details.
-  email: "hello@zenyro.com",
+  // Contact details. Empty values are hidden; the WhatsApp button appears once a number is set.
+  email: "hello@zenyro.in",
   phone: "",
   whatsapp: "", // international format without "+", e.g. 919876543210
   bookingUrl: "", // e.g. a Cal.com or Calendly link. Falls back to the contact form.

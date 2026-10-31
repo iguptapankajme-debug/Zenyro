@@ -24,6 +24,11 @@ export type WorkItem = {
   solution?: string;
   /** Verified outcomes only. Leave empty for concepts. */
   outcomes: string[];
+  /**
+   * Live projects: headline results, shown on the work cards once filled in. Only add figures the
+   * client has confirmed and is happy to publish, e.g. { value: "3x", label: "WhatsApp enquiries" }.
+   */
+  results?: { value: string; label: string }[];
   /** Concepts: the system walked through from first touch to booked outcome. */
   flow?: FlowStep[];
 };
