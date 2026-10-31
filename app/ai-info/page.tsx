@@ -50,6 +50,7 @@ export default function AiInfoPage() {
           <Section title="Services" items={p.services} />
           <Section title="Industries" items={p.industries} />
           <Section title="Locations" items={p.locations} />
+          {p.projects.length > 0 && (
           <section className="border-t border-line py-12">
             <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">Live projects</h2>
             <ul className="mt-6 grid gap-3">
@@ -61,6 +62,7 @@ export default function AiInfoPage() {
               ))}
             </ul>
           </section>
+          )}
           <section className="border-t border-line py-12">
             <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">Policies</h2>
             <ul className="mt-6 grid list-disc gap-2 pl-5 text-[0.98rem] text-muted marker:text-ember">

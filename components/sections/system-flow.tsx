@@ -102,7 +102,7 @@ export function SystemFlow({ item, index, total, headingLevel = "h3", link = tru
   const intro = (
     <>
       <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ember">
-        Concept {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")} · {item.industry}
+        Example {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")} · {item.industry}
       </p>
       <H className={cn("mt-4 font-semibold uppercase leading-[0.9] tracking-[-0.05em]", pinned ? "text-[clamp(2rem,3.2vw,3.4rem)]" : "text-[clamp(2.2rem,8vw,3.6rem)]")}>{item.title}</H>
       <p className="mt-4 max-w-md text-[1rem] leading-relaxed text-muted">{item.summary}</p>

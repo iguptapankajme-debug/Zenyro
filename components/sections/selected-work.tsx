@@ -5,6 +5,7 @@ import { IndustryArt } from "@/components/ui/industry-art";
 import { Em } from "@/components/ui/section-heading";
 import { cn } from "@/lib/cn";
 import { ProjectReel } from "./project-reel";
+import { ExampleGrid } from "./example-grid";
 
 export function WorkPanels({ items = work, headingLevel = "h3" }: { items?: typeof work; headingLevel?: "h2" | "h3" }) {
   const H = headingLevel;
@@ -59,15 +60,40 @@ export function WorkPanels({ items = work, headingLevel = "h3" }: { items?: type
 }
 
 export function SelectedWork() {
+  const live = projects();
+  if (live.length) {
+    return (
+      <div className="border-t border-line">
+        <ProjectReel items={live} title={<>Work that moves <Em>business forward.</Em></>} />
+        <div className="shell pb-24">
+          <Link href="/work" className="group inline-flex items-center gap-2 text-[1rem] font-medium">
+            <span className="link-u">All work and examples</span>
+            <ArrowUpRight aria-hidden="true" className="size-4 text-ember" />
+          </Link>
+        </div>
+      </div>
+    );
+  }
+  // No live projects shown: a sample of the example systems instead.
+  const sample = ["interiors-search-growth", "travel-quote-website", "dealer-lead-routing", "institute-course-seo", "hotel-website-redesign", "advisory-nurture"]
+    .map((slug) => work.find((w) => w.slug === slug))
+    .filter((w) => !!w);
   return (
-    <div className="border-t border-line">
-      <ProjectReel items={projects()} title={<>Work that moves <Em>business forward.</Em></>} />
-      <div className="shell pb-24">
-        <Link href="/work" className="group inline-flex items-center gap-2 text-[1rem] font-medium">
-          <span className="link-u">All work and concept demonstrations</span>
+    <section className="border-t border-line py-28 md:py-36" aria-labelledby="examples-home-title">
+      <div className="shell">
+        <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow mb-6">Examples</p>
+            <h2 id="examples-home-title" className="display-lg max-w-4xl">See how the systems <Em>work.</Em></h2>
+          </div>
+          <p className="max-w-sm text-[1rem] leading-relaxed text-muted">Worked examples of SEO, websites and automation, each walked through from first search to booked customer.</p>
+        </div>
+        <ExampleGrid items={sample} filters={false} />
+        <Link href="/work" className="group mt-12 inline-flex items-center gap-2 text-[1rem] font-medium">
+          <span className="link-u">All {work.filter((w) => w.kind === "concept").length} examples</span>
           <ArrowUpRight aria-hidden="true" className="size-4 text-ember" />
         </Link>
       </div>
-    </div>
+    </section>
   );
 }

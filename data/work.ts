@@ -31,7 +31,16 @@ export type WorkItem = {
   results?: { value: string; label: string }[];
   /** Concepts: the system walked through from first touch to booked outcome. */
   flow?: FlowStep[];
+  /** What the example demonstrates, used by the filters on the Work page. */
+  categories?: ExampleCategory[];
 };
+
+export type ExampleCategory = "seo" | "website" | "automation";
+export const exampleCategories: { key: ExampleCategory; label: string }[] = [
+  { key: "seo", label: "SEO, AEO & GEO" },
+  { key: "website", label: "Websites" },
+  { key: "automation", label: "Automation" },
+];
 
 /** What the animated mock screen shows at one stage of a system walkthrough. */
 export type FlowScreen =
@@ -41,7 +50,9 @@ export type FlowScreen =
   | { type: "checklist"; title: string; rows: [string, string][]; badge: string }
   | { type: "calendar"; title: string; day: number; time: number; slot: string; note: string }
   | { type: "notify"; items: { time: string; text: string }[]; done?: string }
-  | { type: "map"; query: string; places: string[] };
+  | { type: "map"; query: string; places: string[] }
+  | { type: "serp"; query: string; results: { title: string; url: string; text: string; ours?: boolean }[] }
+  | { type: "answer"; question: string; answer: string; sources: string[] };
 
 export type FlowStep = { node: string; title: string; body: string; screen: FlowScreen };
 
@@ -126,6 +137,7 @@ export const work: WorkItem[] = [
   {
     slug: "residential-launch-engine",
     kind: "concept",
+    categories: ["website", "automation"],
     title: "Residential launch engine",
     summary: "Turning a tower launch into a steady calendar of qualified site visits.",
     client: "Concept for a premium residential developer",
@@ -182,6 +194,7 @@ export const work: WorkItem[] = [
   {
     slug: "boutique-hotel-direct",
     kind: "concept",
+    categories: ["website", "automation"],
     title: "Direct booking and events system",
     summary: "More direct bookings, and no wedding enquiry left waiting overnight.",
     client: "Concept for a boutique hill-station resort",
@@ -251,6 +264,7 @@ export const work: WorkItem[] = [
   {
     slug: "clinic-appointment-flow",
     kind: "concept",
+    categories: ["seo", "automation"],
     title: "Appointment and recall automation",
     summary: "An appointment book that fills itself, day and night.",
     client: "Concept for a multi-location dental clinic",
@@ -315,9 +329,163 @@ export const work: WorkItem[] = [
       },
     ],
   },
+  // ---------- More examples: SEO, websites and automation ----------
+  {
+    slug: "interiors-search-growth",
+    kind: "concept",
+    categories: ["seo"],
+    title: "Search growth for an interiors studio",
+    summary: "Found for every room, style and locality a client searches, and named when they ask AI for a designer.",
+    client: "Concept for a residential interiors studio",
+    industry: "Interior Design",
+    art: "planes",
+    challenge: "Clients search by room, style and locality, but the studio has one generic services page and a portfolio that search engines can't read.",
+    services: ["Keyword and topic map", "Service and locality pages", "Portfolio SEO", "AEO and GEO"],
+    solution: "A keyword map by room, style and area; a page for each service and locality; portfolio projects written up with room, budget band and materials; and clear answers that AI assistants can quote.",
+    outcomes: [],
+    flow: [
+      { node: "Keyword map", title: "Map what clients actually search", body: "Rooms, styles, budgets and localities grouped into topics, each with a page that answers it.", screen: { type: "checklist", title: "Topic map", rows: [["Modular kitchens", "12 searches"], ["Living room design", "9 searches"], ["Sector-level pages", "6 areas"], ["Budget guides", "4 pages"]], badge: "Content plan ready" } },
+      { node: "Service pages", title: "A page for every service and area", body: "Fast pages with real projects, materials and price bands, so each search lands somewhere specific.", screen: { type: "page", url: "studio.in/modular-kitchens", heading: "Modular kitchens, designed to fit", chips: ["L-shaped", "Island", "Parallel"], cta: "Book a design visit" } },
+      { node: "Google", title: "Ranking for the searches that matter", body: "Service, locality and project pages compete for specific searches instead of one page chasing everything.", screen: { type: "serp", query: "modular kitchen designer near me", results: [{ title: "Modular Kitchens, Designed to Fit | Studio", url: "studio.in › modular-kitchens", text: "L-shaped, island and parallel kitchens with real projects, materials and price bands.", ours: true }, { title: "Kitchen design ideas for small homes", url: "magazine.example › kitchens", text: "Inspiration and layouts for compact kitchens." }, { title: "Interior designers in your area", url: "directory.example › interiors", text: "Compare local studios and reviews." }] } },
+      { node: "AI answers", title: "Named when clients ask AI", body: "Clear, consistent facts about services, areas and process make the studio easy for AI assistants to recommend accurately.", screen: { type: "answer", question: "Who designs modular kitchens in Sector 70 Mohali?", answer: "Studio designs L-shaped, island and parallel modular kitchens across Mohali and Chandigarh, with a free design visit and fixed-price quotes.", sources: ["studio.in", "Google Business Profile", "Design directory listing"] } },
+      { node: "Enquiry", title: "Enquiries that arrive ready", body: "The enquiry captures room, size, style and budget before the first call.", screen: { type: "chat", name: "Studio · Design desk", messages: [{ from: "customer", text: "Hi, I'm looking for a modular kitchen for a 3 BHK in Sector 70." }, { from: "assistant", text: "Lovely! Do you have a style in mind, and roughly what budget are you planning?" }, { from: "customer", text: "Modern, around mid-range." }, { from: "assistant", text: "Perfect. Shall I book a free design visit this weekend?" }] } },
+    ],
+  },
+  {
+    slug: "institute-course-seo",
+    kind: "concept",
+    categories: ["seo", "website"],
+    title: "Rank every course for a coaching institute",
+    summary: "A page for every course and batch, found in Maps and search, with counselling booked straight away.",
+    client: "Concept for a multi-branch coaching institute",
+    industry: "Education",
+    art: "courses",
+    challenge: "Students search for a specific exam, batch timing and branch, but the website lists everything on one page and enquiries arrive as unanswered calls.",
+    services: ["Course and batch pages", "Local SEO for each branch", "AEO for exam questions", "Counselling booking"],
+    solution: "A page per course with fees, batches and results policy; a Google Business Profile per branch; answers to common exam questions; and counselling sessions booked online.",
+    outcomes: [],
+    flow: [
+      { node: "Course pages", title: "One page per course and batch", body: "Fees, timings, faculty and demo-class details on a fast page for each course.", screen: { type: "page", url: "institute.in/ielts-coaching", heading: "IELTS coaching, morning and evening batches", chips: ["Weekday", "Weekend", "Online"], cta: "Book a free demo class" } },
+      { node: "Maps", title: "Every branch found locally", body: "Complete, accurate profiles for each branch, with photos, timings and reviews.", screen: { type: "map", query: "IELTS coaching near me", places: ["Institute · Sector 34", "Institute · Phase 7 Mohali", "Institute · Panchkula"] } },
+      { node: "Search", title: "Ranking for exam and batch searches", body: "Course pages compete for the exact searches students type, not just the institute's name.", screen: { type: "serp", query: "IELTS weekend batch Chandigarh", results: [{ title: "IELTS Coaching: Weekend Batches | Institute", url: "institute.in › ielts-coaching", text: "Weekend and evening batches, small groups and a free demo class.", ours: true }, { title: "IELTS exam dates and fees", url: "exam-board.example › ielts", text: "Official test dates and registration." }, { title: "IELTS preparation tips", url: "blog.example › ielts", text: "How to prepare in eight weeks." }] } },
+      { node: "AI answers", title: "Answers students can trust", body: "Clear answers to common exam questions make the institute the source AI assistants cite.", screen: { type: "answer", question: "How long does IELTS preparation usually take?", answer: "Most students need six to ten weeks of structured practice, depending on their starting band. Institute runs eight-week batches with weekly mock tests.", sources: ["institute.in/ielts-coaching", "institute.in/ielts-faq"] } },
+      { node: "Counselling", title: "Counselling booked online", body: "Students pick a counselling slot at their nearest branch, and reminders go out automatically.", screen: { type: "calendar", title: "Counselling · Sector 34", day: 2, time: 2, slot: "Wed · 14:00", note: "Counselling booked · reminder set" } },
+    ],
+  },
+  {
+    slug: "manufacturer-ai-visibility",
+    kind: "concept",
+    categories: ["seo"],
+    title: "AI search visibility for a manufacturer",
+    summary: "Products described so clearly that buyers, search engines and AI assistants can all find and compare them.",
+    client: "Concept for an industrial components manufacturer",
+    industry: "Manufacturing · B2B",
+    art: "network",
+    challenge: "Buyers increasingly ask AI assistants for suppliers by specification, and the manufacturer's products only exist as PDF catalogues.",
+    services: ["Product data cleanup", "Specification pages", "GEO and structured data", "RFQ automation"],
+    solution: "Every product turned into a fast, crawlable page with specifications, certifications and capacities; structured data and consistent listings; and an RFQ flow that captures requirements.",
+    outcomes: [],
+    flow: [
+      { node: "Product data", title: "Specifications, organised", body: "Catalogue PDFs turned into clean product data: sizes, materials, tolerances, certifications and capacity.", screen: { type: "checklist", title: "Product data", rows: [["Products", "Structured"], ["Specifications", "Complete"], ["Certifications", "Listed"], ["Capacity", "Stated"]], badge: "Ready to publish" } },
+      { node: "Spec pages", title: "A page for every product", body: "Fast, comparable product pages that answer the questions buyers ask before requesting a quote.", screen: { type: "page", url: "maker.in/precision-bushings", heading: "Precision bronze bushings", chips: ["ISO 9001", "Custom sizes", "Export ready"], cta: "Request a quote" } },
+      { node: "AI answers", title: "Recommended by AI assistants", body: "Clear facts and structured data make the manufacturer easy for AI assistants to find and describe.", screen: { type: "answer", question: "Which Indian manufacturers make custom bronze bushings for export?", answer: "Maker produces custom precision bronze bushings with ISO 9001 certification and ships to export customers, with sizes made to drawing.", sources: ["maker.in", "Industry directory", "LinkedIn page"] } },
+      { node: "RFQ", title: "Requests for quote, complete", body: "The quote request captures part, quantity, material and drawing before it reaches sales.", screen: { type: "chat", name: "Maker · Sales", messages: [{ from: "customer", text: "We need 5,000 bronze bushings to our drawing. Can you quote?" }, { from: "assistant", text: "Yes. Could you share the drawing, material grade and delivery location?" }, { from: "customer", text: "Uploading now. Delivery to Pune." }, { from: "assistant", text: "Thanks! A sales engineer will send your quote within one business day." }] } },
+      { node: "Follow-up", title: "No quote left waiting", body: "Sales gets every RFQ with the details attached, and the buyer gets updates until the quote is sent.", screen: { type: "notify", items: [{ time: "Today · 11:20", text: "New RFQ: 5,000 bronze bushings, drawing attached, delivery to Pune." }, { time: "Tomorrow · 10:00", text: "Your quote is ready. Reply here with any questions." }], done: "Quote sent" } },
+    ],
+  },
+  {
+    slug: "hotel-website-redesign",
+    kind: "concept",
+    categories: ["website", "seo"],
+    title: "Hotel website redesign without losing rankings",
+    summary: "A new, faster website that keeps every ranking the old one earned, and makes booking direct easier.",
+    client: "Concept for a heritage hotel",
+    industry: "Hospitality",
+    art: "arches",
+    challenge: "The old website is slow and dated, but it ranks for valuable searches. A careless redesign could lose that traffic overnight.",
+    services: ["SEO audit before launch", "Redirect mapping", "New fast website", "Direct booking path"],
+    solution: "Every ranking page audited and mapped before the redesign; redirects for every changed address; a faster, image-led website; and post-launch monitoring of rankings and bookings.",
+    outcomes: [],
+    flow: [
+      { node: "Audit", title: "Know what ranks before changing anything", body: "Every page that brings visitors from search is listed, with its keywords and links.", screen: { type: "checklist", title: "Pre-launch audit", rows: [["Ranking pages", "Listed"], ["Backlinks", "Mapped"], ["Page speed", "Measured"], ["Tracking", "In place"]], badge: "Safe to redesign" } },
+      { node: "Redirects", title: "Every old address has a new home", body: "Old addresses point to their new equivalents, so search engines and bookmarks never hit a dead end.", screen: { type: "checklist", title: "Redirect map", rows: [["/rooms.html", "/rooms"], ["/weddings.php", "/weddings"], ["/gallery-2019", "/gallery"], ["/contact-us", "/contact"]], badge: "All redirects tested" } },
+      { node: "New site", title: "Faster, image-led, easier to book", body: "A new design that loads quickly on phones and puts dates and direct-booking perks up front.", screen: { type: "page", url: "heritagehotel.in", heading: "A palace stay, booked direct", chips: ["Best rate", "Breakfast", "Late checkout"], cta: "Check availability" } },
+      { node: "Rankings kept", title: "Still found after launch", body: "Rankings are tracked daily after launch, and any drop is investigated straight away.", screen: { type: "serp", query: "heritage hotel wedding venue", results: [{ title: "Weddings at the Heritage Hotel | Palace Venue", url: "heritagehotel.in › weddings", text: "Lawns, courtyards and palace halls for weddings of every size.", ours: true }, { title: "Top wedding venues guide", url: "weddings.example › venues", text: "Compare venues by city and budget." }, { title: "Heritage hotels in Rajasthan", url: "travel.example › heritage", text: "A guide to palace stays." }] } },
+      { node: "Bookings", title: "More guests booking direct", body: "Dates, rooms and offers in a short booking path, with confirmation and pre-arrival messages.", screen: { type: "calendar", title: "Room calendar", day: 4, time: 1, slot: "Fri · Check-in", note: "Direct booking confirmed" } },
+    ],
+  },
+  {
+    slug: "travel-quote-website",
+    kind: "concept",
+    categories: ["website", "automation"],
+    title: "Taxi and tour website with instant quotes",
+    summary: "Route pages that rank, and a quote on WhatsApp within a minute of asking.",
+    client: "Concept for a hill-station taxi and tour operator",
+    industry: "Travel",
+    art: "switchback",
+    challenge: "Travellers compare three operators and book whoever quotes first, but quotes are sent by hand, hours later.",
+    services: ["Route and package pages", "Instant quote form", "WhatsApp automation", "Review requests"],
+    solution: "A page for every popular route and package; a short quote form that sends a price on WhatsApp straight away; booking confirmation; and a review request after the trip.",
+    outcomes: [],
+    flow: [
+      { node: "Route pages", title: "A page for every route", body: "Distance, travel time, vehicles and inclusions for each popular route.", screen: { type: "page", url: "hilltaxi.in/chandigarh-to-manali", heading: "Chandigarh to Manali taxi", chips: ["Sedan", "SUV", "Tempo Traveller"], cta: "Get an instant quote" } },
+      { node: "Search", title: "Found for the exact trip", body: "Route pages compete for the searches travellers type, one route at a time.", screen: { type: "serp", query: "chandigarh to manali taxi", results: [{ title: "Chandigarh to Manali Taxi: Fixed Fares | Hill Taxi", url: "hilltaxi.in › chandigarh-to-manali", text: "Sedan, SUV and Tempo Traveller with fixed fares and verified drivers.", ours: true }, { title: "Manali travel guide", url: "travel.example › manali", text: "When to go and what to see." }, { title: "Bus tickets to Manali", url: "bus.example › manali", text: "Compare overnight buses." }] } },
+      { node: "Instant quote", title: "A price on WhatsApp in a minute", body: "Pickup, drop, date and vehicle captured, and a quote sent straight away.", screen: { type: "chat", name: "Hill Taxi", messages: [{ from: "customer", text: "Need an SUV from Chandigarh to Manali on 12 Dec, 4 people." }, { from: "assistant", text: "Sure! SUV, Chandigarh to Manali, 12 Dec: fixed fare including tolls and driver allowance. Shall I hold it for you?" }, { from: "customer", text: "Yes please" }, { from: "assistant", text: "Done. Your booking is confirmed. Driver details will come the evening before." }] } },
+      { node: "Booking", title: "Confirmed and reminded", body: "The booking lands in the dispatch calendar, and the traveller gets driver details the evening before.", screen: { type: "calendar", title: "Dispatch calendar", day: 3, time: 0, slot: "Thu · 06:00 pickup", note: "SUV assigned · driver details sent" } },
+      { node: "Reviews", title: "A review after every trip", body: "A friendly review request after the trip builds the reviews that win the next comparison.", screen: { type: "notify", items: [{ time: "Day after trip", text: "Hope you enjoyed Manali! Would you leave a quick review for your driver?" }], done: "Review received" } },
+    ],
+  },
+  {
+    slug: "dealer-lead-routing",
+    kind: "concept",
+    categories: ["automation"],
+    title: "Lead routing for a home improvement dealer",
+    summary: "Every enquiry qualified, assigned to the right salesperson and followed up until a measurement visit is booked.",
+    client: "Concept for a doors, windows and flooring dealer",
+    industry: "Home Improvement",
+    art: "lattice",
+    challenge: "Enquiries from ads, calls and walk-ins land in different places; some are followed up twice, others never.",
+    services: ["Lead capture from every channel", "WhatsApp qualification", "CRM routing", "Follow-up sequences"],
+    solution: "All enquiries flow into one CRM, are qualified on WhatsApp by product and project stage, assigned by area and product to a salesperson, and followed up automatically until a site measurement is booked.",
+    outcomes: [],
+    flow: [
+      { node: "Ads", title: "Campaigns by product", body: "Separate campaigns for doors, windows and flooring, each with its own landing page.", screen: { type: "ad", brand: "Dealer Home Solutions", headline: "uPVC windows that keep out dust and noise. Free site measurement.", cta: "Book a free measurement" } },
+      { node: "Qualify", title: "The right questions, instantly", body: "Product, project stage, area and timeline are captured on WhatsApp before a salesperson calls.", screen: { type: "chat", name: "Dealer · Enquiries", messages: [{ from: "customer", text: "Need a quote for windows for a new house." }, { from: "assistant", text: "Happy to help! How many windows roughly, and is the house under construction or ready?" }, { from: "customer", text: "About 14, construction is at plastering stage." }, { from: "assistant", text: "Perfect timing. Which area is the site in?" }] } },
+      { node: "Lead profile", title: "A complete lead profile", body: "Every enquiry arrives in the CRM with the details sales needs.", screen: { type: "checklist", title: "Lead profile", rows: [["Product", "uPVC windows"], ["Quantity", "About 14"], ["Stage", "Plastering"], ["Area", "Kharar"]], badge: "Hot lead" } },
+      { node: "Routing", title: "Assigned to the right person", body: "Leads are assigned by area and product, and the salesperson is notified straight away.", screen: { type: "notify", items: [{ time: "Now", text: "New hot lead assigned to you: uPVC windows, 14 units, Kharar, plastering stage." }, { time: "In 2 hours", text: "Reminder: call the Kharar windows lead if you haven't yet." }], done: "Lead contacted" } },
+      { node: "Measurement", title: "Site measurement booked", body: "The customer picks a slot for a free measurement, and reminders cut no-shows.", screen: { type: "calendar", title: "Measurement visits", day: 5, time: 2, slot: "Sat · 14:00", note: "Measurement booked · reminder set" } },
+    ],
+  },
+  {
+    slug: "advisory-nurture",
+    kind: "concept",
+    categories: ["seo", "automation"],
+    title: "Trusted enquiries for a financial advisory firm",
+    summary: "Clear answers that earn trust, a confidential enquiry flow and patient follow-up for long decisions.",
+    client: "Concept for a debt and loan advisory firm",
+    industry: "Financial Services",
+    art: "ledger",
+    challenge: "Prospects research for weeks, worry about privacy and rarely enquire on a first visit.",
+    services: ["Answer-first content", "AEO and GEO", "Confidential enquiry flow", "Nurture sequences"],
+    solution: "Plain-language explainers for high-intent questions, a short confidential enquiry flow, consultations booked online, and helpful follow-up that respects privacy.",
+    outcomes: [],
+    flow: [
+      { node: "AI answers", title: "The clear answer, with your name on it", body: "Explainers written for the questions prospects ask Google and AI assistants.", screen: { type: "answer", question: "What is a one-time settlement for a business loan?", answer: "A one-time settlement (OTS) is an agreement with the lender to close a loan by paying an agreed amount. Advisory explains eligibility, documents and steps in its OTS guide.", sources: ["advisory.in/ots-guide", "advisory.in/faq"] } },
+      { node: "Explainer", title: "Pages that answer before they sell", body: "Process, documents, timelines and fees approach explained plainly, with a quiet call to action.", screen: { type: "page", url: "advisory.in/ots-guide", heading: "One-time settlement, explained", chips: ["Eligibility", "Documents", "Timeline"], cta: "Book a confidential call" } },
+      { node: "Confidential chat", title: "A private first conversation", body: "Only the essentials are asked, and nothing sensitive is repeated back.", screen: { type: "chat", name: "Advisory · Confidential", messages: [{ from: "customer", text: "I want to understand if OTS is possible for my business loan." }, { from: "assistant", text: "We can help with that. Everything here stays confidential. Is the loan with a bank or an NBFC?" }, { from: "customer", text: "A public sector bank." }, { from: "assistant", text: "Thank you. Would you like a call with an advisor this week?" }] } },
+      { node: "Consultation", title: "Consultation booked", body: "The prospect picks a time, and the advisor receives a short, private brief.", screen: { type: "calendar", title: "Advisor calendar", day: 1, time: 3, slot: "Tue · 16:00", note: "Consultation booked · brief sent" } },
+      { node: "Nurture", title: "Helpful follow-up for long decisions", body: "Useful guides and check-ins over weeks, never pushy, always easy to stop.", screen: { type: "notify", items: [{ time: "Week 1", text: "Here's our checklist of documents for an OTS application." }, { time: "Week 3", text: "Any questions after your consultation? Reply here anytime." }], done: "Engagement signed" } },
+    ],
+  },
 ];
 
-export const projects = () => work.filter((w) => w.kind === "project");
+/**
+ * Live client projects are kept in the data but hidden from the site while this is false.
+ * Set it to true to show them again on the Work page, the homepage and the city pages.
+ */
+export const showLiveProjects = false;
+
+export const projects = () => (showLiveProjects ? work.filter((w) => w.kind === "project") : []);
 export const concepts = () => work.filter((w) => w.kind === "concept");
 
 export function getWork(slug: string) {

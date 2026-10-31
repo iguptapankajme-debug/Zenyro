@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { Check, MapPin, Search } from "lucide-react";
+import { Check, MapPin, Search, Sparkles } from "lucide-react";
 import type { FlowScreen } from "@/data/work";
 import type { IndustryArt as ArtKey } from "@/data/industries";
 import { IndustryArt } from "@/components/ui/industry-art";
@@ -178,6 +178,47 @@ export function FlowScreenView({ screen, art }: { screen: FlowScreen; art: ArtKe
               <Check className="size-3" strokeWidth={3} />{screen.done}
             </span>
           )}
+        </Frame>
+      );
+    case "serp":
+      return (
+        <Frame>
+          <div className="flex items-center gap-2 border-b border-line px-4 py-3 text-[0.8rem]">
+            <Search aria-hidden="true" className="size-3.5 text-dim" />
+            <span className="search-typed inline-block">{screen.query}</span>
+          </div>
+          <ul className="grid gap-2.5 p-4">
+            {screen.results.map((r, i) => (
+              <li
+                key={r.url}
+                className={cn("toast rounded-xl border p-3", r.ours ? "fx-lift border-ember/60 bg-ember/10" : "border-line")}
+                style={d(0.5 + i * 0.3)}
+              >
+                <p className="truncate font-mono text-[0.6rem] text-dim">{r.url}</p>
+                <p className={cn("mt-1 text-[0.86rem] font-medium leading-snug", r.ours ? "text-paper" : "text-muted")}>{r.title}</p>
+                <p className="mt-1 text-[0.72rem] leading-snug text-dim">{r.text}</p>
+                {r.ours && <span className="mt-2 inline-block rounded-full bg-ember px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-[0.12em] text-ember-ink">Your page</span>}
+              </li>
+            ))}
+          </ul>
+        </Frame>
+      );
+    case "answer":
+      return (
+        <Frame className="p-5">
+          <p className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-ink-3 px-3.5 py-2 text-[0.82rem] leading-snug"><span className="search-typed inline-block">{screen.question}</span></p>
+          <div className="mt-4 flex gap-3">
+            <span className="grid size-7 shrink-0 place-items-center rounded-full bg-ember text-ember-ink"><Sparkles aria-hidden="true" className="size-3.5" /></span>
+            <div className="min-w-0">
+              <p className="bubble text-[0.84rem] leading-relaxed" style={d(0.9)}>{screen.answer}</p>
+              <p className="toast mt-3 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-dim" style={d(1.5)}>Sources</p>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {screen.sources.map((src, i) => (
+                  <span key={src} className={cn("toast rounded-full border px-2.5 py-1 text-[0.68rem]", i === 0 ? "border-ember/60 bg-ember/10 text-paper" : "border-line text-muted")} style={d(1.7 + i * 0.15)}>{src}</span>
+                ))}
+              </div>
+            </div>
+          </div>
         </Frame>
       );
     case "map":
