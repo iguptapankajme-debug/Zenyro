@@ -1,4 +1,5 @@
 import "server-only";
+import { supabaseEnv } from "./supabase-env";
 
 export const leadStatuses = ["new", "contacted", "qualified", "proposal", "won", "lost"] as const;
 export type LeadStatus = (typeof leadStatuses)[number];
@@ -27,14 +28,14 @@ export type StoredLead = {
 };
 
 export function leadStoreConfigured() {
-  return !!process.env.SUPABASE_URL && !!process.env.SUPABASE_SERVICE_ROLE_KEY;
+  return !!supabaseEnv();
 }
 
 function base() {
-  return `${process.env.SUPABASE_URL!.replace(/\/$/, "")}/rest/v1/leads`;
+  return `${supabaseEnv()!.url}/rest/v1/leads`;
 }
 function headers() {
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+  const key = supabaseEnv()!.key;
   return { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json" };
 }
 
