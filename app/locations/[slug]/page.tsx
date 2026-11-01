@@ -12,7 +12,7 @@ import { getLocation, locations } from "@/data/locations";
 import { localServices } from "@/data/local-services";
 import { getService } from "@/data/services";
 import { getIndustry } from "@/data/industries";
-import { work } from "@/data/work";
+import { projects as liveProjects } from "@/data/work";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -39,7 +39,7 @@ export default async function LocationPage({ params }: Props) {
   const l = getLocation((await params).slug);
   if (!l) notFound();
   const sectors = l.sectors.map(getIndustry).filter((x) => !!x);
-  const projects = work.filter((w) => l.work?.includes(w.slug));
+  const projects = liveProjects().filter((w) => l.work?.includes(w.slug));
   const path = `/locations/${l.slug}`;
   const local = localServices.filter((x) => x.city === l.slug);
 

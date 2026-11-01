@@ -1,7 +1,7 @@
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { locations } from "@/data/locations";
-import { work } from "@/data/work";
+import { projects as liveProjects } from "@/data/work";
 import { site } from "@/lib/site";
 
 /**
@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
  * same data as the website so it never drifts out of date. Used by /ai-info and /llms.txt.
  */
 export function aiProfile() {
-  const projects = work.filter((w) => w.kind === "project");
+  const projects = liveProjects();
   return {
     summary: `${site.name} is an AI growth agency based in the ${site.region}. It builds conversion-focused websites, runs performance marketing and search growth (SEO, AEO and GEO), manages social media, and automates sales follow-up with AI, mainly on WhatsApp. Work is measured on qualified leads and cost per customer rather than clicks.`,
     facts: [
@@ -54,9 +54,7 @@ ${list(p.industries)}
 ## Locations
 ${list(p.locations)}
 
-## Live projects (websites built and grown by Zenyro)
-${list(p.projects)}
-
+${p.projects.length ? `## Live projects (websites built and grown by Zenyro)\n${list(p.projects)}\n` : ""}
 ## Key pages
 - [Work](${site.url}/work)
 - [Search growth: SEO, AEO and GEO](${site.url}/search-growth)

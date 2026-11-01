@@ -125,14 +125,14 @@ export const locations: Location[] = [
     market: [
       "Visitors plan from Delhi, Chandigarh and Punjab, usually on a phone. They search routes and stays, compare two or three operators, and book whoever responds first with a clear price.",
       "Demand is seasonal: summer holidays, snowfall and wedding seasons bring spikes, and quiet months follow. Campaigns and content should follow the same calendar, and every enquiry in the peak needs an instant answer.",
-      "We already build and grow websites for Himachal taxi and tour operators, so we know the routes, the questions travellers ask and what it takes to stand out from aggregators.",
+      "We know the routes, the seasons and the questions travellers ask, and what it takes for an operator to stand out from aggregators. See our travel examples on the Work page.",
     ],
     sectors: ["travel-tourism", "hospitality"],
     searches: ["taxi from Chandigarh to Shimla", "Shimla Manali tour package for family", "homestay in Shimla with mountain view", "Is there snow in Shimla in December?", "best cab service for Kufri and Narkanda"],
     work: ["himachal-cab-expert", "himachal-taxi-and-tours"],
     faqs: [
       { q: "Can you help us depend less on travel portals?", a: "Yes. We grow direct bookings through your website, Google profile and WhatsApp, so more of each booking's margin and the customer relationship stay with you." },
-      { q: "What do you build for a taxi or tour operator?", a: "Typically route and package pages, an instant quote form with WhatsApp, a complete Google Business Profile with real photos and reviews, and seasonal campaigns. See our Himachal travel projects on the Work page." },
+      { q: "What do you build for a taxi or tour operator?", a: "Typically route and package pages, an instant quote form with WhatsApp, a complete Google Business Profile with real photos and reviews, and seasonal campaigns. See the taxi and tour example on our Work page." },
     ],
   },
   {
