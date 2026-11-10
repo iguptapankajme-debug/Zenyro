@@ -133,7 +133,7 @@ export function IndustryArt({ art, className }: { art: ArtKey; className?: strin
             Array.from({ length: 7 }).map((_, col) => {
               const x = col * 64 - (row % 2 ? 32 : 0) + 6;
               const isEmber = row === 3 && col === 3;
-              return <rect key={`${row}-${col}`} x={x} y={14 + row * 36} width="58" height="30" stroke={isEmber ? ember : stroke} fill={isEmber ? "rgba(255,107,53,.12)" : "none"} strokeWidth={isEmber ? 1.5 : 1} />;
+              return <rect key={`${row}-${col}`} x={x} y={14 + row * 36} width="58" height="30" stroke={isEmber ? ember : stroke} fill={isEmber ? "rgba(21,94,239,.12)" : "none"} strokeWidth={isEmber ? 1.5 : 1} />;
             }),
           )}
         </g>

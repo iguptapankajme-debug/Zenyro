@@ -28,43 +28,31 @@ export const disciplines: Record<
 > = {
   build: {
     index: "01",
-    title: "Build",
-    claim: "Digital experiences that convert.",
+    title: "SEO",
+    claim: "Rank where customers search.",
     summary:
-      "Websites, landing pages and applications engineered around one job: turning visitors into enquiries. Fast on mid-range phones, measured from day one.",
-    items: [
-      "Premium Website Development",
-      "Conversion Landing Pages",
-      "CRM Integrations",
-      "AI-Powered Applications",
-      "Business Automation",
-    ],
+      "Technical foundations, pages built around real search intent, local visibility and the authority that moves rankings on Google and Bing.",
+    items: ["Technical SEO", "On-page SEO", "Local SEO & Google Maps", "Site migrations", "Search Console reporting"],
   },
   grow: {
     index: "02",
-    title: "Grow",
-    claim: "Customer acquisition, engineered.",
+    title: "AEO",
+    claim: "Become the answer.",
     summary:
-      "Paid and organic acquisition run as one system: ads, search engines and AI discovery, tracked from the first click to the closed deal.",
-    items: ["Performance Marketing", "SEO: Rank where customers search", "AEO: Become the answer", "GEO: Get discovered in AI search", "Social Media Marketing"],
+      "Content structured so Google's featured snippets, AI Overviews and voice assistants can lift your answer directly, with your brand attached.",
+    items: ["Answer-first content", "FAQ and how-to structure", "Structured data", "Content refreshes", "Digital PR"],
   },
   convert: {
     index: "03",
-    title: "Convert",
-    claim: "Turn conversations into customers.",
+    title: "GEO",
+    claim: "Get recommended by AI.",
     summary:
-      "AI assistants that reply in seconds, qualify every enquiry, follow up without forgetting and put booked appointments in your team's calendar.",
-    items: [
-      "AI Lead Qualification",
-      "WhatsApp Automation",
-      "AI Voice Assistants",
-      "Appointment Booking",
-      "Sales Pipeline Automation",
-    ],
+      "Visibility in ChatGPT, Perplexity, Gemini, Claude and Copilot: clear entity facts, citable sources and consistent mentions, tracked prompt by prompt.",
+    items: ["AI visibility tracking", "Entity and brand facts", "Citation building", "AI crawler access", "Prompt-level reporting"],
   },
 };
 
-export const services: Service[] = [
+export const allServices: Service[] = [
   {
     slug: "performance-marketing",
     name: "Performance Marketing",
@@ -308,7 +296,7 @@ export const services: Service[] = [
   {
     slug: "seo",
     name: "SEO",
-    discipline: "grow",
+    discipline: "build",
     search: "seo",
     serviceType: "Search engine optimisation",
     metaTitle: "SEO Services That Drive Organic Growth",
@@ -412,7 +400,7 @@ export const services: Service[] = [
   {
     slug: "geo",
     name: "GEO",
-    discipline: "grow",
+    discipline: "convert",
     search: "geo",
     serviceType: "Generative engine optimisation",
     metaTitle: "Generative Engine Optimization (GEO) Services",
@@ -562,7 +550,7 @@ export const services: Service[] = [
   {
     slug: "local-seo",
     name: "Local SEO",
-    discipline: "grow",
+    discipline: "build",
     serviceType: "Local search engine optimisation",
     metaTitle: "Local SEO Services: Rank in Google Maps & Local Search",
     metaDescription:
@@ -655,7 +643,114 @@ export const services: Service[] = [
     ],
     related: ["ai-automation", "lead-generation", "website-development"],
   },
+  {
+    slug: "technical-seo",
+    name: "Technical SEO",
+    discipline: "build",
+    search: "seo",
+    serviceType: "Technical search engine optimisation",
+    metaTitle: "Technical SEO Services: Crawling, Indexing & Core Web Vitals",
+    metaDescription:
+      "Technical SEO audits and fixes: crawling, indexing, site architecture, structured data, JavaScript rendering, Core Web Vitals and AI crawler access, done and verified.",
+    headline: "Technical SEO that lets search engines and AI read every page",
+    intro:
+      "Great content can't rank if crawlers can't reach it, understand it or trust it. We audit and fix the technical foundations, from indexing and site architecture to structured data, speed and AI crawler access, then verify every fix in Search Console.",
+    problems: [
+      "Important pages aren't indexed, or the wrong versions are.",
+      "A redesign or migration lost rankings and nobody knows why.",
+      "The site is slow on phones and Core Web Vitals fail.",
+      "AI crawlers are blocked, or can't read pages built in JavaScript.",
+    ],
+    included: [
+      { title: "Crawl and indexing audit", body: "Every URL crawled and compared with what Google has indexed, with duplicate, orphaned and blocked pages found and fixed." },
+      { title: "Site architecture", body: "URL structure, navigation and internal links organised so authority flows to the pages that matter." },
+      { title: "Structured data", body: "Schema for your organisation, services, products, locations, articles and FAQs, validated and kept accurate." },
+      { title: "JavaScript rendering", body: "Server-rendered or pre-rendered pages so search engines and AI crawlers see the real content." },
+      { title: "Core Web Vitals", body: "Loading, responsiveness and layout stability improved on mid-range phones, measured with real-user data." },
+      { title: "AI crawler access", body: "robots.txt, llms.txt and server rules reviewed so GPTBot, PerplexityBot, Google-Extended and others can read what you want them to." },
+      { title: "Migrations and redesigns", body: "Redirect maps, pre-launch checks and post-launch monitoring so a new site keeps the rankings the old one earned." },
+      { title: "International and local setup", body: "hreflang, regional pages and location data configured correctly for multi-city or multi-country sites." },
+    ],
+    approach: [
+      { title: "Crawl", body: "A full crawl, Search Console and log review, and a prioritised list ranked by impact and effort." },
+      { title: "Fix", body: "We implement fixes directly or with your developers, starting with what blocks indexing and revenue pages." },
+      { title: "Verify", body: "Every fix is re-crawled and checked in Search Console, and monitoring alerts catch regressions." },
+    ],
+    deliverables: [
+      "Technical audit with a prioritised fix list",
+      "Implemented fixes, verified in Search Console",
+      "Structured data and AI crawler configuration",
+      "Monthly technical health report",
+    ],
+    fitFor: [
+      "Large or fast-growing sites with indexing problems",
+      "Businesses planning a redesign, migration or replatform",
+      "Sites built on JavaScript frameworks",
+    ],
+    faqs: [
+      { q: "Do you need access to our website code?", a: "It helps. We can implement many fixes in your CMS ourselves, and for code changes we work with your developers or make the changes directly if you prefer." },
+      { q: "Will a redesign hurt our rankings?", a: "It doesn't have to. With a redirect map, pre-launch checks and monitoring after launch, most migrations keep their rankings. Problems usually come from skipping those steps." },
+      { q: "What is llms.txt, and do we need it?", a: "It's a plain-text summary of your site written for AI assistants. It's not a ranking factor, but it's quick to add and can help AI tools describe you accurately." },
+    ],
+    related: ["seo", "geo", "content-digital-pr"],
+  },
+  {
+    slug: "content-digital-pr",
+    name: "Content & Digital PR",
+    discipline: "grow",
+    search: "aeo",
+    serviceType: "SEO content and digital PR",
+    metaTitle: "SEO Content & Digital PR: Content That Ranks and Gets Cited",
+    metaDescription:
+      "SEO content strategy, expert-written articles and pages, content refreshes and digital PR that earns links and mentions, built to rank on Google and be cited by AI.",
+    headline: "Content that ranks on Google and gets cited by AI",
+    intro:
+      "Search engines and AI assistants both reward the clearest, most credible answer. We plan content from real search demand, write it with people who know the subject, refresh what's slipping, and earn the links and mentions that build authority.",
+    problems: [
+      "Blog posts get published but never rank.",
+      "Competitors are quoted in AI answers and you're not.",
+      "Old pages are slowly losing traffic.",
+      "Nobody links to the site or mentions the brand.",
+    ],
+    included: [
+      { title: "Topic and keyword strategy", body: "A content map built from search demand, customer questions and AI prompts, prioritised by business value." },
+      { title: "Expert content", body: "Service pages, guides and comparisons written with subject experts, structured so the answer comes first." },
+      { title: "Content refreshes", body: "Declining pages updated with current facts, better structure and stronger internal links." },
+      { title: "Answer-ready formatting", body: "Clear definitions, steps, tables and FAQs that search engines and AI assistants can quote accurately." },
+      { title: "Digital PR", body: "Original data, expert commentary and stories that earn coverage and links from relevant publications." },
+      { title: "Brand mentions", body: "Accurate, consistent listings and mentions on the directories, forums and review sites AI assistants read." },
+      { title: "Author credibility", body: "Author profiles, credentials and sources that show real expertise, important for health, finance and legal topics." },
+    ],
+    approach: [
+      { title: "Plan", body: "Topic map, content audit and a quarterly calendar agreed with you." },
+      { title: "Create", body: "Briefs, expert input, writing, editing and on-page optimisation, then publishing." },
+      { title: "Amplify", body: "Digital PR, outreach and mention building, with rankings, citations and enquiries reported monthly." },
+    ],
+    deliverables: [
+      "Topic map and quarterly content calendar",
+      "New and refreshed pages every month",
+      "Digital PR campaigns and earned links",
+      "Monthly ranking, citation and enquiry report",
+    ],
+    fitFor: [
+      "Businesses whose customers research before they buy",
+      "Brands that want to be quoted by AI assistants",
+      "Sites with old content that has started to slip",
+    ],
+    faqs: [
+      { q: "Do you use AI to write content?", a: "We use AI for research and drafts where it helps, but every page is shaped, fact-checked and edited by people, with input from your experts. Thin, generic AI content tends to rank poorly and isn't quoted." },
+      { q: "Do you buy links?", a: "No. We earn links through digital PR, original data and relationships. Paid link schemes risk penalties." },
+      { q: "How much content do we need?", a: "Less than you might think. A smaller number of genuinely useful, well-structured pages usually outperforms a high volume of thin posts." },
+    ],
+    related: ["seo", "aeo", "geo"],
+  },
 ];
+
+/** Zenyro is a search agency: only these services are published on the site. */
+export const searchServiceSlugs = ["seo", "local-seo", "technical-seo", "aeo", "geo", "content-digital-pr"] as const;
+
+/** The published services, in menu order. */
+export const services: Service[] = searchServiceSlugs.map((slug) => allServices.find((s) => s.slug === slug)!);
 
 export function getService(slug: string) {
   return services.find((s) => s.slug === slug);

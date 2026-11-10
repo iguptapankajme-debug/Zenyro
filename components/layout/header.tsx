@@ -186,15 +186,25 @@ export function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)]">
-      <div className="shell pt-3 md:pt-4">
-        <div
-          className={cn(
-            "relative z-10 flex h-14 items-center justify-between rounded-full pl-5 pr-2 transition-[background-color,border-color,box-shadow] duration-500 md:h-16 md:pl-6",
-            scrolled || menuOpen
-              ? "border border-line bg-ink/80 shadow-[0_10px_40px_-10px_rgba(0,0,0,.6)] backdrop-blur-xl"
-              : "border border-transparent bg-transparent",
-          )}
-        >
+      <Link
+        href="/free-audit"
+        className={cn(
+          "block overflow-hidden bg-ember text-center text-[0.78rem] font-medium text-ember-ink transition-[max-height] duration-500 sm:text-[0.82rem]",
+          scrolled || menuOpen ? "max-h-0" : "max-h-10",
+        )}
+      >
+        <span className="inline-block py-2">
+          New: free AI visibility audit<span className="hidden sm:inline">. <span className="underline decoration-white/50 underline-offset-2">See what ChatGPT says about your business</span></span><span className="sm:hidden"> →</span>
+        </span>
+      </Link>
+      <div
+        className={cn(
+          "border-b transition-[background-color,border-color,box-shadow] duration-500",
+          scrolled || menuOpen ? "border-line bg-ink/90 shadow-[0_8px_30px_-18px_rgba(9,9,11,.25)] backdrop-blur-xl" : "border-line bg-ink",
+        )}
+      >
+      <div className="shell">
+        <div className="relative z-10 flex h-16 items-center justify-between">
           <Link href="/" aria-label="Zenyro, home" className="shrink-0">
             <Wordmark />
           </Link>
@@ -228,16 +238,21 @@ export function Header() {
           <div className="flex items-center gap-2">
             <Link
               href="/contact"
-              data-magnetic
-              className="group hidden h-11 items-center gap-2 rounded-full bg-paper px-5 text-[0.88rem] font-medium text-ink transition-colors hover:bg-ember hover:text-ember-ink sm:inline-flex"
+              className="hidden h-10 items-center rounded-lg border border-line-2 bg-ink px-4 text-[0.86rem] font-medium text-paper shadow-[0_1px_2px_rgba(9,9,11,.06)] transition-colors hover:bg-ink-2 md:inline-flex"
             >
-              <span className="roll"><span>Let&apos;s Talk</span><span aria-hidden="true">Let&apos;s Talk</span></span>
-              <ArrowUpRight aria-hidden="true" className="size-4" />
+              Contact
+            </Link>
+            <Link
+              href="/free-audit"
+              className="group hidden h-10 items-center gap-1.5 rounded-lg bg-ember px-4 text-[0.86rem] font-medium text-ember-ink shadow-[0_1px_2px_rgba(21,94,239,.3),inset_0_1px_0_rgba(255,255,255,.18)] transition-colors hover:bg-ember-2 sm:inline-flex"
+            >
+              Free AI audit
+              <ArrowUpRight aria-hidden="true" className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Link>
             <button
               ref={toggleRef}
               type="button"
-              className="relative flex size-11 items-center justify-center rounded-full border border-line-2 lg:hidden"
+              className="relative flex size-10 items-center justify-center rounded-lg border border-line-2 lg:hidden"
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -249,13 +264,14 @@ export function Header() {
           </div>
         </div>
       </div>
+      </div>
 
       {/* Mobile full-screen menu */}
       <div
         id="mobile-menu"
         ref={menuRef}
         hidden={!menuOpen}
-        className="fixed inset-0 z-0 overflow-y-auto bg-ink pt-[calc(env(safe-area-inset-top)+6.5rem)] pb-[calc(env(safe-area-inset-bottom)+2rem)] lg:hidden"
+        className="fixed inset-0 z-0 overflow-y-auto bg-ink pt-[calc(env(safe-area-inset-top)+5.5rem)] pb-[calc(env(safe-area-inset-bottom)+2rem)] lg:hidden"
       >
         <nav aria-label="Mobile" className="shell">
           <ul className="border-t border-line">
@@ -264,7 +280,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   aria-current={pathname === item.href ? "page" : undefined}
-                  className="flex items-baseline justify-between py-4 text-[2.1rem] font-semibold uppercase leading-none tracking-[-0.04em]"
+                  className="flex items-baseline justify-between py-4 text-[1.8rem] font-medium leading-none tracking-[-0.03em]"
                 >
                   {item.label}
                   <span className="font-mono text-[0.7rem] font-normal tracking-[0.14em] text-muted">0{i + 1}</span>

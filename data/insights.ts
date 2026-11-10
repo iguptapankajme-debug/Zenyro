@@ -9,7 +9,7 @@ export type Article = {
   body: ({ type: "p"; text: string } | { type: "h2"; text: string } | { type: "ul"; items: string[] })[];
 };
 
-export const articles: Article[] = [
+const allArticles: Article[] = [
   {
     slug: "seo-aeo-geo-explained",
     title: "SEO, AEO and GEO: what changes when search starts answering",
@@ -172,6 +172,96 @@ export const articles: Article[] = [
     ],
   },
 ];
+
+const searchArticles: Article[] = [
+  {
+    slug: "get-recommended-by-chatgpt",
+    title: "How to get your business recommended by ChatGPT",
+    description:
+      "What AI assistants look at when they recommend a business, why some companies are named and others aren't, and the practical steps that improve your chances.",
+    category: "GEO",
+    published: "2026-11-06",
+    readingMinutes: 8,
+    body: [
+      { type: "p", text: "When someone asks ChatGPT, Perplexity or Gemini for the best clinic, school or supplier nearby, the assistant builds a short list from what it can find and trust. There is no form to fill in and no way to pay for a place. What you can do is make your business easy to find, easy to understand and easy to vouch for." },
+      { type: "h2", text: "What AI assistants rely on" },
+      { type: "ul", items: [
+        "Your own website: clear service, location and pricing pages that a crawler can read without running JavaScript.",
+        "Consistent facts elsewhere: Google Business Profile, directories, review sites and industry listings that agree on your name, address, services and hours.",
+        "Third-party mentions: articles, forum threads, comparison pages and reviews that describe you in context.",
+        "Search results: many assistants search the web live, so ranking on Google and Bing still feeds AI answers.",
+      ] },
+      { type: "h2", text: "Why competitors get named instead" },
+      { type: "p", text: "Usually because they are easier to describe. A competitor with a page titled with the exact service and city, a clear paragraph explaining who they serve, a few hundred reviews and a mention in a local guide gives an assistant everything it needs. A business whose site says 'excellence in every smile' and little else gives it nothing to quote." },
+      { type: "h2", text: "Practical steps" },
+      { type: "ul", items: [
+        "Write one clear page for each service and location, with the answer to the obvious question in the first paragraph.",
+        "State the facts plainly: who you serve, where, prices or price ranges, timings, credentials.",
+        "Make sure robots.txt does not block AI crawlers such as GPTBot, PerplexityBot and Google-Extended, unless you choose to.",
+        "Fix inconsistent listings, and ask happy customers for reviews that mention the service they used.",
+        "Earn mentions on the sources your industry trusts: local guides, associations, trade publications and genuine forum answers.",
+      ] },
+      { type: "h2", text: "How to measure it" },
+      { type: "p", text: "Write down the twenty to fifty questions your customers actually ask, and check them across ChatGPT, Perplexity, Gemini and Google AI Overviews every month. Record whether you are mentioned, how prominently, and which of your pages are cited. That gives you a visibility trend you can act on, instead of guessing." },
+    ],
+  },
+  {
+    slug: "local-seo-checklist",
+    title: "A local SEO checklist for businesses in India",
+    description:
+      "The Google Business Profile, location page, review and citation basics that decide who appears in Maps and 'near me' searches, and who AI assistants suggest locally.",
+    category: "Local SEO",
+    published: "2026-11-03",
+    readingMinutes: 6,
+    body: [
+      { type: "p", text: "Most local customers choose from the first three businesses Google Maps shows them. Those positions depend on relevance, distance and prominence, and only the first and last are in your control. This checklist covers what makes the biggest difference." },
+      { type: "h2", text: "Google Business Profile" },
+      { type: "ul", items: [
+        "The right primary category, plus relevant secondary categories.",
+        "Accurate name, address, phone, hours and holiday hours.",
+        "Services and products listed with descriptions.",
+        "Real photos of the premises, team and work, added regularly.",
+        "Questions and answers filled in with the things customers really ask.",
+      ] },
+      { type: "h2", text: "Your website" },
+      { type: "ul", items: [
+        "A page for each location, with the full address, directions, local landmarks and the services offered there.",
+        "LocalBusiness structured data that matches the profile exactly.",
+        "Fast pages on mid-range phones and mobile data.",
+      ] },
+      { type: "h2", text: "Reviews and citations" },
+      { type: "p", text: "Ask every happy customer for a review, and reply to every review, good or bad. Make sure your name, address and phone number are identical on the directories that matter in your industry, such as Justdial, Practo, IndiaMART or sector associations. Inconsistent details confuse both Google and AI assistants." },
+      { type: "h2", text: "What to avoid" },
+      { type: "p", text: "Keyword-stuffed business names, fake addresses and bought reviews. They can work briefly and then get the profile suspended." },
+    ],
+  },
+  {
+    slug: "ai-visibility-score",
+    title: "What an AI visibility score tells you, and what it doesn't",
+    description:
+      "How AI visibility is measured across ChatGPT, Perplexity, Gemini and AI Overviews, how to read the numbers, and how to turn them into a content plan.",
+    category: "AI search",
+    published: "2026-10-29",
+    readingMinutes: 5,
+    body: [
+      { type: "p", text: "An AI visibility score summarises how often and how prominently a brand appears when AI assistants answer a defined set of prompts. It is a useful trend line, but only if you understand what goes into it." },
+      { type: "h2", text: "How it is usually measured" },
+      { type: "ul", items: [
+        "A fixed list of prompts your customers actually use, grouped by topic.",
+        "Each prompt run on several engines, such as ChatGPT, Perplexity, Gemini, Claude and Google AI Overviews.",
+        "Each answer scored for whether you are mentioned, where in the answer, and how you are described compared with competitors.",
+        "Cited pages recorded, so you can see which content AI assistants rely on.",
+      ] },
+      { type: "h2", text: "How to read it" },
+      { type: "p", text: "Look at the trend and the gaps, not a single number. AI answers vary from run to run, so a score is most useful as a monthly average across many prompts. The most actionable part is usually the list of prompts where competitors appear and you don't, and the pages being cited for them." },
+      { type: "h2", text: "What it doesn't tell you" },
+      { type: "p", text: "It doesn't tell you how many people asked those questions, and it isn't a measure of revenue. Pair it with Search Console data, referral traffic from AI assistants and, most importantly, enquiries." },
+    ],
+  },
+];
+
+/** Published articles: search topics only. */
+export const articles = [...searchArticles, ...allArticles.filter((a) => ["seo-aeo-geo-explained", "redesign-without-losing-rankings"].includes(a.slug))];
 
 export function getArticle(slug: string) {
   return articles.find((a) => a.slug === slug);

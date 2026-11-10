@@ -6,7 +6,7 @@ export function Mark({ className }: { className?: string }) {
     <svg viewBox="0 0 32 32" aria-hidden="true" className={cn("size-6", className)} fill="none">
       <circle cx="16" cy="16" r="11" stroke="currentColor" strokeWidth="1.6" />
       <ellipse cx="16" cy="16" rx="15" ry="5.5" transform="rotate(-28 16 16)" stroke="currentColor" strokeOpacity=".45" strokeWidth="1.2" />
-      <circle cx="28.2" cy="9.6" r="2.6" fill="#FF6B35" />
+      <circle cx="28.2" cy="9.6" r="2.6" fill="#155eef" />
     </svg>
   );
 }

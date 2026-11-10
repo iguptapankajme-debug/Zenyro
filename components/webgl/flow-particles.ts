@@ -24,7 +24,7 @@ varying float vA;
 void main(){
   float d = length(gl_PointCoord - 0.5);
   float core = smoothstep(0.5, 0.0, d);
-  vec3 col = mix(vec3(1.0, 0.42, 0.21), vec3(1.0, 0.86, 0.74), core * core * 0.7);
+  vec3 col = mix(vec3(0.08, 0.37, 0.94), vec3(0.45, 0.65, 1.0), core * core * 0.5);
   gl_FragColor = vec4(col, core * vA);
 }`;
 

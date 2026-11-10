@@ -6,14 +6,14 @@ import { PageHero } from "@/components/layout/page-hero";
 import { WorkPanels } from "@/components/sections/selected-work";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { SystemFlow } from "@/components/sections/system-flow";
-import { getWork, work } from "@/data/work";
+import { concepts, getWork } from "@/data/work";
 import { buildMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
 export function generateStaticParams() {
-  return work.filter((w) => w.kind !== "project").map((w) => ({ slug: w.slug }));
+  return concepts().map((w) => ({ slug: w.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -28,8 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function WorkItemPage({ params }: Props) {
   const w = getWork((await params).slug);
-  if (!w || w.kind === "project") notFound();
-  const others = work.filter((x) => x.slug !== w.slug && x.kind !== "project");
+  if (!w || !concepts().includes(w)) notFound();
+  const others = concepts().filter((x) => x.slug !== w.slug);
   return (
     <>
       <PageHero
@@ -44,7 +44,7 @@ export default async function WorkItemPage({ params }: Props) {
             <p className="eyebrow mb-6">How the system works</p>
             <h2 id="flow-title" className="display-md max-w-3xl">From first touch to booked, stage by stage.</h2>
           </div>
-          <SystemFlow item={w} index={work.filter((x) => x.kind === w.kind).indexOf(w)} total={work.filter((x) => x.kind === w.kind).length} headingLevel="h3" link={false} />
+          <SystemFlow item={w} index={concepts().indexOf(w)} total={concepts().length} headingLevel="h3" link={false} />
         </section>
       )}
       <section className="py-20 md:py-28">

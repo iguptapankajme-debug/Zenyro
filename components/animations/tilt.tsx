@@ -42,7 +42,7 @@ export function Tilt({ children, className, max = 6 }: { children: ReactNode; cl
         {children}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-500 [background:radial-gradient(500px_circle_at_var(--mx,50%)_var(--my,50%),rgba(255,107,53,.08),transparent_45%)] group-hover/tilt:opacity-100"
+          className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-500 [background:radial-gradient(500px_circle_at_var(--mx,50%)_var(--my,50%),rgba(21,94,239,.08),transparent_45%)] group-hover/tilt:opacity-100"
         />
       </div>
     </div>

@@ -32,7 +32,7 @@ export function SectionHeading({ eyebrow, title, lede, as: Tag = "h2", size = "l
   );
 }
 
-/** Orange emphasis for selected words in a headline. */
+/** Accent emphasis for selected words in a headline: blue with a dashed underline. */
 export function Em({ children }: { children: ReactNode }) {
-  return <span className="text-ember">{children}</span>;
+  return <span className="hl">{children}</span>;
 }

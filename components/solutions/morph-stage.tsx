@@ -31,7 +31,7 @@ const GHOST_K = 26;
 const POINTER_RADIUS = 0.55;
 const POINTER_PUSH = 0.16;
 
-export function MorphStage({ shape, className, intro = true, color = "#FF6B35" }: Props) {
+export function MorphStage({ shape, className, intro = true, color = "#155eef" }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engine = useRef<{ setTarget: (s: string) => void } | null>(null);
 

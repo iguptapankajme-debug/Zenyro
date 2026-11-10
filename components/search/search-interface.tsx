@@ -52,7 +52,7 @@ export function SearchInterface({ initial = "seo", showTabs = true }: { initial?
 
       <div className="group/tilt">
         <Tilt max={4} className="rounded-[1.75rem]">
-          <div id="search-window" role="region" aria-label={`Illustrative ${current.caption.toLowerCase()}`} className="search-window relative overflow-hidden rounded-[1.75rem] border border-line bg-[#050608]" data-mode={mode}>
+          <div id="search-window" role="region" aria-label={`Illustrative ${current.caption.toLowerCase()}`} className="search-window relative overflow-hidden rounded-[1.75rem] border border-line bg-ink-2" data-mode={mode}>
             {/* Window chrome */}
             <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-3.5">
               <span className="flex gap-1.5" aria-hidden="true"><span className="size-2.5 rounded-full bg-line-2" /><span className="size-2.5 rounded-full bg-line-2" /><span className="size-2.5 rounded-full bg-line-2" /></span>

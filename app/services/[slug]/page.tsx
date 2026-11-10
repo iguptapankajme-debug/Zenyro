@@ -12,7 +12,6 @@ import { slugify } from "@/lib/slugify";
 import { disciplines, getService, services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { buildMetadata, serviceSchema } from "@/lib/seo";
-import { consultationHref } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -44,10 +43,10 @@ export default async function ServicePage({ params }: Props) {
     <>
       <PageHero
         crumbs={[{ name: "Services", path: "/services" }, { name: s.name, path: `/services/${s.slug}` }]}
-        eyebrow={`${d.index} ${d.title} · ${s.name}`}
+        eyebrow={s.name === d.title ? `${d.title} · ${d.claim}` : `${d.title} · ${s.name}`}
         title={s.headline}
         intro={s.intro}
-        aside={<div className="mt-8"><ButtonLink href={consultationHref}>Discuss your project</ButtonLink></div>}
+        aside={<div className="mt-8"><ButtonLink href="/free-audit">Get a free AI visibility audit</ButtonLink></div>}
       />
 
       {s.search && (

@@ -3,37 +3,28 @@ import { industries } from "./industries";
 export type NavItem = { label: string; href: string; description?: string };
 export type NavGroup = { title: string; items: NavItem[] };
 
-/** Services menu, grouped by discipline. Capabilities without their own page link to the relevant section. */
+/** Services menu, grouped by search pillar. */
 export const serviceGroups: NavGroup[] = [
   {
-    title: "Build",
+    title: "SEO · Google",
     items: [
-      { label: "Website Development", href: "/services/website-development" },
-      { label: "Next.js Development", href: "/services/nextjs-development" },
-      { label: "Website Redesign", href: "/services/website-redesign" },
-      { label: "Landing Pages", href: "/services/website-development#conversion-paths" },
-      { label: "AI Applications", href: "/services/ai-automation#workflow-automation" },
-    ],
-  },
-  {
-    title: "Grow",
-    items: [
-      { label: "Performance Marketing", href: "/services/performance-marketing" },
       { label: "SEO", href: "/services/seo" },
-      { label: "AEO", href: "/services/aeo" },
-      { label: "GEO", href: "/services/geo" },
-      { label: "Social Media", href: "/services/social-media-marketing" },
       { label: "Local SEO", href: "/services/local-seo" },
-      { label: "Lead Generation", href: "/services/lead-generation" },
+      { label: "Technical SEO", href: "/services/technical-seo" },
     ],
   },
   {
-    title: "Convert",
+    title: "AEO · Answers",
     items: [
-      { label: "AI Automation", href: "/services/ai-automation" },
-      { label: "WhatsApp Automation", href: "/services/ai-automation#ai-chat-and-whatsapp-assistants" },
-      { label: "CRM Integration", href: "/services/crm-automation" },
-      { label: "AI Sales Assistants", href: "/services/lead-generation#qualification" },
+      { label: "AEO", href: "/services/aeo" },
+      { label: "Content & Digital PR", href: "/services/content-digital-pr" },
+    ],
+  },
+  {
+    title: "GEO · AI search",
+    items: [
+      { label: "GEO", href: "/services/geo" },
+      { label: "Free AI visibility audit", href: "/free-audit" },
     ],
   },
 ];
@@ -48,8 +39,8 @@ export const industryLinks: NavItem[] = industries.map((i) => ({
 
 export const primaryNav = [
   { label: "Services", href: "/services", groups: serviceGroups },
-  { label: "Solutions", href: "/solutions", children: industryLinks },
-  { label: "Work", href: "/work" },
+  { label: "Industries", href: "/solutions", children: industryLinks },
+  { label: "Examples", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },
 ] as const;

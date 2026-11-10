@@ -15,7 +15,7 @@ const d = (s: number): CSSProperties => ({ animationDelay: `${s}s` });
 function Cursor({ delay = 0.9 }: { delay?: number }) {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" className="fx-cursor pointer-events-none absolute -bottom-3 right-3 z-10 size-6 drop-shadow-[0_4px_10px_rgba(0,0,0,.6)]" style={d(delay)}>
-      <path d="M4 2l15 9.5-6.5 1.4L10 20z" fill="#f7f7f5" stroke="#08090b" strokeWidth="1.2" strokeLinejoin="round" />
+      <path d="M4 2l15 9.5-6.5 1.4L10 20z" fill="#09090b" stroke="#ffffff" strokeWidth="1.2" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -59,7 +59,7 @@ export function FlowScreenView({ screen, art }: { screen: FlowScreen; art: ArtKe
             <span className="flex-1 truncate rounded-full bg-ink-2 px-3 py-1 font-mono text-[0.65rem] text-muted"><span className="search-typed inline-block">{screen.url}</span></span>
           </div>
           <div className="p-4">
-            <p className="blur-swap text-[1.35rem] font-semibold uppercase leading-[0.95] tracking-[-0.03em]" style={d(0.2)}>{screen.heading}</p>
+            <p className="blur-swap text-[1.35rem] font-semibold leading-[0.95] tracking-[-0.03em]" style={d(0.2)}>{screen.heading}</p>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {screen.chips.map((c, i) => (
                 <span key={c} className="bubble rounded-full border border-line-2 px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-[0.1em] text-muted" style={d(0.5 + i * 0.15)}>{c}</span>
@@ -160,7 +160,7 @@ export function FlowScreenView({ screen, art }: { screen: FlowScreen; art: ArtKe
       );
     case "notify":
       return (
-        <Frame className="bg-[radial-gradient(120%_80%_at_50%_0%,rgba(255,107,53,.14),transparent_60%)] p-5">
+        <Frame className="bg-[radial-gradient(120%_80%_at_50%_0%,rgba(21,94,239,.14),transparent_60%)] p-5">
           <p className="text-center font-mono text-[2.2rem] font-medium leading-none tracking-[-0.04em]">9:41</p>
           <p className="mb-5 mt-1 text-center font-mono text-[0.6rem] uppercase tracking-[0.14em] text-dim">Notifications</p>
           <div className="grid gap-2">

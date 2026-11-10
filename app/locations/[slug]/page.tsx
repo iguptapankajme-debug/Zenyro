@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const pillars = [
   { icon: Search, title: "Found in search and Maps", body: "A fast website and complete Google Business Profile, built around the searches local customers make.", href: "/services/local-seo", link: "Local SEO services" },
   { icon: Sparkles, title: "Named in AI answers", body: "Clear, consistent information that ChatGPT, Perplexity and Google AI Overviews can find, cite and describe accurately.", href: "/services/geo", link: "GEO for AI search" },
-  { icon: MessageSquareText, title: "Answered in minutes", body: "Every enquiry from search, ads or social gets an instant WhatsApp reply, qualification and a booked appointment or visit.", href: "/services/ai-automation", link: "WhatsApp and AI automation" },
+  { icon: MessageSquareText, title: "The direct answer", body: "Pages structured so featured snippets, AI Overviews and voice assistants quote your answer to the questions customers ask.", href: "/services/aeo", link: "AEO services" },
 ];
 
 export default async function LocationPage({ params }: Props) {
@@ -71,8 +71,8 @@ export default async function LocationPage({ params }: Props) {
 
       <section className="border-y border-line bg-ink-2 py-20 md:py-28" aria-labelledby="pillars-title">
         <div className="shell">
-          <p className="eyebrow mb-6">What we build</p>
-          <h2 id="pillars-title" className="display-md max-w-3xl">One system for {l.city} businesses: found, chosen, booked.</h2>
+          <p className="eyebrow mb-6">What we do</p>
+          <h2 id="pillars-title" className="display-md max-w-3xl">One search programme for {l.city}: ranked, answered, recommended.</h2>
           <ul className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-line bg-line md:grid-cols-3">
             {pillars.map((p) => (
               <li key={p.title} className="bg-ink-2 p-8" data-reveal>

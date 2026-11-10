@@ -4,35 +4,35 @@ import { Em } from "@/components/ui/section-heading";
 export const processSteps = [
   {
     n: "01",
-    title: "Discover",
+    title: "Audit",
     when: "Week 1–2",
-    line: "We find where revenue leaks.",
-    body: "We study your market, offer, current funnel and sales data, interview your team, and find where revenue is leaking. You receive a written growth plan with priorities and expected effort.",
-    items: ["Funnel and tracking audit", "Customer and competitor research", "Prioritised growth plan"],
+    line: "We find what stops you being found.",
+    body: "A technical crawl, Search Console and Google Business Profile review, competitor gap analysis, and a baseline of what ChatGPT, Perplexity, Gemini and AI Overviews say about you today. You receive a prioritised plan.",
+    items: ["Technical and content audit", "AI visibility baseline", "Prioritised search plan"],
   },
   {
     n: "02",
-    title: "Engineer",
+    title: "Fix",
     when: "Week 2–6",
-    line: "We build the whole system.",
-    body: "We design and build the system: website or landing pages, campaigns, AI assistants, automations and CRM, all on accounts you own. You see progress every week.",
-    items: ["Design and build", "Integrations and automation", "Testing with real scenarios"],
+    line: "We fix the foundations first.",
+    body: "Indexing, site structure, speed, structured data, AI crawler access and business listings, in order of impact, implemented directly or with your developers and verified in Search Console.",
+    items: ["Technical fixes", "Structured data and listings", "AI crawler access"],
   },
   {
     n: "03",
-    title: "Launch",
-    when: "Week 6–8",
-    line: "We go live, with people in control.",
-    body: "Everything goes live in a controlled way. AI assistants start with human approval switched on, campaigns start with measured budgets, and tracking is verified end to end.",
-    items: ["Staged go-live", "Team training", "Tracking verification"],
+    title: "Publish",
+    when: "Every month",
+    line: "We publish pages that answer.",
+    body: "Service, location and guide pages written answer-first with your experts, so they rank on Google, appear in featured snippets and AI Overviews, and can be cited by AI assistants.",
+    items: ["Answer-first content", "Content refreshes", "Digital PR and mentions"],
   },
   {
     n: "04",
-    title: "Optimize",
+    title: "Track",
     when: "Every month",
-    line: "We improve what pays, every month.",
-    body: "We review the numbers weekly, fix the weakest stage of the funnel first, test new creative and messaging, and report in plain language: what changed, what we learned, what is next.",
-    items: ["Weekly optimisation", "Monthly experiments", "Plain-language reporting"],
+    line: "We measure what matters.",
+    body: "Rankings, organic clicks, Maps actions, AI visibility by prompt and engine, cited pages and enquiries, reported in plain language: what changed, what we learned, what's next.",
+    items: ["Rankings and clicks", "AI visibility by prompt", "Plain-language reporting"],
   },
 ];
 
@@ -60,7 +60,7 @@ export function Process({ variant = "compact" }: { variant?: "compact" | "full" 
                   <span className="size-1.5 rounded-full bg-ember" />
                 </span>
                 <p className="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted"><span className="text-ember">{s.n}</span> · {s.when}</p>
-                <h3 className="mt-2 text-[clamp(3rem,8vw,7rem)] font-semibold uppercase leading-[0.85] tracking-[-0.055em]">{s.title}</h3>
+                <h3 className="mt-2 text-[clamp(3rem,8vw,7rem)] font-semibold leading-[0.85] tracking-[-0.055em]">{s.title}</h3>
                 <p className="mt-4 text-[1.25rem] font-medium tracking-[-0.015em] text-paper">{s.line}</p>
                 {variant === "full" ? (
                   <ProcessDetail step={s} />

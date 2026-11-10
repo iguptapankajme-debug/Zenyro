@@ -6,9 +6,9 @@ import { industries } from "@/data/industries";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Industry Solutions: Growth Systems by Sector",
+  title: "SEO by Industry: Search Programmes by Sector",
   description:
-    "Growth systems designed for real estate, hospitality, healthcare, interior design and premium retail, education and professional services, and home improvement.",
+    "SEO, AEO and GEO programmes for real estate, hospitality, healthcare, interior design, education, home improvement, travel and financial services.",
   path: "/solutions",
 });
 
@@ -16,10 +16,10 @@ export default function SolutionsPage() {
   return (
     <>
       <PageHero
-        crumbs={[{ name: "Solutions", path: "/solutions" }]}
-        eyebrow="Industry solutions"
-        title={<>Built for businesses <Em>ready to scale.</Em></>}
-        intro="Every sector buys differently. These are the growth systems we design for eight industries where a single customer is worth a real conversation."
+        crumbs={[{ name: "Industries", path: "/solutions" }]}
+        eyebrow="Industries"
+        title={<>Search growth, <Em>sector by sector.</Em></>}
+        intro="Every sector searches differently. These are the SEO, AEO and GEO programmes we run for eight industries where a single customer is worth a real conversation."
       />
       <section className="py-12 md:py-20" aria-label="Industries">
         <div className="shell">

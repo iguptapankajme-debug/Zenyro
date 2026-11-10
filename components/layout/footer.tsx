@@ -15,13 +15,10 @@ const company = [
 ];
 
 const agency = [
-  { label: "Hotel website development", href: "/hotel-website-development" },
-  { label: "Real estate website development", href: "/real-estate-website-development" },
   { label: "Search growth: SEO, AEO & GEO", href: "/search-growth" },
-  { label: "Lead generation agency", href: "/lead-generation-agency" },
-  { label: "AI automation agency", href: "/ai-automation-agency" },
-  { label: "AI marketing agency", href: "/ai-marketing-agency" },
-  { label: "Performance marketing agency", href: "/performance-marketing-agency" },
+  { label: "Free AI visibility audit", href: "/free-audit" },
+  { label: "Examples", href: "/work" },
+  { label: "For AI assistants", href: "/ai-info" },
 ];
 
 function Column({ title, links }: { title: string; links: { label: string; href: string }[] }) {
@@ -47,10 +44,10 @@ export function Footer() {
           <div className="lg:col-span-4">
             <Mark className="size-10" />
             <p className="mt-6 max-w-xs text-[1.4rem] font-semibold leading-tight tracking-[-0.02em]">
-              Build. Grow. <span className="text-ember">Convert.</span>
+              Found on Google. <span className="text-ember">Recommended by AI.</span>
             </p>
             <p className="mt-4 max-w-sm text-[0.92rem] text-muted">
-              Websites, performance marketing and AI automation for businesses ready to scale. Based in the {site.region}.
+              SEO, AEO and GEO for businesses that want more customers from Google, ChatGPT and AI search. Based in the {site.region}.
             </p>
             {site.email && (
               <a href={`mailto:${site.email}`} className="link-u mt-6 inline-block text-[1.05rem]">{site.email}</a>

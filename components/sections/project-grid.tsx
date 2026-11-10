@@ -44,7 +44,7 @@ export function ProjectGrid({ items, headingLevel = "h3" }: { items: WorkItem[];
             </div>
             <div className="flex flex-1 flex-col p-6 sm:p-8">
               <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ember">{w.industry}</p>
-              <H className="mt-3 text-[clamp(1.7rem,3vw,2.5rem)] font-semibold uppercase leading-[0.92] tracking-[-0.045em]">{w.title}</H>
+              <H className="mt-3 text-[clamp(1.7rem,3vw,2.5rem)] font-semibold leading-[0.92] tracking-[-0.045em]">{w.title}</H>
               <p className="mt-3 text-[0.98rem] leading-relaxed text-muted">{w.summary}</p>
               {w.results?.length ? (
                 <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-line pt-5 sm:grid-cols-3">

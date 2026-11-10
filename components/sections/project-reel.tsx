@@ -76,7 +76,7 @@ export function ProjectReel({ items, title, backdrop = false }: { items: WorkIte
         <div className="shell flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="eyebrow mb-5">Selected work</p>
-            <h2 id="reel-title" className={pinned ? "text-[clamp(2.2rem,3.8vw,3.8rem)] font-semibold uppercase leading-[0.92] tracking-[-0.045em]" : "display-lg"}>{title}</h2>
+            <h2 id="reel-title" className={pinned ? "text-[clamp(2.2rem,3.8vw,3.8rem)] font-semibold leading-[0.92] tracking-[-0.045em]" : "display-lg"}>{title}</h2>
           </div>
           <div className="flex items-end gap-6">
             <p className="font-mono text-[clamp(2.4rem,4vw,3.6rem)] font-medium leading-none tabular-nums tracking-[-0.04em]" aria-live="polite">
@@ -126,7 +126,7 @@ export function ProjectReel({ items, title, backdrop = false }: { items: WorkIte
                             <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
                             <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8">
                               <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ember">{String(i + 1).padStart(2, "0")} · {w.industry}</p>
-                              <h3 className="mt-3 text-[clamp(2rem,4.8vw,4.8rem)] font-semibold uppercase leading-[0.88] tracking-[-0.05em]">{w.title}</h3>
+                              <h3 className="mt-3 text-[clamp(2rem,4.8vw,4.8rem)] font-semibold leading-[0.88] tracking-[-0.05em]">{w.title}</h3>
                             </div>
                           </>
                         )}
@@ -137,7 +137,7 @@ export function ProjectReel({ items, title, backdrop = false }: { items: WorkIte
                         {w.image && (
                           <>
                             <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ember">{String(i + 1).padStart(2, "0")} · {w.industry}</p>
-                            <h3 className="mb-2 mt-2 text-[clamp(1.6rem,2.6vw,2.4rem)] font-semibold uppercase leading-[0.92] tracking-[-0.045em]">{w.title}</h3>
+                            <h3 className="mb-2 mt-2 text-[clamp(1.6rem,2.6vw,2.4rem)] font-semibold leading-[0.92] tracking-[-0.045em]">{w.title}</h3>
                           </>
                         )}
                         <p className="text-[0.98rem] leading-relaxed text-muted">{w.summary}</p>
