@@ -1,8 +1,6 @@
 import { PageHero } from "@/components/layout/page-hero";
 import { SystemFlow } from "@/components/sections/system-flow";
-import { concepts, getWork, projects } from "@/data/work";
-import { ProjectGrid } from "@/components/sections/project-grid";
-import { ProjectReel } from "@/components/sections/project-reel";
+import { concepts, getWork } from "@/data/work";
 import { ExampleGrid } from "@/components/sections/example-grid";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { Testimonials } from "@/components/sections/testimonials";
@@ -21,7 +19,6 @@ export const metadata = buildMetadata({
 const featured = ["dental-local-seo", "interiors-search-growth", "manufacturer-ai-visibility"];
 
 export default function WorkPage() {
-  const live = projects();
   const examples = concepts();
   const walkthroughs = featured.map(getWork).filter((w) => !!w);
 
@@ -47,19 +44,6 @@ export default function WorkPage() {
           <ExampleGrid items={examples} />
         </div>
       </section>
-
-      {live.length > 0 && (
-        <>
-          <ProjectReel items={live} title={<>Launched <Em>and live.</Em></>} backdrop />
-          <section className="border-t border-line py-20 md:py-28" aria-labelledby="live-title">
-            <div className="shell">
-              <p className="eyebrow mb-6">All live projects</p>
-              <h2 id="live-title" className="display-md mb-12 max-w-2xl">Every project at a glance.</h2>
-              <ProjectGrid items={live} headingLevel="h3" />
-            </div>
-          </section>
-        </>
-      )}
 
       <section className="border-t border-line" aria-labelledby="walkthroughs-title">
         <div className="relative isolate overflow-hidden pb-12 pt-20 md:pt-28">

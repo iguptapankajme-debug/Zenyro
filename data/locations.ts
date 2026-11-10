@@ -17,8 +17,6 @@ export type Location = {
   sectors: string[];
   /** Example searches and AI prompts local customers use. */
   searches: string[];
-  /** Live projects (data/work.ts slugs) serving this area. */
-  work?: string[];
   faqs: { q: string; a: string }[];
 };
 
@@ -124,12 +122,11 @@ export const locations: Location[] = [
       "Tourism drives Shimla and the hills, and travellers decide fast: a route, a vehicle, a room, a quote. We help travel and hospitality businesses win those searches with route and package pages, complete Maps profiles and answers AI assistants can quote.",
     market: [
       "Visitors plan from Delhi, Chandigarh and Punjab, usually on a phone. They search routes and stays, compare two or three operators, and book whoever responds first with a clear price.",
-      "Demand is seasonal: summer holidays, snowfall and wedding seasons bring spikes, and quiet months follow. Campaigns and content should follow the same calendar, and every enquiry in the peak needs an instant answer.",
-      "We know the routes, the seasons and the questions travellers ask, and what it takes for an operator to stand out from aggregators. See our travel examples on the Work page.",
+      "Demand is seasonal: summer holidays, snowfall and wedding seasons bring spikes, and quiet months follow. Content should follow the same calendar, and every enquiry in the peak needs an instant answer.",
+      "We know the routes, the seasons and the questions travellers ask, and what it takes for an operator to stand out from aggregators.",
     ],
     sectors: ["travel-tourism", "hospitality"],
     searches: ["taxi from Chandigarh to Shimla", "Shimla Manali tour package for family", "homestay in Shimla with mountain view", "Is there snow in Shimla in December?", "best cab service for Kufri and Narkanda"],
-    work: ["himachal-cab-expert", "himachal-taxi-and-tours"],
     faqs: [
       { q: "Can SEO help us depend less on travel portals?", a: "Yes. Ranking your own route, package and property pages, and a strong Google Business Profile, grow the share of travellers who find and book you directly." },
       { q: "What does SEO for a taxi or tour operator involve?", a: "Typically a page for every popular route and package, a complete Google Business Profile with real photos and reviews, seasonal content for snow and holiday periods, and AI visibility for questions like 'best taxi from Chandigarh to Shimla'." },
@@ -328,7 +325,6 @@ export const locations: Location[] = [
     ],
     sectors: ["travel-tourism", "hospitality"],
     searches: ["homestay in Old Manali with view", "Manali honeymoon package 4 days", "Solang Valley paragliding price", "Manali to Atal Tunnel taxi", "Is Rohtang Pass open in May?"],
-    work: ["himachal-cab-expert", "himachal-taxi-and-tours"],
     faqs: [
       { q: "Can SEO help a Manali homestay depend less on booking portals?", a: "Yes. Ranking your own pages for the stays travellers search for, a strong Google profile and genuine reviews all grow the share of bookings that come to you directly." },
       { q: "Do you work with adventure and tour operators?", a: "Yes. Package and activity pages with prices, inclusions and safety details, plus seasonal content that answers what travellers ask." },
@@ -351,7 +347,6 @@ export const locations: Location[] = [
     ],
     sectors: ["hospitality", "travel-tourism"],
     searches: ["Triund trek guide from McLeod Ganj", "homestay in Dharamkot for a month", "best café in McLeod Ganj", "Dharamshala cricket stadium hotel", "Is Triund trek safe in winter?"],
-    work: ["himachal-cab-expert", "himachal-taxi-and-tours"],
     faqs: [
       { q: "Can you help with international guests?", a: "Yes. We write clear English pages, keep your Google profile complete, and make sure AI assistants can find accurate information about your stay or tours." },
       { q: "Do you help cafés and restaurants?", a: "Yes. For cafés, Maps, photos, menus, reviews and Instagram usually matter most, and we keep your listings accurate everywhere AI assistants look." },

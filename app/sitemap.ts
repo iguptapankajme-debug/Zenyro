@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const page = (path: string, priority: number, lastModified: Date = now) => ({ url: absoluteUrl(path), lastModified, priority });
   return [
     page("/", 1),
-    ...["/services", "/search-growth", "/solutions", "/work", "/about", "/insights", "/contact", "/free-audit", "/locations", "/ai-info", "/markets", "/tools/ai-readiness"].map((p) => page(p, 0.8)),
+    ...["/services", "/search-growth", "/solutions", "/work", "/about", "/insights", "/contact", "/free-audit", "/locations", "/ai-info", "/markets", "/tools/ai-readiness", "/pricing"].map((p) => page(p, 0.8)),
     ...services.map((s) => page(`/services/${s.slug}`, 0.8)),
     ...industries.map((i) => page(`/industries/${i.slug}`, 0.8)),
     ...concepts().map((w) => page(`/work/${w.slug}`, 0.5)),

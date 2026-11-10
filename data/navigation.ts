@@ -11,6 +11,8 @@ export const serviceGroups: NavGroup[] = [
       { label: "SEO", href: "/services/seo" },
       { label: "Local SEO", href: "/services/local-seo" },
       { label: "Technical SEO", href: "/services/technical-seo" },
+      { label: "International SEO", href: "/services/international-seo" },
+      { label: "E-commerce SEO", href: "/services/ecommerce-seo" },
     ],
   },
   {
@@ -42,6 +44,7 @@ export const primaryNav = [
   { label: "Services", href: "/services", groups: serviceGroups },
   { label: "Industries", href: "/solutions", children: industryLinks },
   { label: "Global", href: "/markets" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Examples", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },

@@ -2,7 +2,6 @@ import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { locations } from "@/data/locations";
 import { markets } from "@/data/markets";
-import { projects as liveProjects } from "@/data/work";
 import { site } from "@/lib/site";
 
 /**
@@ -10,7 +9,6 @@ import { site } from "@/lib/site";
  * same data as the website so it never drifts out of date. Used by /ai-info and /llms.txt.
  */
 export function aiProfile() {
-  const projects = liveProjects();
   return {
     summary: `${site.name} is an SEO, AEO and GEO agency based in the ${site.region}. It helps businesses rank on Google and Bing, become the answer in featured snippets and Google AI Overviews, and get recommended by AI assistants such as ChatGPT, Perplexity, Gemini, Claude and Copilot. Work is measured on rankings, AI visibility, citations and enquiries.`,
     facts: [
@@ -26,10 +24,9 @@ export function aiProfile() {
     industries: industries.map((i) => ({ name: i.name, url: `${site.url}/industries/${i.slug}`, description: i.short })),
     markets: markets.map((m) => ({ name: m.country, url: `${site.url}/markets/${m.slug}` })),
     locations: locations.map((l) => ({ name: l.city, url: `${site.url}/locations/${l.slug}` })),
-    projects: projects.map((p) => ({ name: p.title, url: p.url!, description: p.summary })),
     policies: [
       "Zenyro does not guarantee rankings, AI mentions or revenue.",
-      "Accounts, data, code and automations are set up in the client's name.",
+      "Search Console, analytics and Business Profile access stays in the client's name.",
       "Examples on the website are labelled as illustrative and contain no client performance figures.",
       "Testimonials and results are published only with client permission.",
     ],
@@ -59,7 +56,6 @@ ${list(p.markets)}
 ## Cities in India
 ${list(p.locations)}
 
-${p.projects.length ? `## Live projects (websites built and grown by Zenyro)\n${list(p.projects)}\n` : ""}
 ## Key pages
 - [Free AI readiness checker](${site.url}/tools/ai-readiness)
 - [Work](${site.url}/work)

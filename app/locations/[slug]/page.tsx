@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { ArrowUpRight, MessageSquareText, Search, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { Faq } from "@/components/sections/faq";
-import { ProjectGrid } from "@/components/sections/project-grid";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -12,7 +11,6 @@ import { getLocation, locations } from "@/data/locations";
 import { localServices } from "@/data/local-services";
 import { getService } from "@/data/services";
 import { getIndustry } from "@/data/industries";
-import { projects as liveProjects } from "@/data/work";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -39,7 +37,6 @@ export default async function LocationPage({ params }: Props) {
   const l = getLocation((await params).slug);
   if (!l) notFound();
   const sectors = l.sectors.map(getIndustry).filter((x) => !!x);
-  const projects = liveProjects().filter((w) => l.work?.includes(w.slug));
   const path = `/locations/${l.slug}`;
   const local = localServices.filter((x) => x.city === l.slug);
 
@@ -142,16 +139,6 @@ export default async function LocationPage({ params }: Props) {
                 </li>
               ))}
             </ul>
-          </div>
-        </section>
-      )}
-
-      {projects.length > 0 && (
-        <section className="border-t border-line py-20 md:py-28" aria-labelledby="local-work-title">
-          <div className="shell">
-            <p className="eyebrow mb-6">Live work</p>
-            <h2 id="local-work-title" className="display-md mb-12 max-w-3xl">Projects serving this area.</h2>
-            <ProjectGrid items={projects} headingLevel="h3" />
           </div>
         </section>
       )}

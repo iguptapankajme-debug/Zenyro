@@ -44,7 +44,7 @@ const nextConfig: NextConfig = {
             to("/ai-marketing-agency", "/services/geo"),
             ...["website-development", "performance-marketing", "social-media-marketing", "ai-automation"].map((s) => to(`/locations/:city/${s}`, "/locations/:city")),
             ...["whatsapp-lead-qualification-real-estate", "speed-to-lead", "whatsapp-automation-guide", "measure-cost-per-customer"].map((s) => to(`/insights/${s}`, "/insights")),
-            ...["residential-launch-engine", "boutique-hotel-direct", "travel-quote-website", "dealer-lead-routing"].map((s) => to(`/work/${s}`, "/work")),
+            ...["residential-launch-engine", "boutique-hotel-direct", "travel-quote-website", "dealer-lead-routing", "eauctionhunt", "himachal-cab-expert", "npa-experts", "himachal-taxi-and-tours", "msme-help", "travel-to-abroad"].map((s) => to(`/work/${s}`, "/work")),
             to("/work/clinic-appointment-flow", "/work/dental-local-seo"),
           ];
         },

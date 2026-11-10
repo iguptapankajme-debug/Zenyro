@@ -7,6 +7,7 @@ import { HeroOrbit, OrbitStack } from "@/components/home/hero-orbit";
 import { AskAiDemo } from "@/components/home/ask-ai-demo";
 import { AiReadinessChecker } from "@/components/tools/ai-readiness-checker";
 import { MarketCards } from "@/components/markets/market-cards";
+import { PricingPlans } from "@/components/pricing/pricing-plans";
 import { VisibilityDashboard } from "@/components/home/visibility-dashboard";
 import { ExampleGrid } from "@/components/sections/example-grid";
 import { Faq } from "@/components/sections/faq";
@@ -28,6 +29,7 @@ const homeFaqs = [
   { q: "Can you get my business mentioned in ChatGPT?", a: "We can make you much easier to find, cite and recommend: clear facts about your business, pages that answer real questions, consistent listings and mentions on the sources AI assistants read. Nobody can guarantee a mention, and we track progress prompt by prompt so you can see what's changing." },
   { q: "How do you measure results?", a: "Google rankings, organic clicks and Maps actions from Search Console and Google Business Profile, plus AI visibility: how often and how prominently you're mentioned for the prompts your customers use, and which of your pages are cited. Everything is tied back to enquiries." },
   { q: "How long does it take?", a: "Technical fixes and Google Business Profile improvements can show within weeks. Competitive rankings and steady AI visibility usually build over three to six months of consistent work." },
+  { q: "How much does it cost?", a: "Two monthly plans: Growth from US$799 and Authority from US$1,799, shown in your currency on the pricing page. No setup fee, month to month." },
   { q: "Do you guarantee rankings?", a: "No honest agency can. We commit to a clear plan, quality work and transparent monthly reporting." },
   { q: "Where are you based, and do you work internationally?", a: "We are based in the Chandigarh Tricity, India, and work remotely with businesses in the United States, United Kingdom, UAE, Canada, Australia, Singapore and across India. Calls are scheduled in your working hours, and content is written in your market's English." },
 ];
@@ -64,11 +66,6 @@ const steps = [
   { t: "Track and report", b: "Monthly rankings, AI visibility by prompt and engine, citations and enquiries, in plain language." },
 ];
 
-const plans = [
-  { name: "Local SEO", for: "Clinics, showrooms, schools and services in one city", items: ["Google Business Profile management", "Location and service pages", "Reviews workflow", "Local AI visibility tracking"] },
-  { name: "SEO + AEO", for: "Businesses competing on Google across a region or country", items: ["Technical SEO and fixes", "Monthly answer-first content", "Featured snippet and AI Overview targeting", "Digital PR and links"], featured: true },
-  { name: "AI visibility (GEO)", for: "Brands that want to be recommended by ChatGPT and other AI assistants", items: ["Prompt tracking across AI engines", "Entity and brand-fact cleanup", "Citation and mention building", "Monthly AI visibility report"] },
-];
 
 function SerpMini() {
   return (
@@ -347,21 +344,15 @@ export default function Home() {
 
       {/* Plans */}
       <Rail labelledBy="plans-title">
-        <p className="eyebrow mb-6">Ways to work with us</p>
-        <h2 id="plans-title" className="max-w-3xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">Fixed monthly scope. <span className="text-muted">No lock-in.</span></h2>
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {plans.map((p) => (
-            <article key={p.name} className={`relative flex flex-col rounded-2xl border p-7 ${p.featured ? "border-ember bg-ink shadow-[0_20px_60px_-30px_rgba(21,94,239,.5)]" : "border-line bg-ink-2"}`}>
-              {p.featured && <span className="absolute -top-3 left-7 rounded-md bg-ember px-2 py-0.5 font-mono text-[0.68rem] text-ember-ink">Recommended</span>}
-              <h3 className="text-[1.4rem] font-semibold tracking-[-0.03em]">{p.name}</h3>
-              <p className="mt-2 text-[0.92rem] text-muted">{p.for}</p>
-              <ul className="mt-6 grid flex-1 gap-2.5 border-t border-dashed border-line-2 pt-6 text-[0.92rem]">
-                {p.items.map((it) => <li key={it} className="flex gap-2.5"><Check aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-ember" />{it}</li>)}
-              </ul>
-              <div className="mt-8"><ButtonLink href="/free-audit" variant={p.featured ? "primary" : "ghost"}>Start with a free audit</ButtonLink></div>
-            </article>
-          ))}
+        <div className="text-center">
+          <p className="eyebrow mx-auto mb-6">Pricing</p>
+          <h2 id="plans-title" className="mx-auto max-w-3xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
+            Agency-grade SEO, AEO and GEO. <span className="text-muted">At about half the usual price.</span>
+          </h2>
+          <p className="mx-auto mb-10 mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-muted">Two plans, priced in your currency. No setup fee and no lock-in.</p>
         </div>
+        <PricingPlans />
+        <p className="mt-6 text-center"><Link href="/pricing" className="inline-flex items-center gap-2 font-medium"><span className="link-u">Compare plans and agencies</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link></p>
       </Rail>
 
       <Faq faqs={homeFaqs} title="Questions about SEO, AEO and GEO." />
