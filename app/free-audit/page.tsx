@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Free SEO & AI Visibility Audit for Your Business",
   description:
-    "A free, hand-made audit by Zenyro: how you show up on Google, in AI answers (ChatGPT, Perplexity, Google AI Overviews), your technical SEO and Core Web Vitals, and the content and authority gaps holding your rankings back.",
+    "A free, hand-made audit: your Google rankings, what ChatGPT and AI Overviews say about you, technical SEO, and the gaps holding you back.",
   path: "/free-audit",
 });
 

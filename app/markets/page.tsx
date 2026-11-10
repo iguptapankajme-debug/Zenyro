@@ -5,7 +5,7 @@ import { Em } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "International SEO, AEO & GEO: US, UK, UAE, Canada, Australia, Singapore",
+  title: "International SEO, AEO & GEO Agency: 6 Markets",
   description: "Zenyro works with businesses worldwide to rank on Google and get recommended by ChatGPT, Perplexity and Gemini. A remote team with calls in your working hours.",
   path: "/markets",
 });

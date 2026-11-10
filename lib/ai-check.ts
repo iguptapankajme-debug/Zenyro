@@ -70,7 +70,7 @@ export function botAllowed(groups: Group[], bot: string): boolean {
 }
 
 const first = (html: string, re: RegExp) => re.exec(html)?.[1]?.trim() ?? "";
-const decode = (s: string) => s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/\s+/g, " ").trim();
+const decode = (s: string) => s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d))).replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/\s+/g, " ").trim();
 const meta = (html: string, attr: "name" | "property", key: string) => {
   const tags = html.match(/<meta\b[^>]*>/gi) ?? [];
   for (const t of tags) {

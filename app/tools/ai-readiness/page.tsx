@@ -8,7 +8,7 @@ import { buildMetadata, webApplicationSchema } from "@/lib/seo";
 
 const title = "Free AI Readiness Checker: Can ChatGPT Read Your Site?";
 const description =
-  "Check in seconds whether ChatGPT, Claude, Perplexity and Gemini can crawl your website, whether your business is described in structured data, and which SEO basics are missing. Free, no sign-up.";
+  "Free tool: check in seconds whether ChatGPT, Claude, Perplexity and Gemini can crawl your site and understand your business. No sign-up.";
 
 export const metadata = buildMetadata({ title, description, path: "/tools/ai-readiness" });
 

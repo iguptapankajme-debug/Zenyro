@@ -113,7 +113,7 @@ const allServices: Service[] = [
     serviceType: "Answer engine optimisation",
     metaTitle: "Answer Engine Optimization (AEO) Services",
     metaDescription:
-      "Answer engine optimisation: question-based content strategy, clear factual answers, entity clarity and structured data where relevant, so your business can become the answer.",
+      "Answer engine optimisation (AEO): question-led content, clear answers and structured data so featured snippets and AI Overviews quote you.",
     headline: "Answer Engine Optimization Services",
     intro:
       "Become the answer. More searches now end with a direct answer, a featured snippet or a voice reply. AEO makes your expertise easy to find, understand and quote: clear questions, clear answers, and well-structured information about your business.",
@@ -165,7 +165,7 @@ const allServices: Service[] = [
     serviceType: "Generative engine optimisation",
     metaTitle: "Generative Engine Optimization (GEO) Services",
     metaDescription:
-      "Generative engine optimisation: AI search visibility audits, brand entity consistency, expert content, source citation analysis and monitoring across generative search experiences.",
+      "Generative engine optimisation (GEO): get recommended by ChatGPT, Perplexity, Gemini and Claude, with prompt-level AI visibility tracking.",
     headline: "Generative Engine Optimization Services",
     intro:
       "Get discovered in AI search. People increasingly ask AI assistants and AI-powered search for recommendations. GEO improves how accurately and how often your brand is represented there, by strengthening the signals these systems draw on: clear facts, credible sources, expert content and a consistent presence across the web.",
@@ -217,7 +217,7 @@ const allServices: Service[] = [
     serviceType: "Local search engine optimisation",
     metaTitle: "Local SEO Services: Rank in Google Maps & Local Search",
     metaDescription:
-      "Local SEO for businesses that serve a city or region: Google Business Profile optimisation, location pages, reviews workflow and technical fixes that help you appear in the map pack.",
+      "Local SEO for businesses serving a city or region: Google Business Profile, location pages, reviews and fixes that get you into the map pack.",
     headline: "Be the first name nearby.",
     intro:
       "When someone searches for a clinic, interior designer or builder near them, the map results take most of the clicks. Local SEO makes sure your business appears there with accurate information, strong reviews and pages that prove you serve that area.",
@@ -266,7 +266,7 @@ const allServices: Service[] = [
     serviceType: "Technical search engine optimisation",
     metaTitle: "Technical SEO Services: Crawling, Indexing & Core Web Vitals",
     metaDescription:
-      "Technical SEO audits and fixes: crawling, indexing, site architecture, structured data, JavaScript rendering, Core Web Vitals and AI crawler access, done and verified.",
+      "Technical SEO audits and fixes: indexing, site architecture, structured data, JavaScript rendering, Core Web Vitals and AI crawler access.",
     headline: "Technical SEO that lets search engines and AI read every page",
     intro:
       "Great content can't rank if crawlers can't reach it, understand it or trust it. We audit and fix the technical foundations, from indexing and site architecture to structured data, speed and AI crawler access, then verify every fix in Search Console.",
@@ -317,7 +317,7 @@ const allServices: Service[] = [
     serviceType: "SEO content and digital PR",
     metaTitle: "SEO Content & Digital PR: Content That Ranks and Gets Cited",
     metaDescription:
-      "SEO content strategy, expert-written articles and pages, content refreshes and digital PR that earns links and mentions, built to rank on Google and be cited by AI.",
+      "SEO content strategy, expert articles, content refreshes and digital PR that earns links and mentions, built to rank and be cited by AI.",
     headline: "Content that ranks on Google and gets cited by AI",
     intro:
       "Search engines and AI assistants both reward the clearest, most credible answer. We plan content from real search demand, write it with people who know the subject, refresh what's slipping, and earn the links and mentions that build authority.",
@@ -367,7 +367,7 @@ const allServices: Service[] = [
     serviceType: "International search engine optimisation",
     metaTitle: "International SEO Services: Rank in Every Country You Sell To",
     metaDescription:
-      "International SEO for businesses selling abroad: country and language targeting, hreflang, localised keyword research and content, and AI visibility in every market.",
+      "International SEO for businesses selling abroad: country targeting, hreflang, localised keyword research and content, and AI visibility.",
     headline: "International SEO that ranks you in every market you sell to",
     intro:
       "Ranking in one country doesn't carry over to the next. Each market has its own searches, competitors, spelling and trusted sources. We set up your site to target each country correctly, research what buyers there actually search and ask, and build the pages and authority to win there.",
@@ -414,9 +414,9 @@ const allServices: Service[] = [
     discipline: "build",
     search: "seo",
     serviceType: "E-commerce search engine optimisation",
-    metaTitle: "E-commerce SEO Services: Rank Products & Categories on Google and AI",
+    metaTitle: "E-commerce SEO Services: Rank Products on Google & AI",
     metaDescription:
-      "E-commerce SEO for online stores: category and product page optimisation, product schema, faceted navigation, Google Shopping free listings and AI shopping visibility.",
+      "E-commerce SEO for online stores: category and product pages, product schema, faceted navigation, free Shopping listings and AI visibility.",
     headline: "E-commerce SEO that gets your products found and chosen",
     intro:
       "Shoppers search Google, scroll free product listings and increasingly ask ChatGPT or Perplexity what to buy. We make your categories and products rank, show rich results and appear in AI shopping answers, so fewer sales depend on ads.",

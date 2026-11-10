@@ -13,6 +13,7 @@ import { ExampleGrid } from "@/components/sections/example-grid";
 import { Faq } from "@/components/sections/faq";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { concepts } from "@/data/work";
+import { guides } from "@/data/guides";
 import { industries } from "@/data/industries";
 import { buildMetadata } from "@/lib/seo";
 
@@ -341,6 +342,67 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Why Zenyro */}
+      <Rail labelledBy="why-title">
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="eyebrow mb-6">Why Zenyro</p>
+            <h2 id="why-title" className="text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
+              What the big agencies do, <Em>without the big-agency bill</Em>
+            </h2>
+            <p className="mt-5 text-[1.05rem] leading-relaxed text-muted">
+              Leading content and digital PR agencies often start at $7,500 a month. We bring the same disciplines, measured the same way, to businesses that want results without that overhead.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-[0.95rem]">
+              <Link href="/about" className="inline-flex items-center gap-1.5 font-medium"><span className="link-u">About Zenyro</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+              <Link href="/insights/how-to-choose-seo-aeo-geo-agency" className="inline-flex items-center gap-1.5 text-muted hover:text-paper"><span className="link-u">How to choose an agency</span></Link>
+              <Link href="/contact" className="inline-flex items-center gap-1.5 text-muted hover:text-paper"><span className="link-u">Talk to us</span></Link>
+            </div>
+          </div>
+          <ul className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:col-span-7">
+            {[
+              ["Measured, not guessed", "Every plan tracks a fixed set of customer prompts across ChatGPT, Gemini, Perplexity and AI Overviews, alongside Google rankings."],
+              ["Our own tools", "We built the free AI readiness checker on this site. The same checks run on every client site, every month."],
+              ["Published prices", "Two plans with prices in your currency. Most agencies only quote after a sales call."],
+              ["No lock-in", "No setup fee and month-to-month terms. We keep clients by showing progress, not by contract."],
+              ["SEO, AEO and GEO together", "One plan and one report covering rankings, answers and AI recommendations, so nothing falls between agencies."],
+              ["Everything in your name", "Search Console, analytics and Business Profile stay in your accounts. You keep all the content we create."],
+            ].map(([t, b]) => (
+              <li key={t} className="bg-ink p-6">
+                <p className="flex items-center gap-2 font-semibold"><Check aria-hidden="true" className="size-4 text-ember" />{t}</p>
+                <p className="mt-2 text-[0.9rem] leading-relaxed text-muted">{b}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Rail>
+
+      {/* Guides */}
+      <Rail labelledBy="guides-title">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow mb-6">Guides</p>
+            <h2 id="guides-title" className="max-w-2xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">Learn how search <Em>works now</Em></h2>
+          </div>
+          <div className="flex gap-6">
+            <Link href="/glossary" className="inline-flex items-center gap-2 font-medium"><span className="link-u">Glossary</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+            <Link href="/insights" className="inline-flex items-center gap-2 font-medium"><span className="link-u">All insights</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+          </div>
+        </div>
+        <ul className="grid gap-5 md:grid-cols-3">
+          {guides.slice(0, 3).map((g) => (
+            <li key={g.slug}>
+              <Link href={`/insights/${g.slug}`} className="group flex h-full flex-col rounded-2xl border border-line bg-ink-2 p-6 transition-colors hover:border-ember/60 hover:bg-ink">
+                <span className="font-mono text-[0.72rem] text-ember">{g.category} · {g.readingMinutes} min</span>
+                <span className="mt-4 text-[1.2rem] font-semibold leading-snug tracking-[-0.02em]">{g.title}</span>
+                <span className="mt-3 flex-1 text-[0.9rem] leading-relaxed text-muted">{g.description}</span>
+                <ArrowUpRight aria-hidden="true" className="mt-5 size-4 text-ember transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Rail>
 
       {/* Plans */}
       <Rail labelledBy="plans-title">

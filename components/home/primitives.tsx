@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
  */
 export function Rail({ children, className, inner, id, label, labelledBy }: { children: ReactNode; className?: string; inner?: string; id?: string; label?: string; labelledBy?: string }) {
   return (
-    <section id={id} aria-label={label} aria-labelledby={labelledBy} className={cn("border-b border-line", className)}>
+    <section id={id} aria-label={label} aria-labelledby={labelledBy} className={cn("cv-auto border-b border-line", className)}>
       <div className="shell">
         <div className={cn("border-x border-line px-5 py-20 sm:px-8 md:px-12 md:py-28", inner)}>{children}</div>
       </div>

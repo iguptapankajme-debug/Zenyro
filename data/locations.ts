@@ -27,7 +27,7 @@ export const locations: Location[] = [
     region: "Chandigarh Tricity",
     metaTitle: "SEO Agency in Chandigarh: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Chandigarh from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Chandigarh: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Chandigarh's SEO agency for the AI search era.",
     intro:
       "We are based in the Tricity and work with businesses that want more enquiries, not more reports. Local rankings, Google Maps visibility and AI answers that name you, measured on enquiries.",
@@ -50,7 +50,7 @@ export const locations: Location[] = [
     region: "Punjab",
     metaTitle: "SEO Agency in Mohali: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Mohali from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Mohali: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "More enquiries for Mohali businesses, answered faster.",
     intro:
       "Mohali has grown fast: new residential sectors, IT and service companies, hospitals and a busy airport corridor. We help businesses here get found for the searches that matter and turn those enquiries into appointments and site visits.",
@@ -72,7 +72,7 @@ export const locations: Location[] = [
     region: "Haryana",
     metaTitle: "SEO Agency in Panchkula: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Panchkula from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Panchkula: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Be the Panchkula business people find first.",
     intro:
       "Panchkula is a city of neighbourhood decisions: the nearest good clinic, school, salon, gym or contractor. We help local businesses win those searches and earn their trust before they pick up the phone.",
@@ -94,7 +94,7 @@ export const locations: Location[] = [
     region: "Punjab",
     metaTitle: "SEO Agency in Ludhiana: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Ludhiana from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Ludhiana: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Digital growth for Ludhiana's makers and traders.",
     intro:
       "Ludhiana runs on manufacturing, trading and family businesses: hosiery and textiles, cycle and auto parts, machine tools and a large retail market. We help these businesses win buyers who now search, compare and message before they ever call.",
@@ -116,7 +116,7 @@ export const locations: Location[] = [
     region: "Himachal Pradesh",
     metaTitle: "SEO Agency in Shimla: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Shimla from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Shimla: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "More direct bookings for Himachal travel businesses.",
     intro:
       "Tourism drives Shimla and the hills, and travellers decide fast: a route, a vehicle, a room, a quote. We help travel and hospitality businesses win those searches with route and package pages, complete Maps profiles and answers AI assistants can quote.",
@@ -138,7 +138,7 @@ export const locations: Location[] = [
     region: "Punjab",
     metaTitle: "SEO Agency in Zirakpur: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Zirakpur from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Zirakpur: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Zirakpur is growing fast. Make sure buyers find you first.",
     intro:
       "Zirakpur has become one of the busiest residential and retail corridors around Chandigarh, along the airport road and the highways to Delhi, Shimla and Patiala. We help businesses here turn that flow of new residents and through-traffic into enquiries.",
@@ -160,7 +160,7 @@ export const locations: Location[] = [
     region: "Punjab",
     metaTitle: "SEO Agency in Kharar: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Kharar from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Kharar: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Get found by Kharar's new residents and students.",
     intro:
       "Kharar and the Landran and Sunny Enclave belt have filled with new homes, student housing, coaching centres and shops. We help local businesses show up when these new customers search, and choose you over the next result.",
@@ -182,7 +182,7 @@ export const locations: Location[] = [
     region: "Punjab",
     metaTitle: "SEO Agency in Amritsar: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Amritsar from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Amritsar: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Amritsar welcomes millions. Make sure they book with you.",
     intro:
       "Amritsar receives pilgrims and tourists from across India and the world, all year round. We help hotels, guest houses, tour operators, restaurants and retailers win those searches and turn them into direct bookings and orders.",
@@ -204,7 +204,7 @@ export const locations: Location[] = [
     region: "Punjab",
     metaTitle: "SEO Agency in Jalandhar: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Jalandhar from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Jalandhar: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "From sports goods to study abroad, get Jalandhar found.",
     intro:
       "Jalandhar is known worldwide for sports goods and leather, and across Punjab for education, healthcare and immigration services. We help these businesses win buyers and students who now search, compare and message before they call.",
@@ -226,7 +226,7 @@ export const locations: Location[] = [
     region: "Punjab",
     metaTitle: "SEO Agency in Patiala: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Patiala from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Patiala: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Be Patiala's first choice in search.",
     intro:
       "Patiala combines a historic city centre with growing residential areas, universities and medical institutions. We help local businesses win the searches that bring customers through the door.",
@@ -248,7 +248,7 @@ export const locations: Location[] = [
     region: "Haryana",
     metaTitle: "SEO Agency in Ambala: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Ambala from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Ambala: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Ambala makes it. Make sure buyers can find it.",
     intro:
       "Ambala is one of India's best-known centres for scientific and laboratory instruments, and a major wholesale market on the Grand Trunk Road. We help its manufacturers and traders win buyers who now search and compare online.",
@@ -270,7 +270,7 @@ export const locations: Location[] = [
     region: "Haryana",
     metaTitle: "SEO Agency in Karnal: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Karnal from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Karnal: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "More enquiries for Karnal businesses, answered faster.",
     intro:
       "Karnal sits on the national highway between Delhi and Chandigarh, with a strong agricultural and dairy economy and fast-growing residential sectors. We help local businesses get found and turn searches into calls and visits.",
@@ -292,7 +292,7 @@ export const locations: Location[] = [
     region: "Uttarakhand",
     metaTitle: "SEO Agency in Dehradun: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Dehradun from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Dehradun: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Get Dehradun's students, families and travellers to choose you.",
     intro:
       "Dehradun is known for its schools and institutes, and as the gateway to Mussoorie, Rishikesh and the Char Dham routes. We help education, hospitality and local businesses win the searches that bring admissions, bookings and visits.",
@@ -314,7 +314,7 @@ export const locations: Location[] = [
     region: "Himachal Pradesh",
     metaTitle: "SEO Agency in Manali: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Manali from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Manali: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Fill your Manali rooms and tours with direct bookings.",
     intro:
       "Manali draws honeymooners, families, bikers and adventure travellers, with Solang Valley, Atal Tunnel and the road to Lahaul and Ladakh. We help hotels, homestays and operators win those bookings directly instead of through portals.",
@@ -336,7 +336,7 @@ export const locations: Location[] = [
     region: "Himachal Pradesh",
     metaTitle: "SEO Agency in Dharamshala: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Dharamshala from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Dharamshala: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Be the stay, café or trek that Dharamshala visitors pick.",
     intro:
       "Dharamshala and McLeod Ganj attract spiritual travellers, trekkers, cricket fans and remote workers from India and abroad. We help local hospitality and tour businesses win those searches and bookings directly.",
@@ -358,7 +358,7 @@ export const locations: Location[] = [
     region: "Delhi, Gurugram & Noida",
     metaTitle: "SEO Agency in Delhi NCR: Local SEO, AEO & GEO",
     metaDescription:
-      "SEO in Delhi NCR from a Tricity search agency: Google rankings and Maps visibility, answer-first content for AI Overviews, and AI visibility so ChatGPT and Gemini recommend you.",
+      "SEO in Delhi NCR: rank on Google and Maps, win AI Overview answers and get recommended by ChatGPT and Gemini. Free AI visibility audit.",
     headline: "Win Delhi NCR searches without outspending everyone.",
     intro:
       "Delhi NCR is India's most competitive market for almost every category. Big budgets chase the same searches, so the businesses that win organically are the ones with the clearest pages, the strongest local signals and the facts AI assistants can trust.",

@@ -129,6 +129,11 @@ body {
   .prose-z ul { margin: 0 0 1.5rem; padding-left: 1.2rem; list-style: square; }
   .prose-z li { margin: .4rem 0; }
   .prose-z li::marker { color: var(--color-ember); }
+  .prose-z ol { margin: 0 0 1.5rem; padding-left: 1.4rem; list-style: decimal; }
+  .prose-z h2 { scroll-margin-top: 7rem; }
+  .prose-z table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .prose-z th, .prose-z td { border-top: 1px solid var(--color-line); padding: .7rem .8rem; text-align: left; vertical-align: top; }
+  .prose-z thead th { color: var(--color-paper); background: var(--color-ink-2); border-top: 0; font-weight: 600; }
   .prose-z strong { color: var(--color-paper); font-weight: 600; }
   .prose-z a { color: var(--color-paper); text-decoration: underline; text-decoration-color: var(--color-ember); text-underline-offset: 3px; }
 
@@ -411,3 +416,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 .fx-rise { animation: fade .6s var(--ease-out-expo) both; }
 @keyframes spin-slow { to { transform: rotate(360deg); } }
 .spin-slow { animation: spin-slow 40s linear infinite; }
+
+/* Skip rendering off-screen homepage sections until they are near the viewport. */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 900px; }

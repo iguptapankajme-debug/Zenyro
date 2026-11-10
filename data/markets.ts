@@ -65,7 +65,7 @@ export const markets: Market[] = [
   },
   {
     slug: "uae", country: "United Arab Emirates", code: "UAE", zone: "Asia/Dubai", city: "Dubai",
-    metaTitle: "SEO, AEO & GEO Agency for UAE Businesses | Dubai & Abu Dhabi",
+    metaTitle: "SEO, AEO & GEO Agency for UAE Businesses",
     metaDescription: "Zenyro helps businesses in Dubai, Abu Dhabi and across the UAE rank on Google, appear in AI Overviews and get recommended by ChatGPT. Near-identical working hours.",
     headline: "Get found by customers in Dubai, Abu Dhabi and across the UAE.",
     intro: "UAE customers search in English and Arabic, compare on Google Maps and increasingly ask ChatGPT for recommendations. We build the pages, listings and signals that put you on that list.",

@@ -12,6 +12,7 @@ const company = [
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
   { label: "Free audit", href: "/free-audit" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 const agency = [
@@ -19,6 +20,7 @@ const agency = [
   { label: "Free AI visibility audit", href: "/free-audit" },
   { label: "Free AI readiness checker", href: "/tools/ai-readiness" },
   { label: "Examples", href: "/work" },
+  { label: "Glossary", href: "/glossary" },
   { label: "For AI assistants", href: "/ai-info" },
 ];
 

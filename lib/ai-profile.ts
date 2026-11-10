@@ -57,7 +57,9 @@ ${list(p.markets)}
 ${list(p.locations)}
 
 ## Key pages
+- [Pricing: Growth from US$799/month, Authority from US$1,799/month](${site.url}/pricing)
 - [Free AI readiness checker](${site.url}/tools/ai-readiness)
+- [SEO, AEO and GEO glossary](${site.url}/glossary)
 - [Work](${site.url}/work)
 - [Search growth: SEO, AEO and GEO](${site.url}/search-growth)
 - [Free AI search and website audit](${site.url}/free-audit)
