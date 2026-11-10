@@ -71,7 +71,7 @@ function Spark({ series, active }: { series: number[]; active: boolean }) {
   const pts = series.map((v, i) => `${(i / (series.length - 1)) * 100},${36 - ((v - min) / (max - min || 1)) * 30}`).join(" ");
   return (
     <svg viewBox="0 0 100 40" preserveAspectRatio="none" className="mt-4 h-10 w-full" aria-hidden="true">
-      <polygon points={`0,40 ${pts} 100,40`} fill="rgba(255,107,53,.10)" />
+      <polygon points={`0,40 ${pts} 100,40`} fill="rgba(21,94,239,.10)" />
       <polyline points={pts} fill="none" stroke="var(--color-ember)" strokeWidth="1.6" vectorEffect="non-scaling-stroke" pathLength={1} className={cn("spark", active && "is-on")} />
     </svg>
   );
@@ -92,7 +92,7 @@ export function VisibilityDemo({ initial = 0 }: { initial?: number }) {
   const [active, setActive] = useState(initial);
   const t = tabs[active]!;
   return (
-    <div className="overflow-hidden rounded-[1.75rem] border border-line bg-[#050608]">
+    <div className="overflow-hidden rounded-[1.75rem] border border-line bg-ink-2">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-4 sm:px-6">
         <div role="tablist" aria-label="Search experience" className="flex flex-wrap gap-1.5">
           {tabs.map((x, i) => (

@@ -35,11 +35,11 @@ export type WorkItem = {
   categories?: ExampleCategory[];
 };
 
-export type ExampleCategory = "seo" | "website" | "automation";
+export type ExampleCategory = "seo" | "aeo" | "geo";
 export const exampleCategories: { key: ExampleCategory; label: string }[] = [
-  { key: "seo", label: "SEO, AEO & GEO" },
-  { key: "website", label: "Websites" },
-  { key: "automation", label: "Automation" },
+  { key: "seo", label: "SEO" },
+  { key: "aeo", label: "AEO" },
+  { key: "geo", label: "GEO" },
 ];
 
 /** What the animated mock screen shows at one stage of a system walkthrough. */
@@ -137,7 +137,7 @@ export const work: WorkItem[] = [
   {
     slug: "residential-launch-engine",
     kind: "concept",
-    categories: ["website", "automation"],
+    categories: [],
     title: "Residential launch engine",
     summary: "Turning a tower launch into a steady calendar of qualified site visits.",
     client: "Concept for a premium residential developer",
@@ -194,7 +194,7 @@ export const work: WorkItem[] = [
   {
     slug: "boutique-hotel-direct",
     kind: "concept",
-    categories: ["website", "automation"],
+    categories: [],
     title: "Direct booking and events system",
     summary: "More direct bookings, and no wedding enquiry left waiting overnight.",
     client: "Concept for a boutique hill-station resort",
@@ -262,78 +262,31 @@ export const work: WorkItem[] = [
     ],
   },
   {
-    slug: "clinic-appointment-flow",
+    slug: "dental-local-seo",
     kind: "concept",
-    categories: ["seo", "automation"],
-    title: "Appointment and recall automation",
-    summary: "An appointment book that fills itself, day and night.",
+    categories: ["seo", "geo"],
+    title: "Local SEO for a multi-branch dental clinic",
+    summary: "Every branch in the Maps top three, a page for every treatment, and named when patients ask AI for a dentist.",
     client: "Concept for a multi-location dental clinic",
     industry: "Healthcare",
     art: "pulse",
-    challenge:
-      "Front-desk staff juggle phones and WhatsApp, after-hours calls go unanswered, and no-shows leave gaps in the schedule.",
-    services: ["Local SEO", "WhatsApp booking assistant", "Reminders & recalls", "Clinic software integration"],
-    solution:
-      "Optimised Google Business Profiles for each branch, an assistant that books and reschedules appointments at any hour, and reminder and recall flows connected to the clinic's scheduling system.",
+    challenge: "Patients search 'dentist near me' and ask AI assistants for recommendations, but the clinic has one generic website page and incomplete Google profiles for its branches.",
+    services: ["Google Business Profiles", "Branch and treatment pages", "Reviews workflow", "AI visibility tracking"],
+    solution: "A complete, consistent Google Business Profile for every branch, a page for each branch and treatment, a steady reviews workflow, and prompt-level tracking across ChatGPT, Gemini and AI Overviews.",
     outcomes: [],
     flow: [
-      {
-        node: "Local search",
-        title: "Found on the map for every branch",
-        body: "An optimised Google Business Profile for each branch, so a search for a dentist nearby leads to the closest clinic.",
-        screen: { type: "map", query: "dentist near me", places: ["Smile Studio · Sector 17", "Smile Studio · Model Town", "Smile Studio · Civil Lines"] },
-      },
-      {
-        node: "Booking AI",
-        title: "Booked at 10 pm, no front desk needed",
-        body: "Patients book, reschedule or cancel on WhatsApp at any hour, with the assistant offering real open slots.",
-        screen: {
-          type: "chat",
-          name: "Smile Studio",
-          messages: [
-            { from: "customer", text: "Can I get a cleaning appointment tomorrow?" },
-            { from: "assistant", text: "Of course. At Model Town tomorrow I have 10:30 am or 4:00 pm. Which suits you?" },
-            { from: "customer", text: "4:00 please" },
-            { from: "assistant", text: "Done! You're booked for 4:00 pm tomorrow. I'll send a reminder in the morning." },
-          ],
-        },
-      },
-      {
-        node: "Clinic system",
-        title: "Written straight into the schedule",
-        body: "Appointments, reschedules and cancellations sync to the clinic's scheduling software, so the front desk sees them instantly.",
-        screen: { type: "calendar", title: "Model Town · Chair 2", day: 1, time: 3, slot: "Tue · 16:00", note: "Synced to clinic software" },
-      },
-      {
-        node: "Reminders",
-        title: "Reminders before every visit",
-        body: "A WhatsApp reminder the day before and on the morning, with one-tap rescheduling if plans change.",
-        screen: {
-          type: "notify",
-          items: [
-            { time: "Mon · 6:00 pm", text: "Reminder: cleaning tomorrow at 4:00 pm, Model Town. Reply 1 to confirm or 2 to reschedule." },
-            { time: "Tue · 9:00 am", text: "See you at 4:00 pm today. Parking is available behind the clinic." },
-          ],
-          done: "Confirmed by patient",
-        },
-      },
-      {
-        node: "Recall",
-        title: "Recalls that bring patients back",
-        body: "Six months later the patient is invited back for a check-up, and can book again in the same chat.",
-        screen: {
-          type: "notify",
-          items: [{ time: "6 months later", text: "It's been six months since your last check-up. Shall I find you a slot this week?" }],
-          done: "Check-up booked again",
-        },
-      },
+      { node: "Profiles", title: "Every branch on the map", body: "A complete Google Business Profile for each branch: categories, services, hours, photos and questions answered.", screen: { type: "map", query: "dentist near me", places: ["Smile Studio · Sector 17", "Smile Studio · Model Town", "Smile Studio · Civil Lines"] } },
+      { node: "Pages", title: "A page for every branch and treatment", body: "Branch pages with address, directions and doctors; treatment pages that answer cost, duration and recovery questions.", screen: { type: "page", url: "smilestudio.in/root-canal", heading: "Root canal treatment, explained", chips: ["Cost", "Duration", "Recovery"], cta: "Book a consultation" } },
+      { node: "Rankings", title: "In the local pack for treatment searches", body: "Branch and treatment pages compete for the exact searches patients make, area by area.", screen: { type: "serp", query: "root canal treatment model town", results: [{ title: "Root Canal Treatment in Model Town | Smile Studio", url: "smilestudio.in › root-canal", text: "Painless, single-visit root canals with clear pricing and same-week appointments.", ours: true }, { title: "What is a root canal?", url: "health.example › dental", text: "A guide to the procedure." }, { title: "Dentists in Model Town", url: "directory.example › dentists", text: "Compare clinics and reviews." }] } },
+      { node: "AI answers", title: "Recommended when patients ask AI", body: "Consistent facts and genuine reviews make the clinic easy for AI assistants to recommend accurately.", screen: { type: "answer", question: "Which dental clinic in Model Town is good for root canal treatment?", answer: "Smile Studio in Model Town is well reviewed for root canal treatment, with clear pricing and appointments the same week.", sources: ["smilestudio.in", "Google Business Profile", "Health directory listing"] } },
+      { node: "Reviews", title: "A steady flow of genuine reviews", body: "Every patient gets a simple review request after a visit, and every review gets a reply.", screen: { type: "notify", items: [{ time: "After visit", text: "Thank you for visiting Smile Studio today. Would you share a quick review of your experience?" }, { time: "Reply posted", text: "Thank you, Priya! We're glad the treatment went smoothly." }], done: "Review published" } },
     ],
   },
   // ---------- More examples: SEO, websites and automation ----------
   {
     slug: "interiors-search-growth",
     kind: "concept",
-    categories: ["seo"],
+    categories: ["seo", "aeo", "geo"],
     title: "Search growth for an interiors studio",
     summary: "Found for every room, style and locality a client searches, and named when they ask AI for a designer.",
     client: "Concept for a residential interiors studio",
@@ -354,7 +307,7 @@ export const work: WorkItem[] = [
   {
     slug: "institute-course-seo",
     kind: "concept",
-    categories: ["seo", "website"],
+    categories: ["seo", "aeo"],
     title: "Rank every course for a coaching institute",
     summary: "A page for every course and batch, found in Maps and search, with counselling booked straight away.",
     client: "Concept for a multi-branch coaching institute",
@@ -375,7 +328,7 @@ export const work: WorkItem[] = [
   {
     slug: "manufacturer-ai-visibility",
     kind: "concept",
-    categories: ["seo"],
+    categories: ["geo", "seo"],
     title: "AI search visibility for a manufacturer",
     summary: "Products described so clearly that buyers, search engines and AI assistants can all find and compare them.",
     client: "Concept for an industrial components manufacturer",
@@ -396,7 +349,7 @@ export const work: WorkItem[] = [
   {
     slug: "hotel-website-redesign",
     kind: "concept",
-    categories: ["website", "seo"],
+    categories: ["seo"],
     title: "Hotel website redesign without losing rankings",
     summary: "A new, faster website that keeps every ranking the old one earned, and makes booking direct easier.",
     client: "Concept for a heritage hotel",
@@ -417,7 +370,7 @@ export const work: WorkItem[] = [
   {
     slug: "travel-quote-website",
     kind: "concept",
-    categories: ["website", "automation"],
+    categories: [],
     title: "Taxi and tour website with instant quotes",
     summary: "Route pages that rank, and a quote on WhatsApp within a minute of asking.",
     client: "Concept for a hill-station taxi and tour operator",
@@ -438,7 +391,7 @@ export const work: WorkItem[] = [
   {
     slug: "dealer-lead-routing",
     kind: "concept",
-    categories: ["automation"],
+    categories: [],
     title: "Lead routing for a home improvement dealer",
     summary: "Every enquiry qualified, assigned to the right salesperson and followed up until a measurement visit is booked.",
     client: "Concept for a doors, windows and flooring dealer",
@@ -459,7 +412,7 @@ export const work: WorkItem[] = [
   {
     slug: "advisory-nurture",
     kind: "concept",
-    categories: ["seo", "automation"],
+    categories: ["aeo", "geo"],
     title: "Trusted enquiries for a financial advisory firm",
     summary: "Clear answers that earn trust, a confidential enquiry flow and patient follow-up for long decisions.",
     client: "Concept for a debt and loan advisory firm",
@@ -472,9 +425,9 @@ export const work: WorkItem[] = [
     flow: [
       { node: "AI answers", title: "The clear answer, with your name on it", body: "Explainers written for the questions prospects ask Google and AI assistants.", screen: { type: "answer", question: "What is a one-time settlement for a business loan?", answer: "A one-time settlement (OTS) is an agreement with the lender to close a loan by paying an agreed amount. Advisory explains eligibility, documents and steps in its OTS guide.", sources: ["advisory.in/ots-guide", "advisory.in/faq"] } },
       { node: "Explainer", title: "Pages that answer before they sell", body: "Process, documents, timelines and fees approach explained plainly, with a quiet call to action.", screen: { type: "page", url: "advisory.in/ots-guide", heading: "One-time settlement, explained", chips: ["Eligibility", "Documents", "Timeline"], cta: "Book a confidential call" } },
-      { node: "Confidential chat", title: "A private first conversation", body: "Only the essentials are asked, and nothing sensitive is repeated back.", screen: { type: "chat", name: "Advisory · Confidential", messages: [{ from: "customer", text: "I want to understand if OTS is possible for my business loan." }, { from: "assistant", text: "We can help with that. Everything here stays confidential. Is the loan with a bank or an NBFC?" }, { from: "customer", text: "A public sector bank." }, { from: "assistant", text: "Thank you. Would you like a call with an advisor this week?" }] } },
-      { node: "Consultation", title: "Consultation booked", body: "The prospect picks a time, and the advisor receives a short, private brief.", screen: { type: "calendar", title: "Advisor calendar", day: 1, time: 3, slot: "Tue · 16:00", note: "Consultation booked · brief sent" } },
-      { node: "Nurture", title: "Helpful follow-up for long decisions", body: "Useful guides and check-ins over weeks, never pushy, always easy to stop.", screen: { type: "notify", items: [{ time: "Week 1", text: "Here's our checklist of documents for an OTS application." }, { time: "Week 3", text: "Any questions after your consultation? Reply here anytime." }], done: "Engagement signed" } },
+      { node: "Credibility", title: "Expertise that search engines and AI can verify", body: "Author profiles, credentials, sources and consistent firm details, important for financial topics.", screen: { type: "checklist", title: "Trust signals", rows: [["Author bios", "Published"], ["Credentials", "Listed"], ["Sources", "Cited"], ["Firm details", "Consistent"]], badge: "Ready to be cited" } },
+      { node: "Rankings", title: "Ranking for high-intent questions", body: "Explainer pages compete for the specific questions prospects search before they look for an advisor.", screen: { type: "serp", query: "one time settlement business loan process", results: [{ title: "One-Time Settlement, Explained: Eligibility and Steps | Advisory", url: "advisory.in › ots-guide", text: "Who qualifies, which documents you need and how long the process takes.", ours: true }, { title: "Business loan restructuring", url: "bank.example › loans", text: "Options for existing borrowers." }, { title: "OTS rules", url: "news.example › finance", text: "Recent changes explained." }] } },
+      { node: "Enquiries", title: "Enquiries from people who already trust you", body: "Visitors who found the answer on Google or in AI book a consultation from the same page.", screen: { type: "calendar", title: "Consultations", day: 1, time: 3, slot: "Tue · 16:00", note: "Booked from the OTS guide" } },
     ],
   },
 ];
@@ -486,7 +439,8 @@ export const work: WorkItem[] = [
 export const showLiveProjects = false;
 
 export const projects = () => (showLiveProjects ? work.filter((w) => w.kind === "project") : []);
-export const concepts = () => work.filter((w) => w.kind === "concept");
+/** Published examples: concepts tagged with at least one search pillar. */
+export const concepts = () => work.filter((w) => w.kind === "concept" && (w.categories?.length ?? 0) > 0);
 
 export function getWork(slug: string) {
   return work.find((w) => w.slug === slug);

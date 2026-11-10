@@ -1,3 +1,5 @@
+import { searchServiceSlugs } from "./services";
+
 /**
  * "Service in city" pages for the Tricity, where Zenyro is based: the searches business owners
  * make when they are ready to hire ("SEO company in Chandigarh"). Each entry has its own local
@@ -17,7 +19,7 @@ export type LocalService = {
   faq: { q: string; a: string };
 };
 
-export const localServices: LocalService[] = [
+const allLocalServices: LocalService[] = [
   // ---------- Chandigarh ----------
   {
     city: "chandigarh",
@@ -277,6 +279,9 @@ export const localServices: LocalService[] = [
     faq: { q: "Is WhatsApp automation expensive for a small business?", a: "Setup is a one-time project and running costs are usually modest. We size it to your enquiry volume." },
   },
 ];
+
+/** Only search services are published as city pages. */
+export const localServices = allLocalServices.filter((l) => (searchServiceSlugs as readonly string[]).includes(l.service));
 
 export function getLocalService(city: string, service: string) {
   return localServices.find((l) => l.city === city && l.service === service);

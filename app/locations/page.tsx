@@ -39,7 +39,7 @@ export default function LocationsPage() {
                 <li key={l.slug}>
                   <Link href={`/locations/${l.slug}`} className="group flex h-full flex-col rounded-[1.5rem] border border-line bg-ink-2 p-7 transition-colors hover:border-ember/60">
                     <span className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ember">{l.region}</span>
-                    <span className="mt-3 text-[1.8rem] font-semibold uppercase leading-none tracking-[-0.04em]">{l.city}</span>
+                    <span className="mt-3 text-[1.8rem] font-semibold leading-none tracking-[-0.04em]">{l.city}</span>
                     <span className="mt-4 flex-1 text-[0.95rem] leading-relaxed text-muted">{l.headline}</span>
                     <ArrowUpRight aria-hidden="true" className="mt-6 size-5 text-ember transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </Link>

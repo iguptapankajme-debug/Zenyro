@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
-import { consultationHref, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
 /**
@@ -32,8 +32,8 @@ export function MobileCta() {
       )}
     >
       <div className="flex gap-2">
-        <Link href={consultationHref} tabIndex={shown ? undefined : -1} className="flex h-12 flex-1 items-center justify-center rounded-full bg-ember text-[0.95rem] font-medium text-ember-ink">
-          Book a Growth Consultation
+        <Link href="/free-audit" tabIndex={shown ? undefined : -1} className="flex h-12 flex-1 items-center justify-center rounded-lg bg-ember text-[0.95rem] font-medium text-ember-ink">
+          Get a free AI visibility audit
         </Link>
         {site.whatsapp && (
           <a
@@ -42,7 +42,7 @@ export function MobileCta() {
             rel="noopener noreferrer"
             tabIndex={shown ? undefined : -1}
             aria-label="Chat with Zenyro on WhatsApp"
-            className="flex size-12 items-center justify-center rounded-full border border-line-2"
+            className="flex size-12 items-center justify-center rounded-lg border border-line-2"
           >
             <MessageCircle aria-hidden="true" className="size-5" />
           </a>

@@ -104,7 +104,7 @@ export function SystemFlow({ item, index, total, headingLevel = "h3", link = tru
       <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ember">
         Example {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")} · {item.industry}
       </p>
-      <H className={cn("mt-4 font-semibold uppercase leading-[0.9] tracking-[-0.05em]", pinned ? "text-[clamp(2rem,3.2vw,3.4rem)]" : "text-[clamp(2.2rem,8vw,3.6rem)]")}>{item.title}</H>
+      <H className={cn("mt-4 font-semibold leading-[0.9] tracking-[-0.05em]", pinned ? "text-[clamp(2rem,3.2vw,3.4rem)]" : "text-[clamp(2.2rem,8vw,3.6rem)]")}>{item.title}</H>
       <p className="mt-4 max-w-md text-[1rem] leading-relaxed text-muted">{item.summary}</p>
     </>
   );
@@ -166,7 +166,7 @@ export function SystemFlow({ item, index, total, headingLevel = "h3", link = tru
                 <span className="text-muted">
                   Stage <span key={active} className="blur-swap inline-block text-paper">{String(active + 1).padStart(2, "0")}</span> / {String(n).padStart(2, "0")}
                 </span>
-                <span className="flex items-center gap-2 text-dim"><span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />System running</span>
+                <span className="flex items-center gap-2 text-dim"><span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />Illustrative example</span>
               </div>
 
               {/* Pipeline: dim full route, lit trail up to the live stage, WebGL lead stream, nodes. */}

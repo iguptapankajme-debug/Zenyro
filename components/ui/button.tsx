@@ -12,9 +12,9 @@ type Props = {
 };
 
 const styles = {
-  primary: "btn-sweep bg-ember text-ember-ink hover:bg-ember-2",
-  ghost: "border border-line-2 text-paper hover:border-paper",
-  light: "bg-paper text-ink hover:bg-white",
+  primary: "bg-ember text-ember-ink shadow-[0_1px_2px_rgba(21,94,239,.35),inset_0_1px_0_rgba(255,255,255,.18)] hover:bg-ember-2",
+  ghost: "border border-line-2 bg-ink text-paper shadow-[0_1px_2px_rgba(9,9,11,.06)] hover:bg-ink-2",
+  light: "bg-ink text-paper hover:bg-ink-2",
 };
 
 /** Link styled as a button, with a rolling label and magnetic pull on fine pointers. */
@@ -22,8 +22,8 @@ export function ButtonLink({ href, children, variant = "primary", icon = "right"
   const external = /^https?:\/\//.test(href);
   const Icon = icon === "up-right" ? ArrowUpRight : ArrowRight;
   const cls = cn(
-    "group relative inline-flex items-center justify-center gap-3 rounded-full font-medium transition-colors duration-300",
-    size === "lg" ? "h-14 px-7 text-[0.98rem]" : "h-12 px-6 text-[0.92rem]",
+    "group relative inline-flex items-center justify-center gap-2.5 rounded-lg font-medium transition-colors duration-300",
+    size === "lg" ? "h-12 px-6 text-[0.98rem]" : "h-11 px-5 text-[0.92rem]",
     styles[variant],
     className,
   );

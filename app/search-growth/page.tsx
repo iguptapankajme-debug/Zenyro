@@ -49,7 +49,7 @@ export default function SearchGrowthPage() {
                   <Link href={`/services/${p.slug}`} className="group flex items-baseline gap-5 py-6">
                     <span className="font-mono text-[0.72rem] text-ember">0{i + 1}</span>
                     <span className="flex-1">
-                      <span className="block text-[clamp(2.4rem,5vw,4.4rem)] font-semibold uppercase leading-[0.9] tracking-[-0.05em] transition-colors group-hover:text-ember">{p.tag}</span>
+                      <span className="block text-[clamp(2.4rem,5vw,4.4rem)] font-semibold leading-[0.9] tracking-[-0.05em] transition-colors group-hover:text-ember">{p.tag}</span>
                       <span className="mt-2 block text-[1.05rem] font-medium">{p.line}</span>
                       <span className="mt-1 block text-[0.9rem] text-muted">{p.desc}</span>
                     </span>

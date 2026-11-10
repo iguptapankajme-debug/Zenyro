@@ -11,7 +11,6 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { getIndustry, industries } from "@/data/industries";
 import { getService } from "@/data/services";
 import { buildMetadata, serviceSchema } from "@/lib/seo";
-import { consultationHref } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -39,12 +38,12 @@ export default async function IndustryPage({ params }: Props) {
         eyebrow={`Industry · ${ind.short}`}
         title={ind.headline}
         intro={ind.intro}
-        aside={<div className="mt-8"><ButtonLink href={consultationHref}>Plan your growth system</ButtonLink></div>}
+        aside={<div className="mt-8"><ButtonLink href="/free-audit">Get a free AI visibility audit</ButtonLink></div>}
       />
 
       <section className="py-24 md:py-32">
         <div className="shell grid gap-12 lg:grid-cols-12">
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-[#050608] lg:col-span-5">
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-ink-2 lg:col-span-5">
             <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(var(--color-line)_1px,transparent_1px)] [background-size:22px_22px] opacity-60 [mask-image:radial-gradient(circle_at_center,black,transparent_75%)]" />
             <div className="relative aspect-square lg:aspect-[4/4.4]">
               <MorphStage shape={ind.slug} className="absolute inset-0" />
@@ -67,8 +66,8 @@ export default async function IndustryPage({ params }: Props) {
 
       <section className="border-y border-line bg-ink-2 py-24 md:py-32" aria-labelledby="solutions">
         <div className="shell">
-          <p className="eyebrow mb-6">What we build</p>
-          <h2 id="solutions" className="display-md max-w-3xl">Growth solutions for {ind.name.toLowerCase()}.</h2>
+          <p className="eyebrow mb-6">What we do</p>
+          <h2 id="solutions" className="display-md max-w-3xl">SEO, AEO and GEO for {ind.name.toLowerCase()}.</h2>
           <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-line bg-line md:grid-cols-2">
             {ind.solutions.map((s) => (
               <div key={s.title} className="bg-ink-2 p-8 md:p-10" data-reveal>
@@ -79,7 +78,7 @@ export default async function IndustryPage({ params }: Props) {
           </div>
 
           <div className="mt-20">
-            <h3 className="eyebrow mb-8">A typical system, in order</h3>
+            <h3 className="eyebrow mb-8">A typical programme, in order</h3>
             <ol className="flex flex-col gap-3 md:flex-row md:items-stretch">
               {ind.system.map((step, i) => (
                 <li key={step} className="relative flex flex-1 items-center gap-3 rounded-2xl border border-line bg-ink p-5 md:flex-col md:items-start">
@@ -89,7 +88,7 @@ export default async function IndustryPage({ params }: Props) {
               ))}
             </ol>
             <p className="mt-8 text-[0.9rem] text-muted">
-              Channels we usually connect: {ind.channels.join(", ")}.
+              Where we get you found: {ind.channels.join(", ")}.
             </p>
           </div>
         </div>
@@ -112,18 +111,16 @@ export default async function IndustryPage({ params }: Props) {
               <Link href="/services/seo" className="link-u">SEO services</Link>
               <Link href="/services/aeo" className="link-u">Answer engine optimization</Link>
               <Link href="/services/geo" className="link-u">Generative engine optimization</Link>
-              {ind.slug === "hospitality" && <Link href="/hotel-website-development" className="link-u">Hotel website development</Link>}
-              {ind.slug === "real-estate" && <Link href="/real-estate-website-development" className="link-u">Real estate website development</Link>}
             </p>
           </div>
         </div>
       </section>
 
       <Faq faqs={ind.faqs} title={`${ind.name}: common questions.`} />
-      <LinkList eyebrow="Services in this system" items={svc.map((s) => ({ title: s.name, body: s.headline, href: `/services/${s.slug}`, meta: "Service" }))} />
+      <LinkList eyebrow="Services for this industry" items={svc.map((s) => ({ title: s.name, body: s.headline, href: `/services/${s.slug}`, meta: "Service" }))} />
       <LinkList eyebrow="Other industries" items={others.map((o) => ({ title: o.name, body: o.headline, href: `/industries/${o.slug}`, meta: "Industry" }))} />
       <ContactCta />
-      <JsonLd data={serviceSchema({ name: `Growth systems for ${ind.name}`, description: ind.metaDescription, path: `/industries/${ind.slug}`, serviceType: "Digital marketing and sales automation" })} />
+      <JsonLd data={serviceSchema({ name: `SEO for ${ind.name}`, description: ind.metaDescription, path: `/industries/${ind.slug}`, serviceType: "Search engine optimisation" })} />
     </>
   );
 }

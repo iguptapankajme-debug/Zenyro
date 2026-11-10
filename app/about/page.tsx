@@ -8,19 +8,19 @@ import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata = buildMetadata({
-  title: "About Zenyro: An AI Growth Agency",
+  title: "About Zenyro: An SEO, AEO & GEO Agency",
   description:
-    "Zenyro combines web engineering, performance marketing and AI automation in one team, so businesses get a single growth system instead of three disconnected vendors.",
+    "Zenyro is a search agency focused on one thing: getting businesses found on Google, in AI Overviews and in AI assistants like ChatGPT, Perplexity and Gemini.",
   path: "/about",
 });
 
 const beliefs = [
-  { title: "One system, one team", body: "Websites, ads and sales automation fail at the hand-offs between vendors. We remove the hand-offs by building all three together." },
-  { title: "Measure what pays", body: "We report cost per qualified lead and cost per customer, because those are the numbers that change a business." },
+  { title: "One focus: search", body: "We only do SEO, AEO and GEO. Focus is how a small team goes deeper than a full-service agency." },
+  { title: "Measure what pays", body: "Rankings and AI mentions are leading indicators. We report them, and tie them back to clicks, calls and enquiries." },
   { title: "AI with oversight", body: "We use AI where it is faster or better, and keep people in charge of strategy, brand and anything sensitive." },
-  { title: "You own everything", body: "Accounts, data, code and automations are set up in your name. If we part ways, the system keeps running." },
+  { title: "You own everything", body: "Content, profiles, Search Console and analytics are set up in your name. If we part ways, everything stays with you." },
   { title: "Honest by default", body: "No fake reviews, invented case studies or guaranteed results. If something will not work for your business, we say so." },
-  { title: "Fast on real phones", body: "Most of your customers are on mid-range Android phones and mobile data. We design and test for them first." },
+  { title: "No tricks", body: "No bought links, fake reviews or doorway pages. They work briefly, then cost you the rankings you built." },
 ];
 
 export default function AboutPage() {
@@ -29,24 +29,25 @@ export default function AboutPage() {
       <PageHero
         crumbs={[{ name: "About", path: "/about" }]}
         eyebrow="About Zenyro"
-        title={<>Growth is a system. <Em>We build the whole thing.</Em></>}
-        intro={`Zenyro is an AI growth agency based in the ${site.region}. We help ambitious businesses acquire customers, automate sales and grow revenue.`}
+        title={<>Search is changing. <Em>We make sure you are found.</Em></>}
+        intro={`Zenyro is an SEO, AEO and GEO agency based in the ${site.region}. We help businesses rank on Google, become the answer, and get recommended by AI assistants.`}
       />
 
       <section className="py-24 md:py-32">
         <div className="shell grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow mb-6">Why we exist</p>
-            <h2 className="display-md">Too many good businesses are held back by disconnected marketing.</h2>
+            <h2 className="display-md">Good businesses are disappearing from the places customers now ask.</h2>
           </div>
           <div className="prose-z lg:col-span-7">
             <p>
-              A typical growing business hires one agency for its website, another for ads and a software vendor for its CRM. Each does its part.
-              Nobody owns the result. Leads arrive and wait. Follow-ups slip. The ads optimise for form fills that never become customers.
+              Customers still search Google, but they also read AI Overviews, ask ChatGPT for a shortlist and check Perplexity before they call.
+              Many excellent businesses don&apos;t appear in any of those answers, because their websites, listings and content were built for a
+              search engine that no longer works the way it did.
             </p>
             <p>
-              Zenyro was started to close those gaps. We bring web engineering, performance marketing and AI automation into one team and one
-              plan, measured on the outcome that matters: <strong>new customers at a cost that makes sense</strong>.
+              Zenyro was started to fix that, and only that. We run SEO, answer engine optimisation and generative engine optimisation as one
+              programme, measured on the outcome that matters: <strong>more of the right customers finding you first</strong>.
             </p>
             <p>
               We are deliberately focused on businesses where each customer is valuable and the buying decision is considered: real estate,
@@ -90,11 +91,11 @@ export default function AboutPage() {
               </thead>
               <tbody>
                 {[
-                  ["Who you work with", "A web agency, an ads agency and a software vendor", "One team covering website, acquisition and automation"],
-                  ["What gets measured", "Traffic, clicks and form fills", "Qualified leads and cost per customer"],
-                  ["Speed to lead", "Depends on who checks the inbox", "Instant replies and routing, with people in control"],
-                  ["Search", "Traditional SEO only", "SEO, answer engines and AI search together"],
-                  ["Ownership", "Accounts and code often held by vendors", "Everything on your accounts, documented"],
+                  ["Focus", "SEO as one of many services", "Search only: SEO, AEO and GEO"],
+                  ["What gets measured", "Rankings and traffic", "Rankings, AI visibility, citations and enquiries"],
+                  ["AI search", "Not tracked", "Tracked prompt by prompt across ChatGPT, Perplexity, Gemini and AI Overviews"],
+                  ["Content", "Volume for its own sake", "Fewer, better pages that answer real questions"],
+                  ["Ownership", "Accounts often held by the agency", "Everything on your accounts, documented"],
                   ["Reporting", "Monthly decks", "Short weekly updates in plain language"],
                 ].map(([row, a, b]) => (
                   <tr key={row} className="border-t border-line">

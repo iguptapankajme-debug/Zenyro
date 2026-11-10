@@ -1,7 +1,7 @@
 /*
   Fragment shaders for ShaderCanvas. Shared uniforms:
     uTime (seconds), uRes (pixels), uMouse (0–1, origin bottom-left), uIntensity (0–1+).
-  Palette: graphite #08090B base, Zenyro orange #FF6B35 highlights. Output is premultiplied-free RGBA
+  Palette: transparent over the light canvas, Zenyro blue #155eef highlights. Output is premultiplied-free RGBA
   over a transparent canvas so the section's own background shows through.
 */
 
@@ -12,7 +12,7 @@ uniform vec2 uRes;
 uniform vec2 uMouse;
 uniform float uIntensity;
 uniform float uScroll;
-const vec3 EMBER = vec3(1.0, 0.42, 0.21);
+const vec3 EMBER = vec3(0.08, 0.37, 0.94);
 const vec3 STEEL = vec3(0.58, 0.60, 0.64);
 float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
 float noise(vec2 p){

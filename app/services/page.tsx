@@ -1,15 +1,14 @@
 import { PageHero } from "@/components/layout/page-hero";
 import { LinkList } from "@/components/sections/link-grid";
-import { Disciplines } from "@/components/sections/disciplines";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { Em } from "@/components/ui/section-heading";
 import { disciplines, services } from "@/data/services";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Services: Websites, Performance Marketing & AI Automation",
+  title: "SEO, AEO & GEO Services",
   description:
-    "Zenyro's services: website development, performance marketing, lead generation, local SEO, CRM automation and AI automation, run together as one growth system.",
+    "Zenyro's search services: SEO, local SEO, technical SEO, answer engine optimisation, content and digital PR, and generative engine optimisation for AI search.",
   path: "/services",
 });
 
@@ -19,8 +18,8 @@ export default function ServicesPage() {
       <PageHero
         crumbs={[{ name: "Services", path: "/services" }]}
         eyebrow="Services"
-        title={<>Everything between a stranger and <Em>a customer.</Em></>}
-        intro="Six services, three disciplines, one team. Pick the one you need most today; we design it to connect with the rest later."
+        title={<>Get found on Google, <Em>in answers and in AI.</Em></>}
+        intro="Six search services across three pillars: SEO to rank, AEO to become the answer, GEO to be recommended by AI. They share one set of foundations, so we run them as one programme."
       />
       <LinkList
         eyebrow="All services"
@@ -31,7 +30,6 @@ export default function ServicesPage() {
           meta: `${disciplines[s.discipline].index} · ${disciplines[s.discipline].title}`,
         }))}
       />
-      <Disciplines />
       <ContactCta />
     </>
   );

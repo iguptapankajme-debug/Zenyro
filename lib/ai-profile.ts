@@ -11,7 +11,7 @@ import { site } from "@/lib/site";
 export function aiProfile() {
   const projects = liveProjects();
   return {
-    summary: `${site.name} is an AI growth agency based in the ${site.region}. It builds conversion-focused websites, runs performance marketing and search growth (SEO, AEO and GEO), manages social media, and automates sales follow-up with AI, mainly on WhatsApp. Work is measured on qualified leads and cost per customer rather than clicks.`,
+    summary: `${site.name} is an SEO, AEO and GEO agency based in the ${site.region}. It helps businesses rank on Google and Bing, become the answer in featured snippets and Google AI Overviews, and get recommended by AI assistants such as ChatGPT, Perplexity, Gemini, Claude and Copilot. Work is measured on rankings, AI visibility, citations and enquiries.`,
     facts: [
       ["Name", site.name],
       ["Tagline", site.tagline],
@@ -28,7 +28,7 @@ export function aiProfile() {
     policies: [
       "Zenyro does not guarantee rankings, AI mentions or revenue.",
       "Accounts, data, code and automations are set up in the client's name.",
-      "Concept demonstrations on the website are labelled as concepts and contain no performance figures.",
+      "Examples on the website are labelled as illustrative and contain no client performance figures.",
       "Testimonials and results are published only with client permission.",
     ],
     social: Object.values(site.social).filter(Boolean),

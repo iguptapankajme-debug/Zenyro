@@ -11,7 +11,7 @@ type MetaInput = {
 };
 
 /** Shared social sharing image (1200×630), in /public/og. */
-export const ogImage = { url: "/og/zenyro-og.png", width: 1200, height: 630, alt: `${site.name}: Build. Grow. Convert. AI growth agency in Chandigarh, India` };
+export const ogImage = { url: "/og/zenyro-og.png", width: 1200, height: 630, alt: `${site.name}: SEO, AEO and GEO agency. Get found on Google, ChatGPT and AI search.` };
 
 export function buildMetadata({ title, description, path, absoluteTitle, type = "website" }: MetaInput): Metadata {
   const url = `${site.url}${path === "/" ? "" : path}`;

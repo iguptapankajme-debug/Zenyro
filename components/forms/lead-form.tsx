@@ -130,7 +130,7 @@ export function LeadForm() {
           </select>
         </Field>
         <div className="sm:col-span-2">
-          <Field id="lf-budget" label="Monthly marketing budget" error={e.budget}>
+          <Field id="lf-budget" label="Monthly search budget" error={e.budget}>
             <select id="lf-budget" name="budget" required defaultValue="" className={cn(inputCls, "border-line-2")} {...aria("budget")}>
               <option value="" disabled>Select a range</option>
               {budgetOptions.map((o) => <option key={o}>{o}</option>)}
@@ -138,8 +138,8 @@ export function LeadForm() {
           </Field>
         </div>
         <div className="sm:col-span-2">
-          <Field id="lf-challenge" label="Primary growth challenge" error={e.challenge}>
-            <textarea id="lf-challenge" name="challenge" rows={4} required placeholder="For example: we get enquiries from ads but most never pick up the phone." className={cn(inputCls, "resize-y border-line-2")} {...aria("challenge")} />
+          <Field id="lf-challenge" label="What should search do for you?" error={e.challenge}>
+            <textarea id="lf-challenge" name="challenge" rows={4} required placeholder="For example: competitors rank above us on Google, and ChatGPT never mentions us." className={cn(inputCls, "resize-y border-line-2")} {...aria("challenge")} />
           </Field>
         </div>
       </div>

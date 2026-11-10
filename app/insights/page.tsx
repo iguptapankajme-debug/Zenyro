@@ -6,8 +6,8 @@ import { articles } from "@/data/insights";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Insights on Growth, AI Automation & Performance Marketing",
-  description: "Practical articles on speed to lead, WhatsApp automation, performance marketing measurement and AI for business growth.",
+  title: "Insights on SEO, AEO, GEO and AI Search",
+  description: "Practical articles on SEO, local SEO, answer engine optimisation and getting recommended by ChatGPT, Perplexity, Gemini and other AI assistants.",
   path: "/insights",
 });
 
@@ -19,8 +19,8 @@ export default function InsightsPage() {
       <PageHero
         crumbs={[{ name: "Insights", path: "/insights" }]}
         eyebrow="Insights"
-        title={<>Notes from <Em>the engine room.</Em></>}
-        intro="Practical writing on acquiring customers, automating sales and measuring what matters. No fluff, no trend-chasing."
+        title={<>Notes on <Em>search and AI.</Em></>}
+        intro="Practical writing on ranking on Google, becoming the answer, and getting recommended by AI assistants. No fluff, no trend-chasing."
       />
       <LinkList
         items={articles.map((a) => ({
