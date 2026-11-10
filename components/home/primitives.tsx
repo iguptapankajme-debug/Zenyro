@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
@@ -85,8 +86,33 @@ export function EngineIcon({ name, className }: { name: keyof typeof glyphs; cla
 export function EngineChip({ name, label, className }: { name: keyof typeof glyphs; label: string; className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-1.5 rounded-md border border-line bg-ink px-2.5 py-1 text-[0.8rem] text-muted shadow-[0_1px_2px_rgba(9,9,11,.04)]", className)}>
-      <EngineIcon name={name} className="size-3.5 text-paper" />
+      <EngineMark name={name} className="size-4" />
       {label}
     </span>
   );
+}
+
+/** The 3D engine marks (supplied artwork). Engines without one fall back to the flat glyph. */
+export const icons3d = { chatgpt: "chatgpt", claude: "claude", gemini: "gemini", perplexity: "perplexity", globe: "seo-globe" } as const;
+export type Icon3DName = keyof typeof icons3d;
+
+export function Icon3D({ name, size = 64, className, alt = "", priority }: { name: Icon3DName; size?: number; className?: string; alt?: string; priority?: boolean }) {
+  return (
+    <Image
+      src={`/images/3d/${icons3d[name]}.webp`}
+      alt={alt}
+      width={size}
+      height={size}
+      priority={priority}
+      sizes={`${size}px`}
+      draggable={false}
+      className={cn("select-none object-contain", className)}
+    />
+  );
+}
+
+/** A 3D mark where one exists, otherwise the flat glyph. */
+export function EngineMark({ name, className }: { name: keyof typeof glyphs; className?: string }) {
+  if (name in icons3d) return <Icon3D name={name as Icon3DName} size={48} className={className} />;
+  return <EngineIcon name={name} className={cn("text-paper", className)} />;
 }

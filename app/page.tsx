@@ -2,7 +2,9 @@ import Link from "next/link";
 import { ArrowUpRight, Check, Search, Sparkles } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Em } from "@/components/ui/section-heading";
-import { Rail, PixelField, EngineChip, EngineIcon, engines } from "@/components/home/primitives";
+import { Rail, PixelField, EngineChip, EngineMark, Icon3D, engines } from "@/components/home/primitives";
+import { HeroOrbit, OrbitStack } from "@/components/home/hero-orbit";
+import { AskAiDemo } from "@/components/home/ask-ai-demo";
 import { VisibilityDashboard } from "@/components/home/visibility-dashboard";
 import { ExampleGrid } from "@/components/sections/example-grid";
 import { Faq } from "@/components/sections/faq";
@@ -91,7 +93,7 @@ function ChatMini() {
   return (
     <div className="rounded-xl border border-line bg-ink p-3 text-[0.72rem]">
       <p className="ml-auto w-fit rounded-lg bg-ink-3 px-2 py-1">Best dentist for kids in Mohali?</p>
-      <p className="mt-2 flex gap-1.5 leading-snug text-muted"><EngineIcon name="chatgpt" className="mt-0.5 size-3.5 shrink-0 text-paper" /><span>Parents often recommend <span className="rounded bg-amber-100 px-0.5 font-medium text-paper">Your Clinic</span> for its child-friendly team&hellip;</span></p>
+      <p className="mt-2 flex gap-1.5 leading-snug text-muted"><Icon3D name="chatgpt" size={20} className="mt-0.5 size-4 shrink-0" /><span>Parents often recommend <span className="rounded bg-amber-100 px-0.5 font-medium text-paper">Your Clinic</span> for its child-friendly team&hellip;</span></p>
     </div>
   );
 }
@@ -104,13 +106,16 @@ export default function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-line pt-28 md:pt-32" aria-labelledby="hero-title">
         <div className="shell">
-          <div className="relative border-x border-line px-5 pb-10 pt-16 text-center sm:px-8 md:pb-14 md:pt-24">
+          <div className="relative isolate border-x border-line px-5 pb-10 pt-12 text-center sm:px-8 md:pb-14 md:pt-24">
+            <div aria-hidden="true" className="absolute left-1/2 top-[38%] -z-10 h-[26rem] w-[min(56rem,90%)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(21_94_239/.14),transparent)]" />
+            <HeroOrbit />
+            <OrbitStack />
             <PixelField cols={150} rows={56} className="absolute inset-x-0 top-0 -z-10 h-full w-full opacity-[0.5] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
             <p className="eyebrow mx-auto mb-7">SEO · AEO · GEO agency</p>
             <h1 id="hero-title" className="mx-auto max-w-6xl text-[clamp(2.4rem,5.3vw,4.7rem)] font-semibold leading-[1.04] tracking-[-0.05em]">
               Get found on Google,{" "}
-              <span className="inline-flex translate-y-[-0.08em] items-center rounded-xl border border-line bg-ink p-[0.12em] align-middle shadow-[0_2px_8px_rgba(9,9,11,.08)]">
-                <EngineIcon name="chatgpt" className="size-[0.62em] text-paper" />
+              <span className="inline-block size-[0.95em] translate-y-[-0.06em] align-middle">
+                <Icon3D name="chatgpt" size={96} priority className="size-full -rotate-6 drop-shadow-[0_8px_14px_rgba(9,9,11,.18)]" />
               </span>{" "}
               ChatGPT and <span className="hl">every AI search</span>
             </h1>
@@ -152,6 +157,22 @@ export default function Home() {
             </div>
           ))}
         </div>
+      </Rail>
+
+      {/* Ask any AI */}
+      <Rail labelledBy="ask-title">
+        <div className="mb-12 grid gap-6 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <p className="eyebrow mb-6">See the difference</p>
+            <h2 id="ask-title" className="text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
+              Ask any AI about your market. <Em>Hear your name.</Em>
+            </h2>
+          </div>
+          <p className="text-[1.05rem] leading-relaxed text-muted lg:col-span-5">
+            This is what our work changes. Pick an assistant and compare the answer before and after: your business named first, and your pages cited as the source.
+          </p>
+        </div>
+        <AskAiDemo />
       </Rail>
 
       {/* Pillars */}
@@ -198,8 +219,8 @@ export default function Home() {
             </div>
             <ul className="grid grid-cols-2 sm:grid-cols-3 lg:col-span-8 lg:grid-cols-5">
               {engines.map((e, i) => (
-                <li key={e.key} className={`flex min-h-28 flex-col items-center justify-center gap-3 border-line p-4 text-center ${i % 5 ? "lg:border-l" : ""} ${i >= 5 ? "lg:border-t" : ""} border-b lg:border-b-0`}>
-                  <EngineIcon name={e.key} className="size-7 text-paper" />
+                <li key={e.key} className={`group flex min-h-32 flex-col items-center justify-center gap-3 border-line p-4 text-center ${i % 5 ? "lg:border-l" : ""} ${i >= 5 ? "lg:border-t" : ""} border-b lg:border-b-0`}>
+                  <EngineMark name={e.key} className="size-10 transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-[-6deg]" />
                   <span className="text-[0.9rem] font-medium">{e.name}</span>
                 </li>
               ))}
@@ -253,6 +274,43 @@ export default function Home() {
           ))}
         </ul>
       </Rail>
+
+      {/* Audit band */}
+      <section className="border-b border-line" aria-labelledby="audit-title">
+        <div className="shell">
+          <div className="border-x border-line p-3 sm:p-5">
+            <div className="relative isolate overflow-hidden rounded-[1.75rem] bg-ember px-6 py-12 text-ember-ink sm:px-10 md:py-16 lg:px-14">
+              <PixelField cols={110} rows={30} seed={5} className="absolute inset-0 -z-10 h-full w-full opacity-25 brightness-0 invert [mask-image:linear-gradient(to_left,black,transparent_70%)]" />
+              <div aria-hidden="true" className="absolute -right-24 -top-24 -z-10 size-[28rem] rounded-full border border-white/15" />
+              <div aria-hidden="true" className="spin-slow absolute -right-10 -top-10 -z-10 size-[20rem] rounded-full border border-dashed border-white/25" />
+              <div className="grid items-center gap-10 lg:grid-cols-12">
+                <div className="lg:col-span-7">
+                  <p className="inline-flex items-center gap-2 rounded-md bg-white/15 px-2.5 py-1 font-mono text-[0.72rem]">Free · within three business days</p>
+                  <h2 id="audit-title" className="mt-6 text-[clamp(2rem,4.2vw,3.6rem)] font-semibold leading-[1.02] tracking-[-0.045em]">
+                    What does AI say about your business today?
+                  </h2>
+                  <ul className="mt-7 grid gap-3 text-[1rem] text-white/90 sm:grid-cols-2">
+                    {["Your Google rankings vs. three competitors", "What ChatGPT, Gemini and Perplexity say", "Technical and AI-crawler issues", "A prioritised 90-day plan"].map((t) => (
+                      <li key={t} className="flex gap-2.5"><Check aria-hidden="true" className="mt-0.5 size-4 shrink-0" />{t}</li>
+                    ))}
+                  </ul>
+                  <Link href="/free-audit" className="mt-9 inline-flex h-12 items-center gap-2 rounded-lg bg-white px-6 font-medium text-ember shadow-[0_12px_30px_-12px_rgba(0,0,0,.45)] transition-transform hover:-translate-y-0.5">
+                    Get my free audit <ArrowUpRight aria-hidden="true" className="size-4" />
+                  </Link>
+                </div>
+                <div className="relative mx-auto lg:col-span-5">
+                  <div className="orbit-float"><Icon3D name="globe" size={360} className="h-auto w-[min(20rem,70vw)] drop-shadow-[0_40px_50px_rgba(0,0,0,.35)]" /></div>
+                  {(["chatgpt", "gemini", "perplexity", "claude"] as const).map((n, k) => (
+                    <span key={n} aria-hidden="true" className="orbit-float absolute" style={{ animationDelay: `${-k * 1.3}s`, ...[{ left: "-6%", top: "8%" }, { right: "-4%", top: "2%" }, { left: "-2%", bottom: "6%" }, { right: "0%", bottom: "12%" }][k] }}>
+                      <Icon3D name={n} size={64} className="size-12 drop-shadow-[0_14px_18px_rgba(0,0,0,.3)] sm:size-16" />
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Plans */}
       <Rail labelledBy="plans-title">

@@ -400,3 +400,14 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 @keyframes flow-pulse { from { opacity: .9; transform: scale(.7); } to { opacity: 0; transform: scale(2.2); } }
 .fx-lift { animation: toast .7s var(--ease-out-expo) both, fx-lift 1.2s var(--ease-out-expo) 1.4s both; }
 @keyframes fx-lift { from { box-shadow: 0 0 0 0 rgba(21,94,239,.5); } to { box-shadow: 0 0 0 6px rgba(21,94,239,0), 0 14px 30px -18px rgba(21,94,239,.6); } }
+
+/* Homepage 3D marks and the Ask-AI demo */
+@keyframes orbit-float { 0%, 100% { transform: translate3d(0, 0, 0) rotate(-3deg); } 50% { transform: translate3d(0, -14px, 0) rotate(3deg); } }
+.orbit-float { animation: orbit-float 6.5s ease-in-out infinite; will-change: transform; }
+@keyframes caret-blink { 50% { opacity: 0; } }
+.caret { animation: caret-blink 1s steps(1) infinite; }
+@keyframes fx-word { from { opacity: 0; filter: blur(4px); } to { opacity: 1; filter: none; } }
+.fx-word { animation: fx-word .45s var(--ease-out-expo) both; }
+.fx-rise { animation: fade .6s var(--ease-out-expo) both; }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 40s linear infinite; }
