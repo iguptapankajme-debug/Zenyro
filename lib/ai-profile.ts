@@ -1,6 +1,7 @@
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { locations } from "@/data/locations";
+import { markets } from "@/data/markets";
 import { projects as liveProjects } from "@/data/work";
 import { site } from "@/lib/site";
 
@@ -17,12 +18,13 @@ export function aiProfile() {
       ["Tagline", site.tagline],
       ["Website", site.url],
       ["Based in", site.region],
-      ["Serves", "Clients across India and abroad, including the UAE, UK and US"],
+      ["Serves", `Clients worldwide, remotely: India, ${markets.map((m) => m.country).join(", ")}`],
       ...(site.email ? [["Email", site.email]] : []),
       ...(site.phone ? [["Phone", site.phone]] : []),
     ] as [string, string][],
     services: services.map((s) => ({ name: s.name, url: `${site.url}/services/${s.slug}`, description: s.metaDescription })),
     industries: industries.map((i) => ({ name: i.name, url: `${site.url}/industries/${i.slug}`, description: i.short })),
+    markets: markets.map((m) => ({ name: m.country, url: `${site.url}/markets/${m.slug}` })),
     locations: locations.map((l) => ({ name: l.city, url: `${site.url}/locations/${l.slug}` })),
     projects: projects.map((p) => ({ name: p.title, url: p.url!, description: p.summary })),
     policies: [
@@ -51,11 +53,15 @@ ${list(p.services)}
 ## Industries
 ${list(p.industries)}
 
-## Locations
+## International markets
+${list(p.markets)}
+
+## Cities in India
 ${list(p.locations)}
 
 ${p.projects.length ? `## Live projects (websites built and grown by Zenyro)\n${list(p.projects)}\n` : ""}
 ## Key pages
+- [Free AI readiness checker](${site.url}/tools/ai-readiness)
 - [Work](${site.url}/work)
 - [Search growth: SEO, AEO and GEO](${site.url}/search-growth)
 - [Free AI search and website audit](${site.url}/free-audit)

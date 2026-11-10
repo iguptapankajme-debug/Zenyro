@@ -25,6 +25,7 @@ export const serviceGroups: NavGroup[] = [
     items: [
       { label: "GEO", href: "/services/geo" },
       { label: "Free AI visibility audit", href: "/free-audit" },
+      { label: "Free AI readiness checker", href: "/tools/ai-readiness" },
     ],
   },
 ];
@@ -40,6 +41,7 @@ export const industryLinks: NavItem[] = industries.map((i) => ({
 export const primaryNav = [
   { label: "Services", href: "/services", groups: serviceGroups },
   { label: "Industries", href: "/solutions", children: industryLinks },
+  { label: "Global", href: "/markets" },
   { label: "Examples", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },

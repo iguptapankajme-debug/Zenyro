@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SocialLinks } from "@/components/ui/social-links";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
-import { locations } from "@/data/locations";
+import { markets } from "@/data/markets";
 import { site } from "@/lib/site";
 import { Mark } from "./wordmark";
 
@@ -17,6 +17,7 @@ const company = [
 const agency = [
   { label: "Search growth: SEO, AEO & GEO", href: "/search-growth" },
   { label: "Free AI visibility audit", href: "/free-audit" },
+  { label: "Free AI readiness checker", href: "/tools/ai-readiness" },
   { label: "Examples", href: "/work" },
   { label: "For AI assistants", href: "/ai-info" },
 ];
@@ -62,7 +63,7 @@ export function Footer() {
             <Column title="Industries" links={industries.map((i) => ({ label: i.name, href: `/industries/${i.slug}` }))} />
             <div className="grid content-start gap-10">
               <Column title="Company" links={company} />
-              <Column title="Locations" links={[...locations.slice(0, 5).map((l) => ({ label: l.city, href: `/locations/${l.slug}` })), { label: "All locations", href: "/locations" }]} />
+              <Column title="Markets" links={[...markets.map((m) => ({ label: m.country, href: `/markets/${m.slug}` })), { label: "India: all cities", href: "/locations" }]} />
             </div>
             <Column title="Agency" links={agency} />
           </div>

@@ -5,6 +5,8 @@ import { Em } from "@/components/ui/section-heading";
 import { Rail, PixelField, EngineChip, EngineMark, Icon3D, engines } from "@/components/home/primitives";
 import { HeroOrbit, OrbitStack } from "@/components/home/hero-orbit";
 import { AskAiDemo } from "@/components/home/ask-ai-demo";
+import { AiReadinessChecker } from "@/components/tools/ai-readiness-checker";
+import { MarketCards } from "@/components/markets/market-cards";
 import { VisibilityDashboard } from "@/components/home/visibility-dashboard";
 import { ExampleGrid } from "@/components/sections/example-grid";
 import { Faq } from "@/components/sections/faq";
@@ -14,7 +16,7 @@ import { industries } from "@/data/industries";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Zenyro: SEO, AEO & GEO Agency. Get Found on Google, ChatGPT & AI Search",
+  title: "SEO, AEO & GEO Agency | Get Found on Google & ChatGPT | Zenyro",
   description:
     "Zenyro is an SEO, AEO and GEO agency. We help businesses rank on Google, become the answer in AI Overviews, and get recommended by ChatGPT, Perplexity and Gemini.",
   path: "/",
@@ -27,7 +29,7 @@ const homeFaqs = [
   { q: "How do you measure results?", a: "Google rankings, organic clicks and Maps actions from Search Console and Google Business Profile, plus AI visibility: how often and how prominently you're mentioned for the prompts your customers use, and which of your pages are cited. Everything is tied back to enquiries." },
   { q: "How long does it take?", a: "Technical fixes and Google Business Profile improvements can show within weeks. Competitive rankings and steady AI visibility usually build over three to six months of consistent work." },
   { q: "Do you guarantee rankings?", a: "No honest agency can. We commit to a clear plan, quality work and transparent monthly reporting." },
-  { q: "Where are you based?", a: "In the Chandigarh Tricity, India. We work with businesses across India, the UK, the US and the UAE." },
+  { q: "Where are you based, and do you work internationally?", a: "We are based in the Chandigarh Tricity, India, and work remotely with businesses in the United States, United Kingdom, UAE, Canada, Australia, Singapore and across India. Calls are scheduled in your working hours, and content is written in your market's English." },
 ];
 
 const pillars = [
@@ -125,7 +127,7 @@ export default function Home() {
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-3">
               <ButtonLink href="/free-audit" size="lg" icon="up-right">Get a free AI visibility audit</ButtonLink>
-              <ButtonLink href="#how" variant="ghost" size="lg">See how it works</ButtonLink>
+              <ButtonLink href="/tools/ai-readiness" variant="ghost" size="lg">Check my site free</ButtonLink>
             </div>
             <ul className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2" aria-label="Where we get you found">
               {engines.slice(0, 7).map((e) => <li key={e.key}><EngineChip name={e.key} label={e.name} /></li>)}
@@ -228,6 +230,37 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Free checker */}
+      <Rail labelledBy="checker-title">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+          <div className="lg:col-span-6">
+            <p className="eyebrow mb-6">Free tool</p>
+            <h2 id="checker-title" className="text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
+              Can ChatGPT read your website? <Em>Find out in ten seconds.</Em>
+            </h2>
+            <p className="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-muted">
+              Our AI readiness checker tests 17 signals: whether GPTBot, ClaudeBot, PerplexityBot and Gemini can crawl you, whether your business is described in structured data, and the SEO basics.
+            </p>
+          </div>
+          <div className="lg:col-span-6"><AiReadinessChecker compact /></div>
+        </div>
+      </Rail>
+
+      {/* Global */}
+      <Rail labelledBy="global-title">
+        <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow mb-6">Global</p>
+            <h2 id="global-title" className="max-w-3xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
+              One team, <Em>working in your hours</Em>, wherever you are
+            </h2>
+            <p className="mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-muted">Search behaviour, directories and trust signals differ by country. We plan for your market, write in your English, and report in your time zone.</p>
+          </div>
+          <Link href="/markets" className="inline-flex items-center gap-2 font-medium"><span className="link-u">All markets</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+        </div>
+        <MarketCards />
+      </Rail>
 
       {/* How it works */}
       <Rail id="how" labelledBy="how-title" inner="scroll-mt-24">

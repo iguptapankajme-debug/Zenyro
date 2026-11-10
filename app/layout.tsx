@@ -43,7 +43,7 @@ const plausible = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <head>
         {/* Enables reveal animations only when JS runs; content stays visible otherwise. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
