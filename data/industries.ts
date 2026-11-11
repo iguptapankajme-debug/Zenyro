@@ -37,7 +37,7 @@ export const industries: Industry[] = [
     faqs: [{ q: "Can SEO compete with property portals?", a: "For your own project and brand searches, yes, and for many locality and configuration searches too. Specific, well-structured pages with real data often outrank portal listings." }, { q: "Do you follow RERA advertising rules?", a: "Yes. Pages display RERA registration details where required, and we avoid claims that aren't supported by approved project documents." }],
     services: ["seo", "local-seo", "geo"],
     search: {
-      title: "Real Estate SEO & AI Search Visibility",
+      title: "Found by buyers on Google and in AI answers.",
       body: "Buyers research locations, builders and price bands for months before they enquire. We make each project, locality and configuration easy to find in search, clearly answered, and accurately described when buyers ask AI assistants for options.",
       points: ["Project and locality pages built on real data, with RERA details where required", "Answers to buyer questions on possession, loans and amenities", "Consistent developer and project facts across portals and profiles"],
     },
@@ -58,7 +58,7 @@ export const industries: Industry[] = [
     faqs: [{ q: "Can SEO really reduce dependence on booking portals?", a: "It grows the share of guests who find you directly. Portals will still bring some bookings, but your own pages can rank for your brand, your area and the experiences you offer." }, { q: "How do we appear in AI recommendations for hotels?", a: "Clear, consistent facts about your property, genuine reviews, and mentions on travel guides and local sources make you much easier for AI assistants to recommend." }],
     services: ["seo", "local-seo", "geo"],
     search: {
-      title: "Hotel SEO & Direct Booking Growth",
+      title: "More guests finding you directly.",
       body: "Guests compare on search, maps and AI travel answers before they book. We strengthen your own website and listings so more of that research ends in a direct booking or event enquiry.",
       points: ["Room, venue and destination pages that rank for real stay and event searches", "Accurate, consistent property facts across maps, OTAs and travel sources", "Wedding and event content that answers planners’ questions directly"],
     },
@@ -79,7 +79,7 @@ export const industries: Industry[] = [
     faqs: [{ q: "Do you follow medical advertising guidelines?", a: "Yes. We avoid guarantees and unsupported claims, and medical content is reviewed by your clinicians before publishing." }, { q: "Can you manage SEO for many branches?", a: "Yes. Each branch gets its own Google Business Profile and location page, managed and reported together." }],
     services: ["local-seo", "seo", "content-digital-pr"],
     search: {
-      title: "Healthcare Search Visibility",
+      title: "Trusted answers patients can find.",
       body: "Patients search symptoms, treatments and nearby clinics. We help clinics appear for the right local searches with accurate, responsibly written information reviewed by qualified clinicians.",
       points: ["Clinician-reviewed treatment and condition pages", "Doctor and location profiles kept consistent across maps and directories", "Clear answers to common patient questions on cost, preparation and recovery"],
     },
@@ -100,7 +100,7 @@ export const industries: Industry[] = [
     faqs: [{ q: "Do portfolio pages help SEO?", a: "Yes, when each project has a written description, location, style and budget band, not just images. That gives search engines and AI assistants something to understand and quote." }, { q: "Can you help a showroom appear in Maps?", a: "Yes. A complete, accurate Google Business Profile with products, photos and genuine reviews is usually the biggest local win." }],
     services: ["seo", "local-seo", "geo"],
     search: {
-      title: "Interior Design & Premium Retail Search Growth",
+      title: "Found for every room, style and locality.",
       body: "Homeowners search for ideas, costs and studios long before they visit. We turn your portfolio, materials and expertise into pages and answers that bring the right clients to your studio or showroom.",
       points: ["Project and style pages built from your real portfolio", "Cost, timeline and material explainers that answer buying questions", "Showroom and brand information kept consistent for local and AI search"],
     },
@@ -121,7 +121,7 @@ export const industries: Industry[] = [
     faqs: [{ q: "When should a school start SEO before admissions?", a: "Ideally three to six months before the admission season, so new pages have time to rank." }, { q: "Can you make claims about results?", a: "Only results you can verify and are allowed to publish. We avoid guarantees and misleading comparisons." }],
     services: ["seo", "local-seo", "content-digital-pr"],
     search: {
-      title: "Education Search Visibility",
+      title: "The institute parents and students find first.",
       body: "Students and parents compare programs, eligibility and outcomes across search and AI assistants. We make your programs clear, comparable and correctly described wherever they research.",
       points: ["Program pages with eligibility, fees and outcomes stated plainly", "Answers to admission and career questions written with your faculty", "Consistent institution facts across directories and education portals"],
     },
@@ -142,7 +142,7 @@ export const industries: Industry[] = [
     faqs: [{ q: "Is SEO worth it for a B2B building materials business?", a: "Yes. Contractors and buyers search by product and specification, and clear product pages win those searches and feed AI answers." }, { q: "Can you help our dealers appear locally?", a: "Yes. We set up and manage dealer location pages and Google Business Profiles so each dealer can be found nearby." }],
     services: ["seo", "technical-seo", "local-seo"],
     search: {
-      title: "Home Improvement & Building Materials SEO",
+      title: "Found by buyers, contractors and dealers.",
       body: "Homeowners and contractors search product types, specifications and local dealers. We connect product information, dealer locations and buying guides so searches turn into quote requests.",
       points: ["Product and specification pages structured for comparison searches", "Dealer and showroom location pages with genuine local detail", "Buying guides that answer installation and maintenance questions"],
     },
@@ -163,7 +163,7 @@ export const industries: Industry[] = [
     faqs: [{ q: "Can SEO help us depend less on aggregators?", a: "Yes. Your own route and package pages can rank for the trips travellers search, and a strong Maps presence brings direct calls." }, { q: "When should we publish seasonal content?", a: "Six to ten weeks before each peak, so pages have time to rank before travellers start planning." }],
     services: ["seo", "local-seo", "geo"],
     search: {
-      title: "Travel SEO & AI Search Visibility",
+      title: "Found when travellers plan the trip.",
       body: "Travellers ask Google and AI assistants things like \"taxi from Chandigarh to Manali\" or \"best 4-day Himachal itinerary\". We make your routes, packages and prices clear enough to be found, quoted and recommended.",
       points: ["Route pages with distance, time, vehicles and inclusions", "Destination guides that answer seasonal and road-condition questions", "Consistent business details across Google, directories and social profiles"],
     },
@@ -184,7 +184,7 @@ export const industries: Industry[] = [
     faqs: [{ q: "Can you market financial services responsibly?", a: "Yes. We avoid guarantees and unsupported claims, include required disclosures, and keep content accurate and reviewed." }, { q: "Why does expertise matter so much for financial SEO?", a: "Search engines and AI assistants hold money topics to a higher standard. Visible credentials, sources and accuracy are what earn rankings and citations." }],
     services: ["seo", "content-digital-pr", "geo"],
     search: {
-      title: "Financial Services SEO & AI Search Visibility",
+      title: "The credible answer for high-stakes questions.",
       body: "Prospects ask detailed questions before they trust anyone with their situation. We make your expertise show up as the clear, credible answer in search results and AI assistants.",
       points: ["Explainers for high-intent questions, reviewed for accuracy", "Author and firm credentials marked up clearly", "Consistent firm details across directories, profiles and the website"],
     },

@@ -8,7 +8,7 @@ import { Mark } from "./wordmark";
 
 const company = [
   { label: "About", href: "/about" },
-  { label: "Work", href: "/work" },
+  { label: "Examples", href: "/work" },
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
   { label: "Free audit", href: "/free-audit" },

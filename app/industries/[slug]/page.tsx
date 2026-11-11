@@ -6,7 +6,8 @@ import { Faq } from "@/components/sections/faq";
 import { LinkList } from "@/components/sections/link-grid";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { ButtonLink } from "@/components/ui/button";
-import { MorphStage } from "@/components/solutions/morph-stage";
+import { Icon3D } from "@/components/home/primitives";
+import { industryAsks } from "@/data/industry-asks";
 import { JsonLd } from "@/components/ui/json-ld";
 import { getIndustry, industries } from "@/data/industries";
 import { getService } from "@/data/services";
@@ -41,15 +42,30 @@ export default async function IndustryPage({ params }: Props) {
         aside={<div className="mt-8"><ButtonLink href="/free-audit">Get a free AI visibility audit</ButtonLink></div>}
       />
 
-      <section className="py-24 md:py-32">
-        <div className="shell grid gap-12 lg:grid-cols-12">
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-ink-2 lg:col-span-5">
-            <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(var(--color-line)_1px,transparent_1px)] [background-size:22px_22px] opacity-60 [mask-image:radial-gradient(circle_at_center,black,transparent_75%)]" />
-            <div className="relative aspect-square lg:aspect-[4/4.4]">
-              <MorphStage shape={ind.slug} className="absolute inset-0" />
-            </div>
-            <p className="absolute bottom-5 left-6 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">Move your cursor over the shape</p>
-          </div>
+      <section className="py-20 md:py-28">
+        <div className="shell grid items-center gap-12 lg:grid-cols-12">
+          <figure className="relative overflow-hidden rounded-[1.75rem] border border-line bg-ink-2 p-6 sm:p-8 lg:col-span-5">
+            <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(var(--color-line)_1px,transparent_1px)] [background-size:22px_22px] opacity-50 [mask-image:radial-gradient(circle_at_top_right,black,transparent_70%)]" />
+            <figcaption className="relative flex items-center justify-between gap-3">
+              <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-dim">What customers ask</span>
+              <span className="flex items-center gap-1.5 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-dim"><span className="size-1.5 animate-pulse rounded-full bg-emerald-500" />Tracked monthly</span>
+            </figcaption>
+            <ul className="relative mt-6 grid gap-3">
+              {(industryAsks[ind.slug] ?? []).map(([icon, q, where], i) => (
+                <li key={q} className="fx-rise flex items-center gap-3 rounded-xl border border-line bg-ink px-3 py-3 shadow-[0_10px_30px_-24px_rgba(9,9,11,.5)]" style={{ animationDelay: `${i * 120}ms` }}>
+                  <Icon3D name={icon} size={40} className="size-9 shrink-0" />
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-[0.95rem]">{q}</span>
+                    <span className="block font-mono text-[0.68rem] uppercase tracking-[0.12em] text-dim">{where}</span>
+                  </span>
+                  <span className="hidden shrink-0 rounded-md bg-ember/10 px-2 py-0.5 text-[0.72rem] font-medium text-ember sm:inline">Target</span>
+                </li>
+              ))}
+            </ul>
+            <p className="relative mt-6 border-t border-dashed border-line-2 pt-5 text-[0.88rem] leading-relaxed text-muted">
+              Illustrative examples. We build your list from real search data and the questions your customers ask, then track where you appear on Google and in each AI assistant.
+            </p>
+          </figure>
           <div className="lg:col-span-7">
             <p className="eyebrow mb-6">The challenge</p>
             <h2 className="display-md">What holds {ind.name.toLowerCase()} businesses back.</h2>
@@ -109,8 +125,8 @@ export default async function IndustryPage({ params }: Props) {
             </ul>
             <p className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[0.92rem]">
               <Link href="/services/seo" className="link-u">SEO services</Link>
-              <Link href="/services/aeo" className="link-u">Answer engine optimization</Link>
-              <Link href="/services/geo" className="link-u">Generative engine optimization</Link>
+              <Link href="/services/aeo" className="link-u">Answer engine optimisation</Link>
+              <Link href="/services/geo" className="link-u">Generative engine optimisation</Link>
             </p>
           </div>
         </div>

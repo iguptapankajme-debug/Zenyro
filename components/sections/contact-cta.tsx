@@ -1,11 +1,18 @@
+import Link from "next/link";
+import { ArrowUpRight, Check } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
+import { Icon3D, PixelField } from "@/components/home/primitives";
 import { LeadForm } from "@/components/forms/lead-form";
 import { SocialLinks } from "@/components/ui/social-links";
 import { ShaderCanvas } from "@/components/webgl/shader-canvas";
 import { consultationHref, site } from "@/lib/site";
 
-/** Two-column consultation block: editorial statement with a quiet animated orbit, and the form. */
-export function ContactCta({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
+/**
+ * Closing call to action. "band" (the default on most pages) is a compact panel with the two next
+ * steps; "form" is the full enquiry form, used on the Contact page.
+ */
+export function ContactCta({ headingLevel = "h2", variant = "band" }: { headingLevel?: "h1" | "h2"; variant?: "band" | "form" }) {
+  if (variant === "band") return <CtaBand />;
   const H = headingLevel;
   return (
     <section id="contact" className="relative isolate overflow-hidden border-t border-line py-28 md:py-40" aria-labelledby="cta-title">
@@ -55,6 +62,46 @@ export function ContactCta({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2"
         </div>
         <div id="lead-form" className="scroll-mt-28 lg:col-span-7">
           <LeadForm />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CtaBand() {
+  return (
+    <section id="contact" className="border-t border-line py-16 md:py-24" aria-labelledby="cta-title">
+      <div className="shell">
+        <div className="relative isolate overflow-hidden rounded-[2rem] bg-paper px-6 py-12 text-ink sm:px-10 md:py-16 lg:px-14">
+          <PixelField cols={120} rows={34} seed={9} className="absolute inset-0 -z-10 h-full w-full opacity-40 [mask-image:linear-gradient(to_left,black,transparent_65%)]" />
+          <div aria-hidden="true" className="absolute -right-20 -top-28 -z-10 size-[26rem] rounded-full bg-[radial-gradient(circle,rgb(21_94_239/.45),transparent_65%)]" />
+          <div className="grid items-center gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-8">
+              <p className="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-ink/60">Next step</p>
+              <h2 id="cta-title" className="mt-5 text-[clamp(2.1rem,4.4vw,3.8rem)] font-semibold leading-[1.02] tracking-[-0.05em]">
+                See where you stand on Google and in AI answers.
+              </h2>
+              <ul className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem] text-ink/75">
+                {["Free AI visibility audit", "Reply within one business day", "Plans from US$799 a month, no lock-in"].map((t) => (
+                  <li key={t} className="flex items-center gap-2"><Check aria-hidden="true" className="size-4 text-[#7aa7ff]" />{t}</li>
+                ))}
+              </ul>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <Link href="/free-audit" className="inline-flex h-12 items-center gap-2 rounded-lg bg-ember px-6 font-medium text-ember-ink transition-colors hover:bg-ember-2">
+                  Get my free audit <ArrowUpRight aria-hidden="true" className="size-4" />
+                </Link>
+                <Link href="/contact" className="inline-flex h-12 items-center rounded-lg border border-ink/25 px-6 font-medium transition-colors hover:border-ink/60">Talk to us</Link>
+                {site.email && <a href={`mailto:${site.email}`} className="ml-1 text-[0.92rem] text-ink/70 underline decoration-ink/30 underline-offset-4 hover:text-ink">{site.email}</a>}
+              </div>
+            </div>
+            <div aria-hidden="true" className="relative mx-auto hidden h-56 w-full max-w-xs lg:col-span-4 lg:block">
+              {([["chatgpt", "left-0 top-2", 88], ["gemini", "right-4 top-0", 72], ["perplexity", "left-10 bottom-0", 76], ["claude", "right-0 bottom-6", 84]] as const).map(([n, pos, size], i) => (
+                <span key={n} className={`orbit-float absolute ${pos}`} style={{ animationDelay: `${-i * 1.4}s` }}>
+                  <Icon3D name={n} size={size} className="drop-shadow-[0_18px_24px_rgba(0,0,0,.45)]" />
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

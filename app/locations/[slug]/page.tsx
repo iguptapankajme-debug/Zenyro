@@ -50,6 +50,11 @@ export default async function LocationPage({ params }: Props) {
         aside={
           <div className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href="/free-audit">Get a free local audit</ButtonLink>
+            {local.length === 1 && (
+              <Link href={`/locations/${l.slug}/${local[0]!.service}`} className="inline-flex h-12 items-center gap-1.5 px-2 font-medium">
+                <span className="link-u">SEO in {l.city}</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" />
+              </Link>
+            )}
           </div>
         }
       />
@@ -85,7 +90,7 @@ export default async function LocationPage({ params }: Props) {
         </div>
       </section>
 
-      {local.length > 0 && (
+      {local.length > 1 && (
         <nav aria-label={`Services in ${l.city}`} className="py-16">
           <div className="shell">
             <p className="eyebrow mb-6">Services in {l.city}</p>

@@ -22,7 +22,7 @@ export default function ContactPage() {
   return (
     <div className="pt-28 md:pt-36">
       <div className="shell"><Breadcrumbs items={[{ name: "Contact", path: "/contact" }]} /></div>
-      <ContactCta headingLevel="h1" />
+      <ContactCta headingLevel="h1" variant="form" />
       <Faq faqs={faqs} title="Before you get in touch." />
     </div>
   );

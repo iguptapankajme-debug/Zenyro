@@ -62,7 +62,7 @@ const allServices: Service[] = [
     metaTitle: "SEO Services That Drive Organic Growth",
     metaDescription:
       "Technical SEO, on-page and local SEO, programmatic SEO, content strategy, internal linking and digital PR, measured in Search Console and tied to enquiries.",
-    headline: "SEO Services That Drive Organic Growth",
+    headline: "SEO that turns searches into customers",
     intro:
       "Rank where customers search. We fix what stops search engines from understanding your site, build pages that match real search intent, and earn the authority that moves rankings, then measure it all against enquiries, not just traffic.",
     problems: [
@@ -114,7 +114,7 @@ const allServices: Service[] = [
     metaTitle: "Answer Engine Optimization (AEO) Services",
     metaDescription:
       "Answer engine optimisation (AEO): question-led content, clear answers and structured data so featured snippets and AI Overviews quote you.",
-    headline: "Answer Engine Optimization Services",
+    headline: "Answer engine optimisation: become the answer",
     intro:
       "Become the answer. More searches now end with a direct answer, a featured snippet or a voice reply. AEO makes your expertise easy to find, understand and quote: clear questions, clear answers, and well-structured information about your business.",
     problems: [
@@ -166,7 +166,7 @@ const allServices: Service[] = [
     metaTitle: "Generative Engine Optimization (GEO) Services",
     metaDescription:
       "Generative engine optimisation (GEO): get recommended by ChatGPT, Perplexity, Gemini and Claude, with prompt-level AI visibility tracking.",
-    headline: "Generative Engine Optimization Services",
+    headline: "Generative engine optimisation: get recommended by AI",
     intro:
       "Get discovered in AI search. People increasingly ask AI assistants and AI-powered search for recommendations. GEO improves how accurately and how often your brand is represented there, by strengthening the signals these systems draw on: clear facts, credible sources, expert content and a consistent presence across the web.",
     problems: [
