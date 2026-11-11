@@ -13,10 +13,10 @@ export const industryOptions = [
 ] as const;
 
 export const budgetOptions = [
-  "Under ₹50,000 / month",
-  "₹50,000 – ₹2,00,000 / month",
-  "₹2,00,000 – ₹5,00,000 / month",
-  "Above ₹5,00,000 / month",
+  "Under US$1,000 / month",
+  "US$1,000 – US$3,000 / month",
+  "US$3,000 – US$6,000 / month",
+  "Above US$6,000 / month",
   "Not sure yet",
 ] as const;
 

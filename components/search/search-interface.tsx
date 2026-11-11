@@ -14,7 +14,7 @@ const modes: { key: SearchMode; label: string; caption: string }[] = [
 ];
 
 // Everything below is fictional and illustrative. ".example" domains are reserved and belong to no one.
-const QUERY = "interior designer for a 3BHK in Chandigarh";
+const QUERY = "interior designer for a loft in Brooklyn";
 const BRAND = "Northlight Interiors";
 
 const line = (i: number) => ({ "--i": i }) as React.CSSProperties;
@@ -72,15 +72,15 @@ export function SearchInterface({ initial = "seo", showTabs = true }: { initial?
             <div className="relative h-[31rem] sm:h-[23rem]">
               {/* SEO: organic results */}
               <div className="search-state absolute inset-0 grid content-start gap-4 px-5 pt-4 sm:px-7" data-active={mode === "seo"} aria-hidden={mode !== "seo"}>
-                <Result i={0} domain="interiors-directory.example" title="Top interior designers in Chandigarh: compare studios" />
+                <Result i={0} domain="interiors-directory.example" title="Top interior designers in Brooklyn: compare studios" />
                 <div className="search-line relative rounded-2xl border border-ember/70 bg-ember/[0.06] p-4" style={line(1)}>
                   <span className="absolute -top-2.5 right-4 rounded-full bg-ember px-2 py-0.5 font-mono text-[0.52rem] uppercase tracking-[0.12em] text-ember-ink">Organic listing</span>
-                  <p className="flex items-center gap-2 text-[0.75rem] text-muted"><Globe2 aria-hidden="true" className="size-3.5" /> northlight-interiors.example › 3bhk-interiors</p>
-                  <p className="mt-1 text-[1.05rem] font-medium text-paper">3BHK Interior Design in Chandigarh | {BRAND}</p>
-                  <p className="mt-1 text-[0.82rem] leading-snug text-muted">Design, modular kitchens and finishing for 3BHK homes. See sample timelines, what&apos;s included and how projects are scoped.</p>
+                  <p className="flex items-center gap-2 text-[0.75rem] text-muted"><Globe2 aria-hidden="true" className="size-3.5" /> northlight-interiors.example › loft-interiors</p>
+                  <p className="mt-1 text-[1.05rem] font-medium text-paper">Loft Interior Design in Brooklyn | {BRAND}</p>
+                  <p className="mt-1 text-[0.82rem] leading-snug text-muted">Design, kitchens and finishing for lofts and apartments. See sample timelines, what&apos;s included and how projects are scoped.</p>
                 </div>
                 <Result i={2} domain="home-ideas.example" title="10 things to know before hiring an interior designer" />
-                <Result i={3} domain="local-listings.example" title="Interior design services near Sector 17" />
+                <Result i={3} domain="local-listings.example" title="Interior design services near Williamsburg" />
               </div>
 
               {/* AEO: answer first */}
@@ -88,14 +88,14 @@ export function SearchInterface({ initial = "seo", showTabs = true }: { initial?
                 <div className="search-line rounded-2xl border border-line-2 bg-ink-2 p-5" style={line(0)}>
                   <p className="flex items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-ember"><MessageSquareQuote aria-hidden="true" className="size-3.5" /> Answer</p>
                   <p className="mt-3 text-[1.02rem] leading-relaxed text-paper">
-                    A 3BHK interior project is usually scoped in three parts: <mark className="bg-ember/20 text-paper">design and layout, modular work, and finishing</mark>. Most studios share a timeline and itemised estimate after a site visit.
+                    A loft interior project is usually scoped in three parts: <mark className="bg-ember/20 text-paper">design and layout, joinery, and finishing</mark>. Most studios share a timeline and itemised estimate after a site visit.
                   </p>
                   <p className="search-line mt-4 flex items-center gap-2 border-t border-line pt-3 text-[0.75rem] text-muted" style={line(1)}>
                     <span className="rounded bg-ink-3 px-1.5 py-0.5 font-mono text-[0.6rem] text-paper">Source</span> {BRAND} · northlight-interiors.example
                   </p>
                 </div>
                 <p className="search-line font-mono text-[0.62rem] uppercase tracking-[0.14em] text-dim" style={line(2)}>Related questions</p>
-                {["How long does a 3BHK interior take?", "What does a modular kitchen include?"].map((q, i) => (
+                {["How long does a loft interior take?", "What does a kitchen remodel include?"].map((q, i) => (
                   <div key={q} className="search-line flex items-center justify-between rounded-xl border border-line px-4 py-3 text-[0.88rem]" style={line(3 + i)}>
                     {q}<span aria-hidden="true" className="text-muted">+</span>
                   </div>
@@ -107,8 +107,8 @@ export function SearchInterface({ initial = "seo", showTabs = true }: { initial?
                 <div className="search-line rounded-2xl border border-line-2 bg-gradient-to-br from-ink-2 to-[#0e0b0a] p-5" style={line(0)}>
                   <p className="flex items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-ember"><Sparkles aria-hidden="true" className="size-3.5" /> Simulated AI response</p>
                   <p className="mt-3 text-[0.95rem] leading-relaxed text-paper">
-                    For a 3BHK in Chandigarh, shortlist studios that publish clear scopes and timelines.{" "}
-                    <span className="text-ember">{BRAND}</span> is one example: it documents 3BHK packages and sample timelines<sup className="ml-0.5 text-ember">[1]</sup>. Comparing two or three
+                    For a Brooklyn loft, shortlist studios that publish clear scopes and timelines.{" "}
+                    <span className="text-ember">{BRAND}</span> is one example: it documents loft projects and sample timelines<sup className="ml-0.5 text-ember">[1]</sup>. Comparing two or three
                     portfolios and itemised estimates is a sensible next step<sup className="ml-0.5 text-ember">[2]</sup>.
                   </p>
                 </div>
@@ -123,7 +123,7 @@ export function SearchInterface({ initial = "seo", showTabs = true }: { initial?
                   <span aria-hidden="true" className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-paper text-[1.1rem] font-semibold text-ink">N</span>
                   <div className="min-w-0">
                     <p className="text-[0.92rem] font-medium">{BRAND}</p>
-                    <p className="truncate text-[0.75rem] text-muted">Interior design studio · Chandigarh · brand mentioned with citation</p>
+                    <p className="truncate text-[0.75rem] text-muted">Interior design studio · Brooklyn · brand mentioned with citation</p>
                   </div>
                 </div>
               </div>

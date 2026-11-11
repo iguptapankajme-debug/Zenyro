@@ -7,18 +7,18 @@ import { Icon3D, type Icon3DName } from "./primitives";
  */
 const rows: [Icon3DName, string, string][][] = [
   [
-    ["chatgpt", "Best family dentist in Mohali?", "Your Clinic"],
-    ["perplexity", "CNC machining exporter in India", "Your Company"],
-    ["gemini", "Interior designer for a 3BHK in Chandigarh", "Your Studio"],
+    ["chatgpt", "Best family dentist in Manchester?", "Your Clinic"],
+    ["perplexity", "AS9100 CNC machining supplier", "Your Company"],
+    ["gemini", "Interior designer for a loft in Brooklyn", "Your Studio"],
     ["claude", "Accountant for contractors in London", "Your Firm"],
-    ["globe", "how long does a root canal take", "yourclinic.in"],
+    ["globe", "how long does a root canal take", "yourclinic.com"],
     ["chatgpt", "Company formation in a Dubai free zone", "Your Advisors"],
   ],
   [
-    ["gemini", "Best IELTS coaching in Panchkula", "Your Academy"],
+    ["gemini", "Best MBA admissions consultant in Singapore", "Your Academy"],
     ["claude", "Emergency plumber in Parramatta", "Your Plumbing"],
     ["perplexity", "Shopify store for organic skincare", "Your Brand"],
-    ["globe", "heritage hotel wedding venue Jaipur", "yourhotel.in"],
+    ["globe", "boutique hotel wedding venue Cotswolds", "yourhotel.co.uk"],
     ["chatgpt", "Physiotherapy clinic in Tampines", "Your Physio"],
     ["perplexity", "Immigration consultant in Brampton", "Your Consultancy"],
   ],

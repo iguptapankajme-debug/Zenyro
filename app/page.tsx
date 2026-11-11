@@ -30,6 +30,8 @@ export const metadata = buildMetadata({
 });
 
 const homeFaqs = [
+  { q: "What is Zenyro?", a: "Zenyro is an SEO, AEO and GEO agency based in the Chandigarh Tricity, India, working with businesses in the United States, United Kingdom, UAE, Canada, Australia, Singapore and India. It helps them rank on Google, become the answer in Google AI Overviews, and get recommended by ChatGPT, Perplexity, Gemini, Claude and Copilot, with plans from US$799 a month." },
+  { q: "Who is Zenyro best for?", a: "Service businesses and brands where each customer is valuable: clinics, real estate, hospitality, education, professional and financial services, manufacturers and online stores, that want to be found on Google and recommended by AI assistants without paying big-agency retainers." },
   { q: "What is the difference between SEO, AEO and GEO?", a: "SEO gets your pages ranking in Google and Bing results. AEO (answer engine optimisation) structures your content so Google's featured snippets, AI Overviews and voice assistants can lift your answer directly. GEO (generative engine optimisation) makes your business easy for ChatGPT, Perplexity, Gemini, Claude and Copilot to find, trust and recommend. They share the same foundations, so we run them as one programme." },
   { q: "Can you get my business mentioned in ChatGPT?", a: "We can make you much easier to find, cite and recommend: clear facts about your business, pages that answer real questions, consistent listings and mentions on the sources AI assistants read. Nobody can guarantee a mention, and we track progress prompt by prompt so you can see what's changing." },
   { q: "How do you measure results?", a: "Google rankings, organic clicks and Maps actions from Search Console and Google Business Profile, plus AI visibility: how often and how prominently you're mentioned for the prompts your customers use, and which of your pages are cited. Everything is tied back to enquiries." },
@@ -75,10 +77,10 @@ const steps = [
 function SerpMini() {
   return (
     <div className="rounded-xl border border-line bg-ink p-3 text-[0.72rem]">
-      <p className="flex items-center gap-1.5 rounded-md bg-ink-2 px-2 py-1.5 text-muted"><Search aria-hidden="true" className="size-3" />dentist in mohali</p>
+      <p className="flex items-center gap-1.5 rounded-md bg-ink-2 px-2 py-1.5 text-muted"><Search aria-hidden="true" className="size-3" />dentist in manchester</p>
       <div className="mt-2 rounded-md border border-ember/40 bg-ember/[0.04] p-2">
-        <p className="font-mono text-[0.6rem] text-dim">yourclinic.in › mohali</p>
-        <p className="font-medium text-ember">Dental Clinic in Mohali | Your Clinic</p>
+        <p className="font-mono text-[0.6rem] text-dim">yourclinic.co.uk › manchester</p>
+        <p className="font-medium text-ember">Dental Clinic in Manchester | Your Clinic</p>
       </div>
       <div className="mt-1.5 space-y-1.5 p-2"><span className="block h-1.5 w-3/4 rounded bg-ink-3" /><span className="block h-1.5 w-1/2 rounded bg-ink-3" /></div>
     </div>
@@ -89,14 +91,14 @@ function AnswerMini() {
     <div className="rounded-xl border border-line bg-ink p-3 text-[0.72rem]">
       <p className="flex items-center gap-1.5 font-medium"><Sparkles aria-hidden="true" className="size-3 text-ember" />AI Overview</p>
       <p className="mt-2 leading-snug text-muted">A root canal usually takes one or two visits of 60–90 minutes, with local anaesthetic&hellip;</p>
-      <p className="mt-2 w-fit rounded-md bg-ember/10 px-2 py-0.5 text-[0.62rem] font-medium text-ember">Source: yourclinic.in</p>
+      <p className="mt-2 w-fit rounded-md bg-ember/10 px-2 py-0.5 text-[0.62rem] font-medium text-ember">Source: yourclinic.co.uk</p>
     </div>
   );
 }
 function ChatMini() {
   return (
     <div className="rounded-xl border border-line bg-ink p-3 text-[0.72rem]">
-      <p className="ml-auto w-fit rounded-lg bg-ink-3 px-2 py-1">Best dentist for kids in Mohali?</p>
+      <p className="ml-auto w-fit rounded-lg bg-ink-3 px-2 py-1">Best dentist for kids in Toronto?</p>
       <p className="mt-2 flex gap-1.5 leading-snug text-muted"><Icon3D name="chatgpt" size={20} className="mt-0.5 size-4 shrink-0" /><span>Parents often recommend <span className="rounded bg-amber-100 px-0.5 font-medium text-paper">Your Clinic</span> for its child-friendly team&hellip;</span></p>
     </div>
   );
@@ -271,7 +273,7 @@ export default function Home() {
           </div>
           <div className="mx-auto w-full max-w-[26rem] lg:col-span-5">
             <GlobeCanvas />
-            <p className="mt-2 text-center font-mono text-[0.68rem] uppercase tracking-[0.12em] text-dim">Chandigarh to six markets · drag to spin</p>
+            <p className="mt-2 text-center font-mono text-[0.68rem] uppercase tracking-[0.12em] text-dim">One team, six markets · drag to spin</p>
           </div>
         </div>
         <MarketCards />

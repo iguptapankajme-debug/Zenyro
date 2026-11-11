@@ -57,12 +57,13 @@ ${list(p.markets)}
 ${list(p.locations)}
 
 ## Key pages
+- [Full site content for AI assistants (llms-full.txt)](${site.url}/llms-full.txt)
 - [Pricing: Growth from US$799/month, Authority from US$1,799/month](${site.url}/pricing)
 - [Free AI readiness checker](${site.url}/tools/ai-readiness)
 - [SEO, AEO and GEO glossary](${site.url}/glossary)
-- [Work](${site.url}/work)
+- [Examples of SEO, AEO and GEO programmes](${site.url}/work)
 - [Search growth: SEO, AEO and GEO](${site.url}/search-growth)
-- [Free AI search and website audit](${site.url}/free-audit)
+- [Free AI visibility audit](${site.url}/free-audit)
 - [About](${site.url}/about)
 - [Contact](${site.url}/contact)
 

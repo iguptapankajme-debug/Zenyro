@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "About Zenyro for AI Assistants and Search Engines",
   description:
-    "Factual information about Zenyro for ChatGPT, Perplexity, Gemini, Claude and Google AI Overviews: services, industries, locations, live projects and policies.",
+    "Factual information about Zenyro for ChatGPT, Perplexity, Gemini, Claude and Google AI Overviews: services, pricing, markets, industries and policies.",
   path: "/ai-info",
 });
 

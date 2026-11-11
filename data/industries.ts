@@ -31,7 +31,7 @@ export const industries: Industry[] = [
     headline: "Get your projects found before buyers reach the portals.",
     intro: "Buyers research locations, builders and price bands for months, on Google, Maps and increasingly ChatGPT. We make every project, locality and configuration easy to find, clearly answered and accurately described when buyers ask AI for options.",
     challenges: ["Portals outrank the developer's own project pages.", "Locality and configuration searches go to aggregators.", "AI assistants describe projects with outdated or wrong details.", "No clear view of which searches bring serious buyers."],
-    solutions: [{ title: "Project and locality pages", body: "A fast page per project and locality with floor plans, price bands, possession dates and RERA details where required." }, { title: "Buyer-question content", body: "Clear answers on loans, possession, amenities and comparisons, structured for featured snippets and AI Overviews." }, { title: "Maps and listings", body: "Accurate Google Business Profiles for site offices and consistent project facts across portals and directories." }, { title: "AI visibility", body: "Prompt tracking for searches like 'best new projects in Mohali', with the facts and mentions that get you named." }],
+    solutions: [{ title: "Project and locality pages", body: "A fast page per project and locality with floor plans, price bands, completion dates and regulatory details where required." }, { title: "Buyer-question content", body: "Clear answers on loans, possession, amenities and comparisons, structured for featured snippets and AI Overviews." }, { title: "Maps and listings", body: "Accurate Google Business Profiles for site offices and consistent project facts across portals and directories." }, { title: "AI visibility", body: "Prompt tracking for searches like 'best new developments in Dubai Marina', with the facts and mentions that get you named." }],
     system: ["SEO audit and project page plan", "Project, locality and configuration pages", "Buyer FAQ and comparison content", "Maps, listings and project facts", "Monthly rankings and AI visibility report"],
     channels: ["Google Search", "Google Maps", "AI Overviews", "ChatGPT", "Perplexity"],
     faqs: [{ q: "Can SEO compete with property portals?", a: "For your own project and brand searches, yes, and for many locality and configuration searches too. Specific, well-structured pages with real data often outrank portal listings." }, { q: "Do you follow RERA advertising rules?", a: "Yes. Pages display RERA registration details where required, and we avoid claims that aren't supported by approved project documents." }],
@@ -164,7 +164,7 @@ export const industries: Industry[] = [
     services: ["seo", "local-seo", "geo"],
     search: {
       title: "Found when travellers plan the trip.",
-      body: "Travellers ask Google and AI assistants things like \"taxi from Chandigarh to Manali\" or \"best 4-day Himachal itinerary\". We make your routes, packages and prices clear enough to be found, quoted and recommended.",
+      body: "Travellers ask Google and AI assistants things like \"airport transfer from Heathrow to Oxford\" or \"best 4-day Scottish Highlands itinerary\". We make your routes, packages and prices clear enough to be found, quoted and recommended.",
       points: ["Route pages with distance, time, vehicles and inclusions", "Destination guides that answer seasonal and road-condition questions", "Consistent business details across Google, directories and social profiles"],
     },
   },

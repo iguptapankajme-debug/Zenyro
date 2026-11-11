@@ -65,7 +65,7 @@ export default function FreeAuditPage() {
             <h2 id="audit-form-title" className="display-md">Tell us about your business.</h2>
             <p className="lede mt-6">
               Add your website and the city you serve. In the last box, tell us the searches you&apos;d most like to win, for example
-              &ldquo;taxi Chandigarh to Manali&rdquo; or &ldquo;dentist in Mohali&rdquo;.
+              &ldquo;accountant for contractors in London&rdquo; or &ldquo;dentist in Toronto&rdquo;.
             </p>
           </div>
           <div className="lg:col-span-7">
