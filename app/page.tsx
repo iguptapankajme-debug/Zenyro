@@ -5,6 +5,10 @@ import { Em } from "@/components/ui/section-heading";
 import { Rail, PixelField, EngineChip, EngineMark, Icon3D, engines } from "@/components/home/primitives";
 import { HeroOrbit, OrbitStack } from "@/components/home/hero-orbit";
 import { AskAiDemo } from "@/components/home/ask-ai-demo";
+import { PromptTicker } from "@/components/home/prompt-ticker";
+import { StepsTimeline } from "@/components/home/steps-timeline";
+import { GlobeCanvas } from "@/components/webgl/globe-canvas";
+import { ShaderCanvas } from "@/components/webgl/shader-canvas";
 import { AiReadinessChecker } from "@/components/tools/ai-readiness-checker";
 import { MarketCards } from "@/components/markets/market-cards";
 import { PricingPlans } from "@/components/pricing/pricing-plans";
@@ -110,6 +114,7 @@ export default function Home() {
             <div aria-hidden="true" className="absolute left-1/2 top-[38%] -z-10 h-[26rem] w-[min(56rem,90%)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(21_94_239/.14),transparent)]" />
             <HeroOrbit />
             <OrbitStack />
+            <ShaderCanvas shader="contour" intensity={0.5} className="-z-20 opacity-70 [mask-image:radial-gradient(ellipse_at_center,black,transparent_72%)]" />
             <PixelField cols={150} rows={56} className="absolute inset-x-0 top-0 -z-10 h-full w-full opacity-[0.5] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
             <p className="eyebrow mx-auto mb-7">SEO · AEO · GEO agency</p>
             <h1 id="hero-title" className="mx-auto max-w-6xl text-[clamp(2.4rem,5.3vw,4.7rem)] font-semibold leading-[1.04] tracking-[-0.05em]">
@@ -133,6 +138,14 @@ export default function Home() {
           </div>
         </div>
         <div className="shell"><div className="border-x border-line"><VisibilityDashboard /></div></div>
+      </section>
+
+      {/* Prompt ticker */}
+      <section aria-label="Questions customers ask AI" className="border-b border-line bg-ink-2">
+        <div className="shell"><div className="border-x border-line py-8">
+          <p className="mb-5 text-center font-mono text-[0.7rem] uppercase tracking-[0.14em] text-dim">Right now, customers are asking AI</p>
+          <PromptTicker />
+        </div></div>
       </section>
 
       {/* Shift statement */}
@@ -247,15 +260,19 @@ export default function Home() {
 
       {/* Global */}
       <Rail labelledBy="global-title">
-        <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-          <div>
+        <div className="mb-12 grid items-center gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-7">
             <p className="eyebrow mb-6">Global</p>
             <h2 id="global-title" className="max-w-3xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
               One team, <Em>working in your hours</Em>, wherever you are
             </h2>
             <p className="mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-muted">Search behaviour, directories and trust signals differ by country. We plan for your market, write in your English, and report in your time zone.</p>
+            <Link href="/markets" className="mt-8 inline-flex items-center gap-2 font-medium"><span className="link-u">All markets</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
           </div>
-          <Link href="/markets" className="inline-flex items-center gap-2 font-medium"><span className="link-u">All markets</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+          <div className="mx-auto w-full max-w-[26rem] lg:col-span-5">
+            <GlobeCanvas />
+            <p className="mt-2 text-center font-mono text-[0.68rem] uppercase tracking-[0.12em] text-dim">Chandigarh to six markets · drag to spin</p>
+          </div>
         </div>
         <MarketCards />
       </Rail>
@@ -266,15 +283,7 @@ export default function Home() {
         <h2 id="how-title" className="max-w-3xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
           From invisible to <Em>recommended</Em>, in five steps
         </h2>
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-5">
-          {steps.map((s, i) => (
-            <li key={s.t} className="bg-ink p-6" data-reveal style={{ "--d": `${i * 70}ms` } as React.CSSProperties}>
-              <span className="grid size-8 place-items-center rounded-md bg-ember/10 font-mono text-[0.78rem] font-medium text-ember">{i + 1}</span>
-              <h3 className="mt-5 text-[1.1rem] font-semibold tracking-[-0.02em]">{s.t}</h3>
-              <p className="mt-2 text-[0.9rem] leading-relaxed text-muted">{s.b}</p>
-            </li>
-          ))}
-        </ol>
+        <StepsTimeline steps={steps} />
       </Rail>
 
       {/* Examples */}

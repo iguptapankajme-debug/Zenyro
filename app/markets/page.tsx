@@ -1,5 +1,6 @@
 import { PageHero } from "@/components/layout/page-hero";
 import { MarketCards } from "@/components/markets/market-cards";
+import { GlobeCanvas } from "@/components/webgl/globe-canvas";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { Em } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/seo";
@@ -18,6 +19,7 @@ export default function MarketsPage() {
         eyebrow="International"
         title={<>One team. <Em>Every market.</Em></>}
         intro="We're based in India and work remotely with businesses around the world, in their language and their working hours. Pick your market to see how search and AI work there."
+        aside={<div className="mx-auto mt-6 w-full max-w-[22rem]"><GlobeCanvas /></div>}
       />
       <section className="py-20 md:py-28" aria-label="Markets">
         <div className="shell"><MarketCards /></div>
