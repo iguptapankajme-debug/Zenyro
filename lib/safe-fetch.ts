@@ -12,10 +12,13 @@ import { isPublicAddress, normaliseUrl } from "./net-guard";
  * redirects are followed manually and re-checked, and size and time are capped.
  */
 const guardedLookup: LookupFunction = (hostname, options, cb) => {
-  dns.lookup(hostname, { ...options, all: false }, (err, address, family) => {
+  // Node (with autoSelectFamily) usually asks for all addresses; honour both forms and keep only public ones.
+  dns.lookup(hostname, { ...options, all: true }, (err, addresses) => {
     if (err) return cb(err, "", 0);
-    if (typeof address !== "string" || !isPublicAddress(address)) return cb(new Error("blocked-address"), "", 0);
-    cb(null, address, family);
+    const list = (addresses as dns.LookupAddress[]).filter((x) => isPublicAddress(x.address));
+    if (!list.length) return cb(new Error("blocked-address"), "", 0);
+    if (options.all) return (cb as unknown as (e: null, a: dns.LookupAddress[]) => void)(null, list);
+    cb(null, list[0]!.address, list[0]!.family);
   });
 };
 
