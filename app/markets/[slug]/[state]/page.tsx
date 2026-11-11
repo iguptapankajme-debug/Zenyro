@@ -9,42 +9,80 @@ import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
 import { Icon3D, type Icon3DName } from "@/components/home/primitives";
 import { LocalClock } from "@/components/markets/local-clock";
-import { getUsState, usStates } from "@/data/us-states";
+import { usStates, type UsState } from "@/data/us-states";
+import { uaeCities, type UaeCity } from "@/data/uae-cities";
 import { plans } from "@/data/pricing";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string; state: string }> };
+type Region = UsState & Partial<Pick<UaeCity, "deepDive">>;
+
+/** Regional pages per market: US states and UAE emirates share one template with market-specific pricing and wording. */
+const MARKETS: Record<string, {
+  country: string; regions: Region[]; others: string; kind: "State" | "City";
+  money: (n: number) => string; priceKey: "USD" | "AED";
+  priceRows: [string, string][]; priceNote: string;
+  title: (r: Region) => string; costAnswer: (r: Region, g: string, a: string) => string;
+}> = {
+  "united-states": {
+    country: "United States", regions: usStates, others: "Other US states", kind: "State",
+    money: (n) => `US$${n.toLocaleString("en-US")}`, priceKey: "USD",
+    priceRows: [["Typical agency in directories", "US$1,000 to $5,000 / month"], ["Average agency retainer", "About US$3,000 / month"]],
+    priceNote: "Ranges from public agency directories and industry surveys; individual quotes vary.",
+    title: (r) => `SEO, AEO & GEO Agency for ${r.name} Businesses`,
+    costAnswer: (r, g, a) => `Agency directories commonly show US$1,000 to $5,000 a month for SEO and AI search work, and industry surveys put the average agency retainer around $3,000. Zenyro publishes its prices: Growth from ${g} and Authority from ${a} a month, covering SEO, AEO and GEO.`,
+  },
+  uae: {
+    country: "United Arab Emirates", regions: uaeCities, others: "Other emirates", kind: "City",
+    money: (n) => `AED ${n.toLocaleString("en-US")}`, priceKey: "AED",
+    priceRows: [["Freelancer", "From about AED 4,000 / month"], ["Typical UAE agency", "AED 5,500 to 18,500 / month"], ["Full bilingual agency", "Up to about AED 25,000 / month"]],
+    priceNote: "Ranges from published 2026 Dubai SEO pricing guides; genuine bilingual Arabic work often adds 20 to 30%.",
+    title: (r) => `SEO Agency for ${r.name} Businesses: SEO, AEO & GEO`,
+    costAnswer: (r, g, a) => `Published 2026 estimates put UAE SEO retainers at roughly AED 4,000 a month for a freelancer up to AED 25,000 for a full bilingual agency, with many between AED 5,500 and 18,500. Zenyro's plans are ${g} (Growth) and ${a} (Authority) a month, including AEO and GEO.`,
+  },
+};
+
+const getRegion = (slug: string, state: string) => {
+  const m = MARKETS[slug];
+  const r = m?.regions.find((x) => x.slug === state);
+  return m && r ? { m, s: r } : null;
+};
 
 export const dynamicParams = false;
 export function generateStaticParams() {
-  return usStates.map((s) => ({ slug: "united-states", state: s.slug }));
+  return Object.entries(MARKETS).flatMap(([slug, m]) => m.regions.map((r) => ({ slug, state: r.slug })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, state } = await params;
-  const s = getUsState(state);
-  if (!s || slug !== "united-states") return {};
+  const found = getRegion(slug, state);
+  if (!found) return {};
+  const { m, s } = found;
   return buildMetadata({
-    title: `SEO, AEO & GEO Agency for ${s.name} Businesses`,
-    description: `SEO, AEO and GEO for ${s.name} businesses in ${s.cities.slice(0, 3).join(", ")} and beyond: rank on Google, get recommended by AI. Plans from US$799 a month.`,
-    path: `/markets/united-states/${s.slug}`,
+    title: m.title(s),
+    description: `SEO, AEO and GEO for ${s.name} businesses in ${s.cities.slice(0, 3).join(", ")} and beyond: rank on Google, get recommended by AI. Plans from ${m.money(plans[0]!.price[m.priceKey])} a month.`.slice(0, 170),
+    path: `/markets/${slug}/${s.slug}`,
   });
 }
 
 const engines: Icon3DName[] = ["chatgpt", "perplexity", "gemini", "claude", "globe"];
 
-export default async function StatePage({ params }: Props) {
+export default async function RegionPage({ params }: Props) {
   const { slug, state } = await params;
-  const s = getUsState(state);
-  if (!s || slug !== "united-states") notFound();
-  const path = `/markets/united-states/${s.slug}`;
+  const found = getRegion(slug, state);
+  if (!found) notFound();
+  const { m, s } = found;
+  const path = `/markets/${slug}/${s.slug}`;
   const [growth, authority] = plans;
+  const g = m.money(growth!.price[m.priceKey]);
+  const a = m.money(authority!.price[m.priceKey]);
 
   const faqs = [
+    ...(s.deepDive ?? []),
     { q: `Do you have an office in ${s.name}?`, a: `No. Zenyro is based in India and works remotely with ${s.name} businesses, with calls scheduled in ${s.zoneLabel}. Search engines and AI assistants rank your website and reputation, not your agency's address. We research ${s.name} competitors, directories and search behaviour directly.` },
-    { q: `What is the best GEO or AEO agency in ${s.name}?`, a: `The best agency is the one that measures AI visibility with a fixed set of prompts across engines, explains its plan clearly and publishes or quotes transparent pricing. Ask any agency for a sample report showing mentions and citations by engine. Our [buyer's guide](/insights/how-to-choose-seo-aeo-geo-agency) lists the questions to ask.` },
-    { q: `How much does SEO cost in ${s.name}?`, a: `Agency directories commonly show US$1,000 to $5,000 a month for SEO and AI search work, and industry surveys put the average agency retainer around $3,000. Zenyro publishes its prices: Growth from US$${growth!.price.USD.toLocaleString("en-US")} and Authority from US$${authority!.price.USD.toLocaleString("en-US")} a month, covering SEO, AEO and GEO.` },
+    ...(s.deepDive ? [] : [{ q: `What is the best GEO or AEO agency in ${s.name}?`, a: `The best agency is the one that measures AI visibility with a fixed set of prompts across engines, explains its plan clearly and publishes or quotes transparent pricing. Ask any agency for a sample report showing mentions and citations by engine. Our [buyer's guide](/insights/how-to-choose-seo-aeo-geo-agency) lists the questions to ask.` }]),
+    ...(s.deepDive ? [] : [{ q: `How much does SEO cost in ${s.name}?`, a: m.costAnswer(s, g, a) }]),
     { q: `Can you do local SEO for several ${s.name} locations?`, a: `Yes. Each location gets its own Google Business Profile optimisation and a location page with genuinely local detail, so you can rank in ${s.cities.slice(0, 3).join(", ")} and other metros you serve.` },
     s.faq,
   ];
@@ -52,7 +90,7 @@ export default async function StatePage({ params }: Props) {
   return (
     <>
       <PageHero
-        crumbs={[{ name: "Markets", path: "/markets" }, { name: "United States", path: "/markets/united-states" }, { name: s.name, path }]}
+        crumbs={[{ name: "Markets", path: "/markets" }, { name: m.country, path: `/markets/${slug}` }, { name: s.name, path }]}
         eyebrow={`${s.name} · SEO, AEO & GEO`}
         title={`SEO, AEO and GEO for ${s.name} businesses.`}
         intro={`Get found on Google and recommended by ChatGPT, Perplexity and Gemini in ${s.cities.slice(0, 3).join(", ")} and across ${s.name}, with a remote team working in ${s.zoneLabel} and prices you can see upfront.`}
@@ -70,7 +108,7 @@ export default async function StatePage({ params }: Props) {
           <div className="rounded-2xl border border-ember/30 bg-ember/[0.04] p-6 sm:p-8">
             <h2 id="answer-title" className="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-ember">The short answer</h2>
             <p className="mt-4 max-w-4xl text-[1.15rem] leading-relaxed text-paper">
-              To win customers in {s.name} through search in 2026, you need three things: pages that rank on Google for the searches people make in {s.cities.slice(0, 2).join(" and ")}, answers structured so Google&apos;s AI Overviews quote them, and a reputation on the sources AI assistants trust, such as {s.sources.slice(0, 2).join(" and ")}. Zenyro does all three as one programme, from US${growth!.price.USD} a month.
+              To win customers in {s.name} through search in 2026, you need three things: pages that rank on Google for the searches people make in {s.cities.slice(0, 2).join(" and ")}, answers structured so Google&apos;s AI Overviews quote them, and a reputation on the sources AI assistants trust, such as {s.sources.slice(0, 2).join(" and ")}. Zenyro does all three as one programme, from {g} a month.
             </p>
           </div>
         </div>
@@ -147,13 +185,14 @@ export default async function StatePage({ params }: Props) {
             <div className="mt-8 overflow-hidden rounded-2xl border border-line bg-ink">
               <table className="w-full text-left text-[0.92rem]">
                 <tbody>
-                  <tr className="border-b border-line"><th scope="row" className="p-4 font-medium">Typical agency in directories</th><td className="p-4 text-muted">US$1,000 to $5,000 / month</td></tr>
-                  <tr className="border-b border-line"><th scope="row" className="p-4 font-medium">Average agency retainer</th><td className="p-4 text-muted">About US$3,000 / month</td></tr>
-                  <tr><th scope="row" className="p-4 font-medium text-ember">Zenyro</th><td className="p-4">From US${growth!.price.USD} (Growth) or US${authority!.price.USD.toLocaleString("en-US")} (Authority)</td></tr>
+                  {m.priceRows.map(([k, v]) => (
+                    <tr key={k} className="border-b border-line"><th scope="row" className="p-4 font-medium">{k}</th><td className="p-4 text-muted">{v}</td></tr>
+                  ))}
+                  <tr><th scope="row" className="p-4 font-medium text-ember">Zenyro</th><td className="p-4">{g} (Growth) or {a} (Authority) / month</td></tr>
                 </tbody>
               </table>
             </div>
-            <p className="mt-3 text-[0.8rem] text-dim">Ranges from public agency directories and industry surveys; individual quotes vary.</p>
+            <p className="mt-3 text-[0.8rem] text-dim">{m.priceNote}</p>
           </div>
           <div className="lg:col-span-7">
             <ol className="grid gap-3">
@@ -198,8 +237,8 @@ export default async function StatePage({ params }: Props) {
             ))}
           </ul>
           <p className="mt-8 text-[0.92rem] text-muted">
-            Other US states: {usStates.filter((x) => x.slug !== s.slug).map((x, i, a) => (
-              <span key={x.slug}><Link href={`/markets/united-states/${x.slug}`} className="link-u text-paper">{x.name}</Link>{i < a.length - 1 ? ", " : "."}</span>
+            {m.others}: {m.regions.filter((x) => x.slug !== s.slug).map((x, i, arr) => (
+              <span key={x.slug}><Link href={`/markets/${slug}/${x.slug}`} className="link-u text-paper">{x.name}</Link>{i < arr.length - 1 ? ", " : "."}</span>
             ))}
           </p>
         </div>
@@ -214,9 +253,9 @@ export default async function StatePage({ params }: Props) {
           name: `SEO, AEO and GEO for ${s.name} businesses`,
           serviceType: "Search engine optimisation",
           url: absoluteUrl(path),
-          areaServed: { "@type": "State", name: s.name, containedInPlace: { "@type": "Country", name: "United States" } },
+          areaServed: { "@type": m.kind, name: s.name, containedInPlace: { "@type": "Country", name: m.country } },
           provider: { "@id": `${site.url}/#organization` },
-          offers: plans.map((p) => ({ "@type": "Offer", name: `${p.name} plan`, price: p.price.USD, priceCurrency: "USD" })),
+          offers: plans.map((p) => ({ "@type": "Offer", name: `${p.name} plan`, price: p.price[m.priceKey], priceCurrency: m.priceKey })),
         }}
       />
     </>

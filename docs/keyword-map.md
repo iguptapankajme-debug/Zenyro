@@ -7,6 +7,12 @@ Source: five keyword exports, 40,516 unique keywords after de-duplication.
 
 Each page targets a cluster of keywords with the same intent, rather than one page per keyword. The full keyword-by-keyword map is kept outside the repository (zenyro-keyword-map.csv).
 
+## UAE (agency keyword export, AE)
+
+5,283 UAE keywords: 2,532 targeted (about 71,480 monthly searches) and the rest excluded with reasons (social, ads and brand agencies; general marketing; non-English markets; markets not served; tools for agency owners).
+Emirate pages under /markets/uae/: Dubai (about 46,900 monthly searches, including "seo agency dubai" and "seo agency in dubai" at 8,100 each), Abu Dhabi, Sharjah, Ajman and Ras Al Khaimah.
+Other locations in the export point to the existing UK, Canada, Australia, Singapore, US state and India pages.
+
 ## US state pages
 
 364 location keywords (about 6,810 monthly searches) now point to 12 state pages under /markets/united-states/: New York, California, Texas, Florida, Illinois, Pennsylvania, Massachusetts, Georgia, Washington, Minnesota, Tennessee and Washington, DC. States were chosen by demand in the keyword data.

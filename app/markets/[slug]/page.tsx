@@ -11,6 +11,7 @@ import { LocalClock } from "@/components/markets/local-clock";
 import { AiReadinessChecker } from "@/components/tools/ai-readiness-checker";
 import { getMarket, markets } from "@/data/markets";
 import { usStates } from "@/data/us-states";
+import { uaeCities } from "@/data/uae-cities";
 import { services } from "@/data/services";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -108,15 +109,15 @@ export default async function MarketPage({ params }: Props) {
         </div>
       </section>
 
-      {m.slug === "united-states" && (
+      {(m.slug === "united-states" || m.slug === "uae") && (
         <section className="border-t border-line py-16 md:py-24" aria-labelledby="states-title">
           <div className="shell">
-            <p className="eyebrow mb-6">State guides</p>
-            <h2 id="states-title" className="display-md max-w-3xl">SEO, AEO and GEO by state.</h2>
+            <p className="eyebrow mb-6">{m.slug === "uae" ? "Emirate guides" : "State guides"}</p>
+            <h2 id="states-title" className="display-md max-w-3xl">SEO, AEO and GEO by {m.slug === "uae" ? "emirate" : "state"}.</h2>
             <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {usStates.map((st) => (
+              {(m.slug === "uae" ? uaeCities : usStates).map((st) => (
                 <li key={st.slug}>
-                  <Link href={`/markets/united-states/${st.slug}`} className="group flex h-full items-center justify-between gap-3 rounded-2xl border border-line px-5 py-4 transition-colors hover:border-ember/60">
+                  <Link href={`/markets/${m.slug}/${st.slug}`} className="group flex h-full items-center justify-between gap-3 rounded-2xl border border-line px-5 py-4 transition-colors hover:border-ember/60">
                     <span><span className="block font-medium">{st.name}</span><span className="block text-[0.8rem] text-muted">{st.cities.slice(0, 2).join(", ")}</span></span>
                     <ArrowUpRight aria-hidden="true" className="size-4 shrink-0 text-ember" />
                   </Link>
