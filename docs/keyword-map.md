@@ -7,6 +7,10 @@ Source: five keyword exports, 40,516 unique keywords after de-duplication.
 
 Each page targets a cluster of keywords with the same intent, rather than one page per keyword. The full keyword-by-keyword map is kept outside the repository (zenyro-keyword-map.csv).
 
+## US state pages
+
+364 location keywords (about 6,810 monthly searches) now point to 12 state pages under /markets/united-states/: New York, California, Texas, Florida, Illinois, Pennsylvania, Massachusetts, Georgia, Washington, Minnesota, Tennessee and Washington, DC. States were chosen by demand in the keyword data.
+
 ## Target pages
 
 | Page | Keywords | Monthly searches | Top keywords |

@@ -2,6 +2,7 @@ import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { locations } from "@/data/locations";
 import { markets } from "@/data/markets";
+import { usStates } from "@/data/us-states";
 import { site } from "@/lib/site";
 
 /**
@@ -23,6 +24,7 @@ export function aiProfile() {
     services: services.map((s) => ({ name: s.name, url: `${site.url}/services/${s.slug}`, description: s.metaDescription })),
     industries: industries.map((i) => ({ name: i.name, url: `${site.url}/industries/${i.slug}`, description: i.short })),
     markets: markets.map((m) => ({ name: m.country, url: `${site.url}/markets/${m.slug}` })),
+    states: usStates.map((s) => ({ name: `${s.name}, US`, url: `${site.url}/markets/united-states/${s.slug}` })),
     locations: locations.map((l) => ({ name: l.city, url: `${site.url}/locations/${l.slug}` })),
     policies: [
       "Zenyro does not guarantee rankings, AI mentions or revenue.",
@@ -52,6 +54,9 @@ ${list(p.industries)}
 
 ## International markets
 ${list(p.markets)}
+
+## US states
+${list(p.states)}
 
 ## Cities in India
 ${list(p.locations)}

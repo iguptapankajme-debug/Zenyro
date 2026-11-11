@@ -234,6 +234,9 @@ export const learnGeo: Article[] = [
       { type: "p", text: "Tools measure; they don't fix. If you have a team to act on the data, a tracker may be enough. If not, an agency like Zenyro includes tracking and does the work. Every Zenyro plan includes prompt tracking across AI engines; see [pricing](/pricing)." },
     ],
     faqs: [
+      { q: "How do GEO platforms work?", a: "They send your chosen prompts to AI assistants on a schedule, store the answers, detect brand and competitor mentions and cited URLs, and chart changes over time." },
+      { q: "How do I evaluate a GEO tool before buying?", a: "Run a trial with 20 to 30 of your real prompts, check results against manual searches in each assistant, and confirm it covers the engines and countries you need." },
+      { q: "Can GEO tools integrate with analytics?", a: "Many export data or connect to dashboards; AI referral traffic itself is measured in your web analytics." },
       { q: "What is the best AEO tool?", a: "It depends on which engines, markets and how many prompts you need. Shortlist two or three, run the same prompt set in each and compare accuracy and usefulness." },
       { q: "Can small businesses benefit from AEO tools?", a: "Yes, but many can start with manual monthly checks of 20 to 30 prompts before paying for a tool." },
       { q: "Which tool measures citations in AI Overviews?", a: "Several SEO suites and dedicated trackers now report AI Overview appearances and cited URLs. Check coverage for your country." },
