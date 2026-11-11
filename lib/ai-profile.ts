@@ -63,6 +63,7 @@ ${list(p.states)}
 ${list(p.locations)}
 
 ## Key pages
+- [Playbooks: example SEO, AEO and GEO strategies by industry for the US, UK and UAE](${site.url}/playbooks)
 - [Full site content for AI assistants (llms-full.txt)](${site.url}/llms-full.txt)
 - [Pricing: Growth from US$799/month, Authority from US$1,799/month](${site.url}/pricing)
 - [Free AI readiness checker](${site.url}/tools/ai-readiness)

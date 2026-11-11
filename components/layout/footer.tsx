@@ -5,10 +5,12 @@ import { industries } from "@/data/industries";
 import { markets } from "@/data/markets";
 import { site } from "@/lib/site";
 import { Mark } from "./wordmark";
+import { Flag } from "@/components/ui/flag";
 
 const company = [
   { label: "About", href: "/about" },
   { label: "Examples", href: "/work" },
+  { label: "Playbooks", href: "/playbooks" },
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
   { label: "Free audit", href: "/free-audit" },
@@ -24,14 +26,14 @@ const agency = [
   { label: "For AI assistants", href: "/ai-info" },
 ];
 
-function Column({ title, links }: { title: string; links: { label: string; href: string }[] }) {
+function Column({ title, links }: { title: string; links: { label: string; href: string; flag?: string }[] }) {
   return (
     <div>
       <p className="eyebrow mb-5">{title}</p>
       <ul className="grid gap-2.5">
         {links.map((l) => (
           <li key={l.href}>
-            <Link href={l.href} className="link-u text-[0.92rem] text-muted transition-colors hover:text-paper">{l.label}</Link>
+            <Link href={l.href} className="inline-flex items-center gap-2 text-[0.92rem] text-muted transition-colors hover:text-paper">{l.flag && <Flag code={l.flag} className="h-3 w-[18px]" />}<span className="link-u">{l.label}</span></Link>
           </li>
         ))}
       </ul>
@@ -65,7 +67,7 @@ export function Footer() {
             <Column title="Industries" links={industries.map((i) => ({ label: i.name, href: `/industries/${i.slug}` }))} />
             <div className="grid content-start gap-10">
               <Column title="Company" links={company} />
-              <Column title="Markets" links={[...markets.map((m) => ({ label: m.country, href: `/markets/${m.slug}` })), { label: "India: all cities", href: "/locations" }]} />
+              <Column title="Markets" links={[...markets.map((m) => ({ label: m.country, href: `/markets/${m.slug}`, flag: m.code })), { label: "India: all cities", href: "/locations", flag: "IN" }]} />
             </div>
             <Column title="Agency" links={agency} />
           </div>

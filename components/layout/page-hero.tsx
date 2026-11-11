@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Breadcrumbs } from "./breadcrumbs";
+import { HeroArt, HeroArtRow } from "@/components/art/hero-art";
 import { ShaderCanvas } from "@/components/webgl/shader-canvas";
 import type { ShaderName } from "@/components/webgl/shaders";
 
@@ -11,10 +12,22 @@ type Props = {
   aside?: ReactNode;
   /** WebGL backdrop behind the hero. */
   shader?: ShaderName;
+  /** Show the 3D icon cluster (on by default). */
+  art?: boolean;
 };
 
 /** Opening block for inner pages: breadcrumb trail, oversized H1 and an offset introduction. */
-export function PageHero({ crumbs, eyebrow, title, intro, aside, shader = "contour" }: Props) {
+/** Each section of the site gets its own WebGL backdrop unless a page chooses one. */
+const shaderFor = (path: string): ShaderName =>
+  path.startsWith("/services") || path.startsWith("/search-growth") ? "warp"
+  : path.startsWith("/industries") || path.startsWith("/solutions") ? "grid"
+  : path.startsWith("/insights") || path.startsWith("/glossary") ? "streaks"
+  : path.startsWith("/pricing") || path.startsWith("/free-audit") ? "ember"
+  : "contour";
+
+export function PageHero({ crumbs, eyebrow, title, intro, aside, shader: shaderProp, art = true }: Props) {
+  const path = crumbs[crumbs.length - 1]?.path ?? "/";
+  const shader = shaderProp ?? shaderFor(path);
   return (
     <section className="relative isolate overflow-hidden border-b border-line pb-16 pt-32 md:pb-24 md:pt-44">
       <ShaderCanvas shader={shader} className="-z-10 [mask-image:linear-gradient(to_left,black,transparent_75%)]" />
@@ -23,11 +36,13 @@ export function PageHero({ crumbs, eyebrow, title, intro, aside, shader = "conto
         <Breadcrumbs items={crumbs} />
         <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
+            {art && <HeroArtRow path={path} className="mb-6 lg:hidden" />}
             <p className="eyebrow mb-6 animate-fade">{eyebrow}</p>
             <h1 className="display-xl">{title}</h1>
           </div>
-          {(intro || aside) && (
+          {(intro || aside || art) && (
             <div className="animate-fade [animation-delay:160ms] lg:col-span-4">
+              {art && <HeroArt path={path} className="mx-auto mb-8 hidden lg:block" />}
               {intro && <p className="lede">{intro}</p>}
               {aside}
             </div>

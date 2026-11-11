@@ -12,6 +12,7 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { getIndustry, industries } from "@/data/industries";
 import { getService } from "@/data/services";
 import { buildMetadata, serviceSchema } from "@/lib/seo";
+import { GrowthShowcase } from "@/components/art/growth-showcase";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -132,6 +133,7 @@ export default async function IndustryPage({ params }: Props) {
         </div>
       </section>
 
+      <GrowthShowcase />
       <Faq faqs={ind.faqs} title={`${ind.name}: common questions.`} />
       <LinkList eyebrow="Services for this industry" items={svc.map((s) => ({ title: s.name, body: s.headline, href: `/services/${s.slug}`, meta: "Service" }))} />
       <LinkList eyebrow="Other industries" items={others.map((o) => ({ title: o.name, body: o.headline, href: `/industries/${o.slug}`, meta: "Industry" }))} />

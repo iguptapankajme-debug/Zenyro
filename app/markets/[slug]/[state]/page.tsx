@@ -9,11 +9,13 @@ import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
 import { Icon3D, type Icon3DName } from "@/components/home/primitives";
 import { LocalClock } from "@/components/markets/local-clock";
+import { Flag } from "@/components/ui/flag";
 import { usStates, type UsState } from "@/data/us-states";
 import { uaeCities, type UaeCity } from "@/data/uae-cities";
 import { plans } from "@/data/pricing";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { GrowthShowcase } from "@/components/art/growth-showcase";
 
 type Props = { params: Promise<{ slug: string; state: string }> };
 type Region = UsState & Partial<Pick<UaeCity, "deepDive">>;
@@ -96,6 +98,7 @@ export default async function RegionPage({ params }: Props) {
         intro={`Get found on Google and recommended by ChatGPT, Perplexity and Gemini in ${s.cities.slice(0, 3).join(", ")} and across ${s.name}, with a remote team working in ${s.zoneLabel} and prices you can see upfront.`}
         aside={
           <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Flag code={slug === "uae" ? "UAE" : "US"} className="h-8 w-12" title={m.country} />
             <ButtonLink href="/free-audit">Get a free AI visibility audit</ButtonLink>
             <span className="inline-flex items-center gap-2 font-mono text-[0.78rem] text-muted"><Clock aria-hidden="true" className="size-3.5" />It&apos;s <LocalClock zone={s.zone} className="tabular-nums text-paper" /> in {s.cities[0]}</span>
           </div>
@@ -244,6 +247,7 @@ export default async function RegionPage({ params }: Props) {
         </div>
       </section>
 
+      <GrowthShowcase />
       <Faq faqs={faqs} title={`SEO in ${s.name}: questions.`} />
       <ContactCta />
       <JsonLd

@@ -59,6 +59,7 @@ const glyphs: Record<string, ReactNode> = {
   overviews: <path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />,
   maps: <path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21zm0-9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="none" stroke="currentColor" strokeWidth="1.6" />,
   bing: <path d="M7 3l4 1.4v11.8l5.6-3.2-2.7-1.3-1.7-4.2L18 9.6v5.2L11 19l-4-2.2z" fill="currentColor" />,
+  brave: <path d="M12 3l6 2 1.5 3-1 6.5L12 21l-6.5-6.5-1-6.5L6 5z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />,
   meta: <path d="M3 15c0-4 2.2-8 4.6-8 3 0 5.6 10 8.6 10 1.8 0 4.8-2.3 4.8-6 0-2-1-4-2.8-4-3 0-5.4 8-8.6 8C6 15 6 17 3 15z" fill="none" stroke="currentColor" strokeWidth="1.5" />,
 };
 
@@ -73,6 +74,7 @@ export const engines = [
   { key: "maps", name: "Google Maps" },
   { key: "bing", name: "Bing" },
   { key: "meta", name: "Meta AI" },
+  { key: "brave", name: "Brave Search" },
 ] as const;
 
 export function EngineIcon({ name, className }: { name: keyof typeof glyphs; className?: string }) {
@@ -93,7 +95,7 @@ export function EngineChip({ name, label, className }: { name: keyof typeof glyp
 }
 
 /** The 3D engine marks (supplied artwork). Engines without one fall back to the flat glyph. */
-export const icons3d = { chatgpt: "chatgpt", claude: "claude", gemini: "gemini", perplexity: "perplexity", globe: "seo-globe" } as const;
+export const icons3d = { chatgpt: "chatgpt", claude: "claude", gemini: "gemini", perplexity: "perplexity", globe: "seo-globe", google: "google", bing: "bing", copilot: "copilot", brave: "brave" } as const;
 export type Icon3DName = keyof typeof icons3d;
 
 export function Icon3D({ name, size = 64, className, alt = "", priority }: { name: Icon3DName; size?: number; className?: string; alt?: string; priority?: boolean }) {

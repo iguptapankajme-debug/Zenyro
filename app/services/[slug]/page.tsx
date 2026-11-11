@@ -12,6 +12,7 @@ import { slugify } from "@/lib/slugify";
 import { disciplines, getService, services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { buildMetadata, serviceSchema } from "@/lib/seo";
+import { GrowthShowcase } from "@/components/art/growth-showcase";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -142,6 +143,7 @@ export default async function ServicePage({ params }: Props) {
         </div>
       </section>
 
+      <GrowthShowcase />
       <Faq faqs={s.faqs} />
       <LinkList
         eyebrow="Works well with"

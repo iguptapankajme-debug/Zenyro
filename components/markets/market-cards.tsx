@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { markets } from "@/data/markets";
 import { LocalClock } from "./local-clock";
+import { Flag } from "@/components/ui/flag";
 import { cn } from "@/lib/cn";
 
 /** One card per international market, with the live local time there. */
@@ -12,7 +13,7 @@ export function MarketCards({ className }: { className?: string }) {
         <li key={m.slug} className={cn("border-line", i ? "border-t" : "", i === 1 ? "sm:border-t-0" : "", i % 2 ? "sm:border-l" : "", i >= 2 && i < 3 ? "lg:border-t-0" : "", i % 3 ? "lg:border-l" : "lg:border-l-0")}>
           <Link href={`/markets/${m.slug}`} className="group flex h-full flex-col gap-4 p-6 transition-colors hover:bg-ink-2">
             <span className="flex items-center justify-between">
-              <span className="grid h-7 min-w-10 place-items-center rounded-md bg-ink-3 px-2 font-mono text-[0.75rem] font-medium">{m.code}</span>
+              <span className="flex items-center gap-2"><Flag code={m.code} className="h-6 w-9" /><span className="font-mono text-[0.75rem] font-medium text-muted">{m.code}</span></span>
               <span className="font-mono text-[0.75rem] text-muted"><LocalClock zone={m.zone} className="tabular-nums text-paper" /> in {m.city}</span>
             </span>
             <span>

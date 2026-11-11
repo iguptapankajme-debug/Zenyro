@@ -8,6 +8,7 @@ import { ContactCta } from "@/components/sections/contact-cta";
 import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
 import { LocalClock } from "@/components/markets/local-clock";
+import { Flag } from "@/components/ui/flag";
 import { AiReadinessChecker } from "@/components/tools/ai-readiness-checker";
 import { getMarket, markets } from "@/data/markets";
 import { usStates } from "@/data/us-states";
@@ -15,6 +16,7 @@ import { uaeCities } from "@/data/uae-cities";
 import { services } from "@/data/services";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { GrowthShowcase } from "@/components/art/growth-showcase";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -44,6 +46,7 @@ export default async function MarketPage({ params }: Props) {
         intro={m.intro}
         aside={
           <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Flag code={m.code} className="h-8 w-12" title={m.country} />
             <ButtonLink href="/free-audit">Get a free AI visibility audit</ButtonLink>
             <span className="inline-flex items-center gap-2 font-mono text-[0.78rem] text-muted"><Clock aria-hidden="true" className="size-3.5" />It&apos;s <LocalClock zone={m.zone} className="tabular-nums text-paper" /> in {m.city}</span>
           </div>
@@ -118,7 +121,7 @@ export default async function MarketPage({ params }: Props) {
               {(m.slug === "uae" ? uaeCities : usStates).map((st) => (
                 <li key={st.slug}>
                   <Link href={`/markets/${m.slug}/${st.slug}`} className="group flex h-full items-center justify-between gap-3 rounded-2xl border border-line px-5 py-4 transition-colors hover:border-ember/60">
-                    <span><span className="block font-medium">{st.name}</span><span className="block text-[0.8rem] text-muted">{st.cities.slice(0, 2).join(", ")}</span></span>
+                    <span><span className="flex items-center gap-2 font-medium"><Flag code={m.slug === "uae" ? "UAE" : "US"} className="h-3.5 w-5" />{st.name}</span><span className="block text-[0.8rem] text-muted">{st.cities.slice(0, 2).join(", ")}</span></span>
                     <ArrowUpRight aria-hidden="true" className="size-4 shrink-0 text-ember" />
                   </Link>
                 </li>
@@ -128,6 +131,7 @@ export default async function MarketPage({ params }: Props) {
         </section>
       )}
 
+      <GrowthShowcase />
       <Faq faqs={m.faqs} title={`SEO in ${name}: questions.`} />
       <ContactCta />
       <JsonLd

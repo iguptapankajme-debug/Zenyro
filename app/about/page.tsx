@@ -6,6 +6,7 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { Em } from "@/components/ui/section-heading";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { GrowthShowcase } from "@/components/art/growth-showcase";
 
 export const metadata = buildMetadata({
   title: "About Zenyro: An SEO, AEO & GEO Agency",
@@ -112,6 +113,7 @@ export default function AboutPage() {
 
       <Testimonials />
       <Process variant="full" />
+      <GrowthShowcase title="How we show progress." />
       <ContactCta />
     </>
   );
