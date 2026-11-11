@@ -7,7 +7,9 @@ export const site = {
   tagline: "Get found on Google, ChatGPT and every AI search.",
   description:
     "Zenyro is an SEO, AEO and GEO agency. We help businesses rank on Google, become the answer in AI Overviews, and get recommended by ChatGPT, Perplexity, Gemini and other AI assistants.",
-  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://zenyro.in").replace(/\/$/, ""),
+  // The live site is served on www.zenyro.in (the bare domain redirects there), so canonical URLs,
+  // the sitemap and structured data use www. A bare-domain value in NEXT_PUBLIC_SITE_URL is upgraded.
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.zenyro.in").replace(/\/$/, "").replace("://zenyro.in", "://www.zenyro.in"),
   locale: "en_IN",
   // Contact details. Empty values are hidden; the WhatsApp button appears once a number is set.
   email: "zenyro.in@gmail.com",

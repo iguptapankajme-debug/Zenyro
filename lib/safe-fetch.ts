@@ -32,7 +32,7 @@ function once(url: URL, maxBytes: number, timeoutMs: number): Promise<{ status: 
       lookup: guardedLookup,
       timeout: timeoutMs,
       headers: {
-        "user-agent": "Mozilla/5.0 (compatible; ZenyroAIReadiness/1.0; +https://zenyro.in/tools/ai-readiness)",
+        "user-agent": "Mozilla/5.0 (compatible; ZenyroAIReadiness/1.0; +https://www.zenyro.in/tools/ai-readiness)",
         accept: "text/html,text/plain,application/xml;q=0.9,*/*;q=0.5",
         "accept-encoding": "gzip, deflate, br",
       },
