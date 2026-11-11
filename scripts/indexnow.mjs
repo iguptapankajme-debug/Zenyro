@@ -4,7 +4,7 @@
  * Copilot. Runs from the Vercel build only in production and never fails the build.
  */
 const KEY = "96fdf27ca9a01c2b9ca2e002e70c7654";
-const SITE = (process.env.NEXT_PUBLIC_SITE_URL || "https://zenyro.in").replace(/\/$/, "");
+const SITE = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.zenyro.in").replace(/\/$/, "").replace("://zenyro.in", "://www.zenyro.in");
 
 if (process.env.VERCEL_ENV !== "production") {
   console.log("[indexnow] skipped (not a production deploy)");
