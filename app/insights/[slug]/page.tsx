@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { Faq } from "@/components/sections/faq";
 import { JsonLd } from "@/components/ui/json-ld";
-import { articles, getArticle, type Article } from "@/data/insights";
+import { articles, getArticle, pillars, type Article } from "@/data/insights";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { slugify } from "@/lib/slugify";
@@ -74,7 +74,10 @@ function Block({ b }: { b: Article["body"][number] }) {
 export default async function ArticlePage({ params }: Props) {
   const a = getArticle((await params).slug);
   if (!a) notFound();
-  const more = articles.filter((x) => x.slug !== a.slug).slice(0, 6);
+  const pillar = pillars.find((p) => (p.categories as readonly string[]).includes(a.category));
+  const inPillar = (x: Article) => !!pillar && (pillar.categories as readonly string[]).includes(x.category);
+  const others = articles.filter((x) => x.slug !== a.slug);
+  const more = [...others.filter(inPillar), ...others.filter((x) => !inPillar(x))].slice(0, 6);
   const toc = a.body.filter((b): b is { type: "h2"; text: string } => b.type === "h2");
   const path = `/insights/${a.slug}`;
 

@@ -1,4 +1,7 @@
 import { guides } from "./guides";
+import { learnSeo } from "./learn-seo";
+import { learnAeo } from "./learn-aeo";
+import { learnGeo } from "./learn-geo";
 
 export type Article = {
   slug: string;
@@ -183,7 +186,16 @@ const searchArticles: Article[] = [
 ];
 
 /** Published articles: search topics only. */
-export const articles = [...guides, ...searchArticles, ...allArticles];
+export const articles = [...guides, ...learnSeo, ...learnAeo, ...learnGeo, ...searchArticles, ...allArticles];
+
+/** Topic hubs for the Insights page: each article's category rolls up to one pillar. */
+export const pillars = [
+  { key: "seo", title: "SEO basics", intro: "How search engines work and how to rank on Google and Bing.", categories: ["SEO basics", "Technical SEO", "Local SEO", "International SEO", "Search growth"] },
+  { key: "aeo", title: "AEO: answer engine optimisation", intro: "Becoming the direct answer in featured snippets, AI Overviews and voice.", categories: ["AEO"] },
+  { key: "geo", title: "GEO: generative engine optimisation", intro: "Getting named and cited by ChatGPT, Perplexity, Gemini, Claude and Copilot.", categories: ["GEO", "AI search"] },
+  { key: "tools", title: "Tools, audits and measurement", intro: "How to measure rankings and AI visibility, and audit what's holding you back.", categories: ["Tools & measurement"] },
+  { key: "agencies", title: "Agencies and pricing", intro: "What SEO, AEO and GEO cost, and how to choose the right partner.", categories: ["Agencies & pricing", "Buyer's guide"] },
+] as const;
 
 export function getArticle(slug: string) {
   return articles.find((a) => a.slug === slug);

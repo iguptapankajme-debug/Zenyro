@@ -1,14 +1,17 @@
 import { z } from "zod";
 
 export const industryOptions = [
-  "Real Estate",
-  "Hospitality",
-  "Healthcare & Clinics",
-  "Interior Design & Premium Retail",
-  "Education & Professional Services",
-  "Home Improvement & Building Materials",
-  "Travel, Taxi & Tours",
-  "Financial & Advisory Services",
+  "B2B services",
+  "SaaS & technology",
+  "E-commerce & retail",
+  "Manufacturing & industrial",
+  "Financial services",
+  "Healthcare & life sciences",
+  "Legal",
+  "Real estate",
+  "Hospitality & travel",
+  "Education",
+  "Home services",
   "Other",
 ] as const;
 

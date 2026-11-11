@@ -59,7 +59,7 @@ const allServices: Service[] = [
     discipline: "build",
     search: "seo",
     serviceType: "Search engine optimisation",
-    metaTitle: "SEO Services That Drive Organic Growth",
+    metaTitle: "SEO Services & SEO Company for Organic Growth",
     metaDescription:
       "Technical SEO, on-page and local SEO, programmatic SEO, content strategy, internal linking and digital PR, measured in Search Console and tied to enquiries.",
     headline: "SEO that turns searches into customers",
@@ -99,6 +99,9 @@ const allServices: Service[] = [
       "Brands planning new locations, products or projects",
     ],
     faqs: [
+      { q: "What are SEO services?", a: "SEO services are the work of improving a website's rankings in search engines: technical fixes, keyword research, page and content improvements, link building and reporting. Zenyro also covers AEO and GEO so you're visible in AI answers." },
+      { q: "What is an SEO company?", a: "An SEO company (or SEO agency) is a team that plans and does search engine optimisation for clients and reports on rankings, traffic and enquiries. See [what is SEO](/insights/what-is-seo)." },
+      { q: "Is search marketing the same as SEO?", a: "Search marketing covers both paid search ads and SEO. Zenyro focuses on organic search. See [SEO vs SEM](/insights/seo-vs-sem)." },
       { q: "How long does SEO take to show results?", a: "Technical fixes can improve indexing within weeks. Meaningful ranking and traffic growth in competitive markets usually takes three to six months of consistent work. We report progress monthly so you can see leading indicators before rankings move." },
       { q: "Can you guarantee first-page rankings?", a: "No. Search engines decide rankings, and anyone guaranteeing positions is either targeting searches nobody makes or taking risks with your site. We commit to a clear plan, quality work and transparent reporting." },
       { q: "Do you build links?", a: "We earn links through digital PR, original data and partnerships. We do not buy links or use private blog networks, which can lead to penalties." },
@@ -111,7 +114,7 @@ const allServices: Service[] = [
     discipline: "grow",
     search: "aeo",
     serviceType: "Answer engine optimisation",
-    metaTitle: "Answer Engine Optimization (AEO) Services",
+    metaTitle: "AEO Agency: Answer Engine Optimization Services",
     metaDescription:
       "Answer engine optimisation (AEO): question-led content, clear answers and structured data so featured snippets and AI Overviews quote you.",
     headline: "Answer engine optimisation: become the answer",
@@ -151,6 +154,9 @@ const allServices: Service[] = [
       "Companies already investing in SEO who want more from existing content",
     ],
     faqs: [
+      { q: "What is an AEO agency?", a: "An AEO agency structures your content so search features and AI assistants quote it as the direct answer, and tracks those appearances. See [what is AEO](/insights/what-is-aeo)." },
+      { q: "What do answer engine optimization services include?", a: "Question research, answer-first rewrites of key pages, FAQ and schema implementation, entity and author signals, and monthly tracking of snippets, AI Overviews and AI answers." },
+      { q: "How much do AEO services cost?", a: "Zenyro includes AEO in plans from US$799 a month alongside SEO and GEO. See [AEO and GEO costs](/insights/aeo-geo-cost)." },
       { q: "How is AEO different from SEO?", a: "AEO is part of good SEO with a sharper focus: making specific answers easy to find, trust and quote. It shares the same foundations, including crawlable pages, quality content and authority, which is why we usually run them together." },
       { q: "Does adding FAQ schema guarantee answer boxes?", a: "No. Structured data helps systems understand content but does not guarantee any placement, and search engines limit how some rich results appear. We use markup only where it accurately describes visible content." },
       { q: "How do you measure AEO?", a: "We track a defined set of priority questions over time, recording whether and where your pages appear, alongside Search Console clicks and enquiries from the related pages." },
@@ -163,7 +169,7 @@ const allServices: Service[] = [
     discipline: "convert",
     search: "geo",
     serviceType: "Generative engine optimisation",
-    metaTitle: "Generative Engine Optimization (GEO) Services",
+    metaTitle: "GEO Agency: Generative Engine Optimization Services",
     metaDescription:
       "Generative engine optimisation (GEO): get recommended by ChatGPT, Perplexity, Gemini and Claude, with prompt-level AI visibility tracking.",
     headline: "Generative engine optimisation: get recommended by AI",
@@ -204,6 +210,9 @@ const allServices: Service[] = [
       "Teams that already invest in SEO and want AI search measured too",
     ],
     faqs: [
+      { q: "What is a GEO agency?", a: "A GEO (generative engine optimisation) agency helps brands get named, described accurately and cited by AI assistants such as ChatGPT, Perplexity, Gemini, Claude and Copilot." },
+      { q: "What are generative engine optimization services?", a: "Prompt research and tracking, AI crawler and technical fixes, entity consistency, answer-first content, and earning mentions on the sources AI assistants cite. See [how to do GEO](/insights/how-to-do-geo)." },
+      { q: "What is an AI SEO agency?", a: "Usually an agency that combines SEO with AI search visibility (AEO and GEO). Zenyro runs all three as one programme." },
       { q: "Can you guarantee my brand will appear in AI answers?", a: "No. Generative systems decide what to include, their responses vary between sessions and users, and they change often. What we can do is strengthen the signals they rely on and measure the results consistently." },
       { q: "Do I need an llms.txt file or special markup for AI search?", a: "There is no single file or markup that guarantees visibility in AI search. Clear, crawlable, accurate content, consistent business information and genuine authority matter far more. We may recommend such files where they are low-cost and sensible, but never as a guarantee." },
       { q: "How do you measure AI search visibility?", a: "With a documented prompt set run on a fixed schedule, recording mentions, descriptions and cited sources, plus referral sessions from AI platforms in your analytics. We report these as observations, not as a single proprietary score." },
@@ -315,7 +324,7 @@ const allServices: Service[] = [
     discipline: "grow",
     search: "aeo",
     serviceType: "SEO content and digital PR",
-    metaTitle: "SEO Content & Digital PR: Content That Ranks and Gets Cited",
+    metaTitle: "Digital PR & SEO Content Services That Get Cited",
     metaDescription:
       "SEO content strategy, expert articles, content refreshes and digital PR that earns links and mentions, built to rank and be cited by AI.",
     headline: "Content that ranks on Google and gets cited by AI",
@@ -353,6 +362,7 @@ const allServices: Service[] = [
       "Sites with old content that has started to slip",
     ],
     faqs: [
+      { q: "What are digital PR services?", a: "Digital PR earns coverage, links and mentions on news sites, trade publications and blogs through data, expert commentary and stories, which builds both SEO authority and AI citations." },
       { q: "Do you use AI to write content?", a: "We use AI for research and drafts where it helps, but every page is shaped, fact-checked and edited by people, with input from your experts. Thin, generic AI content tends to rank poorly and isn't quoted." },
       { q: "Do you buy links?", a: "No. We earn links through digital PR, original data and relationships. Paid link schemes risk penalties." },
       { q: "How much content do we need?", a: "Less than you might think. A smaller number of genuinely useful, well-structured pages usually outperforms a high volume of thin posts." },
@@ -365,7 +375,7 @@ const allServices: Service[] = [
     discipline: "build",
     search: "seo",
     serviceType: "International search engine optimisation",
-    metaTitle: "International SEO Services: Rank in Every Country You Sell To",
+    metaTitle: "International SEO Agency & Consultant Services",
     metaDescription:
       "International SEO for businesses selling abroad: country targeting, hreflang, localised keyword research and content, and AI visibility.",
     headline: "International SEO that ranks you in every market you sell to",
@@ -402,6 +412,7 @@ const allServices: Service[] = [
       "Brands with several country or language sites",
     ],
     faqs: [
+      { q: "What does an international SEO consultant do?", a: "They choose the right site structure for each market, implement hreflang, research keywords per country, localise content and build authority in each market. See our [international SEO guide](/insights/international-seo-guide)." },
       { q: "Should we use country domains, subdomains or subfolders?", a: "For most businesses, subfolders on one strong domain (for example /uk/ and /us/) are the easiest to grow and maintain. Country domains can make sense for large brands with local teams. We recommend based on your situation." },
       { q: "Do we need separate content for the UK and US?", a: "Often, yes, for your most important pages. Spelling, terms, prices and examples differ, and search engines treat near-duplicates carefully. hreflang tells them which version belongs to which country." },
       { q: "Can you handle languages other than English?", a: "We plan structure, keywords and hreflang for any language and work with native-speaking writers or your own team for the copy." },
@@ -414,7 +425,7 @@ const allServices: Service[] = [
     discipline: "build",
     search: "seo",
     serviceType: "E-commerce search engine optimisation",
-    metaTitle: "E-commerce SEO Services: Rank Products on Google & AI",
+    metaTitle: "Ecommerce SEO Agency: Services & Packages",
     metaDescription:
       "E-commerce SEO for online stores: category and product pages, product schema, faceted navigation, free Shopping listings and AI visibility.",
     headline: "E-commerce SEO that gets your products found and chosen",
@@ -451,16 +462,67 @@ const allServices: Service[] = [
       "Catalogues with hundreds or thousands of products",
     ],
     faqs: [
+      { q: "What do ecommerce SEO packages include?", a: "Typically a technical audit, category and product page optimisation, product schema, Merchant Center setup, content such as buying guides, link building and monthly reporting. See [pricing](/pricing)." },
+      { q: "What does an ecommerce SEO agency do?", a: "It makes an online store's categories and products rank in Google and appear in free Shopping listings and AI shopping answers, reducing dependence on paid ads." },
       { q: "Which platforms do you work with?", a: "Shopify, WooCommerce, Magento and custom builds. The principles are the same; the implementation differs by platform." },
       { q: "Can SEO replace our ads?", a: "Rarely all of them, but strong organic rankings and free listings reduce how much of your revenue depends on paid clicks, and they keep working when spend stops." },
       { q: "How do products show up in ChatGPT?", a: "AI assistants draw on product pages, reviews, comparison articles and merchant feeds. Clear specifications, honest comparisons and consistent product data make you easier to recommend." },
     ],
     related: ["technical-seo", "content-digital-pr", "geo"],
   },
+  {
+    slug: "enterprise-seo",
+    name: "Enterprise SEO",
+    discipline: "build",
+    search: "seo",
+    serviceType: "Enterprise search engine optimisation",
+    metaTitle: "Enterprise SEO Services & Consultant",
+    metaDescription:
+      "Enterprise SEO consulting for large and complex websites: technical SEO at scale, content governance, international targeting and AI visibility across ChatGPT and Gemini.",
+    headline: "Enterprise SEO for large, complex websites",
+    intro:
+      "Large sites win or lose search at scale: thousands of templates, many teams, several markets and constant releases. We bring technical rigour, clear prioritisation and governance, and extend it to AI search, so your brand is found and recommended everywhere customers look.",
+    problems: [
+      "Releases regularly break indexing, redirects or structured data.",
+      "Thousands of pages compete with each other or sit unindexed.",
+      "Several teams and markets publish without shared SEO standards.",
+      "Leadership asks about AI search and nobody owns the answer.",
+    ],
+    included: [
+      { title: "Technical SEO at scale", body: "Crawl and log-file analysis, indexation management, faceted navigation, rendering and Core Web Vitals across templates." },
+      { title: "Prioritisation by revenue", body: "Opportunities sized by search demand and commercial value, so engineering time goes where it pays." },
+      { title: "SEO governance", body: "Standards, release checklists and monitoring so changes don't undo past gains." },
+      { title: "International and multi-brand", body: "hreflang, regional sites and brand architecture managed across markets." },
+      { title: "Content and authority", body: "Template-level content improvements, topic coverage and digital PR at scale." },
+      { title: "AI visibility programme", body: "Prompt tracking across AI engines, entity management and citation building for the whole brand portfolio." },
+    ],
+    approach: [
+      { title: "Diagnose", body: "A full technical and content audit with log analysis and a revenue-ranked roadmap." },
+      { title: "Embed", body: "Work inside your sprint process with tickets, acceptance criteria and release checks." },
+      { title: "Scale", body: "Templates, governance and reporting that let every team improve search without us in every meeting." },
+    ],
+    deliverables: [
+      "Enterprise technical audit and revenue-ranked roadmap",
+      "Release checklists and automated SEO monitoring",
+      "International and AI visibility programme",
+      "Executive and team-level monthly reporting",
+    ],
+    fitFor: [
+      "Sites with tens of thousands of pages or more",
+      "Brands operating in several countries or languages",
+      "In-house SEO teams that need senior support",
+    ],
+    faqs: [
+      { q: "What makes enterprise SEO different?", a: "Scale and coordination. The fundamentals are the same, but changes happen through templates, engineering sprints and many teams, so prioritisation and governance matter as much as tactics." },
+      { q: "Do you work alongside in-house teams?", a: "Yes. Most enterprise clients have marketing and engineering teams; we provide senior strategy, technical depth and extra capacity." },
+      { q: "How do you choose an enterprise SEO consultant?", a: "Look for experience with sites of your size and platform, a clear process for working with engineering, and honest reporting. Our [agency buyer's guide](/insights/how-to-choose-seo-aeo-geo-agency) lists questions to ask." },
+    ],
+    related: ["technical-seo", "international-seo", "geo"],
+  },
 ];
 
 /** Zenyro is a search agency: only these services are published on the site. */
-export const searchServiceSlugs = ["seo", "local-seo", "technical-seo", "international-seo", "ecommerce-seo", "aeo", "geo", "content-digital-pr"] as const;
+export const searchServiceSlugs = ["seo", "local-seo", "technical-seo", "international-seo", "ecommerce-seo", "enterprise-seo", "aeo", "geo", "content-digital-pr"] as const;
 
 /** The published services, in menu order. */
 export const services: Service[] = searchServiceSlugs.map((slug) => allServices.find((s) => s.slug === slug)!);
