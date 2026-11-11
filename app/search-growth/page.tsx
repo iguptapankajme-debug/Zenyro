@@ -13,7 +13,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Search Growth: SEO, AEO & GEO Services",
   description:
-    "Be discovered across search engines, answer experiences and generative AI search. Zenyro combines SEO, answer engine optimization and generative engine optimization into one organic growth programme.",
+    "SEO, AEO and GEO in one organic growth programme: rank on Google, become the answer in AI Overviews and get recommended by AI assistants.",
   path: "/search-growth",
 });
 

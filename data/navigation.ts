@@ -11,6 +11,9 @@ export const serviceGroups: NavGroup[] = [
       { label: "SEO", href: "/services/seo" },
       { label: "Local SEO", href: "/services/local-seo" },
       { label: "Technical SEO", href: "/services/technical-seo" },
+      { label: "International SEO", href: "/services/international-seo" },
+      { label: "E-commerce SEO", href: "/services/ecommerce-seo" },
+      { label: "Enterprise SEO", href: "/services/enterprise-seo" },
     ],
   },
   {
@@ -25,6 +28,7 @@ export const serviceGroups: NavGroup[] = [
     items: [
       { label: "GEO", href: "/services/geo" },
       { label: "Free AI visibility audit", href: "/free-audit" },
+      { label: "Free AI readiness checker", href: "/tools/ai-readiness" },
     ],
   },
 ];
@@ -40,6 +44,8 @@ export const industryLinks: NavItem[] = industries.map((i) => ({
 export const primaryNav = [
   { label: "Services", href: "/services", groups: serviceGroups },
   { label: "Industries", href: "/solutions", children: industryLinks },
+  { label: "Global", href: "/markets" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Examples", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },

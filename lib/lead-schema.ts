@@ -1,22 +1,25 @@
 import { z } from "zod";
 
 export const industryOptions = [
-  "Real Estate",
-  "Hospitality",
-  "Healthcare & Clinics",
-  "Interior Design & Premium Retail",
-  "Education & Professional Services",
-  "Home Improvement & Building Materials",
-  "Travel, Taxi & Tours",
-  "Financial & Advisory Services",
+  "B2B services",
+  "SaaS & technology",
+  "E-commerce & retail",
+  "Manufacturing & industrial",
+  "Financial services",
+  "Healthcare & life sciences",
+  "Legal",
+  "Real estate",
+  "Hospitality & travel",
+  "Education",
+  "Home services",
   "Other",
 ] as const;
 
 export const budgetOptions = [
-  "Under ₹50,000 / month",
-  "₹50,000 – ₹2,00,000 / month",
-  "₹2,00,000 – ₹5,00,000 / month",
-  "Above ₹5,00,000 / month",
+  "Under US$1,000 / month",
+  "US$1,000 – US$3,000 / month",
+  "US$3,000 – US$6,000 / month",
+  "Above US$6,000 / month",
   "Not sure yet",
 ] as const;
 

@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { ArrowUpRight, MessageSquareText, Search, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { Faq } from "@/components/sections/faq";
-import { ProjectGrid } from "@/components/sections/project-grid";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -12,7 +11,6 @@ import { getLocation, locations } from "@/data/locations";
 import { localServices } from "@/data/local-services";
 import { getService } from "@/data/services";
 import { getIndustry } from "@/data/industries";
-import { projects as liveProjects } from "@/data/work";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -39,7 +37,6 @@ export default async function LocationPage({ params }: Props) {
   const l = getLocation((await params).slug);
   if (!l) notFound();
   const sectors = l.sectors.map(getIndustry).filter((x) => !!x);
-  const projects = liveProjects().filter((w) => l.work?.includes(w.slug));
   const path = `/locations/${l.slug}`;
   const local = localServices.filter((x) => x.city === l.slug);
 
@@ -53,6 +50,11 @@ export default async function LocationPage({ params }: Props) {
         aside={
           <div className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href="/free-audit">Get a free local audit</ButtonLink>
+            {local.length === 1 && (
+              <Link href={`/locations/${l.slug}/${local[0]!.service}`} className="inline-flex h-12 items-center gap-1.5 px-2 font-medium">
+                <span className="link-u">SEO in {l.city}</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" />
+              </Link>
+            )}
           </div>
         }
       />
@@ -88,7 +90,7 @@ export default async function LocationPage({ params }: Props) {
         </div>
       </section>
 
-      {local.length > 0 && (
+      {local.length > 1 && (
         <nav aria-label={`Services in ${l.city}`} className="py-16">
           <div className="shell">
             <p className="eyebrow mb-6">Services in {l.city}</p>
@@ -142,16 +144,6 @@ export default async function LocationPage({ params }: Props) {
                 </li>
               ))}
             </ul>
-          </div>
-        </section>
-      )}
-
-      {projects.length > 0 && (
-        <section className="border-t border-line py-20 md:py-28" aria-labelledby="local-work-title">
-          <div className="shell">
-            <p className="eyebrow mb-6">Live work</p>
-            <h2 id="local-work-title" className="display-md mb-12 max-w-3xl">Projects serving this area.</h2>
-            <ProjectGrid items={projects} headingLevel="h3" />
           </div>
         </section>
       )}

@@ -1,7 +1,9 @@
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { locations } from "@/data/locations";
-import { projects as liveProjects } from "@/data/work";
+import { markets } from "@/data/markets";
+import { usStates } from "@/data/us-states";
+import { uaeCities } from "@/data/uae-cities";
 import { site } from "@/lib/site";
 
 /**
@@ -9,7 +11,6 @@ import { site } from "@/lib/site";
  * same data as the website so it never drifts out of date. Used by /ai-info and /llms.txt.
  */
 export function aiProfile() {
-  const projects = liveProjects();
   return {
     summary: `${site.name} is an SEO, AEO and GEO agency based in the ${site.region}. It helps businesses rank on Google and Bing, become the answer in featured snippets and Google AI Overviews, and get recommended by AI assistants such as ChatGPT, Perplexity, Gemini, Claude and Copilot. Work is measured on rankings, AI visibility, citations and enquiries.`,
     facts: [
@@ -17,17 +18,18 @@ export function aiProfile() {
       ["Tagline", site.tagline],
       ["Website", site.url],
       ["Based in", site.region],
-      ["Serves", "Clients across India and abroad, including the UAE, UK and US"],
+      ["Serves", `Clients worldwide, remotely: India, ${markets.map((m) => m.country).join(", ")}`],
       ...(site.email ? [["Email", site.email]] : []),
       ...(site.phone ? [["Phone", site.phone]] : []),
     ] as [string, string][],
     services: services.map((s) => ({ name: s.name, url: `${site.url}/services/${s.slug}`, description: s.metaDescription })),
     industries: industries.map((i) => ({ name: i.name, url: `${site.url}/industries/${i.slug}`, description: i.short })),
+    markets: markets.map((m) => ({ name: m.country, url: `${site.url}/markets/${m.slug}` })),
+    states: [...usStates.map((s) => ({ name: `${s.name}, US`, url: `${site.url}/markets/united-states/${s.slug}` })), ...uaeCities.map((c) => ({ name: `${c.name}, UAE`, url: `${site.url}/markets/uae/${c.slug}` }))],
     locations: locations.map((l) => ({ name: l.city, url: `${site.url}/locations/${l.slug}` })),
-    projects: projects.map((p) => ({ name: p.title, url: p.url!, description: p.summary })),
     policies: [
       "Zenyro does not guarantee rankings, AI mentions or revenue.",
-      "Accounts, data, code and automations are set up in the client's name.",
+      "Search Console, analytics and Business Profile access stays in the client's name.",
       "Examples on the website are labelled as illustrative and contain no client performance figures.",
       "Testimonials and results are published only with client permission.",
     ],
@@ -51,14 +53,23 @@ ${list(p.services)}
 ## Industries
 ${list(p.industries)}
 
-## Locations
+## International markets
+${list(p.markets)}
+
+## US states and UAE emirates
+${list(p.states)}
+
+## Cities in India
 ${list(p.locations)}
 
-${p.projects.length ? `## Live projects (websites built and grown by Zenyro)\n${list(p.projects)}\n` : ""}
 ## Key pages
-- [Work](${site.url}/work)
+- [Full site content for AI assistants (llms-full.txt)](${site.url}/llms-full.txt)
+- [Pricing: Growth from US$799/month, Authority from US$1,799/month](${site.url}/pricing)
+- [Free AI readiness checker](${site.url}/tools/ai-readiness)
+- [SEO, AEO and GEO glossary](${site.url}/glossary)
+- [Examples of SEO, AEO and GEO programmes](${site.url}/work)
 - [Search growth: SEO, AEO and GEO](${site.url}/search-growth)
-- [Free AI search and website audit](${site.url}/free-audit)
+- [Free AI visibility audit](${site.url}/free-audit)
 - [About](${site.url}/about)
 - [Contact](${site.url}/contact)
 

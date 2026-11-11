@@ -1,4 +1,4 @@
-import { Gauge, MessageSquareText, Search, Sparkles, Timer } from "lucide-react";
+import { Gauge, Link2, MessageSquareText, Search, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { LeadForm } from "@/components/forms/lead-form";
 import { Faq } from "@/components/sections/faq";
@@ -7,17 +7,17 @@ import { ButtonLink } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Free AI Search & Website Audit for Your Business",
+  title: "Free SEO & AI Visibility Audit for Your Business",
   description:
-    "A free, hand-made audit by Zenyro: how you show up on Google, in AI answers (ChatGPT, Perplexity, Google AI Overviews), how fast your site loads on a real phone, and how quickly you reply to a new lead.",
+    "A free, hand-made audit: your Google rankings, what ChatGPT and AI Overviews say about you, technical SEO, and the gaps holding you back.",
   path: "/free-audit",
 });
 
 const checks = [
   { icon: Search, title: "Google visibility", body: "Where you appear for the searches your customers actually make, in Maps and in organic results, compared with two local competitors." },
   { icon: Sparkles, title: "AI answers", body: "What ChatGPT, Perplexity and Google AI Overviews say when someone asks for a business like yours, and whether you are mentioned at all." },
-  { icon: Gauge, title: "Speed on a real phone", body: "Your site tested on a mid-range Android over mobile data, side by side with this website, so you can see the difference for yourself." },
-  { icon: Timer, title: "Speed to lead", body: "We send a genuine-looking enquiry through your website or WhatsApp and record how long a reply takes, and what it says." },
+  { icon: Gauge, title: "Technical SEO", body: "Crawling, indexing, Core Web Vitals on a real phone, structured data and AI crawler access: what stops engines from reading you." },
+  { icon: Link2, title: "Content and authority gaps", body: "The topics, questions and citations your competitors rank and get recommended for that you are missing." },
   { icon: MessageSquareText, title: "Three practical fixes", body: "The three changes most likely to bring you more enquiries, in priority order. Useful whether or not you ever work with us." },
 ];
 
@@ -35,14 +35,14 @@ export default function FreeAuditPage() {
         crumbs={[{ name: "Free audit", path: "/free-audit" }]}
         eyebrow="Free audit"
         title={<>See how customers <Em>find you.</Em></>}
-        intro="A hand-made audit of your search visibility, AI answers, website speed and lead response. No cost, no obligation, and three fixes you can use either way."
+        intro="A hand-made audit of your Google rankings, AI answers, technical SEO and content gaps. No cost, no obligation, and three fixes you can use either way."
         aside={<div className="mt-8"><ButtonLink href="#audit-form">Request my free audit</ButtonLink></div>}
       />
 
       <section className="py-20 md:py-28" aria-labelledby="checks-title">
         <div className="shell">
           <p className="eyebrow mb-6">What we check</p>
-          <h2 id="checks-title" className="display-md max-w-3xl">Five checks, from first search to first reply.</h2>
+          <h2 id="checks-title" className="display-md max-w-3xl">Five checks, from Google to ChatGPT.</h2>
           <ol className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
             {checks.map((c, i) => (
               <li key={c.title} className="flex flex-col bg-ink-2 p-7" data-reveal style={{ "--d": `${i * 70}ms` } as React.CSSProperties}>
@@ -65,7 +65,7 @@ export default function FreeAuditPage() {
             <h2 id="audit-form-title" className="display-md">Tell us about your business.</h2>
             <p className="lede mt-6">
               Add your website and the city you serve. In the last box, tell us the searches you&apos;d most like to win, for example
-              &ldquo;taxi Chandigarh to Manali&rdquo; or &ldquo;dentist in Mohali&rdquo;.
+              &ldquo;accountant for contractors in London&rdquo; or &ldquo;dentist in Toronto&rdquo;.
             </p>
           </div>
           <div className="lg:col-span-7">

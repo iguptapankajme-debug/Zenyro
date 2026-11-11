@@ -30,7 +30,7 @@ const tabs: Tab[] = [
     ],
     tableTitle: "Top queries (sample)",
     columns: ["Query", "Clicks", "Avg. position"],
-    rows: [["3bhk interior design chandigarh", "184", "4.2"], ["modular kitchen cost", "121", "7.9"], ["interior designer near me", "96", "9.4"]],
+    rows: [["loft interior design brooklyn", "184", "4.2"], ["kitchen remodel cost", "121", "7.9"], ["interior designer near me", "96", "9.4"]],
     note: "In a real engagement these numbers are read directly from Search Console and Bing Webmaster Tools.",
   },
   {
@@ -45,7 +45,7 @@ const tabs: Tab[] = [
     ],
     tableTitle: "Tracked questions (sample)",
     columns: ["Question", "Site shown", "Last checked"],
-    rows: [["How long does a 3BHK interior take?", "Yes", "Week 12"], ["What does a modular kitchen include?", "Yes", "Week 12"], ["How to choose an interior designer?", "Not yet", "Week 12"]],
+    rows: [["How long does a full apartment interior take?", "Yes", "Week 12"], ["What does a kitchen remodel include?", "Yes", "Week 12"], ["How to choose an interior designer?", "Not yet", "Week 12"]],
     note: "Answer placements change often. Each check records what was observed on that date, not a permanent position.",
   },
   {
@@ -60,7 +60,7 @@ const tabs: Tab[] = [
     ],
     tableTitle: "Sample prompts",
     columns: ["Prompt", "Mentioned", "Cited source"],
-    rows: [["Best interior designers in Chandigarh", "Yes", "northlight-interiors.example"], ["How much does a 3BHK interior cost?", "No", "home-ideas.example"], ["Modular kitchen brands vs local studios", "Yes", "city-magazine.example"]],
+    rows: [["Best interior designers in Brooklyn", "Yes", "northlight-interiors.example"], ["How much does a full apartment interior cost?", "No", "home-ideas.example"], ["Modular kitchen brands vs local studios", "Yes", "city-magazine.example"]],
     note: "Generative responses vary between sessions and users. Results are reported as observations from a fixed method, not as a single score.",
   },
 ];

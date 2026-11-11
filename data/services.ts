@@ -52,257 +52,17 @@ export const disciplines: Record<
   },
 };
 
-export const allServices: Service[] = [
-  {
-    slug: "performance-marketing",
-    name: "Performance Marketing",
-    discipline: "grow",
-    serviceType: "Performance marketing",
-    metaTitle: "Performance Marketing Agency for Meta & Google Ads",
-    metaDescription:
-      "Meta and Google Ads managed against cost per qualified lead and revenue, not clicks. Full-funnel tracking, creative testing and weekly reporting from Zenyro.",
-    headline: "Ad spend that answers to revenue.",
-    intro:
-      "Most ad accounts are optimised for the cheapest lead, which is rarely the best customer. We set up tracking that follows each lead into your CRM, then optimise Meta and Google campaigns toward the enquiries that actually become sales.",
-    problems: [
-      "Leads are cheap, but most never pick up the phone.",
-      "You cannot tell which campaign produced your last ten customers.",
-      "Agencies report impressions and clicks while sales stay flat.",
-      "Creative goes stale and costs creep up every month.",
-    ],
-    included: [
-      { title: "Account and tracking audit", body: "Pixel, Conversions API, Google Ads conversion tags and GA4 events checked and rebuilt where needed, including offline conversion import from your CRM." },
-      { title: "Campaign architecture", body: "Campaigns structured by intent and margin, not by habit. Prospecting, retargeting and search are budgeted against their real cost per customer." },
-      { title: "Creative testing system", body: "A steady pipeline of ad concepts, hooks and formats, tested in controlled batches so winners are found quickly and losers are cut early." },
-      { title: "Landing page alignment", body: "Every campaign points at a page built for that exact offer and audience. We build or adjust these pages as part of the engagement." },
-      { title: "Lead quality feedback loop", body: "Sales outcomes flow back to the ad platforms, so their algorithms learn from customers rather than form fills." },
-    ],
-    approach: [
-      { title: "Weeks 1–2: Measure", body: "Fix tracking, connect the CRM, and establish the true baseline cost per qualified lead." },
-      { title: "Weeks 3–6: Restructure", body: "Launch the new account structure and first creative batches alongside existing campaigns." },
-      { title: "Ongoing: Compound", body: "Weekly optimisation, monthly creative refresh and budget shifts toward the channels that close." },
-    ],
-    deliverables: [
-      "Rebuilt conversion tracking with CRM feedback",
-      "Campaign structure document",
-      "Monthly creative test plan",
-      "Weekly performance summary in plain language",
-      "Live dashboard showing spend, leads, qualified leads and sales",
-    ],
-    fitFor: [
-      "Businesses spending ₹50,000 or more per month on ads, or ready to",
-      "Sales teams that can follow up on leads within a day",
-      "Offers with a clear customer value",
-    ],
-    faqs: [
-      { q: "What budget do you need to start?", a: "We work best with businesses spending at least ₹50,000 per month on media, because below that it takes too long to gather enough data to optimise with confidence. Our management fee is separate from ad spend." },
-      { q: "Do you guarantee results?", a: "No honest agency can guarantee a cost per lead or a revenue figure, because markets, offers and sales follow-up all affect the outcome. We commit to transparent tracking, a clear test plan and weekly reporting so you can judge the work on real numbers." },
-      { q: "Who owns the ad accounts?", a: "You do. We work inside your Meta Business Manager and Google Ads accounts with partner access, so all data and history stay with your business." },
-    ],
-    related: ["lead-generation", "seo", "website-development"],
-  },
-  {
-    slug: "ai-automation",
-    name: "AI Automation",
-    discipline: "convert",
-    serviceType: "AI business automation",
-    metaTitle: "AI Automation Agency: WhatsApp, Voice & Workflow Automation",
-    metaDescription:
-      "AI assistants and automated workflows for enquiry handling, WhatsApp, voice calls and back-office tasks. Built on your tools, with human approval where it matters.",
-    headline: "Your best salesperson, available at 2 a.m.",
-    intro:
-      "Enquiries arrive at all hours, through WhatsApp, website chat, calls and forms. We build AI assistants that respond in seconds, ask the right qualifying questions in your brand voice, and hand warm leads to your team with full context.",
-    problems: [
-      "Leads wait hours for a reply and go cold, or go to a competitor.",
-      "Your team spends the day answering the same ten questions.",
-      "Follow-ups depend on someone remembering to send them.",
-      "Calls after hours go to voicemail and are never returned.",
-    ],
-    included: [
-      { title: "AI chat and WhatsApp assistants", body: "Trained on your services, pricing rules and FAQs. Replies in English, Hindi or Hinglish, and escalates to a person when a question falls outside its brief." },
-      { title: "AI voice assistants", body: "Answers inbound calls or returns missed calls, qualifies the caller and books a slot. Every call is transcribed and logged." },
-      { title: "Follow-up sequences", body: "Timed WhatsApp, SMS and email follow-ups that stop automatically when the lead replies or books." },
-      { title: "Workflow automation", body: "Quotes, onboarding documents, reminders and internal notifications connected across your apps, using tools such as n8n, Make or custom code." },
-      { title: "Guardrails and oversight", body: "Approval steps for sensitive actions, conversation logs, and alerts when the assistant is unsure." },
-    ],
-    approach: [
-      { title: "Map", body: "We review real conversations and call recordings to learn how your best people qualify and sell." },
-      { title: "Build and test", body: "The assistant is built on your accounts and tested against real past enquiries before it speaks to a single customer." },
-      { title: "Shadow, then launch", body: "It runs alongside your team with approvals turned on. Once accuracy holds, approvals are relaxed step by step." },
-    ],
-    deliverables: [
-      "AI assistant deployed on chosen channels",
-      "Knowledge base and conversation rules document",
-      "Automated follow-up sequences",
-      "CRM integration with conversation summaries",
-      "Monitoring dashboard and alerting",
-    ],
-    fitFor: [
-      "Businesses receiving 100 or more enquiries per month",
-      "Teams losing leads to slow response or after-hours enquiries",
-      "Operations with repetitive, rule-based admin",
-    ],
-    faqs: [
-      { q: "Will customers know they are talking to AI?", a: "We recommend being open about it. Assistants introduce themselves as a virtual assistant and offer a human at any point. Customers mostly care about getting a fast, accurate answer." },
-      { q: "Which WhatsApp setup do you use?", a: "We use the official WhatsApp Business Platform through Meta or an approved provider, which keeps your number compliant and avoids the bans that unofficial tools risk." },
-      { q: "What happens if the AI gives a wrong answer?", a: "Assistants only answer from approved information, hand over when unsure, and log every conversation. Sensitive actions such as discounts or cancellations always need a person to approve." },
-    ],
-    related: ["crm-automation", "lead-generation", "website-development"],
-  },
-  {
-    slug: "website-development",
-    name: "Website Development",
-    discipline: "build",
-    serviceType: "Website development",
-    metaTitle: "Website Development Agency for High-Converting Business Sites",
-    metaDescription:
-      "Fast, premium websites and landing pages built in Next.js, designed to convert visitors into enquiries and to load quickly on mid-range phones and Indian mobile networks.",
-    headline: "A website that earns its keep.",
-    intro:
-      "A beautiful website that does not produce enquiries is an expensive brochure. We design and engineer sites around the decisions your buyers need to make, then make them fast enough to load comfortably on a mid-range Android phone on a 4G connection.",
-    problems: [
-      "Your site looks dated next to competitors who charge more.",
-      "Visitors arrive from ads and leave without enquiring.",
-      "Pages are slow on mobile, and Google rankings show it.",
-      "Every small change needs a developer and a week.",
-    ],
-    included: [
-      { title: "Positioning and page architecture", body: "We define who the site is for, what they need to believe, and the order in which each page should make that case." },
-      { title: "Custom design", body: "An original visual identity for the web: typography, layout and motion designed for your brand, not adapted from a template." },
-      { title: "Engineering for speed", body: "Built with Next.js and server rendering, optimised images and minimal JavaScript, targeting good Core Web Vitals on real devices." },
-      { title: "Conversion paths", body: "Forms, WhatsApp, call and booking options placed where intent is highest, with every submission tracked." },
-      { title: "Editable content", body: "A headless CMS or simple content files, so your team can update pages, case studies and articles without a developer." },
-    ],
-    approach: [
-      { title: "Discover", body: "Customer interviews, competitor review and analytics audit." },
-      { title: "Design", body: "Key pages designed at full fidelity, reviewed on real phones before build." },
-      { title: "Engineer and launch", body: "Build, content migration, redirects, tracking and performance testing before going live." },
-    ],
-    deliverables: [
-      "Custom-designed, responsive website",
-      "Technical SEO foundation: metadata, sitemap, structured data and redirects",
-      "Analytics and conversion tracking",
-      "CMS or content workflow with training",
-      "Performance report at launch",
-    ],
-    fitFor: [
-      "Established businesses whose website undersells them",
-      "Companies about to invest in paid advertising",
-      "Brands launching a new product, project or location",
-    ],
-    faqs: [
-      { q: "How long does a website take?", a: "A focused landing page takes two to three weeks. A full business website usually takes six to ten weeks, depending on the number of pages and how quickly content is ready." },
-      { q: "Do you use WordPress?", a: "We usually build in Next.js because it gives us more control over speed and design. If your team relies on WordPress, we can build a headless setup so editors keep a familiar interface." },
-      { q: "Will my existing Google rankings be affected?", a: "We map every existing URL, set permanent redirects and keep valuable content, so search rankings are protected during the move." },
-    ],
-    related: ["lead-generation", "local-seo", "performance-marketing"],
-  },
-  {
-    slug: "nextjs-development",
-    name: "Next.js Development",
-    discipline: "build",
-    serviceType: "Next.js development",
-    metaTitle: "Next.js Development Agency for Fast, SEO-Ready Websites",
-    metaDescription:
-      "Next.js development for marketing sites, landing pages and web apps: server rendering, strong Core Web Vitals, headless CMS and integrations, built by a team that also runs your growth.",
-    headline: "Next.js Development Agency",
-    intro:
-      "Next.js lets a website be both fast and genuinely custom: pages rendered on the server for search engines, minimal JavaScript for visitors on mid-range phones, and room for real application features when you need them. We build Next.js sites and apps that are designed to convert and engineered to stay fast.",
-    problems: [
-      "Your current site is slow on mobile and scores poorly in Core Web Vitals.",
-      "A page builder or theme limits the design and adds weight to every page.",
-      "Marketing needs landing pages faster than developers can ship them.",
-      "You need logins, dashboards or integrations that a brochure CMS can't handle.",
-    ],
-    included: [
-      { title: "Architecture and rendering strategy", body: "Static, server-rendered and client components chosen page by page, so content is indexable and interactivity is only shipped where it earns its weight." },
-      { title: "Headless CMS integration", body: "Sanity, Contentful, WordPress or another headless CMS so your team edits content without touching code." },
-      { title: "Performance engineering", body: "Optimised images and fonts, code splitting, caching and Core Web Vitals monitoring, tested on real mid-range Android devices." },
-      { title: "Technical SEO built in", body: "Metadata, canonical URLs, sitemaps, structured data and redirects handled in code from day one." },
-      { title: "Integrations and APIs", body: "CRMs, booking tools, payment gateways, analytics and AI services connected through secure server-side routes." },
-      { title: "Deployment and hosting", body: "Vercel or your preferred cloud, with preview deployments for every change and rollback in one click." },
-    ],
-    approach: [
-      { title: "Plan", body: "Map content, data and integrations; choose rendering and CMS approach per page type." },
-      { title: "Build", body: "Component library, page templates and integrations, reviewed on preview links every week." },
-      { title: "Launch and measure", body: "Redirects, performance and SEO checks, then Core Web Vitals monitoring after go-live." },
-    ],
-    deliverables: [
-      "Next.js codebase in your repository",
-      "Reusable component library",
-      "CMS setup with editor training",
-      "Performance and SEO launch report",
-      "Documentation for future developers",
-    ],
-    fitFor: [
-      "Businesses moving off slow themes or page builders",
-      "Marketing teams running frequent campaigns and landing pages",
-      "Products that combine a marketing site with app features",
-    ],
-    faqs: [
-      { q: "Is Next.js good for SEO?", a: "Yes, when it is used well. Server-rendered or static pages deliver complete HTML to search engines, and good Core Web Vitals help user experience. Poorly built Next.js sites that render everything in the browser can still struggle, which is why rendering strategy matters." },
-      { q: "Can my team edit content without a developer?", a: "Yes. We connect a headless CMS so editors can update pages, articles and media with previews before publishing." },
-      { q: "Do I own the code?", a: "Yes. The code lives in your own repository and hosting account, documented so any competent developer can continue the work." },
-    ],
-    related: ["website-development", "website-redesign", "seo"],
-  },
-  {
-    slug: "website-redesign",
-    name: "Website Redesign",
-    discipline: "build",
-    serviceType: "Website redesign",
-    metaTitle: "Website Redesign Services Without Losing Your Rankings",
-    metaDescription:
-      "Website redesign that improves conversions and speed while protecting search rankings: content and URL mapping, redirects, performance and launch monitoring.",
-    headline: "Redesign without starting from zero.",
-    intro:
-      "A redesign should keep what already works (rankings, valuable content, enquiry paths) and fix what doesn't. We start from your analytics and search data, map every important URL, and redesign around the pages and journeys that bring in customers.",
-    problems: [
-      "The site looks dated next to competitors.",
-      "Traffic exists, but too few visitors enquire.",
-      "Previous redesigns lost search rankings or broke links.",
-      "Nobody knows which pages actually matter.",
-    ],
-    included: [
-      { title: "Audit before design", body: "Analytics, Search Console, heatmaps and a technical SEO crawl show which pages earn traffic and enquiries, and where visitors drop off." },
-      { title: "Content and URL mapping", body: "Every valuable page is kept, merged or improved, with a one-to-one redirect map so links and rankings carry over." },
-      { title: "Conversion-focused redesign", body: "Clearer offers, stronger proof and shorter enquiry paths, designed for mobile first." },
-      { title: "Performance upgrade", body: "A lighter, faster build so the new site loads quickly on real phones." },
-      { title: "Launch monitoring", body: "Search Console, rankings, 404s and enquiries tracked closely for the weeks after launch, with fixes applied quickly." },
-    ],
-    approach: [
-      { title: "Diagnose", body: "Data review, crawl and stakeholder interviews; agree success metrics." },
-      { title: "Redesign and rebuild", body: "New design and build, with content migrated and improved page by page." },
-      { title: "Migrate safely", body: "Redirects, metadata and tracking verified on staging before switching over." },
-    ],
-    deliverables: [
-      "Pre-redesign audit and page inventory",
-      "Redirect map for every changed URL",
-      "Redesigned, faster website",
-      "Post-launch monitoring report",
-    ],
-    fitFor: [
-      "Established sites with existing traffic and rankings",
-      "Businesses whose website no longer matches their positioning",
-      "Teams planning a rebrand or platform change",
-    ],
-    faqs: [
-      { q: "Will a redesign hurt my Google rankings?", a: "It can if URLs, content or internal links change without a plan. We map every important URL, preserve valuable content and set permanent redirects, then monitor Search Console closely after launch to catch issues early." },
-      { q: "Can you redesign without changing platform?", a: "Yes. Sometimes the right answer is a redesign on your current CMS. We recommend a platform change only when the current one limits speed, design or editing." },
-      { q: "How long does a redesign take?", a: "Most business websites take six to twelve weeks, depending on page count, content changes and integrations. The website cost calculator gives a first estimate." },
-    ],
-    related: ["website-development", "nextjs-development", "seo"],
-  },
+const allServices: Service[] = [
   {
     slug: "seo",
     name: "SEO",
     discipline: "build",
     search: "seo",
     serviceType: "Search engine optimisation",
-    metaTitle: "SEO Services That Drive Organic Growth",
+    metaTitle: "SEO Services & SEO Company for Organic Growth",
     metaDescription:
       "Technical SEO, on-page and local SEO, programmatic SEO, content strategy, internal linking and digital PR, measured in Search Console and tied to enquiries.",
-    headline: "SEO Services That Drive Organic Growth",
+    headline: "SEO that turns searches into customers",
     intro:
       "Rank where customers search. We fix what stops search engines from understanding your site, build pages that match real search intent, and earn the authority that moves rankings, then measure it all against enquiries, not just traffic.",
     problems: [
@@ -339,6 +99,9 @@ export const allServices: Service[] = [
       "Brands planning new locations, products or projects",
     ],
     faqs: [
+      { q: "What are SEO services?", a: "SEO services are the work of improving a website's rankings in search engines: technical fixes, keyword research, page and content improvements, link building and reporting. Zenyro also covers AEO and GEO so you're visible in AI answers." },
+      { q: "What is an SEO company?", a: "An SEO company (or SEO agency) is a team that plans and does search engine optimisation for clients and reports on rankings, traffic and enquiries. See [what is SEO](/insights/what-is-seo)." },
+      { q: "Is search marketing the same as SEO?", a: "Search marketing covers both paid search ads and SEO. Zenyro focuses on organic search. See [SEO vs SEM](/insights/seo-vs-sem)." },
       { q: "How long does SEO take to show results?", a: "Technical fixes can improve indexing within weeks. Meaningful ranking and traffic growth in competitive markets usually takes three to six months of consistent work. We report progress monthly so you can see leading indicators before rankings move." },
       { q: "Can you guarantee first-page rankings?", a: "No. Search engines decide rankings, and anyone guaranteeing positions is either targeting searches nobody makes or taking risks with your site. We commit to a clear plan, quality work and transparent reporting." },
       { q: "Do you build links?", a: "We earn links through digital PR, original data and partnerships. We do not buy links or use private blog networks, which can lead to penalties." },
@@ -351,10 +114,10 @@ export const allServices: Service[] = [
     discipline: "grow",
     search: "aeo",
     serviceType: "Answer engine optimisation",
-    metaTitle: "Answer Engine Optimization (AEO) Services",
+    metaTitle: "AEO Agency: Answer Engine Optimization Services",
     metaDescription:
-      "Answer engine optimisation: question-based content strategy, clear factual answers, entity clarity and structured data where relevant, so your business can become the answer.",
-    headline: "Answer Engine Optimization Services",
+      "Answer engine optimisation (AEO): question-led content, clear answers and structured data so featured snippets and AI Overviews quote you.",
+    headline: "Answer engine optimisation: become the answer",
     intro:
       "Become the answer. More searches now end with a direct answer, a featured snippet or a voice reply. AEO makes your expertise easy to find, understand and quote: clear questions, clear answers, and well-structured information about your business.",
     problems: [
@@ -391,11 +154,14 @@ export const allServices: Service[] = [
       "Companies already investing in SEO who want more from existing content",
     ],
     faqs: [
+      { q: "What is an AEO agency?", a: "An AEO agency structures your content so search features and AI assistants quote it as the direct answer, and tracks those appearances. See [what is AEO](/insights/what-is-aeo)." },
+      { q: "What do answer engine optimization services include?", a: "Question research, answer-first rewrites of key pages, FAQ and schema implementation, entity and author signals, and monthly tracking of snippets, AI Overviews and AI answers." },
+      { q: "How much do AEO services cost?", a: "Zenyro includes AEO in plans from US$799 a month alongside SEO and GEO. See [AEO and GEO costs](/insights/aeo-geo-cost)." },
       { q: "How is AEO different from SEO?", a: "AEO is part of good SEO with a sharper focus: making specific answers easy to find, trust and quote. It shares the same foundations, including crawlable pages, quality content and authority, which is why we usually run them together." },
       { q: "Does adding FAQ schema guarantee answer boxes?", a: "No. Structured data helps systems understand content but does not guarantee any placement, and search engines limit how some rich results appear. We use markup only where it accurately describes visible content." },
       { q: "How do you measure AEO?", a: "We track a defined set of priority questions over time, recording whether and where your pages appear, alongside Search Console clicks and enquiries from the related pages." },
     ],
-    related: ["seo", "geo", "website-development"],
+    related: ["seo", "geo", "content-digital-pr"],
   },
   {
     slug: "geo",
@@ -403,10 +169,10 @@ export const allServices: Service[] = [
     discipline: "convert",
     search: "geo",
     serviceType: "Generative engine optimisation",
-    metaTitle: "Generative Engine Optimization (GEO) Services",
+    metaTitle: "GEO Agency: Generative Engine Optimization Services",
     metaDescription:
-      "Generative engine optimisation: AI search visibility audits, brand entity consistency, expert content, source citation analysis and monitoring across generative search experiences.",
-    headline: "Generative Engine Optimization Services",
+      "Generative engine optimisation (GEO): get recommended by ChatGPT, Perplexity, Gemini and Claude, with prompt-level AI visibility tracking.",
+    headline: "Generative engine optimisation: get recommended by AI",
     intro:
       "Get discovered in AI search. People increasingly ask AI assistants and AI-powered search for recommendations. GEO improves how accurately and how often your brand is represented there, by strengthening the signals these systems draw on: clear facts, credible sources, expert content and a consistent presence across the web.",
     problems: [
@@ -444,108 +210,14 @@ export const allServices: Service[] = [
       "Teams that already invest in SEO and want AI search measured too",
     ],
     faqs: [
+      { q: "What is a GEO agency?", a: "A GEO (generative engine optimisation) agency helps brands get named, described accurately and cited by AI assistants such as ChatGPT, Perplexity, Gemini, Claude and Copilot." },
+      { q: "What are generative engine optimization services?", a: "Prompt research and tracking, AI crawler and technical fixes, entity consistency, answer-first content, and earning mentions on the sources AI assistants cite. See [how to do GEO](/insights/how-to-do-geo)." },
+      { q: "What is an AI SEO agency?", a: "Usually an agency that combines SEO with AI search visibility (AEO and GEO). Zenyro runs all three as one programme." },
       { q: "Can you guarantee my brand will appear in AI answers?", a: "No. Generative systems decide what to include, their responses vary between sessions and users, and they change often. What we can do is strengthen the signals they rely on and measure the results consistently." },
       { q: "Do I need an llms.txt file or special markup for AI search?", a: "There is no single file or markup that guarantees visibility in AI search. Clear, crawlable, accurate content, consistent business information and genuine authority matter far more. We may recommend such files where they are low-cost and sensible, but never as a guarantee." },
       { q: "How do you measure AI search visibility?", a: "With a documented prompt set run on a fixed schedule, recording mentions, descriptions and cited sources, plus referral sessions from AI platforms in your analytics. We report these as observations, not as a single proprietary score." },
     ],
-    related: ["seo", "aeo", "performance-marketing"],
-  },
-  {
-    slug: "social-media-marketing",
-    name: "Social Media Marketing",
-    discipline: "grow",
-    serviceType: "Social media marketing",
-    metaTitle: "Social Media Marketing That Brings Enquiries",
-    metaDescription:
-      "Social media marketing for Indian businesses: content strategy, short-form video, Instagram, Facebook, LinkedIn and YouTube, community management and paid social, measured against enquiries.",
-    headline: "Social media that starts conversations.",
-    intro:
-      "Most business accounts post regularly and hear nothing back. We plan content around the questions and decisions your buyers actually have, produce it consistently, and connect every profile to WhatsApp, your website and your CRM, so attention turns into enquiries you can measure.",
-    problems: [
-      "You post often, but nobody enquires because of it.",
-      "Content is made in a rush with no plan behind it.",
-      "Messages and comments go unanswered for hours.",
-      "Nobody can say what social media contributes to sales.",
-    ],
-    included: [
-      { title: "Content strategy", body: "Pillars built from real customer questions, objections and seasons, planned month by month." },
-      { title: "Short-form video", body: "Reels and shorts scripted for the first three seconds, filmed simply and edited for each platform." },
-      { title: "Platform management", body: "Instagram, Facebook, LinkedIn and YouTube profiles kept consistent, current and on-brand." },
-      { title: "Community and inbox", body: "Comments and DMs answered quickly, with enquiries routed to WhatsApp or your sales team." },
-      { title: "Paid social", body: "Boosts and campaigns behind the content that is already working, tracked to leads." },
-      { title: "Reporting", body: "Monthly results in plain language: reach, engagement and, most importantly, enquiries." },
-    ],
-    approach: [
-      { title: "Audit and plan", body: "Review current profiles, competitors and audience, then agree pillars and a 30-day calendar." },
-      { title: "Produce and publish", body: "Batch-create content, schedule it, and manage replies every day." },
-      { title: "Learn and scale", body: "Double down on formats that bring enquiries and put budget behind them." },
-    ],
-    deliverables: [
-      "Content strategy and monthly calendar",
-      "Designed posts and edited short-form videos",
-      "Community and inbox management",
-      "Profile optimisation across platforms",
-      "Monthly performance report",
-    ],
-    fitFor: [
-      "Consumer-facing businesses such as travel, hospitality, real estate and retail",
-      "Brands that want a steady presence without hiring an in-house team",
-      "Businesses already running ads that need better creative",
-    ],
-    faqs: [
-      { q: "Which platforms should my business be on?", a: "The ones your buyers use when deciding. For most Indian service businesses that means Instagram and WhatsApp, with LinkedIn for B2B and YouTube for anything that benefits from explanation. We recommend a focused set rather than every platform." },
-      { q: "Do you guarantee followers or viral posts?", a: "No. We focus on content that builds trust and brings enquiries. We never buy followers or engagement." },
-      { q: "Do we need to be on camera?", a: "It helps, because people trust faces, but it isn't required. We plan formats around what your team is comfortable with." },
-    ],
-    related: ["performance-marketing", "seo", "geo"],
-  },
-  {
-    slug: "lead-generation",
-    name: "Lead Generation",
-    discipline: "grow",
-    serviceType: "Lead generation",
-    metaTitle: "Lead Generation Agency: Qualified Leads, Not Form Fills",
-    metaDescription:
-      "End-to-end lead generation: offer design, landing pages, paid acquisition and AI qualification, so your sales team spends time only on buyers who are ready.",
-    headline: "Fewer, better conversations.",
-    intro:
-      "Lead generation fails in the gaps between teams: the ad agency hands over leads, the website loses half of them, and sales calls the rest two days late. We run the whole path as one system, from the offer to the booked meeting.",
-    problems: [
-      "Sales complains that leads are junk; marketing says sales does not follow up.",
-      "Lead volume swings month to month with no clear reason.",
-      "You buy leads from portals that also sell them to competitors.",
-      "Nobody knows the real cost of acquiring a customer.",
-    ],
-    included: [
-      { title: "Offer and funnel design", body: "We shape an entry offer that serious buyers want, such as a site visit, consultation, sample or audit, and design the funnel around it." },
-      { title: "Acquisition", body: "Meta, Google and LinkedIn campaigns, plus organic channels where they suit your buyer." },
-      { title: "Qualification", body: "Forms and AI assistants that ask budget, timeline and need, then score each lead before it reaches sales." },
-      { title: "Speed to lead", body: "Instant replies and routing rules so hot leads reach the right person within minutes." },
-      { title: "Closed-loop reporting", body: "Every lead tracked to outcome, so you see cost per qualified lead and cost per customer by channel." },
-    ],
-    approach: [
-      { title: "Define the qualified lead", body: "Agree with your sales team exactly what a good lead looks like, and score against it." },
-      { title: "Build the path", body: "Offer, landing page, campaigns, qualification and routing launched together." },
-      { title: "Tune the whole system", body: "Improve the weakest stage first, whether that is ads, page, qualification or follow-up." },
-    ],
-    deliverables: [
-      "Lead scoring model agreed with sales",
-      "Landing pages and qualification flows",
-      "Campaigns across chosen channels",
-      "Lead routing and instant response",
-      "Monthly cost-per-customer report",
-    ],
-    fitFor: [
-      "B2B and high-ticket B2C businesses",
-      "Sales teams with capacity but inconsistent pipeline",
-      "Companies replacing portal or bought leads",
-    ],
-    faqs: [
-      { q: "Do you sell leads?", a: "No. We build and run a lead generation system that belongs to you. Leads come to your business only and are never shared or resold." },
-      { q: "How do you define a qualified lead?", a: "Together with your sales team, before launch. Typically it combines budget, timeline, location and need. Leads are scored against those criteria automatically." },
-      { q: "How soon will we see leads?", a: "Campaigns usually start producing enquiries within the first one to two weeks after launch. The first month is mainly about learning which audiences and messages produce qualified leads." },
-    ],
-    related: ["performance-marketing", "ai-automation", "crm-automation"],
+    related: ["seo", "aeo", "content-digital-pr"],
   },
   {
     slug: "local-seo",
@@ -554,7 +226,7 @@ export const allServices: Service[] = [
     serviceType: "Local search engine optimisation",
     metaTitle: "Local SEO Services: Rank in Google Maps & Local Search",
     metaDescription:
-      "Local SEO for businesses that serve a city or region: Google Business Profile optimisation, location pages, reviews workflow and technical fixes that help you appear in the map pack.",
+      "Local SEO for businesses serving a city or region: Google Business Profile, location pages, reviews and fixes that get you into the map pack.",
     headline: "Be the first name nearby.",
     intro:
       "When someone searches for a clinic, interior designer or builder near them, the map results take most of the clicks. Local SEO makes sure your business appears there with accurate information, strong reviews and pages that prove you serve that area.",
@@ -593,55 +265,7 @@ export const allServices: Service[] = [
       { q: "Can you remove negative reviews?", a: "We cannot remove genuine reviews, and nobody should promise to. We help you respond well, and we build a steady flow of reviews from satisfied customers so your rating reflects your real service." },
       { q: "Do you create fake location pages?", a: "No. We only create pages for areas you genuinely serve, with content specific to that area. Thin duplicate city pages can harm rankings." },
     ],
-    related: ["seo", "aeo", "website-development"],
-  },
-  {
-    slug: "crm-automation",
-    name: "CRM Automation",
-    discipline: "build",
-    serviceType: "CRM implementation and automation",
-    metaTitle: "CRM Automation & Sales Pipeline Setup",
-    metaDescription:
-      "CRM setup and sales pipeline automation for HubSpot, Zoho, Salesforce and more. Every lead captured, scored, assigned and followed up automatically.",
-    headline: "No lead left in a spreadsheet.",
-    intro:
-      "If leads live in WhatsApp chats, inboxes and spreadsheets, some will be forgotten. We set up a CRM your team will actually use, connect every lead source to it, and automate the routine steps between first enquiry and signed deal.",
-    problems: [
-      "Leads come from five places and nobody has the full picture.",
-      "Follow-ups slip when the team is busy.",
-      "Managers cannot see the pipeline without asking around.",
-      "You paid for a CRM that nobody updates.",
-    ],
-    included: [
-      { title: "CRM selection and setup", body: "We recommend and configure the right CRM for your size and budget, such as HubSpot, Zoho, Salesforce, Pipedrive or LeadSquared." },
-      { title: "Lead capture", body: "Website forms, ad platforms, WhatsApp, calls and portals connected so every lead lands in one place automatically." },
-      { title: "Pipeline automation", body: "Assignment rules, task reminders, stage-based follow-ups and alerts for deals that go quiet." },
-      { title: "AI enrichment", body: "Conversation summaries, lead scores and next-step suggestions written into each record." },
-      { title: "Reporting", body: "Dashboards for pipeline value, conversion by stage and response time, by person and by source." },
-    ],
-    approach: [
-      { title: "Map your sales process", body: "We document how deals really move today, including the informal steps." },
-      { title: "Configure and connect", body: "Pipeline, fields, automations and integrations built and tested with sample data." },
-      { title: "Adopt", body: "Team training, simple daily habits and a 30-day check-in to fix friction." },
-    ],
-    deliverables: [
-      "Configured CRM with your pipeline stages",
-      "All lead sources connected",
-      "Automated follow-ups and task rules",
-      "Sales dashboards",
-      "Team training and recorded walkthroughs",
-    ],
-    fitFor: [
-      "Teams of 2 to 50 sales or service staff",
-      "Businesses with leads scattered across tools",
-      "Companies preparing to scale paid acquisition",
-    ],
-    faqs: [
-      { q: "Can you work with our existing CRM?", a: "Yes. In most cases we improve the CRM you already pay for. We only recommend switching when the current tool cannot support your process." },
-      { q: "Do you migrate our existing data?", a: "Yes. We clean and import existing contacts, deals and history so your team starts with a complete picture." },
-      { q: "Will my team actually use it?", a: "Adoption is part of the project. We keep data entry to a minimum by automating it, and we train the team on a short daily routine." },
-    ],
-    related: ["ai-automation", "lead-generation", "website-development"],
+    related: ["seo", "aeo", "technical-seo"],
   },
   {
     slug: "technical-seo",
@@ -651,7 +275,7 @@ export const allServices: Service[] = [
     serviceType: "Technical search engine optimisation",
     metaTitle: "Technical SEO Services: Crawling, Indexing & Core Web Vitals",
     metaDescription:
-      "Technical SEO audits and fixes: crawling, indexing, site architecture, structured data, JavaScript rendering, Core Web Vitals and AI crawler access, done and verified.",
+      "Technical SEO audits and fixes: indexing, site architecture, structured data, JavaScript rendering, Core Web Vitals and AI crawler access.",
     headline: "Technical SEO that lets search engines and AI read every page",
     intro:
       "Great content can't rank if crawlers can't reach it, understand it or trust it. We audit and fix the technical foundations, from indexing and site architecture to structured data, speed and AI crawler access, then verify every fix in Search Console.",
@@ -700,9 +324,9 @@ export const allServices: Service[] = [
     discipline: "grow",
     search: "aeo",
     serviceType: "SEO content and digital PR",
-    metaTitle: "SEO Content & Digital PR: Content That Ranks and Gets Cited",
+    metaTitle: "Digital PR & SEO Content Services That Get Cited",
     metaDescription:
-      "SEO content strategy, expert-written articles and pages, content refreshes and digital PR that earns links and mentions, built to rank on Google and be cited by AI.",
+      "SEO content strategy, expert articles, content refreshes and digital PR that earns links and mentions, built to rank and be cited by AI.",
     headline: "Content that ranks on Google and gets cited by AI",
     intro:
       "Search engines and AI assistants both reward the clearest, most credible answer. We plan content from real search demand, write it with people who know the subject, refresh what's slipping, and earn the links and mentions that build authority.",
@@ -738,16 +362,167 @@ export const allServices: Service[] = [
       "Sites with old content that has started to slip",
     ],
     faqs: [
+      { q: "What are digital PR services?", a: "Digital PR earns coverage, links and mentions on news sites, trade publications and blogs through data, expert commentary and stories, which builds both SEO authority and AI citations." },
       { q: "Do you use AI to write content?", a: "We use AI for research and drafts where it helps, but every page is shaped, fact-checked and edited by people, with input from your experts. Thin, generic AI content tends to rank poorly and isn't quoted." },
       { q: "Do you buy links?", a: "No. We earn links through digital PR, original data and relationships. Paid link schemes risk penalties." },
       { q: "How much content do we need?", a: "Less than you might think. A smaller number of genuinely useful, well-structured pages usually outperforms a high volume of thin posts." },
     ],
     related: ["seo", "aeo", "geo"],
   },
+  {
+    slug: "international-seo",
+    name: "International SEO",
+    discipline: "build",
+    search: "seo",
+    serviceType: "International search engine optimisation",
+    metaTitle: "International SEO Agency & Consultant Services",
+    metaDescription:
+      "International SEO for businesses selling abroad: country targeting, hreflang, localised keyword research and content, and AI visibility.",
+    headline: "International SEO that ranks you in every market you sell to",
+    intro:
+      "Ranking in one country doesn't carry over to the next. Each market has its own searches, competitors, spelling and trusted sources. We set up your site to target each country correctly, research what buyers there actually search and ask, and build the pages and authority to win there.",
+    problems: [
+      "You rank at home but are invisible in the US, UK or UAE.",
+      "The wrong country or language version shows in search results.",
+      "Content is translated word for word and doesn't match local searches.",
+      "AI assistants recommend local competitors in your target markets.",
+    ],
+    included: [
+      { title: "Market and keyword research", body: "Search demand, competitors and phrasing researched country by country, not translated from one market." },
+      { title: "Site structure and hreflang", body: "Subfolders, subdomains or country domains chosen and configured, with hreflang so each searcher sees the right version." },
+      { title: "Localised content", body: "Pages written for each market's spelling, currency, units, regulations and examples." },
+      { title: "Country-level authority", body: "Mentions and links from publications, directories and associations each market trusts." },
+      { title: "AI visibility by market", body: "The prompts buyers use in each country tracked across ChatGPT, Perplexity and Gemini." },
+      { title: "Reporting by country", body: "Rankings, organic traffic and enquiries reported separately for each market." },
+    ],
+    approach: [
+      { title: "Prioritise", body: "We size the opportunity in each market and pick where to start, based on demand, competition and your margins." },
+      { title: "Set up", body: "Structure, hreflang and technical targeting first, so every page we publish lands in the right country." },
+      { title: "Expand", body: "Localised pages and authority market by market, measured separately so you can see what each country returns." },
+    ],
+    deliverables: [
+      "Market prioritisation and keyword research per country",
+      "hreflang and international site structure, implemented",
+      "Localised pages for each target market",
+      "Monthly report by country: rankings, AI visibility, enquiries",
+    ],
+    fitFor: [
+      "Exporters and manufacturers selling abroad",
+      "SaaS and service businesses entering new countries",
+      "Brands with several country or language sites",
+    ],
+    faqs: [
+      { q: "What does an international SEO consultant do?", a: "They choose the right site structure for each market, implement hreflang, research keywords per country, localise content and build authority in each market. See our [international SEO guide](/insights/international-seo-guide)." },
+      { q: "Should we use country domains, subdomains or subfolders?", a: "For most businesses, subfolders on one strong domain (for example /uk/ and /us/) are the easiest to grow and maintain. Country domains can make sense for large brands with local teams. We recommend based on your situation." },
+      { q: "Do we need separate content for the UK and US?", a: "Often, yes, for your most important pages. Spelling, terms, prices and examples differ, and search engines treat near-duplicates carefully. hreflang tells them which version belongs to which country." },
+      { q: "Can you handle languages other than English?", a: "We plan structure, keywords and hreflang for any language and work with native-speaking writers or your own team for the copy." },
+    ],
+    related: ["technical-seo", "geo", "content-digital-pr"],
+  },
+  {
+    slug: "ecommerce-seo",
+    name: "E-commerce SEO",
+    discipline: "build",
+    search: "seo",
+    serviceType: "E-commerce search engine optimisation",
+    metaTitle: "Ecommerce SEO Agency: Services & Packages",
+    metaDescription:
+      "E-commerce SEO for online stores: category and product pages, product schema, faceted navigation, free Shopping listings and AI visibility.",
+    headline: "E-commerce SEO that gets your products found and chosen",
+    intro:
+      "Shoppers search Google, scroll free product listings and increasingly ask ChatGPT or Perplexity what to buy. We make your categories and products rank, show rich results and appear in AI shopping answers, so fewer sales depend on ads.",
+    problems: [
+      "Category pages don't rank, so you depend on paid ads.",
+      "Thousands of filter and variant URLs waste crawl budget.",
+      "Product pages are thin copies of the manufacturer's description.",
+      "AI shopping answers recommend competitors' products, not yours.",
+    ],
+    included: [
+      { title: "Category strategy", body: "Category and collection pages built around how shoppers search, with copy, internal links and filters that help them rank." },
+      { title: "Product page optimisation", body: "Unique titles, descriptions, specifications, FAQs and reviews on the products that matter most." },
+      { title: "Product structured data", body: "Product, Offer, Review and merchant listing schema so prices, stock and ratings show in results." },
+      { title: "Faceted navigation and crawl", body: "Filters, variants and pagination controlled so search engines spend their time on pages that sell." },
+      { title: "Free listings and feeds", body: "Merchant Center free listings and product feeds kept accurate, so you appear in the Shopping tab without ad spend." },
+      { title: "AI shopping visibility", body: "Clear product facts, comparisons and reviews that ChatGPT, Perplexity and Google's AI answers can cite." },
+    ],
+    approach: [
+      { title: "Audit", body: "Crawl, indexing, category and product performance reviewed to find the pages with the most revenue upside." },
+      { title: "Fix and structure", body: "Technical and schema fixes first, then category pages, then the products that sell best." },
+      { title: "Grow", body: "Buying guides, comparisons and digital PR that earn links and get cited in AI answers." },
+    ],
+    deliverables: [
+      "E-commerce SEO audit with revenue-ranked priorities",
+      "Optimised category and product templates",
+      "Product schema and Merchant Center setup",
+      "Monthly report: rankings, organic revenue, AI visibility",
+    ],
+    fitFor: [
+      "Shopify, WooCommerce and custom online stores",
+      "D2C brands that want less dependence on ads",
+      "Catalogues with hundreds or thousands of products",
+    ],
+    faqs: [
+      { q: "What do ecommerce SEO packages include?", a: "Typically a technical audit, category and product page optimisation, product schema, Merchant Center setup, content such as buying guides, link building and monthly reporting. See [pricing](/pricing)." },
+      { q: "What does an ecommerce SEO agency do?", a: "It makes an online store's categories and products rank in Google and appear in free Shopping listings and AI shopping answers, reducing dependence on paid ads." },
+      { q: "Which platforms do you work with?", a: "Shopify, WooCommerce, Magento and custom builds. The principles are the same; the implementation differs by platform." },
+      { q: "Can SEO replace our ads?", a: "Rarely all of them, but strong organic rankings and free listings reduce how much of your revenue depends on paid clicks, and they keep working when spend stops." },
+      { q: "How do products show up in ChatGPT?", a: "AI assistants draw on product pages, reviews, comparison articles and merchant feeds. Clear specifications, honest comparisons and consistent product data make you easier to recommend." },
+    ],
+    related: ["technical-seo", "content-digital-pr", "geo"],
+  },
+  {
+    slug: "enterprise-seo",
+    name: "Enterprise SEO",
+    discipline: "build",
+    search: "seo",
+    serviceType: "Enterprise search engine optimisation",
+    metaTitle: "Enterprise SEO Services & Consultant",
+    metaDescription:
+      "Enterprise SEO consulting for large and complex websites: technical SEO at scale, content governance, international targeting and AI visibility across ChatGPT and Gemini.",
+    headline: "Enterprise SEO for large, complex websites",
+    intro:
+      "Large sites win or lose search at scale: thousands of templates, many teams, several markets and constant releases. We bring technical rigour, clear prioritisation and governance, and extend it to AI search, so your brand is found and recommended everywhere customers look.",
+    problems: [
+      "Releases regularly break indexing, redirects or structured data.",
+      "Thousands of pages compete with each other or sit unindexed.",
+      "Several teams and markets publish without shared SEO standards.",
+      "Leadership asks about AI search and nobody owns the answer.",
+    ],
+    included: [
+      { title: "Technical SEO at scale", body: "Crawl and log-file analysis, indexation management, faceted navigation, rendering and Core Web Vitals across templates." },
+      { title: "Prioritisation by revenue", body: "Opportunities sized by search demand and commercial value, so engineering time goes where it pays." },
+      { title: "SEO governance", body: "Standards, release checklists and monitoring so changes don't undo past gains." },
+      { title: "International and multi-brand", body: "hreflang, regional sites and brand architecture managed across markets." },
+      { title: "Content and authority", body: "Template-level content improvements, topic coverage and digital PR at scale." },
+      { title: "AI visibility programme", body: "Prompt tracking across AI engines, entity management and citation building for the whole brand portfolio." },
+    ],
+    approach: [
+      { title: "Diagnose", body: "A full technical and content audit with log analysis and a revenue-ranked roadmap." },
+      { title: "Embed", body: "Work inside your sprint process with tickets, acceptance criteria and release checks." },
+      { title: "Scale", body: "Templates, governance and reporting that let every team improve search without us in every meeting." },
+    ],
+    deliverables: [
+      "Enterprise technical audit and revenue-ranked roadmap",
+      "Release checklists and automated SEO monitoring",
+      "International and AI visibility programme",
+      "Executive and team-level monthly reporting",
+    ],
+    fitFor: [
+      "Sites with tens of thousands of pages or more",
+      "Brands operating in several countries or languages",
+      "In-house SEO teams that need senior support",
+    ],
+    faqs: [
+      { q: "What makes enterprise SEO different?", a: "Scale and coordination. The fundamentals are the same, but changes happen through templates, engineering sprints and many teams, so prioritisation and governance matter as much as tactics." },
+      { q: "Do you work alongside in-house teams?", a: "Yes. Most enterprise clients have marketing and engineering teams; we provide senior strategy, technical depth and extra capacity." },
+      { q: "How do you choose an enterprise SEO consultant?", a: "Look for experience with sites of your size and platform, a clear process for working with engineering, and honest reporting. Our [agency buyer's guide](/insights/how-to-choose-seo-aeo-geo-agency) lists questions to ask." },
+    ],
+    related: ["technical-seo", "international-seo", "geo"],
+  },
 ];
 
 /** Zenyro is a search agency: only these services are published on the site. */
-export const searchServiceSlugs = ["seo", "local-seo", "technical-seo", "aeo", "geo", "content-digital-pr"] as const;
+export const searchServiceSlugs = ["seo", "local-seo", "technical-seo", "international-seo", "ecommerce-seo", "enterprise-seo", "aeo", "geo", "content-digital-pr"] as const;
 
 /** The published services, in menu order. */
 export const services: Service[] = searchServiceSlugs.map((slug) => allServices.find((s) => s.slug === slug)!);

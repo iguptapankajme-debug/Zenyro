@@ -15,7 +15,7 @@ export const site = {
   whatsapp: "", // international format without "+", e.g. 919876543210
   bookingUrl: "", // e.g. a Cal.com or Calendly link. Falls back to the contact form.
   region: "Chandigarh Tricity, India",
-  areaServed: ["India", "United Arab Emirates", "United Kingdom", "United States"],
+  areaServed: ["India", "United States", "United Kingdom", "United Arab Emirates", "Canada", "Australia", "Singapore"],
   social: {
     instagram: "https://www.instagram.com/zenyro.in",
     facebook: "https://www.facebook.com/people/Zenyro/61595171497737/",

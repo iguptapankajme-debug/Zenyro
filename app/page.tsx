@@ -5,16 +5,24 @@ import { Em } from "@/components/ui/section-heading";
 import { Rail, PixelField, EngineChip, EngineMark, Icon3D, engines } from "@/components/home/primitives";
 import { HeroOrbit, OrbitStack } from "@/components/home/hero-orbit";
 import { AskAiDemo } from "@/components/home/ask-ai-demo";
+import { PromptTicker } from "@/components/home/prompt-ticker";
+import { StepsTimeline } from "@/components/home/steps-timeline";
+import { GlobeCanvas } from "@/components/webgl/globe-canvas";
+import { ShaderCanvas } from "@/components/webgl/shader-canvas";
+import { AiReadinessChecker } from "@/components/tools/ai-readiness-checker";
+import { MarketCards } from "@/components/markets/market-cards";
+import { PricingPlans } from "@/components/pricing/pricing-plans";
 import { VisibilityDashboard } from "@/components/home/visibility-dashboard";
 import { ExampleGrid } from "@/components/sections/example-grid";
 import { Faq } from "@/components/sections/faq";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { concepts } from "@/data/work";
+import { guides } from "@/data/guides";
 import { industries } from "@/data/industries";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Zenyro: SEO, AEO & GEO Agency. Get Found on Google, ChatGPT & AI Search",
+  title: "SEO, AEO & GEO Agency | Get Found on Google & ChatGPT | Zenyro",
   description:
     "Zenyro is an SEO, AEO and GEO agency. We help businesses rank on Google, become the answer in AI Overviews, and get recommended by ChatGPT, Perplexity and Gemini.",
   path: "/",
@@ -22,12 +30,15 @@ export const metadata = buildMetadata({
 });
 
 const homeFaqs = [
+  { q: "What is Zenyro?", a: "Zenyro is an SEO, AEO and GEO agency based in the Chandigarh Tricity, India, working with businesses in the United States, United Kingdom, UAE, Canada, Australia, Singapore and India. It helps them rank on Google, become the answer in Google AI Overviews, and get recommended by ChatGPT, Perplexity, Gemini, Claude and Copilot, with plans from US$799 a month." },
+  { q: "Who is Zenyro best for?", a: "Service businesses and brands where each customer is valuable: clinics, real estate, hospitality, education, professional and financial services, manufacturers and online stores, that want to be found on Google and recommended by AI assistants without paying big-agency retainers." },
   { q: "What is the difference between SEO, AEO and GEO?", a: "SEO gets your pages ranking in Google and Bing results. AEO (answer engine optimisation) structures your content so Google's featured snippets, AI Overviews and voice assistants can lift your answer directly. GEO (generative engine optimisation) makes your business easy for ChatGPT, Perplexity, Gemini, Claude and Copilot to find, trust and recommend. They share the same foundations, so we run them as one programme." },
   { q: "Can you get my business mentioned in ChatGPT?", a: "We can make you much easier to find, cite and recommend: clear facts about your business, pages that answer real questions, consistent listings and mentions on the sources AI assistants read. Nobody can guarantee a mention, and we track progress prompt by prompt so you can see what's changing." },
   { q: "How do you measure results?", a: "Google rankings, organic clicks and Maps actions from Search Console and Google Business Profile, plus AI visibility: how often and how prominently you're mentioned for the prompts your customers use, and which of your pages are cited. Everything is tied back to enquiries." },
   { q: "How long does it take?", a: "Technical fixes and Google Business Profile improvements can show within weeks. Competitive rankings and steady AI visibility usually build over three to six months of consistent work." },
+  { q: "How much does it cost?", a: "Two monthly plans: Growth from US$799 and Authority from US$1,799, shown in your currency on the pricing page. No setup fee, month to month." },
   { q: "Do you guarantee rankings?", a: "No honest agency can. We commit to a clear plan, quality work and transparent monthly reporting." },
-  { q: "Where are you based?", a: "In the Chandigarh Tricity, India. We work with businesses across India, the UK, the US and the UAE." },
+  { q: "Where are you based, and do you work internationally?", a: "We are based in the Chandigarh Tricity, India, and work remotely with businesses in the United States, United Kingdom, UAE, Canada, Australia, Singapore and across India. Calls are scheduled in your working hours, and content is written in your market's English." },
 ];
 
 const pillars = [
@@ -62,19 +73,14 @@ const steps = [
   { t: "Track and report", b: "Monthly rankings, AI visibility by prompt and engine, citations and enquiries, in plain language." },
 ];
 
-const plans = [
-  { name: "Local SEO", for: "Clinics, showrooms, schools and services in one city", items: ["Google Business Profile management", "Location and service pages", "Reviews workflow", "Local AI visibility tracking"] },
-  { name: "SEO + AEO", for: "Businesses competing on Google across a region or country", items: ["Technical SEO and fixes", "Monthly answer-first content", "Featured snippet and AI Overview targeting", "Digital PR and links"], featured: true },
-  { name: "AI visibility (GEO)", for: "Brands that want to be recommended by ChatGPT and other AI assistants", items: ["Prompt tracking across AI engines", "Entity and brand-fact cleanup", "Citation and mention building", "Monthly AI visibility report"] },
-];
 
 function SerpMini() {
   return (
     <div className="rounded-xl border border-line bg-ink p-3 text-[0.72rem]">
-      <p className="flex items-center gap-1.5 rounded-md bg-ink-2 px-2 py-1.5 text-muted"><Search aria-hidden="true" className="size-3" />dentist in mohali</p>
+      <p className="flex items-center gap-1.5 rounded-md bg-ink-2 px-2 py-1.5 text-muted"><Search aria-hidden="true" className="size-3" />dentist in manchester</p>
       <div className="mt-2 rounded-md border border-ember/40 bg-ember/[0.04] p-2">
-        <p className="font-mono text-[0.6rem] text-dim">yourclinic.in › mohali</p>
-        <p className="font-medium text-ember">Dental Clinic in Mohali | Your Clinic</p>
+        <p className="font-mono text-[0.6rem] text-dim">yourclinic.co.uk › manchester</p>
+        <p className="font-medium text-ember">Dental Clinic in Manchester | Your Clinic</p>
       </div>
       <div className="mt-1.5 space-y-1.5 p-2"><span className="block h-1.5 w-3/4 rounded bg-ink-3" /><span className="block h-1.5 w-1/2 rounded bg-ink-3" /></div>
     </div>
@@ -85,14 +91,14 @@ function AnswerMini() {
     <div className="rounded-xl border border-line bg-ink p-3 text-[0.72rem]">
       <p className="flex items-center gap-1.5 font-medium"><Sparkles aria-hidden="true" className="size-3 text-ember" />AI Overview</p>
       <p className="mt-2 leading-snug text-muted">A root canal usually takes one or two visits of 60–90 minutes, with local anaesthetic&hellip;</p>
-      <p className="mt-2 w-fit rounded-md bg-ember/10 px-2 py-0.5 text-[0.62rem] font-medium text-ember">Source: yourclinic.in</p>
+      <p className="mt-2 w-fit rounded-md bg-ember/10 px-2 py-0.5 text-[0.62rem] font-medium text-ember">Source: yourclinic.co.uk</p>
     </div>
   );
 }
 function ChatMini() {
   return (
     <div className="rounded-xl border border-line bg-ink p-3 text-[0.72rem]">
-      <p className="ml-auto w-fit rounded-lg bg-ink-3 px-2 py-1">Best dentist for kids in Mohali?</p>
+      <p className="ml-auto w-fit rounded-lg bg-ink-3 px-2 py-1">Best dentist for kids in Toronto?</p>
       <p className="mt-2 flex gap-1.5 leading-snug text-muted"><Icon3D name="chatgpt" size={20} className="mt-0.5 size-4 shrink-0" /><span>Parents often recommend <span className="rounded bg-amber-100 px-0.5 font-medium text-paper">Your Clinic</span> for its child-friendly team&hellip;</span></p>
     </div>
   );
@@ -110,6 +116,7 @@ export default function Home() {
             <div aria-hidden="true" className="absolute left-1/2 top-[38%] -z-10 h-[26rem] w-[min(56rem,90%)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(21_94_239/.14),transparent)]" />
             <HeroOrbit />
             <OrbitStack />
+            <ShaderCanvas shader="contour" intensity={0.5} className="-z-20 opacity-70 [mask-image:radial-gradient(ellipse_at_center,black,transparent_72%)]" />
             <PixelField cols={150} rows={56} className="absolute inset-x-0 top-0 -z-10 h-full w-full opacity-[0.5] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
             <p className="eyebrow mx-auto mb-7">SEO · AEO · GEO agency</p>
             <h1 id="hero-title" className="mx-auto max-w-6xl text-[clamp(2.4rem,5.3vw,4.7rem)] font-semibold leading-[1.04] tracking-[-0.05em]">
@@ -125,7 +132,7 @@ export default function Home() {
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-3">
               <ButtonLink href="/free-audit" size="lg" icon="up-right">Get a free AI visibility audit</ButtonLink>
-              <ButtonLink href="#how" variant="ghost" size="lg">See how it works</ButtonLink>
+              <ButtonLink href="/tools/ai-readiness" variant="ghost" size="lg">Check my site free</ButtonLink>
             </div>
             <ul className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2" aria-label="Where we get you found">
               {engines.slice(0, 7).map((e) => <li key={e.key}><EngineChip name={e.key} label={e.name} /></li>)}
@@ -133,6 +140,14 @@ export default function Home() {
           </div>
         </div>
         <div className="shell"><div className="border-x border-line"><VisibilityDashboard /></div></div>
+      </section>
+
+      {/* Prompt ticker */}
+      <section aria-label="Questions customers ask AI" className="border-b border-line bg-ink-2">
+        <div className="shell"><div className="border-x border-line py-8">
+          <p className="mb-5 text-center font-mono text-[0.7rem] uppercase tracking-[0.14em] text-dim">Right now, customers are asking AI</p>
+          <PromptTicker />
+        </div></div>
       </section>
 
       {/* Shift statement */}
@@ -229,21 +244,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Free checker */}
+      <Rail labelledBy="checker-title">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+          <div className="lg:col-span-6">
+            <p className="eyebrow mb-6">Free tool</p>
+            <h2 id="checker-title" className="text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
+              Can ChatGPT read your website? <Em>Find out in ten seconds.</Em>
+            </h2>
+            <p className="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-muted">
+              Our AI readiness checker tests 17 signals: whether GPTBot, ClaudeBot, PerplexityBot and Gemini can crawl you, whether your business is described in structured data, and the SEO basics.
+            </p>
+          </div>
+          <div className="lg:col-span-6"><AiReadinessChecker compact /></div>
+        </div>
+      </Rail>
+
+      {/* Global */}
+      <Rail labelledBy="global-title">
+        <div className="mb-12 grid items-center gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="eyebrow mb-6">Global</p>
+            <h2 id="global-title" className="max-w-3xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
+              One team, <Em>working in your hours</Em>, wherever you are
+            </h2>
+            <p className="mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-muted">Search behaviour, directories and trust signals differ by country. We plan for your market, write in your English, and report in your time zone.</p>
+            <Link href="/markets" className="mt-8 inline-flex items-center gap-2 font-medium"><span className="link-u">All markets</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+          </div>
+          <div className="mx-auto w-full max-w-[26rem] lg:col-span-5">
+            <GlobeCanvas />
+            <p className="mt-2 text-center font-mono text-[0.68rem] uppercase tracking-[0.12em] text-dim">One team, six markets · drag to spin</p>
+          </div>
+        </div>
+        <MarketCards />
+      </Rail>
+
       {/* How it works */}
       <Rail id="how" labelledBy="how-title" inner="scroll-mt-24">
         <p className="eyebrow mb-6">How it works</p>
         <h2 id="how-title" className="max-w-3xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
           From invisible to <Em>recommended</Em>, in five steps
         </h2>
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-5">
-          {steps.map((s, i) => (
-            <li key={s.t} className="bg-ink p-6" data-reveal style={{ "--d": `${i * 70}ms` } as React.CSSProperties}>
-              <span className="grid size-8 place-items-center rounded-md bg-ember/10 font-mono text-[0.78rem] font-medium text-ember">{i + 1}</span>
-              <h3 className="mt-5 text-[1.1rem] font-semibold tracking-[-0.02em]">{s.t}</h3>
-              <p className="mt-2 text-[0.9rem] leading-relaxed text-muted">{s.b}</p>
-            </li>
-          ))}
-        </ol>
+        <StepsTimeline steps={steps} />
       </Rail>
 
       {/* Examples */}
@@ -312,23 +354,78 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why Zenyro */}
+      <Rail labelledBy="why-title">
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="eyebrow mb-6">Why Zenyro</p>
+            <h2 id="why-title" className="text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
+              What the big agencies do, <Em>without the big-agency bill</Em>
+            </h2>
+            <p className="mt-5 text-[1.05rem] leading-relaxed text-muted">
+              Leading content and digital PR agencies often start at $7,500 a month. We bring the same disciplines, measured the same way, to businesses that want results without that overhead.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-[0.95rem]">
+              <Link href="/about" className="inline-flex items-center gap-1.5 font-medium"><span className="link-u">About Zenyro</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+              <Link href="/insights/how-to-choose-seo-aeo-geo-agency" className="inline-flex items-center gap-1.5 text-muted hover:text-paper"><span className="link-u">How to choose an agency</span></Link>
+              <Link href="/contact" className="inline-flex items-center gap-1.5 text-muted hover:text-paper"><span className="link-u">Talk to us</span></Link>
+            </div>
+          </div>
+          <ul className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:col-span-7">
+            {[
+              ["Measured, not guessed", "Every plan tracks a fixed set of customer prompts across ChatGPT, Gemini, Perplexity and AI Overviews, alongside Google rankings."],
+              ["Our own tools", "We built the free AI readiness checker on this site. The same checks run on every client site, every month."],
+              ["Published prices", "Two plans with prices in your currency. Most agencies only quote after a sales call."],
+              ["No lock-in", "No setup fee and month-to-month terms. We keep clients by showing progress, not by contract."],
+              ["SEO, AEO and GEO together", "One plan and one report covering rankings, answers and AI recommendations, so nothing falls between agencies."],
+              ["Everything in your name", "Search Console, analytics and Business Profile stay in your accounts. You keep all the content we create."],
+            ].map(([t, b]) => (
+              <li key={t} className="bg-ink p-6">
+                <p className="flex items-center gap-2 font-semibold"><Check aria-hidden="true" className="size-4 text-ember" />{t}</p>
+                <p className="mt-2 text-[0.9rem] leading-relaxed text-muted">{b}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Rail>
+
+      {/* Guides */}
+      <Rail labelledBy="guides-title">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow mb-6">Guides</p>
+            <h2 id="guides-title" className="max-w-2xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">Learn how search <Em>works now</Em></h2>
+          </div>
+          <div className="flex gap-6">
+            <Link href="/glossary" className="inline-flex items-center gap-2 font-medium"><span className="link-u">Glossary</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+            <Link href="/insights" className="inline-flex items-center gap-2 font-medium"><span className="link-u">All insights</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+          </div>
+        </div>
+        <ul className="grid gap-5 md:grid-cols-3">
+          {guides.slice(0, 3).map((g) => (
+            <li key={g.slug}>
+              <Link href={`/insights/${g.slug}`} className="group flex h-full flex-col rounded-2xl border border-line bg-ink-2 p-6 transition-colors hover:border-ember/60 hover:bg-ink">
+                <span className="font-mono text-[0.72rem] text-ember">{g.category} · {g.readingMinutes} min</span>
+                <span className="mt-4 text-[1.2rem] font-semibold leading-snug tracking-[-0.02em]">{g.title}</span>
+                <span className="mt-3 flex-1 text-[0.9rem] leading-relaxed text-muted">{g.description}</span>
+                <ArrowUpRight aria-hidden="true" className="mt-5 size-4 text-ember transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Rail>
+
       {/* Plans */}
       <Rail labelledBy="plans-title">
-        <p className="eyebrow mb-6">Ways to work with us</p>
-        <h2 id="plans-title" className="max-w-3xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">Fixed monthly scope. <span className="text-muted">No lock-in.</span></h2>
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {plans.map((p) => (
-            <article key={p.name} className={`relative flex flex-col rounded-2xl border p-7 ${p.featured ? "border-ember bg-ink shadow-[0_20px_60px_-30px_rgba(21,94,239,.5)]" : "border-line bg-ink-2"}`}>
-              {p.featured && <span className="absolute -top-3 left-7 rounded-md bg-ember px-2 py-0.5 font-mono text-[0.68rem] text-ember-ink">Recommended</span>}
-              <h3 className="text-[1.4rem] font-semibold tracking-[-0.03em]">{p.name}</h3>
-              <p className="mt-2 text-[0.92rem] text-muted">{p.for}</p>
-              <ul className="mt-6 grid flex-1 gap-2.5 border-t border-dashed border-line-2 pt-6 text-[0.92rem]">
-                {p.items.map((it) => <li key={it} className="flex gap-2.5"><Check aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-ember" />{it}</li>)}
-              </ul>
-              <div className="mt-8"><ButtonLink href="/free-audit" variant={p.featured ? "primary" : "ghost"}>Start with a free audit</ButtonLink></div>
-            </article>
-          ))}
+        <div className="text-center">
+          <p className="eyebrow mx-auto mb-6">Pricing</p>
+          <h2 id="plans-title" className="mx-auto max-w-3xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
+            Agency-grade SEO, AEO and GEO. <span className="text-muted">At about half the usual price.</span>
+          </h2>
+          <p className="mx-auto mb-10 mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-muted">Two plans, priced in your currency. No setup fee and no lock-in.</p>
         </div>
+        <PricingPlans />
+        <p className="mt-6 text-center"><Link href="/pricing" className="inline-flex items-center gap-2 font-medium"><span className="link-u">Compare plans and agencies</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link></p>
       </Rail>
 
       <Faq faqs={homeFaqs} title="Questions about SEO, AEO and GEO." />

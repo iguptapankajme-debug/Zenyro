@@ -1,5 +1,6 @@
 import { JsonLd } from "@/components/ui/json-ld";
 import { faqSchema } from "@/lib/seo";
+import { rich } from "@/components/ui/rich-text";
 
 export function Faq({ faqs, title = "Questions, answered." }: { faqs: { q: string; a: string }[]; title?: string }) {
   return (
@@ -19,7 +20,7 @@ export function Faq({ faqs, title = "Questions, answered." }: { faqs: { q: strin
                   <span className="absolute left-1/2 top-1/2 h-3 w-px -translate-x-1/2 -translate-y-1/2 bg-paper transition-transform group-open:scale-y-0" />
                 </span>
               </summary>
-              <p className="max-w-2xl pb-6 leading-relaxed text-muted">{f.a}</p>
+              <p className="max-w-2xl pb-6 leading-relaxed text-muted">{rich(f.a)}</p>
             </details>
           ))}
         </div>

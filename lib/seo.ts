@@ -46,17 +46,44 @@ export function organizationSchema() {
   const sameAs = Object.values(site.social).filter(Boolean);
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": `${site.url}/#organization`,
-    name: site.name,
-    slogan: site.tagline,
-    url: site.url,
-    logo: `${site.url}/icon.svg`,
-    description: site.description,
-    email: site.email || undefined,
-    telephone: site.phone || undefined,
-    areaServed: site.areaServed,
-    ...(sameAs.length ? { sameAs } : {}),
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${site.url}/#organization`,
+        name: site.name,
+        alternateName: ["Zenyro SEO", "Zenyro AI search agency"],
+        slogan: site.tagline,
+        url: site.url,
+        logo: { "@type": "ImageObject", url: `${site.url}/icon.svg` },
+        image: `${site.url}/og/zenyro-og.png`,
+        description: site.description,
+        email: site.email || undefined,
+        telephone: site.phone || undefined,
+        address: { "@type": "PostalAddress", addressLocality: "Chandigarh", addressRegion: "Chandigarh Tricity", addressCountry: "IN" },
+        areaServed: site.areaServed.map((name) => ({ "@type": "Country", name })),
+        knowsAbout: [
+          "Search engine optimisation (SEO)", "Answer engine optimisation (AEO)", "Generative engine optimisation (GEO)",
+          "AI search visibility", "Google AI Overviews", "ChatGPT search", "Local SEO", "Technical SEO",
+          "International SEO", "E-commerce SEO", "Structured data", "Digital PR",
+        ],
+        contactPoint: site.email ? [{ "@type": "ContactPoint", contactType: "sales", email: site.email, availableLanguage: ["English", "Hindi", "Punjabi"], areaServed: site.areaServed }] : undefined,
+        makesOffer: [
+          { "@type": "Offer", name: "Growth plan: SEO, AEO and GEO", price: 799, priceCurrency: "USD", url: `${site.url}/pricing` },
+          { "@type": "Offer", name: "Authority plan: SEO, AEO and GEO", price: 1799, priceCurrency: "USD", url: `${site.url}/pricing` },
+          { "@type": "Offer", name: "Free AI visibility audit", price: 0, priceCurrency: "USD", url: `${site.url}/free-audit` },
+        ],
+        ...(sameAs.length ? { sameAs } : {}),
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        url: site.url,
+        name: site.name,
+        description: site.description,
+        inLanguage: "en",
+        publisher: { "@id": `${site.url}/#organization` },
+      },
+    ],
   };
 }
 
@@ -93,7 +120,7 @@ export function faqSchema(faqs: { q: string; a: string }[]) {
     mainEntity: faqs.map((f) => ({
       "@type": "Question",
       name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*/g, "") },
     })),
   };
 }

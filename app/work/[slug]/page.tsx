@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const w = getWork((await params).slug);
   if (!w) return {};
   return buildMetadata({
-    title: `${w.title}: ${w.kind === "concept" ? "Concept Demonstration" : "Case Study"}`,
+    title: `${w.title}${w.kind === "concept" ? " (Example)" : ": Case Study"}`,
     description: `${w.summary} ${w.kind === "concept" ? "A concept demonstration by Zenyro, not a client project." : ""}`.trim(),
     path: `/work/${w.slug}`,
   });

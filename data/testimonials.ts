@@ -3,8 +3,8 @@
  * The testimonials section stays hidden while this list is empty.
  *
  * Example:
- * { quote: "Enquiries now get a reply within a minute, even at night.", name: "Rohit Sharma",
- *   role: "Owner", company: "Himachal Cab Expert", project: "himachal-cab-expert" }
+ * { quote: "We now show up when customers ask ChatGPT for a dentist in Mohali.", name: "Client name",
+ *   role: "Owner", company: "Company" }
  */
 export type Testimonial = {
   quote: string;

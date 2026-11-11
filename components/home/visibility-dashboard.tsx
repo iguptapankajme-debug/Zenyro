@@ -145,10 +145,10 @@ function GooglePanel() {
 }
 
 const citations = [
-  { e: "chatgpt", n: "ChatGPT", prompt: "Which clinic in Mohali is best for root canal treatment?", page: "/treatments/root-canal" },
-  { e: "perplexity", n: "Perplexity", prompt: "How much does teeth whitening cost in Chandigarh?", page: "/guides/teeth-whitening-cost" },
+  { e: "chatgpt", n: "ChatGPT", prompt: "Which clinic in Austin is best for root canal treatment?", page: "/treatments/root-canal" },
+  { e: "perplexity", n: "Perplexity", prompt: "How much does teeth whitening cost in Austin?", page: "/guides/teeth-whitening-cost" },
   { e: "overviews", n: "AI Overviews", prompt: "Is a root canal painful?", page: "/faq/root-canal" },
-  { e: "gemini", n: "Gemini", prompt: "Dentists open on Sunday near Sector 35", page: "/locations/sector-35" },
+  { e: "gemini", n: "Gemini", prompt: "Dentists open on Sunday near South Congress", page: "/locations/south-congress" },
 ] as const;
 
 function CitationsPanel() {
