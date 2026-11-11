@@ -17,6 +17,7 @@ export default function MarketsPage() {
       <PageHero
         crumbs={[{ name: "Markets", path: "/markets" }]}
         eyebrow="International"
+        art={false}
         title={<>One team. <Em>Every market.</Em></>}
         intro="We're based in India and work remotely with businesses around the world, in their language and their working hours. Pick your market to see how search and AI work there."
         aside={<div className="mx-auto mt-6 w-full max-w-[22rem]"><GlobeCanvas /></div>}

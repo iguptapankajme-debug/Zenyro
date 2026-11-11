@@ -5,6 +5,7 @@ import { Faq } from "@/components/sections/faq";
 import { Em } from "@/components/ui/section-heading";
 import { ButtonLink } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/seo";
+import { GrowthShowcase } from "@/components/art/growth-showcase";
 
 export const metadata = buildMetadata({
   title: "Free SEO & AI Visibility Audit for Your Business",
@@ -74,6 +75,7 @@ export default function FreeAuditPage() {
         </div>
       </section>
 
+      <GrowthShowcase />
       <Faq faqs={faqs} title="About the free audit." />
     </>
   );

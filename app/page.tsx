@@ -7,6 +7,7 @@ import { HeroOrbit, OrbitStack } from "@/components/home/hero-orbit";
 import { AskAiDemo } from "@/components/home/ask-ai-demo";
 import { PromptTicker } from "@/components/home/prompt-ticker";
 import { StepsTimeline } from "@/components/home/steps-timeline";
+import { GrowthShowcase } from "@/components/art/growth-showcase";
 import { GlobeCanvas } from "@/components/webgl/globe-canvas";
 import { ShaderCanvas } from "@/components/webgl/shader-canvas";
 import { AiReadinessChecker } from "@/components/tools/ai-readiness-checker";
@@ -288,6 +289,8 @@ export default function Home() {
         <StepsTimeline steps={steps} />
       </Rail>
 
+      <GrowthShowcase />
+
       {/* Examples */}
       <Rail labelledBy="examples-home-title">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
@@ -295,7 +298,10 @@ export default function Home() {
             <p className="eyebrow mb-6">Examples</p>
             <h2 id="examples-home-title" className="max-w-2xl text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.045em]">See how a search programme <Em>works</Em></h2>
           </div>
-          <Link href="/work" className="inline-flex items-center gap-2 font-medium"><span className="link-u">All examples</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+          <div className="flex flex-wrap gap-6">
+            <Link href="/playbooks" className="inline-flex items-center gap-2 font-medium"><span className="link-u">36 playbooks by market</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+            <Link href="/work" className="inline-flex items-center gap-2 font-medium"><span className="link-u">All examples</span><ArrowUpRight aria-hidden="true" className="size-4 text-ember" /></Link>
+          </div>
         </div>
         <ExampleGrid items={seoExamples} filters={false} />
       </Rail>

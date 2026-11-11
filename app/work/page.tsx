@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageHero } from "@/components/layout/page-hero";
 import { SystemFlow } from "@/components/sections/system-flow";
 import { concepts, getWork } from "@/data/work";
@@ -42,6 +43,7 @@ export default function WorkPage() {
             business. Names are illustrative, none of them describe a real client, and they contain no performance figures.
           </p>
           <ExampleGrid items={examples} />
+          <p className="mt-10"><Link href="/playbooks" className="inline-flex items-center gap-2 font-medium"><span className="link-u">See 36 playbooks by industry for the US, UK and UAE</span> →</Link></p>
         </div>
       </section>
 

@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { plans, typicalAgencyRetainerUSD } from "@/data/pricing";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { GrowthShowcase } from "@/components/art/growth-showcase";
 
 export const metadata = buildMetadata({
   title: "Pricing: SEO, AEO & GEO Plans from $799 a Month",
@@ -83,6 +84,7 @@ export default function PricingPage() {
         </div>
       </section>
 
+      <GrowthShowcase />
       <Faq faqs={faqs} title="Pricing questions." />
       <ContactCta />
       <JsonLd

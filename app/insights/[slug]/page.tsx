@@ -10,6 +10,7 @@ import { articles, getArticle, pillars, type Article } from "@/data/insights";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { slugify } from "@/lib/slugify";
+import { HeroArt, HeroArtRow } from "@/components/art/hero-art";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -84,9 +85,11 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <>
       <article className="pb-24 pt-32 md:pt-44">
-        <div className="shell">
+        <div className="shell relative">
+          <HeroArt path={`/${a.category.toLowerCase()}/${a.slug}`} className="absolute right-0 top-10 hidden xl:block" />
           <Breadcrumbs items={[{ name: "Insights", path: "/insights" }, { name: a.title, path }]} />
           <header className="mt-10 max-w-4xl">
+            <HeroArtRow path={`/${a.category.toLowerCase()}/${a.slug}`} className="mb-6 xl:hidden" />
             <p className="eyebrow mb-6">{a.category}</p>
             <h1 className="text-[clamp(2.2rem,5vw,4.4rem)] font-semibold leading-[1] tracking-[-0.04em] text-balance">{a.title}</h1>
             <p className="mt-6 font-mono text-[0.75rem] uppercase tracking-[0.14em] text-muted">
