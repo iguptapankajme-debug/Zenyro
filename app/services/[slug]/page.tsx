@@ -13,6 +13,7 @@ import { disciplines, getService, services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { buildMetadata, serviceSchema } from "@/lib/seo";
 import { GrowthShowcase } from "@/components/art/growth-showcase";
+import { TrafficFlow } from "@/components/art/traffic-flow";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -143,6 +144,7 @@ export default async function ServicePage({ params }: Props) {
         </div>
       </section>
 
+      <TrafficFlow />
       <GrowthShowcase />
       <Faq faqs={s.faqs} />
       <LinkList

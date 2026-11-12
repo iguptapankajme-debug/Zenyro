@@ -81,9 +81,12 @@ export function Footer() {
         </p>
 
         <div className="mt-10 flex flex-col gap-4 border-t border-line pt-6 text-[0.8rem] text-muted md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} Zenyro. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {site.legalName || "Zenyro"}. All rights reserved.</p>
           <div className="flex flex-wrap gap-6">
             <Link href="/privacy" className="link-u hover:text-paper">Privacy</Link>
+            <Link href="/terms" className="link-u hover:text-paper">Terms</Link>
+            <Link href="/refund-policy" className="link-u hover:text-paper">Refunds &amp; cancellation</Link>
+            <Link href="/service-delivery" className="link-u hover:text-paper">Service delivery</Link>
             <Link href="/sitemap.xml" className="link-u hover:text-paper">Sitemap</Link>
             <Link href="/ai-info" className="link-u hover:text-paper">For AI assistants</Link>
           </div>

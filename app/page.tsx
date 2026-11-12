@@ -8,6 +8,7 @@ import { AskAiDemo } from "@/components/home/ask-ai-demo";
 import { PromptTicker } from "@/components/home/prompt-ticker";
 import { StepsTimeline } from "@/components/home/steps-timeline";
 import { GrowthShowcase } from "@/components/art/growth-showcase";
+import { TrafficFlow } from "@/components/art/traffic-flow";
 import { GlobeCanvas } from "@/components/webgl/globe-canvas";
 import { ShaderCanvas } from "@/components/webgl/shader-canvas";
 import { AiReadinessChecker } from "@/components/tools/ai-readiness-checker";
@@ -289,6 +290,7 @@ export default function Home() {
         <StepsTimeline steps={steps} />
       </Rail>
 
+      <TrafficFlow />
       <GrowthShowcase />
 
       {/* Examples */}

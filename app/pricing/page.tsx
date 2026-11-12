@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Check, Minus } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { PricingPlans } from "@/components/pricing/pricing-plans";
@@ -85,6 +86,14 @@ export default function PricingPage() {
       </section>
 
       <GrowthShowcase />
+      <div className="shell -mt-4 pb-4">
+        <p className="text-center text-[0.85rem] text-muted">
+          Billed monthly in advance. Month to month, cancel with 30 days&apos; notice, and a 7-day refund window on your first payment. See our{" "}
+          <Link href="/refund-policy" className="link-u text-paper">refund and cancellation policy</Link>,{" "}
+          <Link href="/service-delivery" className="link-u text-paper">service delivery policy</Link> and{" "}
+          <Link href="/terms" className="link-u text-paper">terms</Link>.
+        </p>
+      </div>
       <Faq faqs={faqs} title="Pricing questions." />
       <ContactCta />
       <JsonLd
