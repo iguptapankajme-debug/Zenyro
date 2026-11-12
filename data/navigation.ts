@@ -49,4 +49,5 @@ export const primaryNav = [
   { label: "Examples", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },
+  { label: "Free AI checker", href: "/tools/ai-readiness" },
 ] as const;

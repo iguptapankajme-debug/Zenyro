@@ -171,7 +171,9 @@ body {
 .js [data-reveal].is-in { opacity: 1; transform: none; }
 
 /* Route transition */
-.page-enter { animation: fade 0.5s var(--ease-out-expo) both; }
+/* Slide only: starting from opacity 0 would delay the first paint (LCP) of every page. */
+@keyframes page-enter { from { transform: translateY(6px); } to { transform: none; } }
+.page-enter { animation: page-enter 0.5s var(--ease-out-expo) both; }
 
 /* Custom cursor (fine pointers only, never hides the native cursor) */
 .cursor-ring {
