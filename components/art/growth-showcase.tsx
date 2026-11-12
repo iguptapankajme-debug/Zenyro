@@ -4,7 +4,7 @@ import { GrowthChart } from "./growth-chart";
 /** Section: what progress looks like, with the animated chart and every engine we optimise for. */
 const engines: [Icon3DName, string][] = [["google", "Google"], ["bing", "Bing"], ["chatgpt", "ChatGPT"], ["gemini", "Gemini"], ["perplexity", "Perplexity"], ["claude", "Claude"], ["copilot", "Copilot"], ["brave", "Brave"]];
 
-export function GrowthShowcase({ title = "What progress looks like.", intro }: { title?: string; intro?: string }) {
+export function GrowthShowcase({ title = "What progress looks like.", intro, queries, seed }: { title?: string; intro?: string; queries?: readonly string[]; seed?: number }) {
   return (
     <section className="cv-auto border-t border-line py-16 md:py-24" aria-labelledby="growth-title">
       <div className="shell grid gap-12 lg:grid-cols-12 lg:items-center">
@@ -20,7 +20,7 @@ export function GrowthShowcase({ title = "What progress looks like.", intro }: {
             ))}
           </ul>
         </div>
-        <div className="lg:col-span-8"><GrowthChart /></div>
+        <div className="min-w-0 lg:col-span-8"><GrowthChart queries={queries} seed={seed} /></div>
       </div>
       <div className="shell mt-14">
         <p className="mb-5 text-center font-mono text-[0.7rem] uppercase tracking-[0.14em] text-dim">Optimised for every engine your customers use</p>

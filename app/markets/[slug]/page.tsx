@@ -131,8 +131,8 @@ export default async function MarketPage({ params }: Props) {
         </section>
       )}
 
-      <GrowthShowcase />
-      <Faq faqs={m.faqs} title={`SEO in ${name}: questions.`} />
+      <GrowthShowcase title={`What search growth looks like in ${name}.`} queries={[`seo agency ${m.country.toLowerCase()}`, `best seo company ${m.country.toLowerCase()}`, `seo services ${m.country.toLowerCase()}`, "chatgpt seo agency", "geo agency", "ai overviews optimisation"]} seed={m.slug.length * 37} />
+      <Faq faqs={[...m.faqs, ...(m.faqs.some((f) => /best seo agency/i.test(f.q)) ? [] : [{ q: `What is the best SEO agency in ${name}?`, a: `There is no single best SEO agency in ${name} for every business. The best fit understands your market and customers, publishes or quotes clear prices, keeps Search Console and other accounts in your name, reports on enquiries as well as rankings, and measures whether ChatGPT, Gemini and Google AI Overviews recommend you. Zenyro does all of this remotely for ${name} businesses, with plans in local currency on the [pricing page](/pricing).` }])]} title={`SEO in ${name}: questions.`} />
       <ContactCta />
       <JsonLd
         data={{

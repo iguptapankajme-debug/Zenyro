@@ -155,7 +155,7 @@ export default async function PlaybookPage({ params }: Props) {
               ))}
             </ul>
           </div>
-          <div className="lg:col-span-8"><GrowthChart seed={seedOf(p.slug)} /></div>
+          <div className="min-w-0 lg:col-span-8"><GrowthChart seed={seedOf(p.slug)} /></div>
         </div>
       </section>
 

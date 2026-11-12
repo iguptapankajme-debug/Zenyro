@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowUpRight, Check, Clock, Newspaper } from "lucide-react";
+import { ArrowUpRight, Check, Clock, Newspaper, X } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { Faq } from "@/components/sections/faq";
 import { ContactCta } from "@/components/sections/contact-cta";
@@ -32,7 +32,7 @@ const MARKETS: Record<string, {
     money: (n) => `US$${n.toLocaleString("en-US")}`, priceKey: "USD",
     priceRows: [["Typical agency in directories", "US$1,000 to $5,000 / month"], ["Average agency retainer", "About US$3,000 / month"]],
     priceNote: "Ranges from public agency directories and industry surveys; individual quotes vary.",
-    title: (r) => `SEO, AEO & GEO Agency for ${r.name} Businesses`,
+    title: (r) => `SEO Agency for ${r.name} Businesses: How to Choose the Best`,
     costAnswer: (r, g, a) => `Agency directories commonly show US$1,000 to $5,000 a month for SEO and AI search work, and industry surveys put the average agency retainer around $3,000. Zenyro publishes its prices: Growth from ${g} and Authority from ${a} a month, covering SEO, AEO and GEO.`,
   },
   uae: {
@@ -40,7 +40,7 @@ const MARKETS: Record<string, {
     money: (n) => `AED ${n.toLocaleString("en-US")}`, priceKey: "AED",
     priceRows: [["Freelancer", "From about AED 4,000 / month"], ["Typical UAE agency", "AED 5,500 to 18,500 / month"], ["Full bilingual agency", "Up to about AED 25,000 / month"]],
     priceNote: "Ranges from published 2026 Dubai SEO pricing guides; genuine bilingual Arabic work often adds 20 to 30%.",
-    title: (r) => `SEO Agency for ${r.name} Businesses: SEO, AEO & GEO`,
+    title: (r) => `SEO Agency for ${r.name}: How to Choose the Best, Prices in AED`,
     costAnswer: (r, g, a) => `Published 2026 estimates put UAE SEO retainers at roughly AED 4,000 a month for a freelancer up to AED 25,000 for a full bilingual agency, with many between AED 5,500 and 18,500. Zenyro's plans are ${g} (Growth) and ${a} (Authority) a month, including AEO and GEO.`,
   },
 };
@@ -80,10 +80,15 @@ export default async function RegionPage({ params }: Props) {
   const g = m.money(growth!.price[m.priceKey]);
   const a = m.money(authority!.price[m.priceKey]);
 
+  const city = s.name.toLowerCase();
+  const localQueries = [`seo agency ${city}`, `best seo company in ${city}`, `seo services ${city}`, `local seo ${city}`, `ai search optimisation ${city}`, `seo agency near me`];
+  const seed = [...s.slug].reduce((n, ch) => n + ch.charCodeAt(0), 0);
+
   const faqs = [
     ...(s.deepDive ?? []),
     { q: `Do you have an office in ${s.name}?`, a: `No. Zenyro is based in India and works remotely with ${s.name} businesses, with calls scheduled in ${s.zoneLabel}. Search engines and AI assistants rank your website and reputation, not your agency's address. We research ${s.name} competitors, directories and search behaviour directly.` },
     ...(s.deepDive ? [] : [{ q: `What is the best GEO or AEO agency in ${s.name}?`, a: `The best agency is the one that measures AI visibility with a fixed set of prompts across engines, explains its plan clearly and publishes or quotes transparent pricing. Ask any agency for a sample report showing mentions and citations by engine. Our [buyer's guide](/insights/how-to-choose-seo-aeo-geo-agency) lists the questions to ask.` }]),
+    ...(s.deepDive ? [] : [{ q: `What is the best SEO agency in ${s.name}?`, a: `No agency is the best for everyone. The best SEO agency for a ${s.name} business is one that understands local search in ${s.cities.slice(0, 2).join(" and ")}, publishes or quotes clear prices, keeps your accounts in your name, reports on enquiries as well as rankings, and also measures visibility in AI assistants like ChatGPT. Use the scorecard on this page to compare agencies.` }]),
     ...(s.deepDive ? [] : [{ q: `How much does SEO cost in ${s.name}?`, a: m.costAnswer(s, g, a) }]),
     { q: `Can you do local SEO for several ${s.name} locations?`, a: `Yes. Each location gets its own Google Business Profile optimisation and a location page with genuinely local detail, so you can rank in ${s.cities.slice(0, 3).join(", ")} and other metros you serve.` },
     s.faq,
@@ -221,6 +226,42 @@ export default async function RegionPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Best-agency scorecard */}
+      <section className="border-t border-line py-16 md:py-24" aria-labelledby="best-title">
+        <div className="shell">
+          <p className="eyebrow mb-6">Scorecard</p>
+          <h2 id="best-title" className="display-md max-w-4xl">What makes the best SEO agency in {s.name}?</h2>
+          <p className="lede mt-6 max-w-3xl">
+            The best SEO agency in {s.name} is the one that can show how it will win the searches your customers make in {s.cities.slice(0, 2).join(" and ")}, measures enquiries rather than vanity traffic, and also tracks whether ChatGPT, Gemini and Google&apos;s AI Overviews recommend you. Score any agency, including us, against these seven points.
+          </p>
+          <div className="relative mt-10 overflow-x-auto rounded-2xl border border-line">
+            <table className="w-full min-w-[44rem] text-left text-[0.92rem]">
+              <thead className="bg-ink-2 text-[0.78rem] text-muted">
+                <tr><th scope="col" className="p-4 font-medium">What to check</th><th scope="col" className="p-4 font-medium">What good looks like</th><th scope="col" className="p-4 font-medium">Red flag</th></tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Local market knowledge", `Names the ${s.name} directories, publications and competitors that matter, such as ${s.sources[0]}`, "A generic proposal that could be for any city"],
+                  ["Google Business Profile and Maps", "A plan for each location: categories, photos, reviews and local pages", "Maps left out of the proposal"],
+                  ["AI search visibility (GEO and AEO)", "Tracks a fixed set of prompts in ChatGPT, Perplexity, Gemini and AI Overviews every month", "No way to show whether AI tools mention you"],
+                  ["Reporting", "Search Console clicks, rankings and enquiries in one monthly report", "Only rankings for keywords nobody searches"],
+                  ["Pricing", "Clear monthly price and scope in writing, no long lock-in", "Price only after several sales calls, 12-month minimum"],
+                  ["Ownership", "Your Search Console, analytics, profiles and content stay in your name", "The agency owns your accounts"],
+                  ["Honesty", "Realistic timelines of three to six months", "Guaranteed #1 rankings or guaranteed ChatGPT mentions"],
+                ].map(([k, good, bad]) => (
+                  <tr key={k} className="border-t border-line">
+                    <th scope="row" className="p-4 align-top font-semibold">{k}</th>
+                    <td className="p-4 align-top"><span className="flex gap-2"><Check aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-[#0E9F6E]" />{good}</span></td>
+                    <td className="p-4 align-top text-muted"><span className="flex gap-2"><X aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-[#E5484D]" />{bad}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-[0.85rem] text-dim">Zenyro works remotely for {s.name} businesses and publishes its prices: {g} (Growth) or {a} (Authority) a month.</p>
+        </div>
+      </section>
+
       {/* What we do */}
       <section className="border-t border-line py-16 md:py-24" aria-labelledby="do-title">
         <div className="shell">
@@ -247,7 +288,7 @@ export default async function RegionPage({ params }: Props) {
         </div>
       </section>
 
-      <GrowthShowcase />
+      <GrowthShowcase title={`What search growth looks like in ${s.name}.`} queries={localQueries} seed={seed} />
       <Faq faqs={faqs} title={`SEO in ${s.name}: questions.`} />
       <ContactCta />
       <JsonLd
