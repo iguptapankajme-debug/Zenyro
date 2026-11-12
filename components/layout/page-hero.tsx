@@ -34,17 +34,21 @@ export function PageHero({ crumbs, eyebrow, title, intro, aside, shader: shaderP
       <div aria-hidden="true" className="absolute right-[-15%] top-[-30%] -z-10 size-[55vw] max-w-[48rem] rounded-full bg-[radial-gradient(circle,rgba(21,94,239,.10),transparent_62%)]" />
       <div className="shell">
         <Breadcrumbs items={crumbs} />
-        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-8">
+        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-center">
+          <div className={art ? "lg:col-span-7" : "lg:col-span-9"}>
             {art && <HeroArtRow path={path} className="mb-6 lg:hidden" />}
             <p className="eyebrow mb-6 animate-fade">{eyebrow}</p>
             <h1 className="display-xl">{title}</h1>
+            {(intro || aside) && (
+              <div className="mt-8 max-w-2xl animate-fade [animation-delay:160ms]">
+                {intro && <p className="lede">{intro}</p>}
+                {aside}
+              </div>
+            )}
           </div>
-          {(intro || aside || art) && (
-            <div className="animate-fade [animation-delay:160ms] lg:col-span-4">
-              {art && <HeroArt path={path} className="mx-auto mb-8 hidden lg:block" />}
-              {intro && <p className="lede">{intro}</p>}
-              {aside}
+          {art && (
+            <div className="hidden animate-fade [animation-delay:160ms] lg:col-span-5 lg:block">
+              <HeroArt path={path} className="mx-auto" />
             </div>
           )}
         </div>

@@ -30,6 +30,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...locations.map((l) => page(`/locations/${l.slug}`, 0.7)),
     ...localServices.map((l) => page(`/locations/${l.city}/${l.service}`, 0.7)),
     ...articles.map((a) => page(`/insights/${a.slug}`, 0.6, new Date(a.published))),
-    page("/privacy", 0.2),
+    ...["/privacy", "/terms", "/refund-policy", "/service-delivery"].map((p) => page(p, 0.2)),
   ];
 }

@@ -17,6 +17,11 @@ export const site = {
   whatsapp: "", // international format without "+", e.g. 919876543210
   bookingUrl: "", // e.g. a Cal.com or Calendly link. Falls back to the contact form.
   region: "Chandigarh Tricity, India",
+  // Business details shown on the contact and policy pages (payment gateways check these match your
+  // registration). TODO: set the registered legal name and full address. Empty values are hidden.
+  legalName: "", // e.g. "Zenyro Digital Private Limited" or the proprietor's name; falls back to name
+  address: "", // full registered address, e.g. "SCO 123, Sector 17, Chandigarh 160017, India"
+  gstin: "",
   areaServed: ["India", "United States", "United Kingdom", "United Arab Emirates", "Canada", "Australia", "Singapore"],
   social: {
     instagram: "https://www.instagram.com/zenyro.in",

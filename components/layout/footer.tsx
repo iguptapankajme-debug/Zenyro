@@ -4,7 +4,7 @@ import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { markets } from "@/data/markets";
 import { site } from "@/lib/site";
-import { Mark } from "./wordmark";
+import { Wordmark } from "./wordmark";
 import { Flag } from "@/components/ui/flag";
 
 const company = [
@@ -47,7 +47,7 @@ export function Footer() {
       <div className="shell">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Mark className="size-10" />
+            <Wordmark className="[&>span]:text-[1.7rem]" />
             <p className="mt-6 max-w-xs text-[1.4rem] font-semibold leading-tight tracking-[-0.02em]">
               Found on Google. <span className="text-ember">Recommended by AI.</span>
             </p>
@@ -75,15 +75,18 @@ export function Footer() {
 
         <p
           aria-hidden="true"
-          className="pointer-events-none mt-20 select-none whitespace-nowrap text-center text-[clamp(4.5rem,21vw,20rem)] font-semibold leading-[0.78] tracking-[-0.06em] text-transparent [-webkit-text-stroke:1px_var(--color-line-2)]"
+          className="pointer-events-none mt-20 select-none whitespace-nowrap text-center text-[clamp(4.5rem,21vw,20rem)] font-bold leading-[0.78] tracking-[-0.06em] text-transparent [-webkit-text-stroke:1px_var(--color-line-2)]"
         >
-          ZENYRO
+          zenyro
         </p>
 
         <div className="mt-10 flex flex-col gap-4 border-t border-line pt-6 text-[0.8rem] text-muted md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} Zenyro. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {site.legalName || "Zenyro"}. All rights reserved.</p>
           <div className="flex flex-wrap gap-6">
             <Link href="/privacy" className="link-u hover:text-paper">Privacy</Link>
+            <Link href="/terms" className="link-u hover:text-paper">Terms</Link>
+            <Link href="/refund-policy" className="link-u hover:text-paper">Refunds &amp; cancellation</Link>
+            <Link href="/service-delivery" className="link-u hover:text-paper">Service delivery</Link>
             <Link href="/sitemap.xml" className="link-u hover:text-paper">Sitemap</Link>
             <Link href="/ai-info" className="link-u hover:text-paper">For AI assistants</Link>
           </div>

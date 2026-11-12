@@ -13,6 +13,7 @@ import { getIndustry, industries } from "@/data/industries";
 import { getService } from "@/data/services";
 import { buildMetadata, serviceSchema } from "@/lib/seo";
 import { GrowthShowcase } from "@/components/art/growth-showcase";
+import { TrafficFlow } from "@/components/art/traffic-flow";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -32,6 +33,9 @@ export default async function IndustryPage({ params }: Props) {
   if (!ind) notFound();
   const svc = ind.services.map(getService).filter((x) => !!x);
   const others = industries.filter((i) => i.slug !== ind.slug).slice(0, 3);
+  const label = ind.name.replace(/ &.*$/, "").replace(/ Companies$/, "").toLowerCase();
+  const queries = [`${label} seo agency`, ...(industryAsks[ind.slug] ?? []).map(([, q]) => q.toLowerCase().replace(/\?$/, "")), `seo for ${label}`];
+  const seed = [...ind.slug].reduce((n, ch) => n + ch.charCodeAt(0), 0);
 
   return (
     <>
@@ -133,7 +137,8 @@ export default async function IndustryPage({ params }: Props) {
         </div>
       </section>
 
-      <GrowthShowcase />
+      <TrafficFlow />
+      <GrowthShowcase title={`What search growth looks like for ${label}.`} queries={queries} seed={seed} />
       <Faq faqs={ind.faqs} title={`${ind.name}: common questions.`} />
       <LinkList eyebrow="Services for this industry" items={svc.map((s) => ({ title: s.name, body: s.headline, href: `/services/${s.slug}`, meta: "Service" }))} />
       <LinkList eyebrow="Other industries" items={others.map((o) => ({ title: o.name, body: o.headline, href: `/industries/${o.slug}`, meta: "Industry" }))} />

@@ -1,5 +1,7 @@
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import Link from "next/link";
 import { ContactCta } from "@/components/sections/contact-cta";
+import { BusinessDetails } from "@/components/legal/business-details";
 import { Faq } from "@/components/sections/faq";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -23,6 +25,18 @@ export default function ContactPage() {
     <div className="pt-28 md:pt-36">
       <div className="shell"><Breadcrumbs items={[{ name: "Contact", path: "/contact" }]} /></div>
       <ContactCta headingLevel="h1" variant="form" />
+      <section className="border-t border-line py-16" aria-labelledby="biz-title">
+        <div className="shell grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <p className="eyebrow mb-6">Business details</p>
+            <h2 id="biz-title" className="display-md">Who you are dealing with.</h2>
+            <p className="mt-4 text-[0.95rem] leading-relaxed text-muted">
+              Read our <Link href="/terms" className="link-u text-paper">terms</Link>, <Link href="/refund-policy" className="link-u text-paper">refund and cancellation policy</Link>, <Link href="/service-delivery" className="link-u text-paper">service delivery policy</Link> and <Link href="/privacy" className="link-u text-paper">privacy notice</Link>.
+            </p>
+          </div>
+          <div className="lg:col-span-8"><BusinessDetails className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line text-[0.95rem] sm:grid-cols-[12rem_1fr]" /></div>
+        </div>
+      </section>
       <Faq faqs={faqs} title="Before you get in touch." />
     </div>
   );

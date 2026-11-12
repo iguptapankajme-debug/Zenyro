@@ -8,6 +8,7 @@ import { AskAiDemo } from "@/components/home/ask-ai-demo";
 import { PromptTicker } from "@/components/home/prompt-ticker";
 import { StepsTimeline } from "@/components/home/steps-timeline";
 import { GrowthShowcase } from "@/components/art/growth-showcase";
+import { TrafficFlow } from "@/components/art/traffic-flow";
 import { GlobeCanvas } from "@/components/webgl/globe-canvas";
 import { ShaderCanvas } from "@/components/webgl/shader-canvas";
 import { AiReadinessChecker } from "@/components/tools/ai-readiness-checker";
@@ -233,9 +234,9 @@ export default function Home() {
                 <ButtonLink href="/search-growth" variant="ghost">How search is changing</ButtonLink>
               </div>
             </div>
-            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:col-span-8 lg:grid-cols-5">
-              {engines.map((e, i) => (
-                <li key={e.key} className={`group flex min-h-32 flex-col items-center justify-center gap-3 border-line p-4 text-center ${i % 5 ? "lg:border-l" : ""} ${i >= 5 ? "lg:border-t" : ""} border-b lg:border-b-0`}>
+            <ul className="grid grid-cols-2 gap-px bg-line sm:grid-cols-5 lg:col-span-8">
+              {engines.filter((e) => e.key !== "meta").map((e) => (
+                <li key={e.key} className="group flex min-h-32 flex-col items-center justify-center gap-3 bg-ink p-4 text-center">
                   <EngineMark name={e.key} className="size-10 transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-[-6deg]" />
                   <span className="text-[0.9rem] font-medium">{e.name}</span>
                 </li>
@@ -289,6 +290,7 @@ export default function Home() {
         <StepsTimeline steps={steps} />
       </Rail>
 
+      <TrafficFlow />
       <GrowthShowcase />
 
       {/* Examples */}

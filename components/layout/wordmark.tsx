@@ -1,21 +1,20 @@
 import { cn } from "@/lib/cn";
 
-/** Zenyro mark: an orbit with a single node, the same geometry as the hero sculpture. */
+/** Compact Zenyro mark: a white lowercase z on a Zenyro-blue tile (favicon, small spaces). */
 export function Mark({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 32" aria-hidden="true" className={cn("size-6", className)} fill="none">
-      <circle cx="16" cy="16" r="11" stroke="currentColor" strokeWidth="1.6" />
-      <ellipse cx="16" cy="16" rx="15" ry="5.5" transform="rotate(-28 16 16)" stroke="currentColor" strokeOpacity=".45" strokeWidth="1.2" />
-      <circle cx="28.2" cy="9.6" r="2.6" fill="#155eef" />
+    <svg viewBox="0 0 32 32" aria-hidden="true" className={cn("size-7 shrink-0", className)}>
+      <rect width="32" height="32" rx="8" fill="#155EEF" />
+      <path d="M9 9.5H23V12.6L14.6 20.4H23V23.5H8.6V20.4L17 12.6H9Z" fill="#fff" />
     </svg>
   );
 }
 
+/** The Zenyro logo: the white lowercase "zenyro" wordmark on a Zenyro-blue badge. */
 export function Wordmark({ className }: { className?: string }) {
   return (
-    <span className={cn("flex items-center gap-2.5 text-paper", className)}>
-      <Mark />
-      <span className="text-[1.05rem] font-semibold tracking-[0.18em]">ZENYRO</span>
+    <span className={cn("inline-flex items-center rounded-[0.55rem] bg-[#155EEF] px-3 pb-[0.42rem] pt-[0.3rem] text-white", className)}>
+      <span className="text-[1.3rem] font-bold leading-none tracking-[-0.04em]">zenyro</span>
     </span>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowUpRight, MessageSquareText, Search, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
+import { GrowthShowcase } from "@/components/art/growth-showcase";
 import { Faq } from "@/components/sections/faq";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { ButtonLink } from "@/components/ui/button";
@@ -148,7 +149,8 @@ export default async function LocationPage({ params }: Props) {
         </section>
       )}
 
-      <Faq faqs={l.faqs} title={`Working with Zenyro in ${l.city}.`} />
+      <GrowthShowcase title={`What search growth looks like in ${l.city}.`} queries={[`seo agency ${l.city.toLowerCase()}`, `best seo company in ${l.city.toLowerCase()}`, `seo services ${l.city.toLowerCase()}`, `local seo ${l.city.toLowerCase()}`, "seo agency near me", "ai search optimisation"]} seed={l.slug.length * 53} />
+      <Faq faqs={[...l.faqs, ...(l.faqs.some((f) => /best seo/i.test(f.q)) ? [] : [{ q: `What is the best SEO agency in ${l.city}?`, a: `There is no single best SEO agency in ${l.city} for every business. Look for one that understands local search and Google Maps in ${l.city}, gives clear prices in writing, keeps your accounts in your name, reports on enquiries as well as rankings, and also tracks whether ChatGPT and Google AI Overviews recommend you.` }])]} title={`Working with Zenyro in ${l.city}.`} />
       <ContactCta />
       <JsonLd
         data={{
