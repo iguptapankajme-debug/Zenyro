@@ -1,3 +1,6 @@
+import { site } from "@/lib/site";
+import { QuickAnswer } from "@/components/sections/quick-answer";
+import { answersReviewed } from "@/data/answers";
 import Link from "next/link";
 import { ArrowUpRight, Check, Search, Sparkles } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
@@ -143,6 +146,15 @@ export default function Home() {
         </div>
         <div className="shell"><div className="border-x border-line"><VisibilityDashboard /></div></div>
       </section>
+
+      <QuickAnswer
+        q="What is Zenyro?"
+        a="Zenyro is a search agency focused only on organic visibility: SEO for Google and Bing, AEO for featured snippets and AI Overviews, and GEO for recommendations in ChatGPT, Perplexity, Gemini and Claude. Based in India, it works remotely with businesses in the US, UK, UAE, Canada, Australia, Singapore and India on two published monthly plans."
+        facts={["SEO, AEO and GEO in one programme", "Plans from US$799 a month, no setup fee", "Free AI visibility audit and AI readiness checker"]}
+        updated={answersReviewed}
+        path="/"
+        name={site.name}
+      />
 
       {/* Prompt ticker */}
       <section aria-label="Questions customers ask AI" className="border-b border-line bg-ink-2">

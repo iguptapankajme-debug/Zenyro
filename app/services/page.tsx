@@ -1,3 +1,5 @@
+import { itemListSchema } from "@/lib/seo";
+import { JsonLd } from "@/components/ui/json-ld";
 import { PageHero } from "@/components/layout/page-hero";
 import { LinkList } from "@/components/sections/link-grid";
 import { ContactCta } from "@/components/sections/contact-cta";
@@ -31,6 +33,7 @@ export default function ServicesPage() {
         }))}
       />
       <ContactCta />
+      <JsonLd data={itemListSchema("SEO, AEO and GEO services", services.map((s) => ({ name: s.name, path: `/services/${s.slug}` })))} />
     </>
   );
 }

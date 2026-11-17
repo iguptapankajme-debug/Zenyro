@@ -1,3 +1,5 @@
+import { itemListSchema } from "@/lib/seo";
+import { JsonLd } from "@/components/ui/json-ld";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
@@ -61,6 +63,7 @@ export default function SolutionsPage() {
         </div>
       </section>
       <ContactCta />
+      <JsonLd data={itemListSchema("Industries Zenyro works with", industries.map((i) => ({ name: i.name, path: `/industries/${i.slug}` })))} />
     </>
   );
 }

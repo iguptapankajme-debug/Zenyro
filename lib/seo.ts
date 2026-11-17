@@ -138,3 +138,14 @@ export function webApplicationSchema(input: { name: string; description: string;
     provider: { "@id": `${site.url}/#organization` },
   };
 }
+
+/** ItemList structured data for a hub page, so search engines see every page it links to. */
+export function itemListSchema(name: string, items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    numberOfItems: items.length,
+    itemListElement: items.map((it, i) => ({ "@type": "ListItem", position: i + 1, name: it.name, url: absoluteUrl(it.path) })),
+  };
+}

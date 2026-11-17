@@ -6,7 +6,9 @@ import { Faq } from "@/components/sections/faq";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { Em } from "@/components/ui/section-heading";
 import { JsonLd } from "@/components/ui/json-ld";
-import { plans, typicalAgencyRetainerUSD } from "@/data/pricing";
+import { formatPrice, plans, typicalAgencyRetainerUSD } from "@/data/pricing";
+import { QuickAnswer } from "@/components/sections/quick-answer";
+import { answersReviewed } from "@/data/answers";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { GrowthShowcase } from "@/components/art/growth-showcase";
@@ -45,6 +47,15 @@ export default function PricingPage() {
         eyebrow="Pricing"
         title={<>Two plans. <Em>No surprises.</Em></>}
         intro="SEO, AEO and GEO in one monthly plan, priced for international businesses. No setup fee, no lock-in, and prices shown in your currency."
+      />
+
+      <QuickAnswer
+        q="How much does Zenyro cost?"
+        a={`Zenyro has two monthly plans, both covering SEO, AEO and GEO. Growth costs ${formatPrice(plans[0]!.price.USD, "USD").replace(/^\$/, "US$")} (${formatPrice(plans[0]!.price.GBP, "GBP")}, ${formatPrice(plans[0]!.price.AED, "AED")}, ${formatPrice(plans[0]!.price.INR, "INR")}) a month and Authority ${formatPrice(plans[1]!.price.USD, "USD").replace(/^\$/, "US$")} (${formatPrice(plans[1]!.price.GBP, "GBP")}, ${formatPrice(plans[1]!.price.AED, "AED")}, ${formatPrice(plans[1]!.price.INR, "INR")}). There is no setup fee, plans run month to month with 30 days' notice, and the first payment has a 7-day refund window.`}
+        facts={["Prices in 8 currencies", "No setup fee", "Cancel with 30 days' notice"]}
+        updated={answersReviewed}
+        path="/pricing"
+        name="Zenyro pricing"
       />
 
       <section className="py-20 md:py-28" aria-labelledby="plans-heading">

@@ -1,3 +1,5 @@
+import { QuickAnswer } from "@/components/sections/quick-answer";
+import { answersReviewed, serviceAnswers } from "@/data/answers";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/page-hero";
@@ -50,6 +52,8 @@ export default async function ServicePage({ params }: Props) {
         intro={s.intro}
         aside={<div className="mt-8"><ButtonLink href="/free-audit">Get a free AI visibility audit</ButtonLink></div>}
       />
+
+      {serviceAnswers[s.slug] && <QuickAnswer {...serviceAnswers[s.slug]!} updated={answersReviewed} path={`/services/${s.slug}`} name={s.metaTitle} />}
 
       {s.search && (
         <section className="border-b border-line py-20 md:py-28" aria-labelledby="search-demo">

@@ -1,3 +1,5 @@
+import { itemListSchema } from "@/lib/seo";
+import { JsonLd } from "@/components/ui/json-ld";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
@@ -50,6 +52,7 @@ export default function LocationsPage() {
         </section>
       ))}
       <ContactCta />
+      <JsonLd data={itemListSchema("Cities in India", locations.map((l) => ({ name: l.city, path: `/locations/${l.slug}` })))} />
     </>
   );
 }

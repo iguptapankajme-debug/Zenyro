@@ -1,3 +1,6 @@
+import { itemListSchema } from "@/lib/seo";
+import { JsonLd } from "@/components/ui/json-ld";
+import { markets } from "@/data/markets";
 import { PageHero } from "@/components/layout/page-hero";
 import { MarketCards } from "@/components/markets/market-cards";
 import { GlobeCanvas } from "@/components/webgl/globe-canvas";
@@ -26,6 +29,7 @@ export default function MarketsPage() {
         <div className="shell"><MarketCards /></div>
       </section>
       <ContactCta />
+      <JsonLd data={itemListSchema("Markets Zenyro serves", markets.map((m) => ({ name: m.country, path: `/markets/${m.slug}` })))} />
     </>
   );
 }

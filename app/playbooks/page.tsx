@@ -1,3 +1,5 @@
+import { itemListSchema } from "@/lib/seo";
+import { JsonLd } from "@/components/ui/json-ld";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
@@ -42,6 +44,7 @@ export default function PlaybooksPage() {
         </section>
       ))}
       <ContactCta />
+      <JsonLd data={itemListSchema("SEO, AEO and GEO playbooks", playbooks.map((p) => ({ name: `${p.industryName} in ${p.market.name}`, path: `/playbooks/${p.slug}` })))} />
     </>
   );
 }

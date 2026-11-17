@@ -1,3 +1,6 @@
+import { QuickAnswer } from "@/components/sections/quick-answer";
+import { answersReviewed } from "@/data/answers";
+import { formatPrice, plans as allPlans } from "@/data/pricing";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -58,6 +61,15 @@ export default async function LocationPage({ params }: Props) {
             )}
           </div>
         }
+      />
+
+      <QuickAnswer
+        q={`How can a business in ${l.city} get found on Google and AI search?`}
+        a={`A business in ${l.city} gets found by combining a complete Google Business Profile with genuine reviews, a fast website with a page for each service and area served, answers that Google's AI Overviews can quote, and consistent mentions on the directories and local sites that AI assistants check. Zenyro does all of this from ${formatPrice(allPlans[0]!.price.INR, "INR")} a month.`}
+        facts={[`Common searches: ${l.searches.slice(0, 2).join(", ")}`, "Google Maps and local pack first", "No setup fee, month to month"]}
+        updated={answersReviewed}
+        path={`/locations/${l.slug}`}
+        name={l.metaTitle}
       />
 
       <section className="py-20 md:py-28" aria-labelledby="market-title">

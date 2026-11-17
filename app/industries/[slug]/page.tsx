@@ -1,3 +1,5 @@
+import { QuickAnswer } from "@/components/sections/quick-answer";
+import { answersReviewed, industryAnswers } from "@/data/answers";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -46,6 +48,8 @@ export default async function IndustryPage({ params }: Props) {
         intro={ind.intro}
         aside={<div className="mt-8"><ButtonLink href="/free-audit">Get a free AI visibility audit</ButtonLink></div>}
       />
+
+      {industryAnswers[ind.slug] && <QuickAnswer {...industryAnswers[ind.slug]!} updated={answersReviewed} path={`/industries/${ind.slug}`} name={ind.metaTitle} />}
 
       <section className="py-20 md:py-28">
         <div className="shell grid items-center gap-12 lg:grid-cols-12">

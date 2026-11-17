@@ -1,3 +1,4 @@
+import { industryAnswers, serviceAnswers } from "@/data/answers";
 import { llmsText } from "@/lib/ai-profile";
 import { services } from "@/data/services";
 import { markets } from "@/data/markets";
@@ -36,10 +37,12 @@ export function GET() {
     "",
     "## Services in detail",
     ...services.map((s) => [
-      `### ${s.name}`, `${site.url}/services/${s.slug}`, "", s.intro, "",
+      `### ${s.name}`, `${site.url}/services/${s.slug}`, "", ...(serviceAnswers[s.slug] ? [`${serviceAnswers[s.slug]!.q} ${serviceAnswers[s.slug]!.a}`, ""] : []), s.intro, "",
       "What's included:", ...s.included.map((i) => `- ${i.title}: ${i.body}`), "",
       ...s.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, ""]),
     ].join("\n")),
+    "## SEO by industry",
+    ...Object.entries(industryAnswers).flatMap(([slug, x]) => [`### ${x.q}`, `${site.url}/industries/${slug}`, "", x.a, ""]),
     "## Markets",
     ...markets.map((m) => `### ${m.country}\n${site.url}/markets/${m.slug}\n\n${m.intro}\n\n${m.landscape.join("\n\n")}\n\nWorking hours: ${m.hours}`),
     "",

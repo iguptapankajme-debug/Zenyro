@@ -1,3 +1,6 @@
+import { QuickAnswer } from "@/components/sections/quick-answer";
+import { answersReviewed } from "@/data/answers";
+import { formatPrice, plans as allPlans, type Currency } from "@/data/pricing";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -36,6 +39,8 @@ export default async function MarketPage({ params }: Props) {
   if (!m) notFound();
   const path = `/markets/${m.slug}`;
   const name = `${["US", "UK", "UAE"].includes(m.code) ? "the " : ""}${m.country}`;
+  const cur = ({ US: "USD", UK: "GBP", UAE: "AED", CA: "CAD", AU: "AUD", SG: "SGD" } as Record<string, Currency>)[m.code] ?? "USD";
+  const from = formatPrice(allPlans[0]!.price[cur], cur);
 
   return (
     <>
@@ -51,6 +56,15 @@ export default async function MarketPage({ params }: Props) {
             <span className="inline-flex items-center gap-2 font-mono text-[0.78rem] text-muted"><Clock aria-hidden="true" className="size-3.5" />It&apos;s <LocalClock zone={m.zone} className="tabular-nums text-paper" /> in {m.city}</span>
           </div>
         }
+      />
+
+      <QuickAnswer
+        q={`How do businesses get found on Google and AI search in ${name}?`}
+        a={`To win customers through search in ${name}, a business needs pages that rank on Google for the searches people make in ${m.city} and beyond, answers structured so Google's AI Overviews can quote them, and a reputation on the sources AI assistants such as ChatGPT and Gemini trust. Zenyro handles all three as one monthly programme, from ${from} a month.`}
+        facts={[`Optimised for ${m.platforms.slice(0, 4).join(", ")}`, `Calls in ${m.city} working hours`, "No setup fee, month to month"]}
+        updated={answersReviewed}
+        path={`/markets/${m.slug}`}
+        name={m.metaTitle}
       />
 
       <section className="py-20 md:py-28" aria-labelledby="landscape-title">
